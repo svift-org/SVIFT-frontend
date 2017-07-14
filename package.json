@@ -1,0 +1,16 @@
+{
+  "name": "svift-frontend",
+  "version": "1.0.0",
+  "description": "Main frontend file for merging all frontend files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/svift/svift-frontend.git"
+  },
+  "author": "Sebastian Meier",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/svift/svift-frontend#readme"
+}
