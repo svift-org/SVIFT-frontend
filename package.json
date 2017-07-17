@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/svift/svift-frontend.git"
   },
+  "dependencies":{
+    "svift-helper": "git+ssh://git@bitbucket.org:svift/helper-module.git",
+    "svift-vis": "git+ssh://git@bitbucket.org:svift/vis-module.git",
+    "svift-vis-barchart": "git+ssh://git@bitbucket.org:svift/vis-barchart-module.git"
+  },
   "author": "Sebastian Meier",
   "license": "MIT",
   "homepage": "https://bitbucket.org/svift/svift-frontend#readme"
