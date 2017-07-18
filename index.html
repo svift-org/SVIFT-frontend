@@ -27,11 +27,41 @@
 <script src="node_modules/svift-helper/index.js"></script>
 <script src="node_modules/svift-vis/index.js"></script>
 <script src="node_modules/svift-vis-barchart/index.js"></script>
+<script src="node_modules/svift-vis-columnchart/index.js"></script>
 <script type="text/javascript">
 
-  var barchart = SVIFT.vis.barchart({}, d3.select('#container'));
-  barchart.init();
-  barchart.start();
+  var data = {
+    "params":{
+      "title":"Arbeitslosenquite 2009 bis 2017",
+      "source":"",
+      "custom_image_size":[],
+      "theme":"default",
+      "styles":{},
+      "annotations":[]
+    },
+    "vis":{
+      "type":"barchart"
+    },
+    "data":{
+      "columns":["Jahr","Wert"],
+      "types":["date","int"],
+      "data":[
+        [2017,3.9],
+        [2016,4.1],
+        [2015,4.6],
+        [2014,5.0],
+        [2013,5.2],
+        [2012,5.5],
+        [2011,5.9],
+        [2010,7.1],
+        [2009,7.8]
+      ]
+    }
+  };
+
+  var vis = SVIFT.vis.barchart(data, d3.select('#container'));
+  vis.init();
+  //vis.start();
 
 </script>
 </body>
