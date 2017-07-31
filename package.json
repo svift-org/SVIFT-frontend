@@ -4,13 +4,16 @@
   "description": "Main frontend file for merging all frontend files",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jshint index.js",
+    "prebuild": "npm run lint",
+    "build": "node build.js"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/svift/svift-frontend.git"
   },
-  "dependencies":{
+  "dependencies": {
     "svift-helper": "git+ssh://git@bitbucket.org:svift/helper-module.git",
     "svift-vis": "git+ssh://git@bitbucket.org:svift/vis-module.git",
     "svift-vis-barchart": "git+ssh://git@bitbucket.org:svift/vis-barchart-module.git",
@@ -18,5 +21,10 @@
   },
   "author": "Sebastian Meier",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/svift/svift-frontend#readme"
+  "homepage": "https://bitbucket.org/svift/svift-frontend#readme",
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "jshint": "^2.9.5",
+    "uglify-js2": "^2.1.11"
+  }
 }

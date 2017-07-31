@@ -23,11 +23,7 @@
 <div id="container"></div>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="index.js"></script>
-<script src="node_modules/svift-helper/index.js"></script>
-<script src="node_modules/svift-vis/index.js"></script>
-<script src="node_modules/svift-vis-barchart/index.js"></script>
-<script src="node_modules/svift-vis-columnchart/index.js"></script>
+<script src="build/svift.min.js"></script>
 <script type="text/javascript">
 
   var data = {
@@ -59,9 +55,9 @@
     }
   };
 
-  var vis = SVIFT.vis.barchart(data, d3.select('#container'));
+  var vis = SVIFT.vis.columnchart(data, d3.select('#container'));
   vis.init();
-  //vis.start();
+  vis.start();
 
 </script>
 </body>
