@@ -14,10 +14,10 @@
     "url": "git+ssh://git@bitbucket.org/svift/svift-frontend.git"
   },
   "dependencies": {
-    "svift-helper": "git+ssh://git@bitbucket.org:svift/helper-module.git",
-    "svift-vis": "git+ssh://git@bitbucket.org:svift/vis-module.git",
-    "svift-vis-barchart": "git+ssh://git@bitbucket.org:svift/vis-barchart-module.git",
-    "svift-vis-columnchart": "git+ssh://git@bitbucket.org:svift/vis-columnchart-module.git"
+    "svift-helper": "git+ssh://git@bitbucket.org/svift/helper-module.git",
+    "svift-vis": "git+ssh://git@bitbucket.org/svift/vis-module.git",
+    "svift-vis-barchart": "git+ssh://git@bitbucket.org/svift/vis-barchart-module.git",
+    "svift-vis-columnchart": "git+ssh://git@bitbucket.org/svift/vis-columnchart-module.git"
   },
   "author": "Sebastian Meier",
   "license": "MIT",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "fs": "0.0.1-security",
     "jshint": "^2.9.5",
+    "node-sass": "^4.5.3",
     "uglify-js2": "^2.1.11"
   }
 }
