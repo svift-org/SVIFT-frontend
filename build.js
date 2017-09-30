@@ -20,7 +20,7 @@ for(var key in package.dependencies){
   }
 }
 
-'./node_modules/'+key+'/index.js'
+var configJson = {}
 
 function buildFile(vi){
   var files = [], style = '',
@@ -35,6 +35,8 @@ function buildFile(vi){
   if(visualisations[vi] == 'all'){
     visualisations.forEach(function(v){
       if(v!='all'){
+        //TODO: add sorting attribute (e.g. comparison, single number, etc.)
+        configJson[v] = {title:(JSON.parse(fs.readFileSync(__dirname + '/node_modules/'+v+'/package.js'))).title}
         files.push(__dirname + '/node_modules/'+v+'/index.js')
         style += fs.readFileSync(__dirname + '/node_modules/'+v+'/style.scss', 'utf8');
         (['thumb.png','thumb@2x.png']).forEach(function(thumb){
@@ -75,6 +77,8 @@ function buildFile(vi){
   if(vi<visualisations.length){
     buildFile(vi)
   }else{
+    fs.writeFileSync(__dirname + '/build/config.json', JSON.stringify(configJson), 'utf8')
+
     console.log('build done')
     process.exit()
   }
