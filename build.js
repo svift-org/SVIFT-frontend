@@ -1,6 +1,7 @@
 var UglifyJS = require('uglify-js2'),
   sass = require('node-sass'),
   fs = require('fs'),
+  fse = require('fs-extra'),
   package = require('./package.json')
 
 var base = [
@@ -35,7 +36,15 @@ function buildFile(vi){
     visualisations.forEach(function(v){
       if(v!='all'){
         files.push(__dirname + '/node_modules/'+v+'/index.js')
-        style += fs.readFileSync(__dirname + '/node_modules/'+v+'/style.scss', 'utf8')
+        style += fs.readFileSync(__dirname + '/node_modules/'+v+'/style.scss', 'utf8');
+        (['thumb.png','thumb@2x.png']).forEach(function(thumb){
+          var tp = __dirname + '/node_modules/'+v+'/'+thumb;
+          if (fs.existsSync(tp)) {
+            fse.copySync(tp, __dirname+'/build/thumbs/'+v+'_'+thumb)
+          }else{
+            fse.copySync(__dirname+'/assets/'+thumb, __dirname+'/build/thumbs/'+v+'_'+thumb)
+          }
+        });
       }
     })
   }else{

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+    body{
+      margin:0;
+      padding:0;
+      border:0;
+      width:100%;
+      height:100vh;
+    }
+
+    #container{
+      width:100%;
+      height:100vh;
+      display: inline-block;
+      vertical-align: top;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="build/svift.min.js"></script>
+<script type="text/javascript">
+
+  var data = {
+    "params":{
+      "title":"Arbeitslosenquite 2009 bis 2017",
+      "source":"",
+      "custom_image_size":[],
+      "theme":"default",
+      "styles":{},
+      "annotations":[]
+    },
+    "vis":{
+      "type":"barchart"
+    },
+    "data":{
+      "columns":["Jahr","Wert"],
+      "types":["date","int"],
+      "data":[
+        [2017,3.9],
+        [2016,4.1],
+        [2015,4.6],
+        [2014,5.0],
+        [2013,5.2],
+        [2012,5.5],
+        [2011,5.9],
+        [2010,7.1],
+        [2009,7.8]
+      ]
+    }
+  };
+
+  var vis = SVIFT.vis.columnchart(data, d3.select('#container'));
+  vis.init();
+  vis.start();
+
+</script>
+</body>
+</html>
