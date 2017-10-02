@@ -36,7 +36,7 @@ function buildFile(vi){
     visualisations.forEach(function(v){
       if(v!='all'){
         //TODO: add sorting attribute (e.g. comparison, single number, etc.)
-        configJson[v] = {title:(JSON.parse(fs.readFileSync(__dirname + '/node_modules/'+v+'/package.js'))).title}
+        configJson[v] = {title:(JSON.parse(fs.readFileSync(__dirname + '/node_modules/'+v+'/package.json'))).title}
         files.push(__dirname + '/node_modules/'+v+'/index.js')
         style += fs.readFileSync(__dirname + '/node_modules/'+v+'/style.scss', 'utf8');
         (['thumb.png','thumb@2x.png']).forEach(function(thumb){
