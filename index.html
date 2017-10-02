@@ -318,6 +318,28 @@ var cb;
 d3.json('./build/config.json', function(err, data){
   if(err){console.log(err);}
 
+  /*
+
+    data contains an array of available visualisation types:
+
+    the thumbnails are available under:
+    for(var key in data){
+      var src = './build/thumbs/'+key+'_thumb.png';
+      var src2 = './build/thumbs/'+key+'_thumb@2x.png';
+    }
+
+    in the future the config will also contain information on the required data input, but we first need to come up with a syntax for that
+    
+    as we are using svift.min.js, which contains all available visualisations, we don't need to load individual vis types
+    in order to initiate one visualisation:
+    for(var key in data){
+      var vis = SVIFT.vis[(key.split('-'))[2]](DATA_FOR_VIS, d3.select('#VIS_CONTAINER'));
+        vis.init();
+        vis.start(); 
+    } 
+
+  */
+
   cb = chatbot(d3.select('#gui-2'));
 
   /*
