@@ -23,7 +23,8 @@ for(var key in package.dependencies){
 var configJson = {}
 
 function buildFile(vi){
-  var files = [], style = '',
+  var files = [], 
+    style = '',
     name = ''
   base.forEach(function(b){
     if(b.indexOf('svift-vis')>=0){
@@ -36,15 +37,17 @@ function buildFile(vi){
     visualisations.forEach(function(v){
       if(v!='all'){
         //TODO: add sorting attribute (e.g. comparison, single number, etc.)
-        configJson[v] = {title:(JSON.parse(fs.readFileSync(__dirname + '/node_modules/'+v+'/package.json'))).title}
+        var pack = JSON.parse(fs.readFileSync(__dirname + '/node_modules/'+v+'/package.json'))
+        configJson[pack.definition.name] = {title:pack.definition.title}
+        fs.writeFileSync(__dirname+'/build/'+pack.definition.name+'.json', JSON.stringify(pack.definition),'utf8')
         files.push(__dirname + '/node_modules/'+v+'/index.js')
         style += fs.readFileSync(__dirname + '/node_modules/'+v+'/style.scss', 'utf8');
         (['thumb.png','thumb@2x.png']).forEach(function(thumb){
           var tp = __dirname + '/node_modules/'+v+'/'+thumb;
           if (fs.existsSync(tp)) {
-            fse.copySync(tp, __dirname+'/build/thumbs/'+v+'_'+thumb)
+            fse.copySync(tp, __dirname+'/build/thumbs/'+pack.definition.name+'_'+thumb)
           }else{
-            fse.copySync(__dirname+'/assets/'+thumb, __dirname+'/build/thumbs/'+v+'_'+thumb)
+            fse.copySync(__dirname+'/assets/'+thumb, __dirname+'/build/thumbs/'+pack.definition.name+'_'+thumb)
           }
         });
       }

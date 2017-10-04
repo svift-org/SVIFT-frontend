@@ -328,15 +328,29 @@ d3.json('./build/config.json', function(err, data){
       var src2 = './build/thumbs/'+key+'_thumb@2x.png';
     }
 
-    in the future the config will also contain information on the required data input, but we first need to come up with a syntax for that
-    
+    in order to load more config info on the selected vis load:
+
+    d3.json('./build/'+key+'.json', function(err, data){
+      
+    });
+
     as we are using svift.min.js, which contains all available visualisations, we don't need to load individual vis types
     in order to initiate one visualisation:
     for(var key in data){
       var vis = SVIFT.vis[(key.split('-'))[2]](DATA_FOR_VIS, d3.select('#VIS_CONTAINER'));
         vis.init();
         vis.start(); 
-    } 
+    }
+
+    d3.xhr(url)
+      .header("Content-Type", "application/json")
+      .post(
+          JSON.stringify({year: "2012", customer: "type1"}),
+          function(err, rawData){
+              var data = JSON.parse(rawData);
+              console.log("got response", data);
+          }
+      );
 
   */
 
