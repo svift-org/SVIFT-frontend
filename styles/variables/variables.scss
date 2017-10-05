@@ -1,0 +1,56 @@
+@import "./fonts/fonts";
+
+/* --- FONTS --- */
+
+/* Font families*/
+$font-mono: "DecimaMonoPro", monospace;
+$font-sansDefault: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
+$font-sansItalic: "InterfaceRegularItalic", "Helvetica", "Arial", sans-serif;
+
+/* Font sizes*/
+$font-size-default: 16px;
+$font-size-small: 0.9em;
+
+/* Line height*/
+$line-height-default: 1.5;
+$line-height-phone: 1.2;
+
+
+/* --- COLORS --- */
+
+/* Brand Colors */
+$svift-primary: #71609B;
+$svift-human: #75FABF;
+
+/* Background Colors */
+$bg-light-grey: #F4F4F4;
+$white: #fff;
+$black: #000;
+// $bg-layer-details: #BCBCBC;
+// $bg-pills-grey: #D8D8D8;
+// $bg-footer: #BEBEBE;
+
+/* Text Colors */
+$text-default: #6A6A6A;
+$text-h5:#E1442A;
+
+/* Button Colors */
+$ios-btn-default: #B8E986;
+
+
+
+/* --- PADDINGS & MARGINS, ETC. --- */
+
+/* Padding */
+$padding-default: 2%;
+$padding-big: 5%;
+
+/* Margin */
+$margin-default: 2em;
+
+/* Border radii*/
+$border-radius-default: 4px;
+
+
+
+

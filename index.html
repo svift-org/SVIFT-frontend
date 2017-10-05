@@ -1,155 +1,32 @@
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <style type="text/css">
-    /*
-
-      !!! The CSS should be separated into site specific css and chat-bot specific css, so that the chat-bot specific css can be moved to a separate repo. Bots css files will then be combined and minified through a build script.
-
-    */
-
-    body{
-      margin:0;
-      padding:0;
-      border:0;
-    }
-
-    .gui{
-      position: absolute;
-      top:0;
-      margin:0;
-      padding:0;
-      width:50%;
-      height:100%;      
-    }
-
-    #gui-1{
-      left:0;
-      background-color:rgba(0,0,0,0.2);
-    }
-
-    #gui-2{
-      right:0;
-      background-color:rgba(0,0,0,0.4);
-    }
-
-    /*CHATBOT CLASSES*/
-    /*
-
-      CSS Namespace 'cb-'
-
-    */
-
-    .cb-segment{
-      clear:both;
-    }
-
-    .cb-segment.cb-bot > div{
-      float:left;
-    }
-
-    .cb-segment.cb-human > div{
-      float:right;
-    }
-
-    .cb-icon{
-      display: block;
-      width:30px;
-      height:30px;
-      border-radius: 15px;
-    }
-
-    .cb-bot .cb-icon{
-      background-color:red;
-      margin-right:10px;
-    }
-
-    .cb-human .cb-icon{
-      background-color:green;
-      margin-left:10px;
-    }
-
-    .cb-bubble{
-      background-color:rgba(0,0,0,0.2);
-      color:black;
-      border-radius:5px;
-    }
-
-    .cb-bubble > .cb-inner{
-      margin:0;
-      padding:10px;
-    }
-
-    .cb-bubble p{
-      padding:0;
-      margin:0;
-    }
-
-    .cb-segment hr{
-      clear:both;
-      display:blocK;
-      visibility: hidden;
-      width:100%;
-      margin-top:10px;
-    }
-
-    .cb-bot .cb-bubble{
-      border-bottom-left-radius: 0px;
-    }
-
-    .cb-human .cb-bubble{
-      border-bottom-right-radius: 0px;
-    }
-
-    #cb-flow{
-      position: absolute;
-      right:0;
-      top:0;
-      width:100%;
-      height:100%;
-      overflow-y:auto;
-      overflow-x:hidden;
-    }
-
-    #cb-flow > .cb-inner{
-      padding-top:100%;
-      margin:0 20px;
-    }
-
-    #cb-flow > .cb-inner.cb-w-input{
-      /* When the input is active (height of input + extra padding) */
-      padding-bottom:70px;
-    }
-
-    #cb-input{
-      position: absolute;
-      right:0;
-      bottom:0;
-      width:100%;
-      height:50px;
-      background-color:#fff;
-    }
-
-  </style>
+  <link rel="stylesheet" href="styles/app/normalize.css">
+  <link rel="stylesheet" href="styles/app/app.css">
+  <link rel="stylesheet" href="styles/bot/bot.css">
 </head>
 <body>
 
-<div id="gui-1" class="gui">
-  <div id="nav">
-    <ul>
-      <li>Home | Build a vis</li>
-      <li>About</li>
-      <li>Dev / Docs</li>
-      <li>Legal Note</li>
-      <li>Contact</li>
-    </ul>
+
+<div class="app">
+  <div id="gui-1" class="gui">
+    <!-- <div id="nav">
+      <ul>
+        <li>Home | Build a vis</li>
+        <li>About</li>
+        <li>Dev / Docs</li>
+        <li>Legal Note</li>
+        <li>Contact</li>
+      </ul>
+    </div> -->
+    <div class="inner">
+      <h1>SVIFT – Create your chart in three simple steps</h1>
+      <div class="claim">svift is an open-source tool to easily turn data into appealing visualizations for daily use. No need for long configurations. Let’s do this! </div>
+      <img class="img" src="assets/img/gui-1-intro.svg" alt="Svift Intro Image">
+    </div>
   </div>
-  <div class="inner">
-    DEFAULT CONTENT
-    WELCOME > THIS SHIT NEEDS TO BE SEO COMPLIANT!!!
+  <div id="gui-2" class="gui">
   </div>
-</div>
-<div id="gui-2" class="gui">
 </div>
 
 <!-- <script src="libs/d3.v4.min.js"></script> -->

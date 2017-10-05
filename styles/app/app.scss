@@ -1,0 +1,82 @@
+ /* APP CSS */
+@import "./variables/variables";
+@import "./fonts/fonts";
+
+* {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+html, body {
+  margin:0;
+  padding:0;
+  border:0;
+  font-size: $font-size-default;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.app{
+  display: flex;
+  height: 100vh;
+  color: $white;
+  font-size: 1em;
+
+  .gui{
+    display: flex;
+  }
+
+  #gui-1{
+    flex: 1;
+    display: flex;
+    padding: 5%;
+    background-color: $svift-primary;
+    line-height: $line-height-default;
+
+    div.inner{
+
+      h1{
+        font-family: $font-mono;
+      }
+  
+      .claim{
+        font-family: $font-sansDefault;
+      }
+  
+      img{
+        margin: 0 auto;
+      }
+
+    }
+  }
+
+  #gui-2{
+    flex: 1;
+    background-color: $bg-light-grey;
+    font-family: $font-sansDefault;
+  }
+
+}
+
+
+::-webkit-scrollbar {
+  width:5px;
+  height:3px;
+  border-left:0;
+  background:rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar-track {
+  background:none;
+}
+::-webkit-scrollbar-thumb {
+ /* background:#FF5858;*/
+  background:#6C6C6C;
+  border-radius:0;
+}
+
+
+  
+     
