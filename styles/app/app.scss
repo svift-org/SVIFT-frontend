@@ -23,42 +23,66 @@ html, body {
   display: flex;
   height: 100vh;
   color: $white;
-  font-size: 1em;
+  overflow: hidden;
 
   .gui{
-    display: flex;
+
   }
 
   #gui-1{
     flex: 1;
     display: flex;
-    padding: 5%;
+    padding: $padding-big;
     background-color: $svift-primary;
     line-height: $line-height-default;
 
-    div.inner{
+    nav{
+      position: absolute;
+      top: $padding-big;
+      left: $padding-big;
 
+      &:hover{
+        cursor: pointer;
+      }
+
+      div{
+        width: 30px;
+        height: 10px;
+        border-bottom: 3px solid $white;
+      } 
+    }
+
+    div.inner{
       h1{
-        font-family: $font-mono;
+        padding: $padding-big*1.5 0 $padding-big 0;
+        font-family: $font-family-mono;
+        font-size: $font-size-heading;
+        line-height: $line-height-heading;
       }
   
       .claim{
-        font-family: $font-sansDefault;
-      }
-  
-      img{
-        margin: 0 auto;
+        font-family: $font-family-sansDefault;
+        font-size: $font-size-text;
       }
 
+      .img-intro{
+        padding: $padding-big*2 0;
+        text-align: center;
+
+        img{
+          width: 80%;
+        }
+      }
     }
   }
 
   #gui-2{
     flex: 1;
-    background-color: $bg-light-grey;
-    font-family: $font-sansDefault;
+    position: relative;
+    // background-color: $bg-light-grey;
+    background-color: $white;
+    font-family: $font-family-sansDefault;
   }
-
 }
 
 

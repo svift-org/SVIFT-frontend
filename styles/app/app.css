@@ -43,10 +43,12 @@
 /* --- COLORS --- */
 /* Brand Colors */
 /* Background Colors */
+/* Bot Colors */
 /* Text Colors */
 /* Button Colors */
 /* --- PADDINGS & MARGINS, ETC. --- */
-/* Padding */
+/* Padding-App */
+/* Padding-Bot */
 /* Margin */
 /* Border radii*/
 @font-face {
@@ -105,24 +107,40 @@ html, body {
   display: flex;
   height: 100vh;
   color: #fff;
-  font-size: 1em; }
-  .app .gui {
-    display: flex; }
+  overflow: hidden; }
   .app #gui-1 {
     flex: 1;
     display: flex;
     padding: 5%;
-    background-color: #71609B;
+    background-color: #71609b;
     line-height: 1.5; }
+    .app #gui-1 nav {
+      position: absolute;
+      top: 5%;
+      left: 5%; }
+      .app #gui-1 nav:hover {
+        cursor: pointer; }
+      .app #gui-1 nav div {
+        width: 30px;
+        height: 10px;
+        border-bottom: 3px solid #fff; }
     .app #gui-1 div.inner h1 {
-      font-family: "DecimaMonoPro", monospace; }
+      padding: 7.5% 0 5% 0;
+      font-family: "DecimaMonoProBold", monospace;
+      font-size: 3em;
+      line-height: 53px; }
     .app #gui-1 div.inner .claim {
-      font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif; }
-    .app #gui-1 div.inner img {
-      margin: 0 auto; }
+      font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
+      font-size: 1em; }
+    .app #gui-1 div.inner .img-intro {
+      padding: 10% 0;
+      text-align: center; }
+      .app #gui-1 div.inner .img-intro img {
+        width: 80%; }
   .app #gui-2 {
     flex: 1;
-    background-color: #F4F4F4;
+    position: relative;
+    background-color: #fff;
     font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif; }
 
 ::-webkit-scrollbar {

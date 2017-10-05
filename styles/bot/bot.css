@@ -43,29 +43,118 @@
 /* --- COLORS --- */
 /* Brand Colors */
 /* Background Colors */
+/* Bot Colors */
 /* Text Colors */
 /* Button Colors */
 /* --- PADDINGS & MARGINS, ETC. --- */
-/* Padding */
+/* Padding-App */
+/* Padding-Bot */
 /* Margin */
 /* Border radii*/
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; }
+@font-face {
+  font-family: 'SourceSansProBold';
+  src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal; }
+@font-face {
+  font-family: 'DecimaMonoPro';
+  src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'DecimaMonoProLt';
+  src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'DecimaMonoProBold';
+  src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'InterfaceRegular';
+  src: url("../../assets/fonts/Interface/Interface-Regular.eot");
+  src: url("../../assets/fonts/Interface/Interface-Regular.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Regular.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'InterfaceRegularItalic';
+  src: url("../../assets/fonts/Interface/Interface-RegularItalic.eot");
+  src: url("../../assets/fonts/Interface/Interface-RegularItalic.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-RegularItalic.woff") format("woff"), url("../../assets/fonts/Interface/Interface-RegularItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic; }
+*:focus {
+  outline: none;
+  inline: none; }
+
+#cb-flow {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden; }
+
+#cb-flow > .cb-inner {
+  padding-top: 100%;
+  margin: 0 20px; }
+
+#cb-flow > .cb-inner.cb-w-input {
+  /* When the input is active (height of input + extra padding) */
+  padding-bottom: 70px; }
+
+#cb-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  text-align: center; }
+  #cb-input input {
+    position: relative;
+    height: 100%;
+    width: 90%;
+    box-shadow: 0 0 1px rgba(58, 58, 58, 0.5);
+    border-radius: 40px;
+    min-height: 57px;
+    font-size: 14px;
+    margin: 10px;
+    padding: 19px 60px 19px 30px;
+    height: 56px;
+    color: rgba(34, 34, 34, 0.4);
+    border-style: none; }
+  #cb-input button {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    right: 70px;
+    border-width: 2px;
+    border-color: #75FABF;
+    border-style: solid;
+    border-image: none;
+    background-color: #fff;
+    color: #75FABF;
+    border-radius: 100px; }
+
 .cb-segment {
   clear: both; }
 
-.cb-segment.cb-bot > div {
+.cb-segment.cb-bot div {
   float: left; }
 
-.cb-segment.cb-human > div {
+.cb-segment.cb-human div {
   float: right; }
 
 .cb-icon {
   display: block;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px; }
+  width: 40px;
+  height: 40px;
+  border-radius: 100px; }
 
 .cb-bot .cb-icon {
-  background-color: #71609B;
+  background-color: #71609b;
   margin-right: 10px; }
 
 .cb-human .cb-icon {
@@ -73,9 +162,10 @@
   margin-left: 10px; }
 
 .cb-bubble {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: black;
-  border-radius: 5px; }
+  padding: 1%;
+  background-color: #E6E6E6;
+  color: #3A3A3A;
+  border-radius: 100px; }
 
 .cb-bubble > .cb-inner {
   margin: 0;
@@ -97,27 +187,5 @@
 
 .cb-human .cb-bubble {
   border-bottom-right-radius: 0px; }
-
-#cb-flow {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden; }
-
-#cb-flow > .cb-inner {
-  padding-top: 100%;
-  margin: 0 20px; }
-
-#cb-flow > .cb-inner.cb-w-input {
-  /* When the input is active (height of input + extra padding) */
-  padding-bottom: 70px; }
-
-#cb-input {
-  position: absolute;
-  /* right: 0; */
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  background-color: #fff; }
 
 /*# sourceMappingURL=bot.css.map */

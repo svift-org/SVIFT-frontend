@@ -3,47 +3,52 @@
 /* --- FONTS --- */
 
 /* Font families*/
-$font-mono: "DecimaMonoPro", monospace;
-$font-sansDefault: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
-$font-sansItalic: "InterfaceRegularItalic", "Helvetica", "Arial", sans-serif;
+$font-family-mono: "DecimaMonoProBold", monospace;
+$font-family-sansDefault: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
+$font-family-sansItalic: "InterfaceRegularItalic", "Helvetica", "Arial", sans-serif;
 
 /* Font sizes*/
 $font-size-default: 16px;
-$font-size-small: 0.9em;
+$font-size-heading: 3em;
+$font-size-text: 1em;
 
 /* Line height*/
 $line-height-default: 1.5;
-$line-height-phone: 1.2;
+$line-height-heading: 53px;
 
 
 /* --- COLORS --- */
 
 /* Brand Colors */
-$svift-primary: #71609B;
+$svift-primary: rgba(113, 96, 155, 1);
 $svift-human: #75FABF;
 
 /* Background Colors */
 $bg-light-grey: #F4F4F4;
 $white: #fff;
 $black: #000;
-// $bg-layer-details: #BCBCBC;
-// $bg-pills-grey: #D8D8D8;
-// $bg-footer: #BEBEBE;
+
+/* Bot Colors */
+$bot-bubble: #E6E6E6;
+
 
 /* Text Colors */
-$text-default: #6A6A6A;
-$text-h5:#E1442A;
+$text-bot: #3A3A3A;
+
 
 /* Button Colors */
 $ios-btn-default: #B8E986;
 
 
-
 /* --- PADDINGS & MARGINS, ETC. --- */
 
-/* Padding */
+/* Padding-App */
 $padding-default: 2%;
 $padding-big: 5%;
+
+/* Padding-Bot */
+$padding-bubble: 1%;
+
 
 /* Margin */
 $margin-default: 2em;

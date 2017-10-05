@@ -10,6 +10,11 @@
 
 <div class="app">
   <div id="gui-1" class="gui">
+    <nav>
+      <div></div>
+      <div></div>
+      <div></div>
+    </nav>
     <!-- <div id="nav">
       <ul>
         <li>Home | Build a vis</li>
@@ -20,9 +25,11 @@
       </ul>
     </div> -->
     <div class="inner">
-      <h1>SVIFT – Create your chart in three simple steps</h1>
-      <div class="claim">svift is an open-source tool to easily turn data into appealing visualizations for daily use. No need for long configurations. Let’s do this! </div>
-      <img class="img" src="assets/img/gui-1-intro.svg" alt="Svift Intro Image">
+      <h1>SVIFT &mdash; <br>Create your chart in three simple steps</h1>
+      <div class="claim"><em>svift</em> is an open-source tool to easily turn data into appealing visualizations for your daily use. No need for long configurations. <br> Let’s do this! </div>
+      <div class="img-intro">
+        <img src="assets/img/gui-1-intro.svg" alt="Svift Intro Image">
+      </div> 
     </div>
   </div>
   <div id="gui-2" class="gui">
@@ -54,7 +61,7 @@ var chatbot = (function(container){
   module.flow = module.scroll.append('div').attr('class','cb-inner');
   module.input = container.append('div').attr('id', 'cb-input').style('display','none');
   module.input.append('input').attr('type','text');
-  module.input.append('button').text('Send');
+  module.input.append('button').text('+');
 
   module.addBubble = function (options, callback){
     if(!(options.type in module.types)){
@@ -292,12 +299,14 @@ d3.json('./build/config.json', function(err, data){
 
   */
 
-  cb.addBubble({type:'text', value:'What is your name?', class:'bot'});
+  cb.addBubble({type:'text', value:'Hi there, welcome to SVIFT! 😊', class:'bot'});
+  // cb.addBubble({type:'text', value:'…', class:'bot'});
+
   cb.showInput(function(input){
-    cb.addBubble({type:'text', value:input, class:'human'});
-    cb.addBubble({type:'text', value:'How old are you?', class:'bot'});
+    cb.addBubble({type:'text', value:"Hi there!", class:'human'});
+    cb.addBubble({type:'text', value:'Want to visualize some data for your project?', class:'bot'});
     cb.showInput(function(input){
-      cb.addBubble({type:'text', value:input, class:'human'});
+      cb.addBubble({type:'text', value:"Sounds great! Let’s go!", class:'human'});
     });
   });
 });
