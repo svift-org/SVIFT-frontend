@@ -74,7 +74,8 @@
           throw 'Unknown bubble type';
         } else {
 
-          var id = module.ID++;
+          module.ID++;
+          var id = module.ID;
           module.bubbles.push({
             id: id,
             type: options.type
@@ -312,7 +313,8 @@
 
       var last = cb.addBubble({ type: 'waiting', class: 'bot' });
       setTimeout(function () {
-        cb.getBubble(last).el.select('.inner').html('<p>hello</p>');
+        var bubble = cb.getBubble(last);
+        bubble.el.select('.cb-inner').html('<p>Hello World</p>');
         /*cb.removeBubble(last); cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT! 😊', class: 'bot' }) */
       }, 1000);
 
