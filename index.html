@@ -41,194 +41,6 @@
     <div id="gui-2" class="gui">
     </div>
   </div>
-<<<<<<< Updated upstream
-  <div id="gui-2" class="gui">
-  </div>
-</div>
-
-<!-- <script src="libs/d3.v4.min.js"></script> -->
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="build/svift.min.js"></script>
-<script type="text/javascript">
-
-/*
-
-The chatbot module should only manage the GUI, not the underlying logic, similar to the VIEW Component in an MVC setup
-Doing so, we can release this as a standalone library, which can be used to build generic chatbots for future projects!
-
-*/
-
-var chatbot = (function(container){
-  var module = {};
-
-  module.container = container;
-  module.config = null;
-  module.bubbles = [];
-  module.ID = 0;
-  module.keys = {};
-  module.types = {};
-  module.scroll = container.append('div').attr('id', 'cb-flow');
-  module.flow = module.scroll.append('div').attr('class','cb-inner');
-  module.input = container.append('div').attr('id', 'cb-input').style('display','none');
-  module.input.append('input').attr('type','text');
-  module.input.append('button').text('+');
-
-  module.addBubble = function (options, callback){
-    if(!(options.type in module.types)){
-      throw 'Unknown bubble type';
-    }else{
-
-      var id = module.ID++;
-      module.bubbles.push({
-        id:id,
-        type:options.type
-        //additional info
-      });
-      module.keys[id] = module.bubbles.length-1;
-
-      //segment container
-      var outer = module.flow.append('div')
-        .attr('class', 'cb-segment cb-'+options.class)
-        .attr('id', 'cb-segment-'+id);
-
-      //speaker icon
-      outer.append('div').attr('class','cb-icon');
-
-      var bubble = outer.append('div')
-        .attr('class', 'cb-bubble').append('div').attr('class', 'cb-inner');
-
-      outer.append('hr');
-
-      module.types[options.type](bubble, options, callback);
-
-      module.scrollTo('end');
-
-      return module.ID;
-    }
-  };
-
-  //Default Bubble Types
-  //The individual types are being organised this way in order to make it as easy as possible to extend the basic types.
-  //cb.types['custom-1'] = function(bubble, options, callback){ custom_code; };
-
-  module.types['select'] = function(bubble, options, callback){
-    bubble.select('.cb-choice').data(options.value).enter().append('div')
-      .attr('class', 'cb-choice')
-      .text(function(d){ return d.label; })
-      .on('click', function(d){
-        d3.select('this').classed('cb-active', true);
-        callback(d);
-      });
-  };
-
-  module.types['table'] = function(bubble, options, callback){
-  };
-
-  module.types['waiting'] = function(bubble, options, callback){
-    //no callback -> this bubble should be removed before adding the next
-    bubble.append('div')
-      .attr('class', 'waiting');
-  };
-
-  module.types['text'] = function(bubble, options, callback){
-    bubble.append('p')
-      .text(options.value);
-  }
-
-  module.showInput = function(submitCallback, typeCallback){
-    //TODO: check if one can overwrite callbacks or if callbacks need to be properly removed
-    if(typeCallback){
-      module.input.select('input')
-        .on('change', function(){
-          typeCallback(d3.select(this).node().value);
-        });
-    }else{
-      module.input.select('input').on('change', function(){});
-    }
-
-    module.input.select('button')
-      .on('click', function(){
-        submitCallback(module.input.select('input').node().value);
-      });
-
-    module.input.style('display', 'block');
-    module.flow.classed('cb-w-input', true);
-
-    //TODO: set focus -> check if this works
-    module.input.select('input').node().blur();
-    module.scrollTo('end');
-  };
-
-  module.hideInput = function(){
-    module.input.style('display', 'none');
-    module.flow.classed('cb-w-input', false);
-    module.scrollTo('end');
-  };
-
-  module.removeBubble = function (id){
-    module.flow.select('#cb-segment-'+id).remove();
-    module.bubbles.splice(module.keys[id],1);
-    delete module.keys[id];
-  };
-
-  module.removeBubbles = function (id){
-    for(var i = module.bubbles.length-1; i>=module.keys[id]; i--){
-      module.removeBubble(module.bubbles[i].id);
-    }
-  };
-
-  module.getBubble = function (id){
-    return {
-      el: module.flow.select('#cb-segment-'+id),
-      obj: module.bubbles[module.keys[id]]
-    };
-  };
-
-  //Accepts position = 'end' (bottom) || 'start' (top)
-  module.scrollTo = function (position){
-    //start
-    var s = 0;
-    //end
-    if(position == 'end'){
-      s = module.scroll.property('scrollHeight') - window.innerHeight;
-    }
-    d3.select('#cb-flow').transition()
-      .duration(300)
-      .tween("scroll", scrollTween(s));
-
-  };
-
-  function scrollTween(offset) {
-    return function() {
-      var i = d3.interpolateNumber(module.scroll.property('scrollTop'), offset);
-      return function(t) { module.scroll.property('scrollTop', i(t)); };
-    };
-  }
-
-  return module;
-});
-
-var cb;
-
-d3.json('./build/config.json', function(err, data){
-  if(err){console.log(err);}
-
-    /*
-
-    //data contains an array of available visualisation types:
-
-    //the thumbnails are available under:
-    for(var key in data){
-      var src = './build/thumbs/'+key+'_thumb.png';
-      var src2 = './build/thumbs/'+key+'_thumb@2x.png';
-    }
-
-    //in order to load more config info on the selected vis load:
-
-    d3.json('./build/'+key+'.json', function(err, data){
-      //This json contains title and input method, in the future we can pack more meta data into this json, which will help us automatically generate the chatbot steps, right now only the data.input is relevant (we should come up with a set of rules)
-    });
-=======
 
   <!-- <script src="libs/d3.v4.min.js"></script> -->
   <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -273,7 +85,8 @@ d3.json('./build/config.json', function(err, data){
           //segment container
           var outer = module.flow.append('div')
             .attr('class', 'cb-segment cb-' + options.class)
-            .attr('id', id);
+            .attr('id', 'cb-segment-' + id);
+
 
           //speaker icon
           outer.append('div').attr('class', 'cb-icon');
@@ -322,7 +135,6 @@ d3.json('./build/config.json', function(err, data){
         bubble.append('p')
           .text(options.value);
       }
->>>>>>> Stashed changes
 
       module.showInput = function (submitCallback, typeCallback) {
         //TODO: check if one can overwrite callbacks or if callbacks need to be properly removed
@@ -355,7 +167,7 @@ d3.json('./build/config.json', function(err, data){
       };
 
       module.removeBubble = function (id) {
-        module.flow.select('#' + id).remove();
+        module.flow.select('#cb-segment-' + id).remove();
         module.bubbles.splice(module.keys[id], 1);
         delete module.keys[id];
       };
@@ -368,7 +180,7 @@ d3.json('./build/config.json', function(err, data){
 
       module.getBubble = function (id) {
         return {
-          el: module.flow.select('#' + id),
+          el: module.flow.select('#cb-segment-' + id),
           obj: module.bubbles[module.keys[id]]
         };
       };
@@ -452,65 +264,6 @@ d3.json('./build/config.json', function(err, data){
               [2009,7.8]
             ]
           }
-<<<<<<< Updated upstream
-      );
-
-    //This ID can then be used to poll the backend every 200 - milliseconds, in order to get the status of the rendering (right now this only returns an output when everything is done, this will be my (SEB) TODO for the weekend to send detailed progress information, but it will be something like this:
-
-    //for each type the result is 0-1 (1 = done)
-
-    var feedback = {
-      svg:0.5,
-      png:1,
-      html:1,
-      ...
-    };
-
-    //The ID is also equivalent to the permanent (7 day) url: svift.xyz/?/ID/ (index.html) > the index.html is actually not yet there, but i (SEB) will also take care of this...
-
-  */
-
-  cb = chatbot(d3.select('#gui-2'));
-
-  /*
-
-  //Example for custom bubble type
-
-  var hw = 0;
-  cb.types['hello'] = function(bubble, options, callback){
-    hw++;
-    bubble.append('p').text('Hello World ('+hw+')');
-  };
-
-  cb.addBubble({type:'hello', class:'bot'});
-  cb.addBubble({type:'hello', class:'human'});
-
-  */
-
-  cb.addBubble({type:'text', value:'Hi there, welcome to SVIFT! 😊', class:'bot'});
-  cb.showInput(function(input){
-    cb.addBubble({type:'text', value:input, class:'human'});
-    cb.hideInput();
-
-  });
-
-
-
-
-  // cb.addBubble({type:'text', value:'…', class:'bot'});
-
-  /*cb.showInput(function(input){
-    cb.addBubble({type:'text', value:"Hi there!", class:'human'});
-    cb.addBubble({type:'text', value:'Want to visualize some data for your project?', class:'bot'});
-    cb.showInput(function(input){
-      cb.addBubble({type:'text', value:"Sounds great! Let’s go!", class:'human'});
-      cb.addBubble({type:'select', value:"Sounds great! Let’s go!", class:'human', callback:function(value){
-        cb.addBubble({type:'text', value:"Thanks!", class:'robot'});
-      }});
-    });
-  });*/
-});
-=======
         };
     
         //The request will return an ID
@@ -572,7 +325,6 @@ d3.json('./build/config.json', function(err, data){
         });
       });
     });
->>>>>>> Stashed changes
 
   </script>
 </body>
