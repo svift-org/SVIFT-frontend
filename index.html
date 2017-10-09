@@ -79,7 +79,7 @@ var chatbot = (function(container){
       //segment container
       var outer = module.flow.append('div')
         .attr('class', 'cb-segment cb-'+options.class)
-        .attr('id', id);
+        .attr('id', 'cb-segment-'+id);
 
       //speaker icon
       outer.append('div').attr('class','cb-icon');
@@ -156,7 +156,7 @@ var chatbot = (function(container){
   };
 
   module.removeBubble = function (id){
-    module.flow.select('#'+id).remove();
+    module.flow.select('#cb-segment-'+id).remove();
     module.bubbles.splice(module.keys[id],1);
     delete module.keys[id];
   };
@@ -169,7 +169,7 @@ var chatbot = (function(container){
 
   module.getBubble = function (id){
     return {
-      el: module.flow.select('#'+id),
+      el: module.flow.select('#cb-segment-'+id),
       obj: module.bubbles[module.keys[id]]
     };
   };
@@ -203,7 +203,7 @@ var cb;
 d3.json('./build/config.json', function(err, data){
   if(err){console.log(err);}
 
-  /*
+    /*
 
     //data contains an array of available visualisation types:
 
@@ -300,15 +300,27 @@ d3.json('./build/config.json', function(err, data){
   */
 
   cb.addBubble({type:'text', value:'Hi there, welcome to SVIFT! 😊', class:'bot'});
+  cb.showInput(function(input){
+    cb.addBubble({type:'text', value:input, class:'human'});
+    cb.hideInput();
+
+  });
+
+
+
+
   // cb.addBubble({type:'text', value:'…', class:'bot'});
 
-  cb.showInput(function(input){
+  /*cb.showInput(function(input){
     cb.addBubble({type:'text', value:"Hi there!", class:'human'});
     cb.addBubble({type:'text', value:'Want to visualize some data for your project?', class:'bot'});
     cb.showInput(function(input){
       cb.addBubble({type:'text', value:"Sounds great! Let’s go!", class:'human'});
+      cb.addBubble({type:'select', value:"Sounds great! Let’s go!", class:'human', callback:function(value){
+        cb.addBubble({type:'text', value:"Thanks!", class:'robot'});
+      }});
     });
-  });
+  });*/
 });
 
 </script>
