@@ -132,3 +132,45 @@
 .cb-human .cb-bubble{
     border-bottom-right-radius: 0px;
 }
+
+.cb-waiting {
+    width: 60px;
+
+    @keyframes wave {
+        0%, 60%, 100% {
+            transform: initial;
+        }
+
+        30% {
+            transform: translateY(-6px);
+            background:$bot-bubble-waiting-start;
+        }
+    }
+
+    .circle{
+        display:inline-block;
+		width: 10px;
+		height: 10px;
+        background-color: $bot-bubble-waiting-end;
+        border-radius: $border-radius-circle;
+        animation: wave 1.3s ease-in-out infinite;
+
+        &:nth-child(1) {
+            margin-left: 10px;
+		}
+
+        &:nth-child(2) {
+            animation-delay: -1.1s;
+            margin-left: 5px;
+		}
+
+		&:nth-child(3) {
+            animation-delay: -0.9s;
+            margin-left: 5px;
+		}
+    }
+}
+
+    
+
+
