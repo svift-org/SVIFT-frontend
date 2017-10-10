@@ -242,9 +242,9 @@
   border: 3px solid #75FABF;
   border-radius: 2em;
   padding: 20px;
-  margin: 0 20px;
+  margin: 0 0 0 20px;
   font-family: "InterfaceRegularBold";
-  transition: all 0.5s; }
+  transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
   .cb-choice:hover {
     background-color: #75FABF;
     color: #000;
@@ -257,7 +257,7 @@
     background-color: #75FABF;
     border-radius: 100px;
     margin-right: 7px;
-    transition: all 0.5s; }
+    transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
   .cb-choice:hover:before {
     background-color: #fff; }
 

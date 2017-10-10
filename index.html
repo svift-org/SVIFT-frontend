@@ -12,6 +12,7 @@
 
   <div class="app">
     <div id="gui-1" class="gui">
+      <div id="gui-1-overlay"></div>
       <nav>
         <div></div>
         <div></div>
@@ -348,7 +349,7 @@
 
               setTimeout(function () {
                 cb.removeBubble(waiting);
-                cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, function (d) { console.log(d.label) });
+                cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, onEntry);
                 // cb.addBubble({ type: 'select', value: [{ label: 'yes' }, { label: 'no' }, { label: 'maybe' }], class: 'human' }, function (d) { console.log(d.label) });
 
               }, delay);
@@ -356,6 +357,15 @@
           }, delay);
         }, delay);
       }, delay);
+
+
+      function onEntry(d) {
+        console.log(d.label);
+        d3.select('#gui-1-overlay')
+          .style('left', '0')
+          .style('background-color', '#75FABF')
+        // .text(d.label);
+      };
 
 
 

@@ -191,9 +191,9 @@
     border: 3px solid $svift-human;
     border-radius: 2em;
     padding: 20px;
-    margin: 0 20px;
+    margin: 0 0 0 20px;
     font-family: $font-family-bold;
-    transition: all 0.5s;
+    transition: all 0.75s cubic-bezier(.215,.61,.355,1);
 
     &:hover{
         background-color: $svift-human;
@@ -209,18 +209,12 @@
         background-color:$svift-human;
         border-radius: $border-radius-circle;
         margin-right: 7px;
-        transition: all 0.5s;
+        transition: all 0.75s cubic-bezier(.215,.61,.355,1);
     }
 
     &:hover:before{
         background-color:#fff;
-      
-        
     }
-
-    
-
-   
 }
 
     
