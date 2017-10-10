@@ -153,6 +153,7 @@ html, body {
         .app #gui-1 div.inner .img-intro img {
           width: 80%; }
     .app #gui-1 #gui-1-overlay {
+      display: flex;
       position: absolute;
       top: 0;
       left: -100%;
@@ -160,11 +161,14 @@ html, body {
       width: 50%;
       background: #71609b;
       transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
-  .app #gui-2 {
-    flex: 1;
-    position: relative;
-    background-color: #fff;
-    font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif; }
+      .app #gui-1 #gui-1-overlay div.thumb {
+        flex: 1; }
+
+#gui-2 {
+  flex: 1;
+  position: relative;
+  background-color: #fff;
+  font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif; }
 
 ::-webkit-scrollbar {
   width: 5px;

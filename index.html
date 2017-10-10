@@ -12,7 +12,12 @@
 
   <div class="app">
     <div id="gui-1" class="gui">
-      <div id="gui-1-overlay"></div>
+      <div id="gui-1-overlay">
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+        <div class="thumb"></div>
+      </div>
       <nav>
         <div></div>
         <div></div>
@@ -166,7 +171,6 @@
           .text(options.value);
       }
 
-
       module.showInput = function (submitCallback, typeCallback) {
         //TODO: check if one can overwrite callbacks or if callbacks need to be properly removed
         if (typeCallback) {
@@ -240,6 +244,7 @@
       return module;
     });
 
+
     var cb;
 
     d3.json('./build/config.json', function (err, data) {
@@ -254,6 +259,7 @@
           var src = './build/thumbs/'+key+'_thumb.png';
           var src2 = './build/thumbs/'+key+'_thumb@2x.png';
         }
+
     
         //in order to load more config info on the selected vis load:
     
@@ -360,12 +366,32 @@
 
 
       function onEntry(d) {
-        console.log(d.label);
+
+        // .text(d.label);
+
+        // ADD all thumbnails in grid on overlay
+
+        //the thumbnails are available under:
+        for (var key in data) {
+          var src = './build/thumbs/' + key + '_thumb.png';
+          var src2 = './build/thumbs/' + key + '_thumb@2x.png';
+        }
+
+        console.log(src);
+
+        // console.log(d.label);
         d3.select('#gui-1-overlay')
           .style('left', '0')
-          .style('background-color', '#75FABF')
-        // .text(d.label);
+          .style('background-color', '#75FABF');
+
+        d3.select('.thumb')
+          .append('img')
+          .attr('src', src);
       };
+
+
+
+
 
 
 
