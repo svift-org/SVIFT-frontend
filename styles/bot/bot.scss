@@ -41,13 +41,18 @@
         box-shadow: 0 0 1px rgba(58,58,58,0.5);
         border-radius: 40px;
         min-height: 57px;
-        font-size: 14px;
+        font-size: 1em;
         margin: 10px;
         padding: 19px 60px 19px 30px;
         height: 56px;
         color: rgba(34,34,34,0.4);
-        // border-width: 2px;
         border-style: none; 
+        transition: box-shadow .75s cubic-bezier(.215,.61,.355,1), color .75s cubic-bezier(.215,.61,.355,1),transform 375ms cubic-bezier(.175,.885,.32,1.275) 0s, opacity 375ms cubic-bezier(.215,.61,.355,1) 0s;
+
+        &:focus{
+            box-shadow: $box-shadow-default;
+            font-family: $font-family-bold;
+        }
     }
 
     button{
@@ -188,10 +193,32 @@
     padding: 20px;
     margin: 0 20px;
     font-family: $font-family-bold;
+    transition: all 0.5s;
+
+    &:hover{
+        background-color: $svift-human;
+        color: #000;
+        transform: translateY(3px);
+    }
 
     &:before{
-        content: "hello";
+        content: '';
+        display: inline-block;
+        height: 0.75em;
+        width: 0.7em;
+        background-color:$svift-human;
+        border-radius: $border-radius-circle;
+        margin-right: 7px;
+        transition: all 0.5s;
     }
+
+    &:hover:before{
+        background-color:#fff;
+      
+        
+    }
+
+    
 
    
 }
