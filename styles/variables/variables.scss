@@ -6,6 +6,7 @@
 $font-family-mono: "DecimaMonoProBold", monospace;
 $font-family-sansDefault: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
 $font-family-sansItalic: "InterfaceRegularItalic", "Helvetica", "Arial", sans-serif;
+$font-family-bold: "InterfaceRegularBold";
 
 /* Font sizes*/
 $font-size-default: 16px;
@@ -51,7 +52,7 @@ $padding-big: 5%;
 
 /* Padding-Bot */
 $padding-bubble: 1%;
-$padding-bubble-inner: 17px 10px 10px 10px;
+$padding-bubble-inner: 10px 10px 10px 10px;
 
 
 
@@ -60,6 +61,7 @@ $margin-default: 2em;
 
 /* Border radii*/
 $border-radius-default: 4px;
+$border-radius-half: 100%;
 $border-radius-circle: 100px;
 
 

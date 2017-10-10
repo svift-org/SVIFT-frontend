@@ -93,7 +93,7 @@
 
           var bubble = outer.append('div')
             .attr('class', 'cb-bubble')
-            .style("height", "50px")
+            // .style("height", "50px")
             .append('div')
             .attr('class', 'cb-inner');
 
@@ -128,7 +128,7 @@
      */
 
       module.types['select'] = function (bubble, options, callback) {
-        bubble.select('.cb-choice').data(options.value).enter().append('div')
+        bubble.selectAll('.cb-choice').data(options.value).enter().append('div')
           .attr('class', 'cb-choice')
           .text(function (d) { return d.label; })
           .on('click', function (d) {
@@ -324,7 +324,7 @@
       cb = chatbot(d3.select('#gui-2'));
 
 
-      var delay = 1500;
+      var delay = 100;
       // cb.showInput();
       var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
 
@@ -344,15 +344,15 @@
 
               setTimeout(function () {
                 cb.removeBubble(waiting);
-                cb.addBubble({ type: 'select', value: [{ label: 'yes' }, { label: 'no' }, { label: 'maybe' }], class: 'human' }, function (d) { console.log(d.label) });
+                cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, function (d) { console.log(d.label) });
 
 
 
-              }, 1500);
-            }, 1500);
-          }, 1500);
-        }, 1500);
-      }, 1500);
+              }, delay);
+            }, delay);
+          }, delay);
+        }, delay);
+      }, delay);
 
 
 
