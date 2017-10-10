@@ -130,7 +130,6 @@
       module.types['select'] = function (bubble, options, callback) {
         bubble.select('.cb-choice').data(options.value).enter().append('div')
           .attr('class', 'cb-choice')
-          // .style("margin-right", function (d, i) { return 100 * i + "px"; })
           .text(function (d) { return d.label; })
           .on('click', function (d) {
             d3.select('this').classed('cb-active', true);
@@ -345,7 +344,7 @@
 
               setTimeout(function () {
                 cb.removeBubble(waiting);
-                cb.addBubble({ type: 'select', value: [{ label: 'red' }, { label: 'blue' }, { label: 'green' }], class: 'human' }, function (d) { console.log(d.label) });
+                cb.addBubble({ type: 'select', value: [{ label: 'yes' }, { label: 'no' }, { label: 'maybe' }], class: 'human' }, function (d) { console.log(d.label) });
 
 
 
