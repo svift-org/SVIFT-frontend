@@ -88,12 +88,15 @@
             .attr('class', 'cb-segment cb-' + options.class)
             .attr('id', 'cb-segment-' + id);
 
-
           //speaker icon
           outer.append('div').attr('class', 'cb-icon');
 
           var bubble = outer.append('div')
-            .attr('class', 'cb-bubble').append('div').attr('class', 'cb-inner');
+            .attr('class', 'cb-bubble')
+            .style("height", "50px")
+            .append('div')
+            .attr('class', 'cb-inner');
+
 
           outer.append('hr');
 
@@ -109,9 +112,25 @@
       //The individual types are being organised this way in order to make it as easy as possible to extend the basic types.
       //cb.types['custom-1'] = function(bubble, options, callback){ custom_code; };
 
+      /*
+   
+     //Example for custom bubble type
+   
+     var hw = 0;
+     cb.types['hello'] = function(bubble, options, callback){
+       hw++;
+       bubble.append('p').text('Hello World ('+hw+')');
+     };
+   
+     cb.addBubble({type:'hello', class:'bot'});
+     cb.addBubble({type:'hello', class:'human'});
+   
+     */
+
       module.types['select'] = function (bubble, options, callback) {
         bubble.select('.cb-choice').data(options.value).enter().append('div')
           .attr('class', 'cb-choice')
+          // .style("margin-right", function (d, i) { return 100 * i + "px"; })
           .text(function (d) { return d.label; })
           .on('click', function (d) {
             d3.select('this').classed('cb-active', true);
@@ -120,22 +139,31 @@
       };
 
       module.types['table'] = function (bubble, options, callback) {
+        bubble.html('<table> <tr> <td><input type="text" name="id[]" value="1"/></td> <td><input type="text" name="id[]" value="1"/></td> <td><input type="text" name="id[]" value="1"/></td> </tr> <tr> <td><input type="text" name="id[]" value="1"/></td> <td><input type="text" name="id[]" value="1"/></td> <td><input type="text" name="id[]" value="1"/></td> </tr> <tr> <td><input type="text" name="id[]" value="1" /></td> <td><input type="text" name="id[]" value="1" /></td> <td><input type="text" name="id[]" value="1" /></td> </tr></table>')
       };
 
       module.types['waiting'] = function (bubble, options, callback) {
         //no callback -> this bubble should be removed before adding the next
+        var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
+
         bubble.append('div')
-          .attr('class', 'cb-waiting');
-        var animatedBubbles = d3.select('.cb-waiting');
-        animatedBubbles.append("div").attr('class', 'circle');
-        animatedBubbles.append("div").attr('class', 'circle');
-        animatedBubbles.append("div").attr('class', 'circle');
+          .attr('class', 'cb-waiting')
+          .html(animatedCircles);
       };
 
       module.types['text'] = function (bubble, options, callback) {
         bubble.append('p')
+          .style("width", "50px")
+          .transition()
+          .duration(200)
+          .style("width", "400px")
+          .transition()
+          .duration(500)
+          .style('opacity', 1)
+          .style("transform", "translateX(30px)")
           .text(options.value);
       }
+
 
       module.showInput = function (submitCallback, typeCallback) {
         //TODO: check if one can overwrite callbacks or if callbacks need to be properly removed
@@ -296,36 +324,52 @@
 
       cb = chatbot(d3.select('#gui-2'));
 
-      /*
-    
-      //Example for custom bubble type
-    
-      var hw = 0;
-      cb.types['hello'] = function(bubble, options, callback){
-        hw++;
-        bubble.append('p').text('Hello World ('+hw+')');
-      };
-    
-      cb.addBubble({type:'hello', class:'bot'});
-      cb.addBubble({type:'hello', class:'human'});
-    
-      */
 
-      var last = cb.addBubble({ type: 'waiting', class: 'bot' });
+      var delay = 1500;
+      // cb.showInput();
+      var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
+
       setTimeout(function () {
-        var bubble = cb.getBubble(last);
-        bubble.el.select('.cb-inner').html('<p>Hello World</p>');
-        /*cb.removeBubble(last); cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT! 😊', class: 'bot' }) */
-      }, 1000);
+        cb.removeBubble(waiting);
+        cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT! 👋', class: 'bot' });
 
-      // cb.addBubble({type:'text', value:'…', class:'bot'});
-      cb.showInput(function (input) {
-        // cb.addBubble({ type: 'text', value: "Hi there!", class: 'human' });
-        cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot' });
-        cb.showInput(function (input) {
-          cb.addBubble({ type: 'text', value: "Sounds great! Let’s go!", class: 'human' });
-        });
-      });
+        setTimeout(function () {
+          var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
+
+          setTimeout(function () {
+            cb.removeBubble(waiting);
+            cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot' });
+
+            setTimeout(function () {
+              var waiting = cb.addBubble({ type: 'waiting', class: 'human' });
+
+              setTimeout(function () {
+                cb.removeBubble(waiting);
+                cb.addBubble({ type: 'select', value: [{ label: 'red' }, { label: 'blue' }, { label: 'green' }], class: 'human' }, function (d) { console.log(d.label) });
+
+
+
+              }, 1500);
+            }, 1500);
+          }, 1500);
+        }, 1500);
+      }, 1500);
+
+
+
+
+
+      // cb.addBubble({ type: 'table', class: 'bot' });
+
+
+      // cb.addBubble({ type: 'text', value: '…', class: 'bot' });
+      // cb.showInput(function (input) {
+      //   // cb.addBubble({ type: 'text', value: "Hi there!", class: 'human' });
+      //   cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project? 😊', class: 'bot' });
+      //   cb.showInput(function (input) {
+      //     cb.addBubble({ type: 'text', value: "Sounds great! Let’s go!", class: 'human' });
+      //   });
+      // });
     });
 
   </script>
