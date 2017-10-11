@@ -1,1 +1,6 @@
-{"name":"columnchart","description":"ColumnChart Moule","title":"Columnchart","input":"table"}
+{
+    "name": "columnchart",
+    "description": "ColumnChart Moule",
+    "title": "Columnchart",
+    "input": "table"
+}

@@ -12,12 +12,7 @@
 
   <div class="app">
     <div id="gui-1" class="gui">
-      <div id="gui-1-overlay">
-        <div class="thumb"></div>
-        <div class="thumb"></div>
-        <div class="thumb"></div>
-        <div class="thumb"></div>
-      </div>
+      <div id="gui-1-overlay"></div>
       <nav>
         <div></div>
         <div></div>
@@ -369,24 +364,36 @@
 
         // .text(d.label);
 
-        // ADD all thumbnails in grid on overlay
 
-        //the thumbnails are available under:
-        for (var key in data) {
-          var src = './build/thumbs/' + key + '_thumb.png';
-          var src2 = './build/thumbs/' + key + '_thumb@2x.png';
-        }
 
         console.log(src);
 
         // console.log(d.label);
-        d3.select('#gui-1-overlay')
+        var overlay = d3.select('#gui-1-overlay')
           .style('left', '0')
           .style('background-color', '#75FABF');
 
-        d3.select('.thumb')
-          .append('img')
-          .attr('src', src);
+
+        // Loop through thumbnails with d3
+        // the thumbnails are available under:
+        for (var key in data) {
+          var src = './build/thumbs/' + key + '_thumb.png';
+          var src2 = './build/thumbs/' + key + '_thumb@2x.png';
+
+          // console.log(data);
+          console.log(src);
+          // console.log(key);
+
+        }
+
+        var test = [{ label: '1' }, { label: '2' }, { label: '3' }];
+
+        overlay.selectAll('.thumb')
+          .data(test).enter().append('div')
+          .attr('class', 'thumb')
+          .attr('src', function (d) { return d.label; })
+          .text(function (d) { return d.label; });
+
       };
 
 
