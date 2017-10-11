@@ -68,6 +68,13 @@
         background-color: $white;
         color: $svift-human;
         border-radius: 100px;
+        transition: background-color .75s cubic-bezier(.215,.61,.355,1);
+        cursor: pointer;
+
+        &:hover{
+            background-color: $svift-human;
+            color: white;
+        }
     }
 }
 

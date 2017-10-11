@@ -153,7 +153,12 @@
     border-image: none;
     background-color: #fff;
     color: #75FABF;
-    border-radius: 100px; }
+    border-radius: 100px;
+    transition: background-color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+    cursor: pointer; }
+    #cb-input button:hover {
+      background-color: #75FABF;
+      color: white; }
 
 .cb-segment {
   clear: both; }
