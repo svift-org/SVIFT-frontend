@@ -1,12 +1,6 @@
 {
-    "bar": {
-        "title": "Bar"
-    },
-    "column": {
-        "title": "Column"
-    },
-    "grid": {
-        "title": "Grid"
+    "mosaic": {
+        "title": "Mosaic"
     },
     "bonzai": {
         "title": "Bonsai"

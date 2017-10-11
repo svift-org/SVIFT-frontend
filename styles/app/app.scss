@@ -78,7 +78,8 @@ html, body {
     }
 
     #gui-1-overlay{
-      // display: flex;
+      display: flex;
+      align-items: center;
       position: absolute;
       top: 0;
       left: -100%;
@@ -87,16 +88,28 @@ html, body {
       background: $svift-primary;
       transition: all 0.75s cubic-bezier(.215,.61,.355,1);
 
-      div.thumb{
-        // flex: 1;
-        width: 50%;
-        background-color: red;
+      div.thumb-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-end;
+        // background-color: red;
 
-        img{
-          width: 50%;
+        div.thumb{
+          display: inline-block;
+          margin: 20px;
+           transition: all 0.5s cubic-bezier(.215,.61,.355,1);
+
+          &:hover{
+              transform: translateY(3px);
+          }
+
+          img{
+            box-shadow: $box-shadow-default;
+            border-radius: $border-radius-default;
+          }
         }
       }
-
     }
   }
 

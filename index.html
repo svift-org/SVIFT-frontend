@@ -377,16 +377,25 @@
 
         var overlay = d3.select('#gui-1-overlay')
           .style('left', '0')
-          .style('background-color', '#75FABF');
+          .style('background-color', '#75FABF')
+          .append('div')
+          .attr('class', 'thumb-wrapper');
+
+        // var src = './build/thumbs/' + d + '_thumb.png';
+        // var src2 = './build/thumbs/' + d + '_thumb@2x.png';
 
         overlay.selectAll('.thumb')
           .data(d3.keys(data)).enter().append('div')
           .attr('class', 'thumb')
+          .attr('id', function (d) { return 'thumb-' + d })
           .append('img')
           .attr('src', function (d) { return './build/thumbs/' + d + '_thumb.png' })
           .on('click', function (d) {
-            console.log(key);
+            console.log('You have chosen the ' + d + ' visualization!');
           });
+
+        cb.addBubble({ type: 'text', value: 'Ok then, choose your visualization type 😎', class: 'bot' });
+
 
       };
 
