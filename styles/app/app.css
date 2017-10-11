@@ -130,7 +130,7 @@ html, body {
     .app #gui-1 nav {
       position: absolute;
       top: 5%;
-      left: 5%; }
+      left: 3%; }
       .app #gui-1 nav:hover {
         cursor: pointer; }
       .app #gui-1 nav div {

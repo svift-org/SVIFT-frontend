@@ -141,7 +141,25 @@
       };
 
       module.types['table'] = function (bubble, options, callback) {
-        bubble.html('<table> <tr> <td><input type="text" name="id[]" value="1"/></td> <td><input type="text" name="id[]" value="1"/></td> <td><input type="text" name="id[]" value="1"/></td> </tr> <tr> <td><input type="text" name="id[]" value="1"/></td> <td><input type="text" name="id[]" value="1"/></td> <td><input type="text" name="id[]" value="1"/></td> </tr> <tr> <td><input type="text" name="id[]" value="1" /></td> <td><input type="text" name="id[]" value="1" /></td> <td><input type="text" name="id[]" value="1" /></td> </tr></table>')
+        var rows = [1, 2, 3, 4];
+        var columns = [1, 2, 3];
+        var options = ['Red', 'Blue', 'Green', 'Purple'];
+
+        var heading = bubble.append('div').text('Heading');
+        var heading = bubble.append('div').text('Subheading');
+        var table = bubble.append('table').append('tbody');
+
+        var tableRow = table.selectAll('.tr')
+          .data(rows).enter().append('tr');
+        var tableColumn = tableRow.selectAll('.td')
+          .data(columns).enter().append('td').append('input');
+
+        var label = bubble.append('div').text('Select icon');
+        var selector = bubble.append('select');
+        selector.selectAll('option').data(options).enter().append('option')
+          .text(function (d) { return d });
+
+        var deleteData = bubble.append('div').text('Delete data');
       };
 
       module.types['waiting'] = function (bubble, options, callback) {
@@ -330,7 +348,7 @@
       cb.showInput();
 
 
-      var delay = 100;
+      var delay = 1000;
       // cb.showInput();
       var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
 
@@ -395,6 +413,8 @@
           });
 
         cb.addBubble({ type: 'text', value: 'Ok then, choose your visualization type 😎', class: 'bot' });
+        cb.addBubble({ type: 'table', class: 'bot' });
+
 
 
       };

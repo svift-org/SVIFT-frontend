@@ -39,7 +39,7 @@ html, body {
     nav{
       position: absolute;
       top: $padding-big;
-      left: $padding-big;
+      left: $padding-big - 2%;
 
       &:hover{
         cursor: pointer;
