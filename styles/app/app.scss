@@ -78,7 +78,7 @@ html, body {
     }
 
     #gui-1-overlay{
-      display: flex;
+      // display: flex;
       position: absolute;
       top: 0;
       left: -100%;
@@ -88,7 +88,13 @@ html, body {
       transition: all 0.75s cubic-bezier(.215,.61,.355,1);
 
       div.thumb{
-        flex: 1;
+        // flex: 1;
+        width: 50%;
+        background-color: red;
+
+        img{
+          width: 50%;
+        }
       }
 
     }

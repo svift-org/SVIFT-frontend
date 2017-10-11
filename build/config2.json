@@ -1,0 +1,32 @@
+[
+    {
+        "bar": {
+            "title": "Bar"
+        }
+    },
+    {
+        "column": {
+            "title": "Column"
+        }
+    },
+    {
+        "grid": {
+            "title": "Grid"
+        }
+    },
+    {
+        "bonzai": {
+            "title": "Bonsai"
+        }
+    },
+    {
+        "icon": {
+            "title": "Icon"
+        }
+    },
+    {
+        "wire": {
+            "title": "Wire"
+        }
+    }
+]

@@ -1,14 +1,20 @@
 {
-    "barchart": {
-        "title": "Barchart"
+    "bar": {
+        "title": "Bar"
     },
-    "columnchart": {
-        "title": "Columnchart"
+    "column": {
+        "title": "Column"
     },
     "grid": {
-        "title": "Grid chart"
+        "title": "Grid"
     },
-    "bonsai": {
-        "title": "Bonsai chart"
+    "bonzai": {
+        "title": "Bonsai"
+    },
+    "icon": {
+        "title": "Icon"
+    },
+    "wire": {
+        "title": "Wire"
     }
 }
