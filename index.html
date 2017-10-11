@@ -360,82 +360,6 @@
       }, delay);
 
 
-      function onEntry(d) {
-
-        // .text(d.label);
-
-
-
-
-        // console.log(d.label);
-        var overlay = d3.select('#gui-1-overlay')
-          .style('left', '0')
-          .style('background-color', '#75FABF');
-
-
-        // Loop through thumbnails with d3
-        // the thumbnails are available under:
-        // for (var key in data) {
-        //   var src = './build/thumbs/' + key + '_thumb.png';
-        //   var src2 = './build/thumbs/' + key + '_thumb@2x.png';
-
-        // }
-
-
-        // var src = './build/thumbs/' + d3.keys(data) + '_thumb.png';
-        // var src2 = './build/thumbs/' + d3.keys(data) + '_thumb@2x.png';
-
-
-        overlay.selectAll('.thumb')
-          .data(d3.keys(data)).enter().append('div')
-          .attr('class', 'thumb')
-          .append('img')
-          .attr('src', function (d) { return './build/thumbs/' + d + '_thumb.png' })
-          .on('click', function (d) {
-            console.log(key);
-          });
-
-
-        // console.log(data);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // overlay.append('img')
-        //   .attr('class', 'thumb')
-        //   .attr('src', src);
-
-
-        // overlay.append('img')
-        //   .attr('class', 'thumb')
-        //   .attr('src', src);
-
-        // overlay.selectAll('.thumb')
-        //   .data(test).enter().append('img')
-        //   .attr('class', 'thumb')
-        //   .attr('src', function (d) { return d.label })
-        //   .text(function (d) { return d.label; });
-
-      };
-
-
-
-
-
-
-
-
-
       // cb.addBubble({ type: 'table', class: 'bot' });
 
 
@@ -447,6 +371,25 @@
       //     cb.addBubble({ type: 'text', value: "Sounds great! Let’s go!", class: 'human' });
       //   });
       // });
+
+
+      function onEntry(d) {
+
+        var overlay = d3.select('#gui-1-overlay')
+          .style('left', '0')
+          .style('background-color', '#75FABF');
+
+        overlay.selectAll('.thumb')
+          .data(d3.keys(data)).enter().append('div')
+          .attr('class', 'thumb')
+          .append('img')
+          .attr('src', function (d) { return './build/thumbs/' + d + '_thumb.png' })
+          .on('click', function (d) {
+            console.log(key);
+          });
+
+      };
+
     });
 
   </script>
