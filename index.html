@@ -46,7 +46,7 @@
   <!-- <script src="libs/d3.v4.min.js"></script> -->
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="build/svift.min.js"></script>
-  <script src="svift.mosaic.js"></script>
+  <script src="build/svift.mosaic.js"></script>
   <script type="text/javascript">
 
     /*
@@ -432,12 +432,11 @@
         // container.append('div').attr('class', 'viz-title').text('title');
         // container.append('div').attr('class', 'viz-subtitle').text('subtitle');
 
-
-          d3.json('data.json', function(err, data){
-            var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container'));
-            vis.init();
-            vis.start();  
-          })  
+        d3.json('build/data/data.json', function (err, data) {
+          var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container'));
+          vis.init();
+          vis.start();
+        })
 
       }
 

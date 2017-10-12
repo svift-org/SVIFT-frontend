@@ -185,10 +185,8 @@ html, body {
         border-radius: 4px;
         opacity: 0;
         transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
-        .app #gui-1 #gui-1-overlay div.viz-container .viz-title {
-          color: black; }
-        .app #gui-1 #gui-1-overlay div.viz-container .viz-subtitle {
-          color: black; }
+        .app #gui-1 #gui-1-overlay div.viz-container svg {
+          border-radius: 4px; }
 
 #gui-2 {
   flex: 1;

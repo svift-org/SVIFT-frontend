@@ -1,0 +1,23 @@
+{
+  "params": {
+    "dev": true
+  },
+  "vis": {
+    "type": "mosaic",
+    "title": "Mosaic"
+  },
+  "data": {
+    "columns": [
+      "Wert"
+    ],
+    "types": [
+      "int"
+    ],
+    "data": [
+      30
+    ],
+    "title": "Arbeitslosigkeit Oktober 2017",
+    "subTitle": "Untertitel",
+    "attribution": "Some attribution here"
+  }
+}
