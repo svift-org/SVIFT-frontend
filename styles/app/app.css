@@ -155,6 +155,7 @@ html, body {
     .app #gui-1 #gui-1-overlay {
       display: flex;
       align-items: center;
+      justify-content: center;
       position: absolute;
       top: 0;
       left: -100%;
@@ -170,13 +171,24 @@ html, body {
         .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb {
           display: inline-block;
           margin: 20px;
-          transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+          transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
           cursor: pointer; }
           .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb:hover {
-            transform: translateY(3px); }
+            transform: translateY(5px); }
           .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb img {
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
             border-radius: 4px; }
+      .app #gui-1 #gui-1-overlay div.viz-container {
+        background-color: white;
+        width: 70%;
+        height: 70%;
+        border-radius: 4px;
+        opacity: 0;
+        transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
+        .app #gui-1 #gui-1-overlay div.viz-container .viz-title {
+          color: black; }
+        .app #gui-1 #gui-1-overlay div.viz-container .viz-subtitle {
+          color: black; }
 
 #gui-2 {
   flex: 1;

@@ -80,6 +80,7 @@ html, body {
     #gui-1-overlay{
       display: flex;
       align-items: center;
+      justify-content: center;
       position: absolute;
       top: 0;
       left: -100%;
@@ -98,17 +99,34 @@ html, body {
         div.thumb{
           display: inline-block;
           margin: 20px;
-          transition: all 0.5s cubic-bezier(.215,.61,.355,1);
+          transition: all 0.2s cubic-bezier(.215,.61,.355,1);
           cursor: pointer;
 
           &:hover{
-              transform: translateY(3px);
+              transform: translateY(5px);
           }
 
           img{
             box-shadow: $box-shadow-default;
             border-radius: $border-radius-default;
           }
+        }
+      }
+
+      div.viz-container{
+        background-color: white;
+        width: 70%;
+        height: 70%;
+        border-radius: $border-radius-default;
+        opacity: 0;
+        transition: all 1s cubic-bezier(.215,.61,.355,1);
+
+        .viz-title{
+          color: black;
+        }
+
+        .viz-subtitle{
+          color: black;
         }
       }
     }
