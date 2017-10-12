@@ -304,6 +304,26 @@
         color: #71609b;
         text-transform: uppercase;
         margin-right: 10px; }
+      .cb-bubble-table .table-foot .selector select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+        border-radius: 0;
+        background-color: #fff;
+        border-bottom: 2px solid #71609b;
+        color: #71609b;
+        font-size: 1em;
+        font-family: "DecimaMonoProBold", monospace;
+        background-image: url("/assets/img/icon-chevron-down.svg");
+        background-position: right;
+        background-repeat: no-repeat;
+        width: 120px;
+        padding: 10px 10px; }
+        .cb-bubble-table .table-foot .selector select option {
+          background: #222;
+          border-top: 1px solid #444;
+          padding: .3em 1em .3em 1em; }
     .cb-bubble-table .table-foot .delete {
       flex: 1;
       text-align: right;

@@ -278,6 +278,32 @@
                text-transform: uppercase;
                margin-right: $margin-small;
            }
+
+          select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          border:none;
+          border-radius: 0;
+          background-color: #fff;
+          border-bottom: 2px solid $svift-primary;
+          color: $svift-primary;
+          font-size: 1em;
+          font-family: $font-family-mono;
+          background-image:url('/assets/img/icon-chevron-down.svg');
+          background-position: right;
+          background-repeat: no-repeat;
+          width: 120px;
+          padding: $margin-small $margin-small;
+
+          option {
+            background:#222;
+            border-top:1px solid #444;
+            padding:.3em 1em .3em 1em;
+        }
+          } 
+
+          
        }
 
        .delete{
