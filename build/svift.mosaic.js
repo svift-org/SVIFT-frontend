@@ -70,12 +70,12 @@ SVIFT.vis.mosaic = (function (data, container) {
 
 
     module.g
-      .attr("font-family", "sans-serif")
+      .attr("font-family", "DecimaMonoProBold")
 
     //Tile(s)
     module.d3config.titleWrapper = module.g.append("g")
       .attr("text-anchor", "middle")
-      .attr("font-family", "sans-serif")
+      .attr("font-family", "DecimaMonoPro")
 
     module.d3config.titleMain = module.d3config.titleWrapper.append("text")
       .text(data.data.title)
@@ -110,7 +110,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     //Number Text
     module.d3config.valueTextBottom = module.g.append("text")
       .text(data.data.data[0] + "%")
-      .attr("font-family", "sans-serif")
+      .attr("font-family", "DecimaMonoProBold")
       .attr("fill", "#71609B")
       .attr("text-anchor", "middle")
 
@@ -125,7 +125,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     //Set up all the text sizes
     module.d3config.titleMain
       .attr("x", windowWidth / 2)
-      .attr("font-size", "1em")
+      .attr("font-size", "1.7em")
 
     module.d3config.titleSub
       .attr("x", windowWidth / 2)
@@ -134,7 +134,7 @@ SVIFT.vis.mosaic = (function (data, container) {
 
     module.d3config.valueTextBottom
       .attr("x", windowWidth / 2)
-      .attr("font-size", "1em")
+      .attr("font-size", "3em")
 
 
     //set up  grid
