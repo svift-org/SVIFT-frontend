@@ -58,6 +58,8 @@
 /* Padding-Bot */
 /* Margin */
 /* Border radii*/
+/* --- BORDERS --- */
+/* Borders */
 @font-face {
   font-family: 'SourceSansPro';
   src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");
@@ -163,7 +165,7 @@
 .cb-segment {
   clear: both; }
 
-.cb-segment.cb-bot div {
+.cb-segment.cb-bot .cb-icon, .cb-segment.cb-bot .cb-bubble {
   float: left; }
 
 .cb-segment.cb-human div {
@@ -264,5 +266,18 @@
     transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
   .cb-choice:hover:before {
     background-color: #fff; }
+
+.cb-bubble-table {
+  background-color: #fff;
+  border: 1px solid #D8D8D8;
+  border-radius: 4px;
+  padding: 20px; }
+  .cb-bubble-table .heading {
+    font-family: "DecimaMonoProBold", monospace;
+    color: #71609b;
+    font-size: 1.6em; }
+  .cb-bubble-table .subheading {
+    font-family: "DecimaMonoProBold", monospace;
+    color: #9a9a9a; }
 
 /*# sourceMappingURL=bot.css.map */

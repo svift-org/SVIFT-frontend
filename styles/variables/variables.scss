@@ -24,6 +24,7 @@ $line-height-heading: 53px;
 $svift-primary: rgba(113, 96, 155, 1);
 $svift-human: #75FABF;
 $svift-human-bright: rgb(168, 250, 213);
+// $svift-light-grey: #D8D8D8;
 
 /* Background Colors */
 $bg-light-grey: #F4F4F4;
@@ -37,7 +38,7 @@ $bot-bubble-waiting-end: #AFAFB2;
 
 /* Text Colors */
 $text-bot: #3A3A3A;
-
+$text-subheading: #9a9a9a;
 
 /* Button Colors */
 $ios-btn-default: #B8E986;
@@ -62,6 +63,11 @@ $margin-default: 2em;
 /* Border radii*/
 $border-radius-default: 4px;
 $border-radius-circle: 100px;
+
+/* --- BORDERS --- */
+
+/* Borders */
+$border-default: 1px solid #D8D8D8;
 
 
 

@@ -84,7 +84,7 @@
 }
 
 .cb-segment.cb-bot{
-    div{
+    .cb-icon, .cb-bubble{
         float: left;
     } 
 }
@@ -187,7 +187,6 @@
     }
 }
 
-
 .cb-choice{
     flex: 1;
     width: auto;
@@ -221,6 +220,25 @@
 
     &:hover:before{
         background-color:#fff;
+    }
+}
+
+
+.cb-bubble-table{
+    background-color: #fff;
+    border: $border-default;
+    border-radius: $border-radius-default;
+    padding: 20px;
+
+    .heading{
+        font-family: $font-family-mono;
+        color: $svift-primary;
+        font-size: 1.6em;
+    }
+
+    .subheading{
+        font-family: $font-family-mono;
+        color: $text-subheading;
     }
 }
 

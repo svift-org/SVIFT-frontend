@@ -58,6 +58,8 @@
 /* Padding-Bot */
 /* Margin */
 /* Border radii*/
+/* --- BORDERS --- */
+/* Borders */
 @font-face {
   font-family: 'SourceSansPro';
   src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");
@@ -154,6 +156,7 @@ html, body {
           width: 80%; }
     .app #gui-1 #gui-1-overlay {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       position: absolute;
@@ -187,6 +190,15 @@ html, body {
         transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
         .app #gui-1 #gui-1-overlay div.viz-container svg {
           border-radius: 4px; }
+      .app #gui-1 #gui-1-overlay a.btn-back {
+        margin-top: 2em;
+        font-family: "DecimaMonoProBold", monospace;
+        font-size: 1em;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
+        .app #gui-1 #gui-1-overlay a.btn-back:hover {
+          color: #71609b; }
 
 #gui-2 {
   flex: 1;

@@ -14,10 +14,10 @@
       "int"
     ],
     "data": [
-      30
+      0
     ],
-    "title": "Arbeitslosigkeit Oktober 2017",
-    "subTitle": "Untertitel",
+    "title": "Your title",
+    "subTitle": "Your subtitle",
     "attribution": "Some attribution here"
   }
 }

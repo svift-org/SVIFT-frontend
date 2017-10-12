@@ -142,12 +142,14 @@
       };
 
       module.types['table'] = function (bubble, options, callback) {
-        var rows = [1, 2, 3, 4];
+        bubble.attr('class', 'cb-bubble-table');
+
+        var rows = [1, 2, 3];
         var columns = [1, 2, 3];
         var options = ['Red', 'Blue', 'Green', 'Purple'];
 
-        var heading = bubble.append('div').text('Heading');
-        var heading = bubble.append('div').text('Subheading');
+        var heading = bubble.append('div').attr('class', 'heading').text('Add your data');
+        var heading = bubble.append('div').attr('class', 'subheading').text('Input your data and add or remove columns/rows');
         var table = bubble.append('table').append('tbody');
 
         var tableRow = table.selectAll('.tr')
@@ -341,7 +343,6 @@
         };
     
         //The ID is also equivalent to the permanent (7 day) url: svift.xyz/?/ID/ (index.html) > the index.html is actually not yet there, but i (SEB) will also take care of this...
-    
       */
 
       cb = chatbot(d3.select('#gui-2'));
@@ -349,7 +350,7 @@
       cb.showInput();
 
 
-      var delay = 1000;
+      var delay = 100;
       // cb.showInput();
       var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
 
@@ -412,26 +413,29 @@
       function onEntry() {
         d3.select('#gui-1-overlay').style('left', '0');
         cb.addBubble({ type: 'text', value: 'Ok then, choose your visualization type 😎', class: 'bot' });
-        cb.addBubble({ type: 'table', class: 'bot' });
       };
 
       function selectViz() {
         var tile = d3.selectAll('.thumb');
         tile.on('click', function (d) {
           console.log('You have chosen the ' + d + ' visualization!');
+          cb.addBubble({
+            type: 'text', value: "Good choice! Let's enter your data ✍️", class: 'bot'
+          });
+          cb.addBubble({ type: 'table', class: 'bot' });
           createViz();
         });
       }
 
       function createViz() {
-        var overlay = d3.select('#gui-1-overlay').html('')
-          .append('div')
+        var overlay = d3.select('#gui-1-overlay').html('');
+
+        overlay.append('div')
           .attr('class', 'viz-container').style('opacity', 0).transition().style('opacity', 1);
 
-        var container = d3.select('.viz-container');
-        // container.append('div').attr('class', 'viz-title').text('title');
-        // container.append('div').attr('class', 'viz-subtitle').text('subtitle');
+        overlay.append('a').attr('class', 'btn-back').attr("href", '#').html('&#8592; Select different chart type');
 
+        var container = d3.select('.viz-container');
         d3.json('build/data/data.json', function (err, data) {
           var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container'));
           vis.init();
