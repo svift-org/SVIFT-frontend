@@ -46,6 +46,7 @@
   <!-- <script src="libs/d3.v4.min.js"></script> -->
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="build/svift.min.js"></script>
+  <script src="svift.mosaic.js"></script>
   <script type="text/javascript">
 
     /*
@@ -428,8 +429,16 @@
           .attr('class', 'viz-container').style('opacity', 0).transition().style('opacity', 1);
 
         var container = d3.select('.viz-container');
-        container.append('div').attr('class', 'viz-title').text('title');
-        container.append('div').attr('class', 'viz-subtitle').text('subtitle');
+        // container.append('div').attr('class', 'viz-title').text('title');
+        // container.append('div').attr('class', 'viz-subtitle').text('subtitle');
+
+
+          d3.json('data.json', function(err, data){
+            var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container'));
+            vis.init();
+            vis.start();  
+          })  
+
       }
 
     });
