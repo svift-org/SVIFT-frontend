@@ -228,18 +228,58 @@
     background-color: #fff;
     border: $border-default;
     border-radius: $border-radius-default;
-    padding: 20px;
+    padding: 30px;
 
-    .heading{
+    .table-head{
+        margin-bottom: 30px;
+
+        .heading{
         font-family: $font-family-mono;
         color: $svift-primary;
-        font-size: 1.6em;
-    }
+        font-size: 1.4em;
+        }
 
     .subheading{
         font-family: $font-family-mono;
         color: $text-subheading;
+        font-size: 0.8em;
+        }
     }
+
+    table{
+        margin-bottom: 30px;
+        
+        input{
+        position: relative;
+        background-color: $table-background;
+        font-size: 1em;
+        font-family: $font-family-mono;
+        color: rgba(34,34,34,1);
+        padding: 10px;
+        border-style: none; 
+        border-radius: $border-radius-default;
+        width: 90%;
+        }
+    }
+
+    .table-foot{
+       display: flex;
+       font-family: $font-family-mono;
+
+       .selector{
+           flex: 1;
+
+       }
+
+       .delete{
+           flex: 1;
+           text-align: right;
+       }
+    }
+
+    
+
+    
 }
 
     

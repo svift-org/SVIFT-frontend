@@ -148,21 +148,23 @@
         var columns = [1, 2, 3];
         var options = ['Red', 'Blue', 'Green', 'Purple'];
 
-        var heading = bubble.append('div').attr('class', 'heading').text('Add your data');
-        var heading = bubble.append('div').attr('class', 'subheading').text('Input your data and add or remove columns/rows');
-        var table = bubble.append('table').append('tbody');
+        var tableHead = bubble.append('div').attr('class', 'table-head');
+        var heading = tableHead.append('div').attr('class', 'heading').text('Add your data');
+        var subheading = tableHead.append('div').attr('class', 'subheading').text('Input your data and add or remove columns/rows');
 
+        var table = bubble.append('table').append('tbody');
         var tableRow = table.selectAll('.tr')
           .data(rows).enter().append('tr');
         var tableColumn = tableRow.selectAll('.td')
           .data(columns).enter().append('td').append('input');
 
-        var label = bubble.append('div').text('Select icon');
-        var selector = bubble.append('select');
-        selector.selectAll('option').data(options).enter().append('option')
+        var tableFoot = bubble.append('div').attr('class', 'table-foot');
+        var selector = tableFoot.append('div').attr('class', 'selector');
+        var label = selector.append('label').attr('for', 'dropdown').text('Select icon');
+        var dropdown = selector.append('select').attr('class', 'dropdown');
+        dropdown.selectAll('option').data(options).enter().append('option')
           .text(function (d) { return d });
-
-        var deleteData = bubble.append('div').text('Delete data');
+        var deleteData = tableFoot.append('div').attr('class', 'delete').text('Delete data');
       };
 
       module.types['waiting'] = function (bubble, options, callback) {
