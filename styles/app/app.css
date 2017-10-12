@@ -182,12 +182,19 @@ html, body {
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
             border-radius: 4px; }
       .app #gui-1 #gui-1-overlay div.viz-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: white;
         width: 70%;
         height: 70%;
-        border-radius: 4px;
+        border-radius: 8px;
         opacity: 0;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
         transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
+        .app #gui-1 #gui-1-overlay div.viz-container div.viz-container-inner {
+          width: 80%;
+          height: 80%; }
         .app #gui-1 #gui-1-overlay div.viz-container svg {
           border-radius: 4px; }
       .app #gui-1 #gui-1-overlay a.btn-back {

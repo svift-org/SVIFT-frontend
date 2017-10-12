@@ -142,11 +142,11 @@
       };
 
       module.types['table'] = function (bubble, options, callback) {
+        bubble.style('background-color', '#fff');
         bubble.attr('class', 'cb-bubble-table');
-
-        var rows = [1, 2, 3];
-        var columns = [1, 2, 3];
-        var options = ['Red', 'Blue', 'Green', 'Purple'];
+        var rows = options.rows;
+        var columns = options.columns;
+        var selectables = options.selectables;
 
         var tableHead = bubble.append('div').attr('class', 'table-head');
         var heading = tableHead.append('div').attr('class', 'heading').text('Add your data');
@@ -156,13 +156,13 @@
         var tableRow = table.selectAll('.tr')
           .data(rows).enter().append('tr');
         var tableColumn = tableRow.selectAll('.td')
-          .data(columns).enter().append('td').append('input');
+          .data(columns).enter().append('td').append('input').attr('placeholder', '25%');
 
         var tableFoot = bubble.append('div').attr('class', 'table-foot');
         var selector = tableFoot.append('div').attr('class', 'selector');
         var label = selector.append('label').attr('for', 'dropdown').text('Select icon');
         var dropdown = selector.append('select').attr('class', 'dropdown');
-        dropdown.selectAll('option').data(options).enter().append('option')
+        dropdown.selectAll('option').data(selectables).enter().append('option')
           .text(function (d) { return d });
         var deleteData = tableFoot.append('div').attr('class', 'delete').text('Delete data');
       };
@@ -181,7 +181,7 @@
           .style("width", "50px")
           .transition()
           .duration(200)
-          .style("width", "400px")
+          .style("width", "500px")
           .transition()
           .duration(500)
           .style('opacity', 1)
@@ -422,9 +422,9 @@
         tile.on('click', function (d) {
           console.log('You have chosen the ' + d + ' visualization!');
           cb.addBubble({
-            type: 'text', value: "Good choice! Let's enter your data ✍️", class: 'bot'
+            type: 'text', value: "Nice! A " + d + " chart, good choice. Let's enter your data ✍️", class: 'bot'
           });
-          cb.addBubble({ type: 'table', class: 'bot' });
+          cb.addBubble({ type: 'table', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'bot' });
           createViz();
         });
       }
@@ -435,11 +435,13 @@
         overlay.append('div')
           .attr('class', 'viz-container').style('opacity', 0).transition().style('opacity', 1);
 
+        d3.select('.viz-container').append('div').attr('class', 'viz-container-inner');
+
         overlay.append('a').attr('class', 'btn-back').attr("href", '#').html('&#8592; Select different chart type');
 
         var container = d3.select('.viz-container');
         d3.json('build/data/data.json', function (err, data) {
-          var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container'));
+          var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container-inner'));
           vis.init();
           vis.start();
         })

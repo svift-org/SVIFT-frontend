@@ -129,6 +129,7 @@
     padding:5px;
     margin:0;
     opacity: 0;
+    // font-family: $font-family-bold;
 }
 
 .cb-segment hr{
@@ -225,40 +226,43 @@
 
 
 .cb-bubble-table{
-    background-color: #fff;
-    border: $border-default;
+    background-color: rgb(214, 214, 214);
+    // border: $border-default;
     border-radius: $border-radius-default;
-    padding: 30px;
+    padding: $margin-small*6 $margin-small*3;
+    // width: 80%;
 
     .table-head{
-        margin-bottom: 30px;
+        margin-bottom: $margin-small*3;
 
-        .heading{
+    .heading{
         font-family: $font-family-mono;
         color: $svift-primary;
         font-size: 1.4em;
+        margin-bottom: $margin-small;
         }
 
     .subheading{
         font-family: $font-family-mono;
         color: $text-subheading;
-        font-size: 0.8em;
+        font-size: 0.9em;
         }
     }
 
     table{
-        margin-bottom: 30px;
-        
+        margin-bottom: $margin-small*3;
+
         input{
         position: relative;
+        text-align: right;
         background-color: $table-background;
         font-size: 1em;
         font-family: $font-family-mono;
         color: rgba(34,34,34,1);
-        padding: 10px;
+        padding: $margin-small;
         border-style: none; 
         border-radius: $border-radius-default;
-        width: 90%;
+        width: 100%;
         }
     }
 
@@ -269,11 +273,35 @@
        .selector{
            flex: 1;
 
+           label{
+               color: $svift-primary;
+               text-transform: uppercase;
+               margin-right: $margin-small;
+           }
        }
 
        .delete{
            flex: 1;
            text-align: right;
+           color: $svift-delete;
+           position: relative;
+           cursor: pointer;
+           transition: all 0.75s cubic-bezier(.215,.61,.355,1);
+
+        &:before{
+            content: '';
+            background: url('/assets/img/icon-delete.svg') no-repeat;
+            display: inline-block;
+            height: 1em;
+            width: 1em;
+            margin-right: $margin-small;
+            position: absolute;
+            right: 105px;
+        }
+
+        &:hover{
+            color: #C01212;
+        }
        }
     }
 

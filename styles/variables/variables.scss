@@ -24,7 +24,7 @@ $line-height-heading: 53px;
 $svift-primary: rgba(113, 96, 155, 1);
 $svift-human: #75FABF;
 $svift-human-bright: rgb(168, 250, 213);
-// $svift-light-grey: #D8D8D8;
+$svift-delete: #FF5858;
 
 /* Background Colors */
 $bg-light-grey: #F4F4F4;
@@ -60,6 +60,7 @@ $padding-bubble-inner: 10px 10px 10px 10px;
 
 /* Margin */
 $margin-default: 2em;
+$margin-small: 10px;
 
 /* Border radii*/
 $border-radius-default: 4px;

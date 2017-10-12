@@ -115,12 +115,21 @@ html, body {
       }
 
       div.viz-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: white;
         width: 70%;
         height: 70%;
-        border-radius: $border-radius-default;
+        border-radius: $border-radius-default*2;
         opacity: 0;
+        box-shadow: $box-shadow-default;
         transition: all 1s cubic-bezier(.215,.61,.355,1);
+
+        div.viz-container-inner{
+          width: 80%;
+          height: 80%;
+        }
 
         svg{
           border-radius: $border-radius-default;
