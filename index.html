@@ -421,6 +421,7 @@
         var tile = d3.selectAll('.thumb');
         tile.on('click', function (d) {
           console.log('You have chosen the ' + d + ' visualization!');
+          cb.addBubble({ type: 'text', value: 'I have chosen the mosaic', class: 'human' });
           cb.addBubble({
             type: 'text', value: "Nice! A " + d + " chart, good choice. Let's enter your data ✍️", class: 'bot'
           });
@@ -435,6 +436,7 @@
         overlay.append('div')
           .attr('class', 'viz-container').style('opacity', 0).transition().style('opacity', 1);
 
+        // d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow');
         d3.select('.viz-container').append('div').attr('class', 'viz-container-inner');
 
         overlay.append('a').attr('class', 'btn-back').attr("href", '#').html('&#8592; Select different chart type');
