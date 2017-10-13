@@ -1,0 +1,25 @@
+{
+    "params":{
+      "dev":true,
+      "duration":100
+    },
+    "vis":{
+      "type":"columnchart",
+      "title":"Columnchart"
+    },
+    "data":{
+      "columns":["Jahr","Wert"],
+      "types":["date","int"],
+      "data":[
+        [2017,3.9],
+        [2016,4.1],
+        [2015,4.6],
+        [2014,5.0],
+        [2013,5.2],
+        [2012,5.5],
+        [2011,5.9],
+        [2010,7.1],
+        [2009,7.8]
+      ]
+    }
+  }

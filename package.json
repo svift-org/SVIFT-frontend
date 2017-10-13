@@ -17,7 +17,8 @@
     "svift-helper": "git+ssh://git@bitbucket.org/svift/helper-module.git",
     "svift-vis": "git+ssh://git@bitbucket.org/svift/vis-module.git",
     "svift-vis-barchart": "git+ssh://git@bitbucket.org/svift/vis-barchart-module.git",
-    "svift-vis-columnchart": "git+ssh://git@bitbucket.org/svift/vis-columnchart-module.git"
+    "svift-vis-columnchart": "git+ssh://git@bitbucket.org/svift/vis-columnchart-module.git",
+    "svift-vis-mosaic": "git+ssh://git@bitbucket.org/svift/vis-mosaic-module.git"
   },
   "author": "Sebastian Meier",
   "license": "MIT",

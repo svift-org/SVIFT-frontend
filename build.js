@@ -38,16 +38,17 @@ function buildFile(vi){
       if(v!='all'){
         //TODO: add sorting attribute (e.g. comparison, single number, etc.)
         var pack = JSON.parse(fs.readFileSync(__dirname + '/node_modules/'+v+'/package.json'))
+        fse.copySync(__dirname + '/node_modules/'+v+'/data.json', __dirname+'/build/data/'+pack.definition.name+'.json')
         configJson[pack.definition.name] = {title:pack.definition.title}
         fs.writeFileSync(__dirname+'/build/'+pack.definition.name+'.json', JSON.stringify(pack.definition),'utf8')
-        files.push(__dirname + '/node_modules/'+v+'/index.js')
+        files.push(__dirname + '/node_modules/'+v+'/index.js');
         style += fs.readFileSync(__dirname + '/node_modules/'+v+'/style.scss', 'utf8');
         (['thumb.png','thumb@2x.png']).forEach(function(thumb){
           var tp = __dirname + '/node_modules/'+v+'/'+thumb;
           if (fs.existsSync(tp)) {
-            fse.copySync(tp, __dirname+'/build/thumbs/'+pack.definition.name+'_'+thumb)
+            fse.copySync(tp, __dirname+'/build/thumbs/'+pack.definition.name+'_'+thumb);
           }else{
-            fse.copySync(__dirname+'/assets/'+thumb, __dirname+'/build/thumbs/'+pack.definition.name+'_'+thumb)
+            fse.copySync(__dirname+'/assets/'+thumb, __dirname+'/build/thumbs/'+pack.definition.name+'_'+thumb);
           }
         });
       }
@@ -63,7 +64,7 @@ function buildFile(vi){
     sourceRoot: "http://svift.xyz/src"
   })
 
-  fs.writeFileSync(__dirname + "/build/svift" + name + ".min.js", min.code, 'utf8');
+  fs.writeFileSync(__dirname + "/build/svift" + name + ".min.js", min.code, 'utf8')
 
   fs.writeFileSync(__dirname + "/build/svift" + name + ".css", sass.renderSync({
       data:style,

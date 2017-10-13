@@ -1,14 +1,1 @@
-{
-    "mosaic": {
-        "title": "Mosaic"
-    },
-    "bonzai": {
-        "title": "Bonsai"
-    },
-    "icon": {
-        "title": "Icon"
-    },
-    "wire": {
-        "title": "Wire"
-    }
-}
+{"barchart":{"title":"Barchart"},"columnchart":{"title":"Columnchart"},"mosaic":{"title":"Mosaic"}}
