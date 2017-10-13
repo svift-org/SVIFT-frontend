@@ -1,0 +1,28 @@
+ /* DOWNLOAD CSS */
+@import "./variables/variables";
+@import "./fonts/fonts";
+
+* {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+html, body{
+  margin:0;
+  padding:0;
+  border:0;
+  font-size: $font-size-default;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+div.download{
+  display: flex;
+  height: 100vh;
+  color: $white;
+  overflow: hidden;
+  background-color: $svift-human;
+}

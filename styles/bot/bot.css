@@ -1,4 +1,5 @@
 /* BOT CSS Namespace 'cb-' */
+/* VARIABLES CSS */
 @font-face {
   font-family: 'SourceSansPro';
   src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");
@@ -150,17 +151,14 @@
     height: 30px;
     right: 70px;
     border-width: 2px;
-    border-color: #75FABF;
+    border-color: #F4F4F4;
     border-style: solid;
     border-image: none;
     background-color: #fff;
-    color: #75FABF;
+    color: #F4F4F4;
     border-radius: 100px;
     transition: background-color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
     cursor: pointer; }
-    #cb-input button:hover {
-      background-color: #75FABF;
-      color: white; }
 
 .cb-segment {
   clear: both; }
