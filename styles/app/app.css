@@ -194,7 +194,6 @@ html, body {
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
         transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
         .app #gui-1 #gui-1-overlay div.viz-container div.viz-eyebrow {
-          background: red;
           position: absolute;
           top: 0;
           left: 50%;
