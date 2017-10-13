@@ -12,12 +12,29 @@
 </head>
 
 <body>
-    <div class="download">hello</div>
+    <div class="download"></div>
 
+    <script>
+        var container = d3.select('.download').append('div').attr('class', 'ct');
+        var ctHead = container.append('div').attr('class', 'ct-head');
+        ctHead.append('h1').text('Download your SVIFT chart');
+        ctHead.append('h2').text('Choose your preferred format');
 
+        var icons = ['png', 'svg', 'gif', 'video', 'iframe'];
 
+        var ctBody = container.append('div').attr('class', 'ct-body');
+        ctBody.selectAll('.dl-icon').data(icons).enter()
+            .append('div').classed('dl-icon', true)
+            .append('img')
+            .attr('src', function (d) { return 'assets/img/' + d + '.svg' })
+            .attr('class', 'dl-img')
+            .attr('id', function (d) { return 'dl- icon - ' + d });
 
+        var ctFoot = container.append('div').attr('class', 'ct-foot');
+        var url = 'http://svift.xyz/users/653792';
+        ctFoot.append('div').classed('source', true).text('All of your charts will be available for 10 more days at: ' + url);
 
+    </script>
 
 </body>
 
