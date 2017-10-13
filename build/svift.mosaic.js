@@ -10,7 +10,7 @@ SVIFT.vis.mosaic = (function (data, container) {
   //Grid Function taken from https://bl.ocks.org/cagrimmett/07f8c8daea00946b9e704e3efcbd5739/bd1f4c0c33d8af6f64535b7963b0da2e6499fc31
   module.gridSetupData = function (size) {
 
-    var squareBorder = size * 0.1;
+    var squareBorder = size * 0.2;
     size = size - squareBorder;
 
     var data = new Array();
@@ -163,7 +163,7 @@ SVIFT.vis.mosaic = (function (data, container) {
     // y Position for "value text" at the end 
     var gridSize = module.d3config.rowContainer.node().getBBox().height;
     module.d3config.valueTextBottom
-      .attr("y", (titleWrapperHeight + gridSize));
+      .attr("y", (titleWrapperHeight + gridSize + 10));
 
   };
 

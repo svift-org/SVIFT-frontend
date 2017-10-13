@@ -115,6 +115,7 @@ html, body {
       }
 
       div.viz-container{
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -125,6 +126,16 @@ html, body {
         opacity: 0;
         box-shadow: $box-shadow-default;
         transition: all 1s cubic-bezier(.215,.61,.355,1);
+
+        div.viz-eyebrow{
+          background: red;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 200px;
+          height: 50px;
+
+        }
 
         div.viz-container-inner{
           width: 80%;
