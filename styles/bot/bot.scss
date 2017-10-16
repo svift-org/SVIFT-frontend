@@ -243,7 +243,7 @@
         position: relative;
         font-family: $font-family-mono;
         font-size: 1em;
-        padding: 5px 10px;
+        padding: 10px 10px;
         color:$text-bot;
         // padding: 19px 60px 19px 30px;
         margin: $margin-small/3;
@@ -296,7 +296,6 @@
   }
 
   .number{
-    // color: $text-subheading;
     position: relative;
     text-align: right;
     background-color: $table-background;
@@ -306,7 +305,8 @@
     padding: $margin-small;
     border-style: none; 
     border-radius: $border-radius-default;
-    width: 60%;
+    width: 100%;
+    margin-bottom: $margin-small*4;
   }
 }
 

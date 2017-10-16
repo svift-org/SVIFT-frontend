@@ -62,7 +62,7 @@
       "data": {
         "columns": ["Wert"],
         "types": ["int"],
-        "data": [56],
+        "data": [25],
         "title": "Your title",
         "subTitle": "Your subtitle",
         "attribution": "Some attribution here"
@@ -169,25 +169,25 @@
         var selectables = options.selectables;
 
         var title = bubble.append('div').classed('title', true);
-        title.append('input').attr('placeholder', 'Add your title');
+        title.append('input').attr('id', 'title').attr('placeholder', 'Add your title');
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
-        subtitleWrapper.append('input').attr('placeholder', 'Add your subtitle');
+        subtitleWrapper.append('input').attr('id', 'subtitle').attr('placeholder', 'Add your subtitle');
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
         var input = bubble.append('input').classed('number', true)
+          .attr('id', 'number')
           .attr('type', 'number')
-          // .attr('min', 0)
-          // .attr('max', 100)
-          .classed('inputOne', true)
+          .attr('placeholder', function () { return dataTemp.data.data })
+          .attr('min', '0')
+          .attr('max', '100')
           .on('input', updateData);
 
         function updateData(node) {
-          dataTemp.data.data = [d3.select(".inputOne").node().value];
+          dataTemp.data.data = [d3.select(".number").node().value];
           console.log(dataTemp.data.data);
 
           d3.select('.viz-container-inner svg').remove();
-
           var vis = SVIFT.vis.mosaic(dataTemp, d3.select('.viz-container-inner'));
           vis.init();
           vis.start();
