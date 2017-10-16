@@ -1,0 +1,90 @@
+ /* DOWNLOAD CSS */
+@import "./variables/variables";
+@import "./fonts/fonts";
+
+* {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+html, body{
+  margin:0;
+  padding:0;
+  border:0;
+  font-size: $font-size-default;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+div.download{
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $svift-human;
+  justify-content: center;
+  align-items: center;
+
+  .ct{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 60%;
+    height: 60%;
+    border-radius: $border-radius-default*2;
+    box-shadow: $box-shadow-default;
+    transition: all 1s cubic-bezier(.215,.61,.355,1);
+
+    .ct-head{
+      text-align: center;
+
+      h1{
+        font-size: 1.7em;
+        font-family: $font-family-mono;
+        color: $svift-primary;
+      }
+
+      h2{
+        font-size: 1em;
+        font-family: $font-family-mono;
+        color: $text-subheading;
+      }
+     
+    }
+
+     .ct-body{
+       margin: 4em 0 4em 0;
+       width: 70%;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-around;
+
+       .dl-icon{
+         border-radius: $border-radius-circle;
+         box-shadow: $box-shadow-default;
+         transition: all 1s cubic-bezier(.215,.61,.355,1);
+         cursor: pointer;
+
+         &:hover{
+          transform: translateY(5px);
+          background-color: $svift-human;
+         }
+       }
+    }
+
+     .ct-foot{
+      width: 70%;
+      display: flex;
+      font-size: 0.9em;
+      font-family: $font-family-mono;
+      color: $text-subheading;
+    }
+
+
+  }
+}

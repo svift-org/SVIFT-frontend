@@ -62,19 +62,19 @@
         // bottom:10px;
         right: 70px;
         border-width: 2px;
-        border-color: $svift-human;
+        border-color: $bg-light-grey;
         border-style: solid;
         border-image: none;
         background-color: $white;
-        color: $svift-human;
+        color: $bg-light-grey;
         border-radius: 100px;
         transition: background-color .75s cubic-bezier(.215,.61,.355,1);
         cursor: pointer;
 
-        &:hover{
-            background-color: $svift-human;
-            color: white;
-        }
+        // &:hover{
+        //     background-color: $svift-human;
+        //     color: white;
+        // }
     }
 }
 
@@ -103,11 +103,15 @@
 }
 
 .cb-bot .cb-icon{
+    background: url('/assets/img/icon-bot.svg') no-repeat;
+    background-position: center center; 
     background-color: $svift-primary;
     margin-right:10px;
 }
 
 .cb-human .cb-icon{
+    background: url('/assets/img/icon-human.svg') no-repeat;
+    background-position: 9px 9px; 
     background-color: $svift-human;
     margin-left:10px;
 }
