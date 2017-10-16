@@ -168,18 +168,16 @@
         var columns = options.columns;
         var selectables = options.selectables;
 
-        var title = bubble.append('div').classed('title', true);
-        title.append('input').attr('id', 'title')
-          .attr('placeholder', 'Add your title')
+        var titleWrapper = bubble.append('div').classed('title', true);
+        titleWrapper.append('input').attr('id', 'title')
+          .attr('placeholder', 'Add your title here')
           .on('input', updateData);
-
+        var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
-
         subtitleWrapper.append('input').attr('id', 'subtitle')
-          .attr('placeholder', 'Add your subtitle')
+          .attr('placeholder', 'Add your subtitle here')
           .on('input', updateData);
-
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
         var input = bubble.append('input').classed('number', true)
@@ -190,12 +188,31 @@
           .attr('max', '100')
           .on('input', updateData);
 
-        function updateData(node) {
-          dataTemp.data.title = [d3.select("#title").node().value];
-          dataTemp.data.subTitle = [d3.select("#subtitle").node().value];
-          dataTemp.data.data = [d3.select("#number").node().value];
-          console.log(dataTemp.data.data);
+        function updateData() {
+          // Handle empty input fields with placeholder values:
+          // 1. Title
+          if (d3.select("#title").node().value != "") {
+            dataTemp.data.title = [d3.select("#title").node().value];
+            d3.select("#title").attr('placeholder', 'Add your title here');
+          } else {
+            dataTemp.data.title = 'Your title';
+          }
+          // 2. Subtitle
+          if (d3.select("#subtitle").node().value != "") {
+            dataTemp.data.subTitle = [d3.select("#subtitle").node().value];
+            d3.select("#subtitle").attr('placeholder', 'Add your subtitle here');
+          } else {
+            dataTemp.data.subTitle = 'Your subtitle';
+          }
+          // 3. Number
+          if (d3.select("#number").node().value != "") {
+            dataTemp.data.data = [d3.select("#number").node().value];
+            d3.select("#number").attr('placeholder', '25');
+          } else {
+            dataTemp.data.data = [25];
+          }
 
+          // Redraw the new viz
           d3.select('.viz-container-inner svg').remove();
           var vis = SVIFT.vis.mosaic(dataTemp, d3.select('.viz-container-inner'));
           vis.init();
