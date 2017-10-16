@@ -169,11 +169,18 @@
         var selectables = options.selectables;
 
         var title = bubble.append('div').classed('title', true);
-        title.append('input').attr('id', 'title').attr('placeholder', 'Add your title');
+        title.append('input').attr('id', 'title')
+          .attr('placeholder', 'Add your title')
+          .on('input', updateData);
+
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
-        subtitleWrapper.append('input').attr('id', 'subtitle').attr('placeholder', 'Add your subtitle');
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
+
+        subtitleWrapper.append('input').attr('id', 'subtitle')
+          .attr('placeholder', 'Add your subtitle')
+          .on('input', updateData);
+
 
         var input = bubble.append('input').classed('number', true)
           .attr('id', 'number')
@@ -184,7 +191,9 @@
           .on('input', updateData);
 
         function updateData(node) {
-          dataTemp.data.data = [d3.select(".number").node().value];
+          dataTemp.data.title = [d3.select("#title").node().value];
+          dataTemp.data.subTitle = [d3.select("#subtitle").node().value];
+          dataTemp.data.data = [d3.select("#number").node().value];
           console.log(dataTemp.data.data);
 
           d3.select('.viz-container-inner svg').remove();
