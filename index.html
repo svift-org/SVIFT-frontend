@@ -50,6 +50,25 @@
   <script src="build/svift.min.js"></script>
   <script type="text/javascript">
 
+
+    var dataTemp = {
+      "params": {
+        "dev": true
+      },
+      "vis": {
+        "type": "mosaic",
+        "title": "Mosaic"
+      },
+      "data": {
+        "columns": ["Wert"],
+        "types": ["int"],
+        "data": [56],
+        "title": "Your title",
+        "subTitle": "Your subtitle",
+        "attribution": "Some attribution here"
+      }
+    }
+
     /*
     
     The chatbot module should only manage the GUI, not the underlying logic, similar to the VIEW Component in an MVC setup
@@ -160,7 +179,19 @@
           .attr('type', 'number')
           // .attr('min', 0)
           // .attr('max', 100)
-          .classed('input', true);
+          .classed('inputOne', true)
+          .on('input', updateData);
+
+        function updateData(node) {
+          dataTemp.data.data = [d3.select(".inputOne").node().value];
+          console.log(dataTemp.data.data);
+
+          d3.select('.viz-container-inner svg').remove();
+
+          var vis = SVIFT.vis.mosaic(dataTemp, d3.select('.viz-container-inner'));
+          vis.init();
+          vis.start();
+        }
 
 
 
@@ -219,9 +250,9 @@
             .duration(200)
             .style("width", "auto")
             .style('opacity', 1)
-    
 
-        },1000)
+
+        }, 1000)
 
       }
 
@@ -388,7 +419,7 @@
       cb.showInput();
 
 
-      var delay = 1000;
+      var delay = 100;
       // cb.showInput();
       // var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
 
@@ -478,11 +509,17 @@
         overlay.append('a').attr('class', 'btn-back').attr("href", '#').html('&#8592; Select different chart type');
 
         var container = d3.select('.viz-container');
-        d3.json('build/data/data.json', function (err, data) {
-          var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container-inner'));
-          vis.init();
-          vis.start();
-        })
+
+        var vis = SVIFT.vis.mosaic(dataTemp, d3.select('.viz-container-inner'));
+        vis.init();
+        vis.start();
+
+
+        // d3.json('build/data/data.json', function (err, data) {
+        //   var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container-inner'));
+        //   vis.init();
+        //   vis.start();
+        // })
 
       }
 
