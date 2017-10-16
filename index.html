@@ -175,12 +175,12 @@
 
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
-        var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
         subtitleWrapper.append('input').attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle')
           .on('input', updateData);
 
+        var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
         var input = bubble.append('input').classed('number', true)
           .attr('id', 'number')
