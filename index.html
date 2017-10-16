@@ -142,6 +142,30 @@
           });
       };
 
+      module.types['input'] = function (bubble, options, callback) {
+        bubble.style('background-color', '#fff');
+        bubble.attr('class', 'cb-bubble-input');
+        var rows = options.rows;
+        var columns = options.columns;
+        var selectables = options.selectables;
+
+        var title = bubble.append('div').classed('title', true);
+        title.append('input').attr('placeholder', 'Add your title');
+
+        var subtitleWrapper = bubble.append('div').classed('subtitle', true);
+        subtitleWrapper.append('input').attr('placeholder', 'Add your subtitle');
+        var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
+
+        var input = bubble.append('input').classed('number', true)
+          .attr('type', 'number')
+          // .attr('min', 0)
+          // .attr('max', 100)
+          .classed('input', true);
+
+
+
+      };
+
       module.types['table'] = function (bubble, options, callback) {
         bubble.style('background-color', '#fff');
         bubble.attr('class', 'cb-bubble-table');
@@ -437,7 +461,7 @@
           cb.addBubble({
             type: 'text', value: "Good choice! Let's enter your data ✍️", class: 'bot'
           });
-          cb.addBubble({ type: 'table', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'bot' });
+          cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'bot' });
           createViz();
         });
       }

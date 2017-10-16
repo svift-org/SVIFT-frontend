@@ -264,6 +264,54 @@
 .cb-choice:hover:before {
   background-color: #fff; }
 
+.cb-bubble-input input {
+  cursor: pointer;
+  position: relative;
+  font-family: "DecimaMonoProBold", monospace;
+  font-size: 1em;
+  padding: 5px 10px;
+  color: #3A3A3A;
+  margin: 3.33333px;
+  border-style: none;
+  border-radius: 4px;
+  transition: box-shadow 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), transform 375ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s, opacity 375ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; }
+  .cb-bubble-input input:focus {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
+  .cb-bubble-input input::placeholder {
+    font-family: "DecimaMonoProBold", monospace; }
+.cb-bubble-input .title input {
+  color: #71609b;
+  font-size: 1.2em; }
+  .cb-bubble-input .title input::placeholder {
+    color: #71609b;
+    font-size: 1.2em; }
+.cb-bubble-input .subtitle {
+  display: flex; }
+  .cb-bubble-input .subtitle input {
+    flex: 1;
+    color: #9a9a9a;
+    font-size: 1em; }
+    .cb-bubble-input .subtitle input::placeholder {
+      color: #9a9a9a;
+      font-size: 1em; }
+  .cb-bubble-input .subtitle .icon-toggle {
+    flex: 1;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url("/assets/img/icon-toggle.svg") center center no-repeat; }
+.cb-bubble-input .number {
+  position: relative;
+  text-align: right;
+  background-color: #FBFBFB;
+  font-size: 3em;
+  font-family: "DecimaMonoProBold", monospace;
+  color: #222222;
+  padding: 10px;
+  border-style: none;
+  border-radius: 4px;
+  width: 60%; }
+
 .cb-bubble-table {
   background-color: #d6d6d6;
   border-radius: 4px;
