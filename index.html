@@ -168,26 +168,37 @@
         var deleteData = tableFoot.append('div').attr('class', 'delete').text('Delete data');
       };
 
-      module.types['waiting'] = function (bubble, options, callback) {
-        //no callback -> this bubble should be removed before adding the next
-        var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
+      // module.types['waiting'] = function (bubble, options, callback) {
+      //   //no callback -> this bubble should be removed before adding the next
+      //   var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
 
+      //   bubble.append('div')
+      //     .attr('class', 'cb-waiting')
+      //     .html(animatedCircles);
+      // };
+
+      module.types['text'] = function (bubble, options, callback) {
+
+        var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
         bubble.append('div')
           .attr('class', 'cb-waiting')
           .html(animatedCircles);
-      };
 
-      module.types['text'] = function (bubble, options, callback) {
-        bubble.append('p')
-          .style("width", "50px")
-          .transition()
-          .duration(200)
-          .style("width", "500px")
-          .transition()
-          .duration(500)
-          .style('opacity', 1)
-          // .style("transform", "translateX(30px)")
-          .text(options.value);
+        setTimeout(function () {
+
+          bubble.select(".cb-waiting").remove()
+
+          bubble.append('p')
+            .style("width", "50px")
+            .text(options.value)
+            .transition()
+            .duration(200)
+            .style("width", "auto")
+            .style('opacity', 1)
+    
+
+        },1000)
+
       }
 
       module.showInput = function (submitCallback, typeCallback) {
@@ -353,26 +364,26 @@
       cb.showInput();
 
 
-      var delay = 100;
+      var delay = 1000;
       // cb.showInput();
-      var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
+      // var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
 
       setTimeout(function () {
-        cb.removeBubble(waiting);
+        // cb.removeBubble(waiting);
         cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT! 👋', class: 'bot' });
 
         setTimeout(function () {
-          var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
+          // var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
 
           setTimeout(function () {
-            cb.removeBubble(waiting);
+            // cb.removeBubble(waiting);
             cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot' });
 
             setTimeout(function () {
-              var waiting = cb.addBubble({ type: 'waiting', class: 'human' });
+              // var waiting = cb.addBubble({ type: 'waiting', class: 'human' });
 
               setTimeout(function () {
-                cb.removeBubble(waiting);
+                // cb.removeBubble(waiting);
                 cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, onEntry);
                 // cb.addBubble({ type: 'select', value: [{ label: 'yes' }, { label: 'no' }, { label: 'maybe' }], class: 'human' }, function (d) { console.log(d.label) });
 
