@@ -185,6 +185,7 @@ html, body {
       .app #gui-1 #gui-1-overlay div.viz-container {
         position: relative;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: white;
@@ -195,11 +196,17 @@ html, body {
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
         transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
         .app #gui-1 #gui-1-overlay div.viz-container div.viz-eyebrow {
+          text-align: center;
+          height: 40px;
+          background: #71609b;
           position: absolute;
-          top: 0;
-          left: 50%;
-          width: 200px;
-          height: 50px; }
+          top: -20px;
+          border-radius: 4px;
+          font-family: "DecimaMonoProBold", monospace;
+          font-size: 0.8em;
+          text-transform: uppercase;
+          padding: 10px 20px;
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
         .app #gui-1 #gui-1-overlay div.viz-container div.viz-container-inner {
           width: 80%;
           height: 80%; }
