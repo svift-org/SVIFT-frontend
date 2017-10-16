@@ -1,0 +1,17 @@
+{
+  "params":{
+    "dev":true
+  },
+  "vis":{
+    "type":"mosaic",
+    "title":"Mosaic"
+  },
+  "data":{
+    "columns":["Wert"],
+    "types":["int"],
+    "data":[30],
+    "title": "SVIFT Entwicklungsstand",
+    "subTitle": "am 29.09.2017",
+    "attribution": "Some attribution here"
+  }
+}
