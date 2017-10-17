@@ -166,7 +166,7 @@
 .cb-segment.cb-bot .cb-icon, .cb-segment.cb-bot .cb-bubble {
   float: left; }
 
-.cb-segment.cb-human div {
+.cb-segment.cb-human .cb-icon, .cb-segment.cb-human .cb-bubble-input, .cb-segment.cb-human .bubble-ctn-human {
   float: right; }
 
 .cb-icon {
@@ -174,6 +174,9 @@
   width: 40px;
   height: 40px;
   border-radius: 100px; }
+
+.cb-bubble.human {
+  float: right; }
 
 .cb-bot .cb-icon {
   background: url("/assets/img/icon-bot.svg") no-repeat;
@@ -277,7 +280,7 @@
     background-color: #fff; }
 
 .cb-bubble-input {
-  width: 600px; }
+  width: 700px; }
   .cb-bubble-input input {
     cursor: pointer;
     font-family: "DecimaMonoProBold", monospace;
