@@ -189,6 +189,12 @@
           .on('input', updateData);
 
         function updateData() {
+
+
+          if (d3.select("#number").node().value >100) {
+              d3.select("#number").property("value",d3.select("#number").node().value.slice(0,2)); 
+          }
+
           // Handle empty input fields with placeholder values:
           // 1. Title
           if (d3.select("#title").node().value != "") {
@@ -214,7 +220,7 @@
 
           // Redraw the new viz
           d3.select('.viz-container-inner svg').remove();
-          var vis = SVIFT.vis.mosaic(dataTemp, d3.select('.viz-container-inner'));
+          var vis = SVIFT.vis[viztype](dataTemp, d3.select('.viz-container-inner'));
           vis.init();
           vis.start();
         }
@@ -528,6 +534,9 @@
       }
 
       function createViz(d) {
+
+        viztype = d;
+
         console.log(d);
         var overlay = d3.select('#gui-1-overlay').html('');
 
@@ -541,7 +550,7 @@
 
         var container = d3.select('.viz-container');
 
-        var vis = SVIFT.vis.mosaic(dataTemp, d3.select('.viz-container-inner'));
+        var vis = SVIFT.vis[viztype](dataTemp, d3.select('.viz-container-inner'));
         vis.init();
         vis.start();
 
