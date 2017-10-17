@@ -33,9 +33,10 @@
         <h1>SVIFT &mdash;
           <br>Create your chart in three simple steps</h1>
         <div class="claim">
-          <em>svift</em> is an open-source tool to easily turn data into appealing visualizations for your daily use. No need
-          for long configurations.
-          <br> Let’s do this! </div>
+          <em>svift</em> is an open-source tool to easily turn your data into interesting charts for your everyday use. Need
+          your chart as an image, interactive iframe or an animated gif for social media? No worries, we’ve got you covered,
+          so you can save time. No need for long configurations. Get started now!
+        </div>
         <div class="img-intro">
           <img src="assets/img/gui-1-intro.svg" alt="Svift Intro Image">
         </div>
@@ -280,6 +281,10 @@
             .style("width", "auto")
             .style('opacity', 1);
 
+          if (options.emoji) {
+            bubble.append('img').attr('class', 'emoji').attr('src', './assets/emojis/' + options.emoji + '.png');
+          }
+
 
         }, 1000)
 
@@ -451,9 +456,11 @@
       var delay = 1000;
       // cb.showInput();
 
+      // var img = './assets/emojis/smile.png';
+
       setTimeout(function () {
         // cb.removeBubble(waiting);
-        cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT! 👋', class: 'bot' });
+        cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave' });
 
         setTimeout(function () {
           // var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
@@ -514,7 +521,7 @@
 
       function onDataSubmitted() {
         console.log("My data has been submitted!");
-        cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! 💅', class: 'bot' });
+        cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', emoji: 'style' });
 
       }
 
@@ -522,9 +529,9 @@
         var tile = d3.selectAll('.thumb');
         tile.on('click', function (d) {
           console.log('You have chosen the ' + d + ' visualization!');
-          cb.addBubble({ type: 'text', value: 'I would like to make a ' + d + ' chart 😎', class: 'human' });
+          cb.addBubble({ type: 'text', value: 'I would like to make a ' + d + ' chart ', class: 'human', emoji: 'smile' });
           cb.addBubble({
-            type: 'text', value: "Good choice! Let's enter your data ✍️", class: 'bot'
+            type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write'
           });
           cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
           createViz(d);

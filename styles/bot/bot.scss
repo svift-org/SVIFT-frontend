@@ -71,12 +71,6 @@
         border-radius: 100px;
         transition: background-color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
         cursor: pointer;
-
-        // &:hover{
-        //     background-color: $svift-human;
-        //     color: white;
-        // }
-   
     }
 }
 
@@ -122,6 +116,16 @@
 }
 
 .cb-bubble {
+    color: $text-bot;
+    border-radius: 100px;
+
+    .emoji {
+        // padding: 5px 0;
+   
+    }
+}
+
+.cb-bubble.bot {
     background-color: $bot-bubble;
     color: $text-bot;
     border-radius: 100px;
@@ -136,6 +140,7 @@
     padding: 5px;
     margin: 0;
     opacity: 0;
+    display: inline;
 }
 
 .cb-segment hr {
@@ -151,7 +156,6 @@
 }
 
 .cb-bubble .bubble-ctn-human {
-    border: 1px solid red;
     background-color: #fff;
     border-bottom-right-radius: 0px;
     text-align: right;
@@ -166,21 +170,9 @@
     padding: $margin-small;
 }
 
-.cb-human .cb-bubble {
-    // border-bottom-right-radius: 0px;
-    // background-color: #fff;
-    // text-align: right;
-    // transform: translateX(0px);
-    // border: 3px solid $svift-human;
-    // border-radius: 2em;
-    // width: 320px;
-    // margin: 0 0 0 20px;
-    // border-radius: 2em;
-    // font-family: $font-family-bold;
-}
-
 .cb-waiting {
-    width: 60px;
+    width: 70px;
+    padding: 5px;
 
     @keyframes wave {
         0%, 60%, 100% {
@@ -257,7 +249,12 @@
 }
 
 .cb-bubble-input {
-    width: 700px;
+    width: 590px;
+    background-color: rgb(251, 251, 251);
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 20px;
+    border: 3px solid #72f5bf;
 
     input {
         cursor: pointer;
@@ -285,9 +282,10 @@
             flex: 4;
             color: $svift-primary;
             font-size: 1.2em;
+            background-color: $table-background;
 
             &::placeholder {
-                color: $svift-primary;
+                color: $svift-human;
                 font-size: 1.2em;
             }
         }
@@ -308,6 +306,7 @@
             flex: 4;
             color: $text-subheading;
             font-size: 1em;
+            background-color: $table-background;
 
             &::placeholder {
                 color: $text-subheading;
@@ -326,7 +325,7 @@
 
     .number {
         position: relative;
-        text-align: right;
+        text-align: left;
         background-color: $table-background;
         font-size: 3em;
         font-family: $font-family-mono;
@@ -335,7 +334,9 @@
         border-style: none;
         border-radius: $border-radius-default;
         width: 100%;
-        margin-bottom: $margin-small * 4;
+
+        // margin-bottom: $margin-small * 4;
+   
     }
 }
 
