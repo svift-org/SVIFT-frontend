@@ -114,7 +114,7 @@
           outer.append('div').attr('class', 'cb-icon');
 
           var bubble = outer.append('div')
-            .attr('class', 'cb-bubble')
+            .attr('class', 'cb-bubble ' + options.class)
             // .style("height", "50px")
             .append('div')
             .attr('class', 'cb-inner');
@@ -191,8 +191,8 @@
         function updateData() {
 
 
-          if (d3.select("#number").node().value >100) {
-              d3.select("#number").property("value",d3.select("#number").node().value.slice(0,2)); 
+          if (d3.select("#number").node().value > 100) {
+            d3.select("#number").property("value", d3.select("#number").node().value.slice(0, 2));
           }
 
           // Handle empty input fields with placeholder values:
@@ -448,7 +448,7 @@
       cb.showInput();
 
 
-      var delay = 1000;
+      var delay = 100;
       // cb.showInput();
 
       setTimeout(function () {
@@ -526,7 +526,7 @@
           cb.addBubble({
             type: 'text', value: "Good choice! Let's enter your data ✍️", class: 'bot'
           });
-          cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'bot' });
+          cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
           createViz(d);
           cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, onDataSubmitted);
         });
