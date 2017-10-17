@@ -191,6 +191,10 @@
   margin-left: 10px; }
 
 .cb-bubble {
+  color: #3A3A3A;
+  border-radius: 100px; }
+
+.cb-bubble.bot {
   background-color: #E6E6E6;
   color: #3A3A3A;
   border-radius: 100px; }
@@ -215,7 +219,6 @@
   border-bottom-left-radius: 0px; }
 
 .cb-bubble .bubble-ctn-human {
-  border: 1px solid red;
   background-color: #fff;
   border-bottom-right-radius: 0px;
   text-align: right;
@@ -229,7 +232,8 @@
   padding: 10px; }
 
 .cb-waiting {
-  width: 60px; }
+  width: 70px;
+  padding: 5px; }
 @keyframes wave {
   0%, 60%, 100% {
     transform: initial; }
@@ -280,7 +284,12 @@
     background-color: #fff; }
 
 .cb-bubble-input {
-  width: 700px; }
+  width: 590px;
+  background-color: #fbfbfb;
+  padding: 20px;
+  border-radius: 4px;
+  margin-top: 20px;
+  border: 3px solid #72f5bf; }
   .cb-bubble-input input {
     cursor: pointer;
     font-family: "DecimaMonoProBold", monospace;
@@ -299,9 +308,10 @@
     .cb-bubble-input .title input {
       flex: 4;
       color: #71609b;
-      font-size: 1.2em; }
+      font-size: 1.2em;
+      background-color: #FBFBFB; }
       .cb-bubble-input .title input::placeholder {
-        color: #71609b;
+        color: #75FABF;
         font-size: 1.2em; }
     .cb-bubble-input .title .icon-toggle {
       flex: 1;
@@ -314,7 +324,8 @@
     .cb-bubble-input .subtitle input {
       flex: 4;
       color: #9a9a9a;
-      font-size: 1em; }
+      font-size: 1em;
+      background-color: #FBFBFB; }
       .cb-bubble-input .subtitle input::placeholder {
         color: #9a9a9a;
         font-size: 1em; }
@@ -326,7 +337,7 @@
       background: url("/assets/img/icon-toggle-off.svg") center center no-repeat; }
   .cb-bubble-input .number {
     position: relative;
-    text-align: right;
+    text-align: left;
     background-color: #FBFBFB;
     font-size: 3em;
     font-family: "DecimaMonoProBold", monospace;
@@ -334,8 +345,7 @@
     padding: 10px;
     border-style: none;
     border-radius: 4px;
-    width: 100%;
-    margin-bottom: 40px; }
+    width: 100%; }
 
 .cb-bubble-table {
   background-color: #d6d6d6;
