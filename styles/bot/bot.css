@@ -206,7 +206,8 @@
 .cb-bubble p {
   padding: 5px;
   margin: 0;
-  opacity: 0; }
+  opacity: 0;
+  display: inline; }
 
 .cb-segment hr {
   clear: both;
