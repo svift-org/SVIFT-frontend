@@ -219,7 +219,11 @@
   transform: translateX(0px);
   border: 3px solid #75FABF;
   border-radius: 2em;
-  font-family: "InterfaceRegularBold"; }
+  font-family: "InterfaceRegularBold";
+  padding: 10px; }
+
+.cb-bubble .bubble-ctn-bot {
+  padding: 10px; }
 
 .cb-waiting {
   width: 60px; }

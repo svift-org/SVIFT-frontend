@@ -157,10 +157,11 @@
     border: 3px solid $svift-human;
     border-radius: 2em;
     font-family: $font-family-bold;
+    padding: $margin-small;
 }
 
 .cb-bubble .bubble-ctn-bot {
-    // background: red;
+    padding: $margin-small;
 }
 
 .cb-human .cb-bubble {
