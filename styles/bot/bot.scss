@@ -1,6 +1,6 @@
 /* BOT CSS Namespace 'cb-' */
-@import "./variables/variables";
-@import "./fonts/fonts";
+@import "../variables/variables.scss";
+@import "../fonts/fonts.scss";
 
 *:focus {
     outline: none;
@@ -102,14 +102,14 @@
 }
 
 .cb-bot .cb-icon {
-    background: url("/assets/img/icon-bot.svg") no-repeat;
+    background: url("../../assets/img/icon-bot.svg") no-repeat;
     background-position: center center;
     background-color: $svift-primary;
     margin-right: 10px;
 }
 
 .cb-human .cb-icon {
-    background: url("/assets/img/icon-human.svg") no-repeat;
+    background: url("../../assets/img/icon-human.svg") no-repeat;
     background-position: 9px 9px;
     background-color: $svift-human;
     margin-left: 10px;

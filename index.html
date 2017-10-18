@@ -81,8 +81,7 @@
       }
     }
 
-    dataTemp.style.color.main
-
+    //dataTemp.style.color.main
 
     /*
     
@@ -107,6 +106,8 @@
       module.input.append('button').text('+');
 
       module.addBubble = function (options, callback) {
+        callback = callback||function(){};
+
         if (!(options.type in module.types)) {
           throw 'Unknown bubble type';
         } else {
@@ -277,29 +278,38 @@
 
       module.types['text'] = function (bubble, options, callback) {
 
-        var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
-        bubble.append('div')
-          .attr('class', 'cb-waiting')
-          .html(animatedCircles);
+        if(('delay' in options) && options.delay){
+          var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
+          bubble.append('div')
+            .attr('class', 'cb-waiting')
+            .html(animatedCircles);
 
-        setTimeout(function () {
+          setTimeout(function(){
 
-          bubble.select(".cb-waiting").remove()
+            bubble.select(".cb-waiting").remove();
+            appendText(bubble, options, callback);
 
-          bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
-            .style("width", "50px")
-            .text(options.value)
-            .transition()
-            .duration(200)
-            .style("width", "auto")
-            .style('opacity', 1);
+          }, (isNaN(options.delay)?1000:options.delay));
+        }else{
+          appendText(bubble, options, callback);
+        }
 
-          if (options.emoji) {
-            bubble.append('img').attr('class', 'emoji').attr('src', './assets/emojis/' + options.emoji + '.png');
-          }
+      }
 
-        }, 1000)
+      function appendText(bubble, options, callback){
+        bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
+          .style("width", "50px")
+          .text(options.value)
+          .transition()
+          .duration(200)
+          .style("width", "auto")
+          .style('opacity', 1);
 
+        if (options.emoji) {
+          bubble.append('img').attr('class', 'emoji').attr('src', './assets/emojis/' + options.emoji + '.png');
+        }
+
+        callback();
       }
 
       module.types['themes'] = function (bubble, options, callback) {
@@ -528,31 +538,10 @@
       // cb.showInput();
 
       // var img = './assets/emojis/smile.png';
-
-      setTimeout(function () {
-        // cb.removeBubble(waiting);
-        cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave' });
-
-        setTimeout(function () {
-          // var waiting = cb.addBubble({ type: 'waiting', class: 'bot' });
-
-          setTimeout(function () {
-            // cb.removeBubble(waiting);
-            cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot' });
-
-            setTimeout(function () {
-              // var waiting = cb.addBubble({ type: 'waiting', class: 'human' });
-
-              setTimeout(function () {
-                // cb.removeBubble(waiting);
-                cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, onEntry);
-                // cb.addBubble({ type: 'select', value: [{ label: 'yes' }, { label: 'no' }, { label: 'maybe' }], class: 'human' }, function (d) { console.log(d.label) });
-
-              }, delay);
-            }, delay);
-          }, delay);
-        }, delay);
-      }, delay);
+      cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave' });
+      cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot', delay:1000 }, function(){
+        cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, onEntry);
+      });
 
 
       // cb.addBubble({ type: 'table', class: 'bot' });
@@ -587,7 +576,7 @@
 
       function onEntry() {
         d3.select('#gui-1-overlay').style('left', '0');
-        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot' });
+        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay:500 });
       };
 
       function onDataSubmitted() {
