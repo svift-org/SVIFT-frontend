@@ -205,7 +205,6 @@
 
         function updateData() {
 
-
           if (d3.select("#number").node().value > 100) {
             d3.select("#number").property("value", d3.select("#number").node().value.slice(0, 2));
           }
@@ -313,7 +312,6 @@
           .attr('class', function (d) { return 'theme-thumb theme-thumb-' + d })
           .on('click', function (d) {
             selectTheme(d);
-
           })
           .append('img')
           .attr('src', function (d) { return './assets/img/themes/theme-' + d + '.png' });
@@ -341,6 +339,26 @@
           vis.init();
           vis.start();
         };
+      }
+
+      module.types['download'] = function (bubble, options, callback) {
+        var icons = ['png', 'svg', 'gif', 'video', 'iframe'];
+        var downloadWrapper = bubble.append('div')
+          .attr('class', 'cb-download-wrapper');
+
+        downloadWrapper.selectAll('div').data(icons).enter()
+          .append('div')
+          .attr('class', function (d) { return 'download-thumb download-thumb-' + d })
+          .on('click', function (d) {
+            downloadAsset(d);
+          })
+          .append('img')
+          .attr('src', function (d) { return './assets/img/download-icons/' + d + '.svg' });
+
+        function downloadAsset(d) {
+          console.log('I want to download a ' + d)
+        }
+
       }
 
       module.showInput = function (submitCallback, typeCallback) {
@@ -590,7 +608,7 @@
         var tile = d3.selectAll('.thumb');
         tile.on('click', function (d) {
           console.log('You have chosen the ' + d + ' visualization!');
-          cb.addBubble({ type: 'text', value: 'I would like to make a ' + d + ' chart ', class: 'human', emoji: 'smile' });
+          cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' });
           cb.addBubble({
             type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write'
           });
@@ -634,10 +652,15 @@
         console.log('User has finished!');
         cb.addBubble({ type: 'text', value: 'Please wait while we build your chart', class: 'bot', emoji: 'smile' });
         setTimeout(function () {
-          cb.addBubble({ type: 'text', value: 'Your chart is now ready. Download below!', class: 'bot', emoji: 'smile' });
+          cb.addBubble({ type: 'text', value: 'Your chart is now ready!', class: 'bot' });
+          setTimeout(function () {
+            cb.addBubble({ type: 'download', class: 'human' });
+            cb.addBubble({ type: 'text', value: 'You can access your charts for the next 7 days: www.svift.xyz/user/7dg73hg9ls', class: 'bot' });
+            cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want another chart?', class: 'bot' });
+            cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
+          }, delay * 5)
         }, delay * 4)
       }
-
     });
 
   </script>

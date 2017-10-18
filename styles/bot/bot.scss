@@ -469,3 +469,32 @@
         }
     }
 }
+
+.cb-download-wrapper {
+    display: flex;
+    justify-content: center;
+    height: 110px;
+    padding: 0 ($margin-small * 2);
+
+    .download-thumb {
+        flex: 1;
+        margin: 10px;
+        transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+        cursor: pointer;
+        background-color: none;
+
+        &:hover {
+            transform: translateY(5px);
+        }
+
+        img {
+            box-shadow: $box-shadow-default;
+            border-radius: $border-radius-circle;
+            transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+            &:hover {
+                background-color: $svift-human;
+            }
+        }
+    }
+}
