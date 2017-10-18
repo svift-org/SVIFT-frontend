@@ -446,3 +446,26 @@
         }
     }
 }
+
+.cb-themes-wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 210px;
+
+    .thumb {
+        flex: 1;
+        margin: 10px;
+        border-radius: $border-radius-default;
+        transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        cursor: pointer;
+
+        &:hover {
+            transform: translateY(5px);
+        }
+
+        img {
+            box-shadow: $box-shadow-default;
+            border-radius: $border-radius-default;
+        }
+    }
+}
