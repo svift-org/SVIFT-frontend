@@ -428,15 +428,15 @@
   display: flex;
   justify-content: space-between;
   height: 210px; }
-  .cb-themes-wrapper .thumb {
+  .cb-themes-wrapper .theme-thumb {
     flex: 1;
     margin: 10px;
     border-radius: 4px;
     transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
     cursor: pointer; }
-    .cb-themes-wrapper .thumb:hover {
+    .cb-themes-wrapper .theme-thumb:hover {
       transform: translateY(5px); }
-    .cb-themes-wrapper .thumb img {
+    .cb-themes-wrapper .theme-thumb img {
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
       border-radius: 4px; }
 
