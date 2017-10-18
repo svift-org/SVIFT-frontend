@@ -352,7 +352,7 @@
       }
 
       module.types['download'] = function (bubble, options, callback) {
-        var icons = ['png', 'svg', 'gif', 'video', 'iframe'];
+        var icons = ['png', 'svg', 'gif', 'mpeg', 'html'];
         var downloadWrapper = bubble.append('div')
           .attr('class', 'cb-download-wrapper');
 
@@ -638,17 +638,53 @@
       }
 
       function onFinish() {
-        console.log('User has finished!');
-        cb.addBubble({ type: 'text', value: 'Please wait while we build your chart', class: 'bot', emoji: 'smile' });
+        var inter = null;
+        
+        cb.addBubble({ type: 'text', value: 'Please wait while we build your chart', class: 'bot', emoji: 'smile', delay:500 });
+
+        console.log('onFinish');
+
+        d3.request('http://localhost:5000/render')
+            .header("Content-Type", "application/json")
+            .mimeType("application/json")
+            .post(
+              JSON.stringify(dataTemp),
+              function(err, rawData){
+                var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
+
+                inter = setInterval(function(){
+                  d3.request('http://localhost:5000/status/'+rawData.response).get(function(err, data){ 
+                    
+                    var jResponse = JSON.parse(data.response);
+
+                    var db = cb.getBubble(downloadBubble);
+                    for(var type in jResponse.full){
+                      db.el.select('.download-thumb-'+type).style('background-color', 'rgba(0,0,0,'+jResponse.full[type]+')');
+                    }
+
+                    if(jResponse.status==2){
+                      clearInterval(inter); 
+
+                      cb.addBubble({ type: 'text', value: 'You can access your charts for the next 7 days: www.svift.xyz/user/'+rawData.response, class: 'bot' });
+                      cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
+                      cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
+                    }
+
+                  });
+                }, 200);
+              }
+          );
+
+        /*console.log('User has finished!');
+        
         setTimeout(function () {
-          cb.addBubble({ type: 'text', value: 'Your chart is now ready!', class: 'bot' });
+          cb.addBubble({ type: 'text', value: 'Your chart is now ready!', class: 'bot' });          
+
           setTimeout(function () {
-            cb.addBubble({ type: 'download', class: 'human' });
-            cb.addBubble({ type: 'text', value: 'You can access your charts for the next 7 days: www.svift.xyz/user/7dg73hg9ls', class: 'bot' });
-            cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
-            cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
+            
+            
           }, delay * 5)
-        }, delay * 4)
+        }, delay * 4)*/
       }
     });
 
