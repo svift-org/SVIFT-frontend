@@ -8,9 +8,9 @@ $font-family-mono: "DecimaMonoProBold", monospace;
 $font-family-sansDefault: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
 $font-family-sansItalic: "InterfaceRegularItalic", "Helvetica", "Arial", sans-serif;
 $font-family-bold: "InterfaceRegularBold";
-$font-family-poppins: 'Poppins', sans-serif;
-$font-family-merriweather: 'Merriweather', serif;
-$font-family-robotoMono: 'Roboto Mono', monospace;
+$font-family-poppins: "Poppins", sans-serif;
+$font-family-merriweather: "Merriweather", serif;
+$font-family-robotoMono: "Roboto Mono", monospace;
 
 /* Font sizes*/
 $font-size-default: 16px;
@@ -33,7 +33,7 @@ $svift-delete: #FF5858;
 $bg-light-grey: #F4F4F4;
 $white: #fff;
 $black: #000;
-$table-background: #FBFBFB;
+$table-background: rgb(238, 238, 238);
 
 /* Bot Colors */
 $bot-bubble: #E6E6E6;

@@ -254,6 +254,7 @@
     padding: 20px;
     border-radius: 4px;
     margin-top: 20px;
+
     // border: 3px solid #72f5bf;
 
     input {
@@ -283,6 +284,7 @@
             color: $svift-primary;
             font-size: 1.2em;
             background-color: $table-background;
+            padding-top: 12px;
 
             &::placeholder {
                 color: $svift-human;

@@ -5,52 +5,44 @@
   src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal; }
-
 @font-face {
   font-family: 'SourceSansProBold';
   src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf") format("truetype");
   font-weight: 500;
   font-style: normal; }
-
 @font-face {
   font-family: 'DecimaMonoPro';
   src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'DecimaMonoProLt';
   src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'DecimaMonoProBold';
   src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal; }
-
 @font-face {
   font-family: 'InterfaceRegular';
   src: url("../../assets/fonts/Interface/Interface-Regular.eot");
   src: url("../../assets/fonts/Interface/Interface-Regular.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Regular.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'InterfaceRegularItalic';
   src: url("../../assets/fonts/Interface/Interface-RegularItalic.eot");
   src: url("../../assets/fonts/Interface/Interface-RegularItalic.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-RegularItalic.woff") format("woff"), url("../../assets/fonts/Interface/Interface-RegularItalic.ttf") format("truetype");
   font-weight: normal;
   font-style: italic; }
-
 @font-face {
   font-family: 'InterfaceRegularBold';
   src: url("../../assets/fonts/Interface/Interface-Bold.eot");
   src: url("../../assets/fonts/Interface/Interface-Bold.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Bold.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal; }
-
 /* --- FONTS --- */
 /* Font families*/
 /* Font sizes*/
@@ -74,52 +66,44 @@
   src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal; }
-
 @font-face {
   font-family: 'SourceSansProBold';
   src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf") format("truetype");
   font-weight: 500;
   font-style: normal; }
-
 @font-face {
   font-family: 'DecimaMonoPro';
   src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'DecimaMonoProLt';
   src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'DecimaMonoProBold';
   src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal; }
-
 @font-face {
   font-family: 'InterfaceRegular';
   src: url("../../assets/fonts/Interface/Interface-Regular.eot");
   src: url("../../assets/fonts/Interface/Interface-Regular.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Regular.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'InterfaceRegularItalic';
   src: url("../../assets/fonts/Interface/Interface-RegularItalic.eot");
   src: url("../../assets/fonts/Interface/Interface-RegularItalic.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-RegularItalic.woff") format("woff"), url("../../assets/fonts/Interface/Interface-RegularItalic.ttf") format("truetype");
   font-weight: normal;
   font-style: italic; }
-
 @font-face {
   font-family: 'InterfaceRegularBold';
   src: url("../../assets/fonts/Interface/Interface-Bold.eot");
   src: url("../../assets/fonts/Interface/Interface-Bold.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Bold.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal; }
-
 *:focus {
   outline: none;
   inline: none; }
@@ -251,7 +235,6 @@
 .cb-waiting {
   width: 70px;
   padding: 5px; }
-
 @keyframes wave {
   0%, 60%, 100% {
     transform: initial; }
@@ -326,7 +309,8 @@
       flex: 4;
       color: #71609b;
       font-size: 1.2em;
-      background-color: #FBFBFB; }
+      background-color: #eeeeee;
+      padding-top: 12px; }
       .cb-bubble-input .title input::placeholder {
         color: #75FABF;
         font-size: 1.2em; }
@@ -342,7 +326,7 @@
       flex: 4;
       color: #9a9a9a;
       font-size: 1em;
-      background-color: #FBFBFB; }
+      background-color: #eeeeee; }
       .cb-bubble-input .subtitle input::placeholder {
         color: #9a9a9a;
         font-size: 1em; }
@@ -355,7 +339,7 @@
   .cb-bubble-input .number {
     position: relative;
     text-align: left;
-    background-color: #FBFBFB;
+    background-color: #eeeeee;
     font-size: 3em;
     font-family: "DecimaMonoProBold", monospace;
     color: #222222;
@@ -384,7 +368,7 @@
     .cb-bubble-table table input {
       position: relative;
       text-align: right;
-      background-color: #FBFBFB;
+      background-color: #eeeeee;
       font-size: 1em;
       font-family: "DecimaMonoProBold", monospace;
       color: #222222;
@@ -475,3 +459,5 @@
       transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1); }
       .cb-download-wrapper .download-thumb img:hover {
         background-color: #75FABF; }
+
+/*# sourceMappingURL=bot.css.map */

@@ -329,8 +329,8 @@
         function selectTheme(theme) {
           switch (theme) {
             case "saturn":
-              dataTemp.style.color.main = '#00C8E2';
-              dataTemp.style.font = 'Poppins';
+              dataTemp.style.color.main = 'rgba(113, 96, 155, 1)';
+              dataTemp.style.font = 'DecimaMonoProBold';
               break;
             case "mars":
               dataTemp.style.color.main = '#FE9592';
@@ -542,7 +542,7 @@
       cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot', delay: 1000 }, function () {
         setTimeout(function () {
           cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, onEntry);
-        },500)
+        }, 500)
       });
 
 
@@ -578,7 +578,7 @@
 
       function onEntry() {
         d3.select('#gui-1-overlay').style('left', '0');
-        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay:1200 });
+        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay: 1200 });
       }
 
       function onDataSubmitted() {
@@ -599,8 +599,8 @@
         var tile = d3.selectAll('.thumb');
         tile.on('click', function (d) {
           // console.log('You have chosen the ' + d + ' visualization!');
-          cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' }, function(){
-            cb.addBubble({type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write',delay:1200}, function(){
+          cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' }, function () {
+            cb.addBubble({ type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write', delay: 1200 }, function () {
 
               createViz(d);
 
@@ -609,12 +609,12 @@
                 cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
 
                 setTimeout(function () {
-                
+
                   cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, onDataSubmitted);
 
-                },800)
+                }, 800)
 
-              },1200)
+              }, 1200)
             });
           })
         });
