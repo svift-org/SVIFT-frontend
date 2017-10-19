@@ -576,7 +576,7 @@
 
       function onEntry() {
         d3.select('#gui-1-overlay').style('left', '0');
-        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay:1500 });
+        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay:1200 });
       };
 
       function onDataSubmitted() {
@@ -596,14 +596,21 @@
       function selectViz() {
         var tile = d3.selectAll('.thumb');
         tile.on('click', function (d) {
-          console.log('You have chosen the ' + d + ' visualization!');
-          cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' });
-          cb.addBubble({
-            type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write'
-          });
-          cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
-          createViz(d);
-          cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, onDataSubmitted);
+          // console.log('You have chosen the ' + d + ' visualization!');
+          cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' }, function(){
+            cb.addBubble({type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write',delay:1000}, function(){
+
+              createViz(d);
+
+              setTimeout(function () {
+
+                cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
+                
+                cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, onDataSubmitted);
+
+              },1000)
+            });
+          })
         });
       }
 
