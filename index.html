@@ -106,7 +106,7 @@
       module.input.append('button').text('+');
 
       module.addBubble = function (options, callback) {
-        callback = callback||function(){};
+        callback = callback || function () { };
 
         if (!(options.type in module.types)) {
           throw 'Unknown bubble type';
@@ -278,25 +278,25 @@
 
       module.types['text'] = function (bubble, options, callback) {
 
-        if(('delay' in options) && options.delay){
+        if (('delay' in options) && options.delay) {
           var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
           bubble.append('div')
             .attr('class', 'cb-waiting')
             .html(animatedCircles);
 
-          setTimeout(function(){
+          setTimeout(function () {
 
             bubble.select(".cb-waiting").remove();
             appendText(bubble, options, callback);
 
-          }, (isNaN(options.delay)?1000:options.delay));
-        }else{
+          }, (isNaN(options.delay) ? 1000 : options.delay));
+        } else {
           appendText(bubble, options, callback);
         }
 
       }
 
-      function appendText(bubble, options, callback){
+      function appendText(bubble, options, callback) {
         bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
           .style("width", "50px")
           .text(options.value)
@@ -534,12 +534,12 @@
       cb.showInput();
 
 
-      var delay = 100;
+      var delay = 1000;
       // cb.showInput();
 
       // var img = './assets/emojis/smile.png';
       cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave' });
-      cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot', delay:1000 }, function(){
+      cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot', delay: 1000 }, function () {
         cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, onEntry);
       });
 
@@ -577,7 +577,6 @@
       function onEntry() {
         d3.select('#gui-1-overlay').style('left', '0');
         cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay:1200 });
-      };
 
       function onDataSubmitted() {
         console.log("Data has been submitted!");
@@ -646,40 +645,40 @@
 
       function onFinish() {
         var inter = null;
-        
-        cb.addBubble({ type: 'text', value: 'Please wait while we build your chart', class: 'bot', emoji: 'smile', delay:500 });
+
+        cb.addBubble({ type: 'text', value: 'Please wait while we build your chart', class: 'bot', emoji: 'smile', delay: 500 });
 
         console.log('onFinish');
 
         d3.request('http://localhost:5000/render')
-            .header("Content-Type", "application/json")
-            .mimeType("application/json")
-            .post(
-              JSON.stringify(dataTemp),
-              function(err, rawData){
-                var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
+          .header("Content-Type", "application/json")
+          .mimeType("application/json")
+          .post(
+          JSON.stringify(dataTemp),
+          function (err, rawData) {
+            var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
 
-                inter = setInterval(function(){
-                  d3.request('http://localhost:5000/status/'+rawData.response).get(function(err, data){ 
-                    
-                    var jResponse = JSON.parse(data.response);
+            inter = setInterval(function () {
+              d3.request('http://localhost:5000/status/' + rawData.response).get(function (err, data) {
 
-                    var db = cb.getBubble(downloadBubble);
-                    for(var type in jResponse.full){
-                      db.el.select('.download-thumb-'+type).style('background-color', 'rgba(0,0,0,'+jResponse.full[type]+')');
-                    }
+                var jResponse = JSON.parse(data.response);
 
-                    if(jResponse.status==2){
-                      clearInterval(inter); 
+                var db = cb.getBubble(downloadBubble);
+                for (var type in jResponse.full) {
+                  db.el.select('.download-thumb-' + type).style('background-color', 'rgba(0,0,0,' + jResponse.full[type] + ')');
+                }
 
-                      cb.addBubble({ type: 'text', value: 'You can access your charts for the next 7 days: www.svift.xyz/user/'+rawData.response, class: 'bot' });
-                      cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
-                      cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
-                    }
+                if (jResponse.status == 2) {
+                  clearInterval(inter);
 
-                  });
-                }, 200);
-              }
+                  cb.addBubble({ type: 'text', value: 'You can access your charts for the next 7 days: www.svift.xyz/user/' + rawData.response, class: 'bot' });
+                  cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
+                  cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
+                }
+
+              });
+            }, 200);
+          }
           );
 
         /*console.log('User has finished!');
