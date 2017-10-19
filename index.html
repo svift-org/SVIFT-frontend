@@ -345,7 +345,7 @@
           };
 
           d3.select('.viz-container-inner svg').remove();
-          var vis = SVIFT.vis.mosaic(dataTemp, d3.select('.viz-container-inner'));
+          var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container-inner'));
           vis.init();
           vis.start();
         };
@@ -576,7 +576,7 @@
 
       function onEntry() {
         d3.select('#gui-1-overlay').style('left', '0');
-        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay:500 });
+        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay:1500 });
       };
 
       function onDataSubmitted() {
