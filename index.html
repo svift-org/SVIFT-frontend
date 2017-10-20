@@ -538,11 +538,12 @@
       // cb.showInput();
 
       // var img = './assets/emojis/smile.png';
-      cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave' });
-      cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot', delay: 1000 }, function () {
-        setTimeout(function () {
-          cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, onEntry);
-        }, 500)
+      cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave', delay: 1000 }, function () {
+        cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot', delay: 500 }, function () {
+          setTimeout(function () {
+            cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, onEntry);
+          }, 100)
+        });
       });
 
 
@@ -582,16 +583,19 @@
       }
 
       function onDataSubmitted() {
-        console.log("Data has been submitted!");
-        cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', emoji: 'style' });
-        cb.addBubble({ type: 'themes', class: 'human' });
+        // console.log("Data has been submitted!");
+        cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', emoji: 'style', delay: 500 }, function () {
 
-        setTimeout(function () {
+          cb.addBubble({ type: 'themes', class: 'human' });
+
           setTimeout(function () {
-            cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human' }, onFinish);
-          }, delay)
-          cb.addBubble({ type: 'text', value: 'Perfect! Let me know when you have finished!', class: 'bot' });
-        }, delay)
+            // setTimeout(function () {
+              cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human' }, onFinish);
+            // }, delay)
+            // cb.addBubble({ type: 'text', value: 'Perfect! Let me know when you have finished!', class: 'bot' });
+          }, 500)
+
+        })
 
       }
 
@@ -600,7 +604,7 @@
         tile.on('click', function (d) {
           // console.log('You have chosen the ' + d + ' visualization!');
           cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' }, function () {
-            cb.addBubble({ type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write', delay: 1200 }, function () {
+            cb.addBubble({ type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write', delay: 500 }, function () {
 
               createViz(d);
 
@@ -608,13 +612,12 @@
 
                 cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
 
-                setTimeout(function () {
 
                   cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, onDataSubmitted);
 
-                }, 800)
 
-              }, 1200)
+
+              }, 500)
             });
           })
         });
