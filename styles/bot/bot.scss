@@ -482,7 +482,7 @@
         g path.arc {
             transform: translate(40px, 40px);
 
-            // fill: red;
+            fill: $svift-human;
             // stroke: red;
        
         }
@@ -514,4 +514,12 @@
             margin-bottom: 5px;
         }
     }
+
+
+    // .download-text{
+    //     width: 100px;
+    //     position: absolute;
+    //     text-align: center;
+    //     margin-top: 40px;
+    // }
 }
