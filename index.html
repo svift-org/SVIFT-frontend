@@ -352,6 +352,7 @@
       }
 
       module.types['download'] = function (bubble, options, callback) {
+
         var icons = ['png', 'svg', 'gif', 'mpeg', 'html'];
         var downloadWrapper = bubble.append('div')
           .attr('class', 'cb-download-wrapper');
@@ -361,10 +362,10 @@
         var tau = 2 * Math.PI;
 
         arc = d3.arc()
-          .innerRadius(35)
+          .innerRadius(37)
           .outerRadius(42)
           .startAngle(0)
-          .cornerRadius(50);
+          // .cornerRadius(50);
 
         var group = downloadWrapper.selectAll('div').data(icons).enter()
           .append('svg')
@@ -372,31 +373,12 @@
           .on('click', function (d) {
             downloadAsset(d);
           })
-          .append('g');
 
-        progressCircle = group.append("path")
-          .datum({ endAngle: 1 * tau })
-          .attr("class", function (d) { return 'arc arc-' + d })
+          group.append('g').append("path")
+          .datum({ endAngle: 0 })
+          .attr("class", "arc")
           .attr("d", arc);
 
-        d3.interval(function () {
-          progressCircle.transition()
-            .duration(750)
-            .attrTween("d", arcTween(Math.random() * tau));
-        }, 1500);
-
-
-
-
-        function arcTween(newAngle) {
-          return function (d) {
-            var interpolate = d3.interpolate(d.endAngle, newAngle);
-            return function (t) {
-              d.endAngle = interpolate(t);
-              return arc(d);
-            };
-          };
-        }
 
         function downloadAsset(d) {
           console.log('I want to download a ' + d)
@@ -688,6 +670,7 @@
 
       function onFinish() {
         var inter = null;
+        var oldAngle = 0;
 
         cb.addBubble({ type: 'text', value: 'Please wait while we build your chart', class: 'bot', emoji: 'smile', delay: 500 });
 
@@ -701,17 +684,59 @@
           function (err, rawData) {
             var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
 
+
+
             inter = setInterval(function () {
               d3.request('http://localhost:5000/status/' + rawData.response).get(function (err, data) {
 
                 var jResponse = JSON.parse(data.response);
 
                 var db = cb.getBubble(downloadBubble);
-                for (var type in jResponse.full) {
-                  db.el.select('.download-thumb-' + type).style('background-color', 'rgba(117,250,191,' + jResponse.full[type] + ')');
 
+
+                
+
+                for (var type in jResponse.full) {
+
+                  db.el.select('.download-thumb-' + type).style('background-color', 'rgba(117,250,191,' + jResponse.full[type] + ')');
                   db.el.select('path.arc-' + type).style('fill', 'rgba(0,0,0,' + jResponse.full[type] + ')');
+                  // console.log(type, jResponse.full[type])
+
+
+
+                  var tau = 2 * Math.PI;
+
+                  if(type=="svg"){
+                    console.log(d3.select(".download-thumb-"+type+" .arc").datum())
+                  }
+                  
+
+                  d3.select(".download-thumb-"+type+" .arc")
+                      .transition()
+                      .duration(199)
+                      .attrTween("d", arcTween(jResponse.full[type] * tau,type))
+
+                      ;
+
+                  function arcTween(newAngle,type) {
+                    return function (d) {
+                      var interpolate = d3.interpolate(d.endAngle, newAngle);
+                      return function (t) {
+                        
+                        d.endAngle = interpolate(t);
+
+                        d3.select(".download-thumb-"+type+" .arc").datum({ endAngle: d.endAngle });
+
+                        return arc(d);
+                      };
+                    };
+                  }
+
+
+
                 }
+
+
 
                 if (jResponse.status == 2) {
                   clearInterval(inter);
