@@ -362,10 +362,10 @@
         var tau = 2 * Math.PI;
 
         arc = d3.arc()
-          .innerRadius(25)
+          .innerRadius(30)
           .outerRadius(42)
           .startAngle(0)
-          // .cornerRadius(50);
+        // .cornerRadius(50);
 
         var group = downloadWrapper.selectAll('div').data(icons).enter()
           .append('div')
@@ -377,25 +377,25 @@
             downloadAsset(d);
           })
 
-          group.append("g").append("text")
-            .text(function (d) {return d})
-            .attr("fill", "black")
-            .attr("text-anchor", "middle")
-            .attr("font-size", "15px")
-            .attr("x", "40px")
-            .attr("y", "45px")
-            // .attr("class", "text")
-            // .attr("font-family", "")
+        group.append("g").append("text")
+          .text(function (d) { return d })
+          .attr("fill", "black")
+          .attr("text-anchor", "middle")
+          .attr("font-size", "15px")
+          .attr("x", "40px")
+          .attr("y", "45px")
+        // .attr("class", "text")
+        // .attr("font-family", "")
 
 
-          group.append('g').append("path")
+        group.append('g').append("path")
           .datum({ endAngle: 0 })
           .attr("class", "arc")
           .attr("d", arc);
 
-          // group.append('div')
-          //   .attr('class','download-text')
-          //   .html("JJJJ")
+        // group.append('div')
+        //   .attr('class','download-text')
+        //   .html("JJJJ")
 
 
         function downloadAsset(d) {
@@ -712,7 +712,7 @@
                 var db = cb.getBubble(downloadBubble);
 
 
-                
+
 
                 for (var type in jResponse.full) {
 
@@ -721,17 +721,17 @@
 
                   var tau = 2 * Math.PI;
 
-                  d3.select(".download-thumb-"+type+" .arc")
-                      .transition()
-                      .duration(1400)
-                      .attrTween("d", arcTween(jResponse.full[type] * tau,type));
+                  d3.select(".download-thumb-" + type + " .arc")
+                    .transition()
+                    .duration(1400)
+                    .attrTween("d", arcTween(jResponse.full[type] * tau, type));
 
-                  function arcTween(newAngle,type) {
+                  function arcTween(newAngle, type) {
                     return function (d) {
                       var interpolate = d3.interpolate(d.endAngle, newAngle);
                       return function (t) {
                         d.endAngle = interpolate(t);
-                        d3.select(".download-thumb-"+type+" .arc").datum({ endAngle: d.endAngle });
+                        d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
                         return arc(d);
                       };
                     };
@@ -744,7 +744,7 @@
                 if (jResponse.status == 2) {
                   clearInterval(inter);
 
-                  cb.addBubble({ type: 'text', value: 'You can access your charts for the next 7 days: www.svift.xyz/user/' + rawData.response, class: 'bot' });
+                  cb.addBubble({ type: 'text', value: 'Get your charts here: www.svift.xyz/' + rawData.response, class: 'bot' });
                   cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
                   cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
                 }
