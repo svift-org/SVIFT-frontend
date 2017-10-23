@@ -3,6 +3,7 @@
 </html>
 
 <head>
+  <title>svift demo</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="styles/app/normalize.css">
   <link rel="stylesheet" href="styles/app/app.css">
@@ -299,7 +300,7 @@
       function appendText(bubble, options, callback) {
         bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
           .style("width", "50px")
-          .text(options.value)
+          .html(options.value)
           .transition()
           .duration(200)
           .style("width", "auto")
@@ -690,7 +691,7 @@
         var inter = null;
         var oldAngle = 0;
 
-        cb.addBubble({ type: 'text', value: 'Please wait while we build your chart', class: 'bot', emoji: 'smile', delay: 500 });
+        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile', delay: 500 });
 
         console.log('onFinish');
 
@@ -744,7 +745,7 @@
                 if (jResponse.status == 2) {
                   clearInterval(inter);
 
-                  cb.addBubble({ type: 'text', value: 'Get your charts here: www.svift.xyz/' + rawData.response, class: 'bot' });
+                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);" href="http://localhost:8000/download.html">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
                   cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
                   cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
                 }

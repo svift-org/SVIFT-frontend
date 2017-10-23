@@ -118,11 +118,6 @@
 .cb-bubble {
     color: $text-bot;
     border-radius: 100px;
-
-    .emoji {
-        // padding: 5px 0;
-   
-    }
 }
 
 .cb-bubble.bot {
@@ -221,6 +216,7 @@
     border: 3px solid $svift-human;
     border-radius: 2em;
     padding: 20px;
+    margin-left: 10px;
 
     // margin: 0 0 0 20px;
     font-family: $font-family-bold;
@@ -481,8 +477,8 @@
     svg {
         g path.arc {
             transform: translate(40px, 40px);
-
             fill: $svift-human;
+
             // stroke: red;
        
         }
@@ -514,7 +510,6 @@
             margin-bottom: 5px;
         }
     }
-
 
     // .download-text{
     //     width: 100px;
