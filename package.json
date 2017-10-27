@@ -12,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/svift/svift-frontend.git"
+    "url": "git+https://git@github.com/svift-org/svift-frontend.git"
   },
   "dependencies": {
-    "svift-helper": "git+ssh://git@bitbucket.org/svift/helper-module.git",
-    "svift-vis": "git+ssh://git@bitbucket.org/svift/vis-module.git",
-    "svift-vis-barchart": "git+ssh://git@bitbucket.org/svift/vis-barchart-module.git",
-    "svift-vis-columnchart": "git+ssh://git@bitbucket.org/svift/vis-columnchart-module.git",
-    "svift-vis-fatnr": "git+ssh://git@bitbucket.org/svift/vis-fatnr-module.git",
-    "svift-vis-mosaic": "git+ssh://git@bitbucket.org/svift/vis-mosaic-module.git"
+    "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
+    "svift-vis": "git+https://git@github.com/svift-org/vis-module.git",
+    "svift-vis-barchart": "git+https://git@github.com/svift-org/vis-barchart-module.git",
+    "svift-vis-columnchart": "git+https://git@github.com/svift-org/vis-columnchart-module.git",
+    "svift-vis-fatnr": "git+https://git@github.com/svift-org/vis-fatnr-module.git",
+    "svift-vis-mosaic": "git+https://git@github.com/svift-org/vis-mosaic-module.git"
   },
   "author": "Sebastian Meier",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/svift/svift-frontend#readme",
+  "homepage": "https://github.com/svift-org/svift-frontend#readme",
   "devDependencies": {
     "fs": "0.0.1-security",
     "fs-extra": "^4.0.2",
