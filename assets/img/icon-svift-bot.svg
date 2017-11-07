@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="20px" height="22px" viewBox="0 0 20 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="20px" height="24px" viewBox="0 0 20 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
-    <title>Artboard Copy 5</title>
+    <title>icon-svift-bot</title>
     <desc>Created with Sketch.</desc>
-    <defs>
-        <rect id="path-1" x="10" y="3.14285714" width="1" height="1.04761905"></rect>
-    </defs>
+    <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard-Copy-5">
-            <g id="Group-Copy">
-                <rect id="Rectangle-5" stroke="#FFFFFF" x="0.5" y="6.78571429" width="19" height="14.7142857" rx="2"></rect>
-                <ellipse id="Oval-3" stroke="#FFFFFF" cx="6" cy="11.5238095" rx="1.5" ry="1.5952381"></ellipse>
-                <ellipse id="Oval-3-Copy" stroke="#FFFFFF" cx="14" cy="11.5238095" rx="1.5" ry="1.5952381"></ellipse>
-                <path d="M14.0964622,16.2142857 L5.90353785,16.2142857 C7.32352255,18.3633293 8.69840557,19.4047619 10,19.4047619 C11.3015949,19.4047619 12.6764784,18.363328 14.0964622,16.2142857 Z M14.0964622,16.2142857 C14.1446564,16.1413473 14.1929025,16.067133 14.2411995,15.9916403 L13.9639757,15.7144165 L13.9639757,15.7142857 L14.4639757,15.7142857 L14.4639757,16.2142857 L14.4566729,16.2142857 C14.4590964,16.2143726 14.4615309,16.2144165 14.4639757,16.2144165 L14.2638449,16.0142857 C14.2638449,16.1223702 14.3495266,16.2104426 14.4566729,16.2142857 Z" id="Path-4" stroke="#FFFFFF"></path>
-                <path d="M5.5492224,6.729289 L15.4507776,6.729289 C15.218555,5.56658751 14.1921845,4.69047619 12.9611872,4.69047619 L8.03881281,4.69047619 C6.80781553,4.69047619 5.78144501,5.56658751 5.5492224,6.729289 Z" id="Rectangle-3-Copy" stroke="#FFFFFF"></path>
-                <circle id="Oval-2-Copy" fill="#FFFFFF" cx="10.5" cy="2" r="1.5"></circle>
-                <g id="Rectangle-6">
-                    <use fill="#D8D8D8" fill-rule="evenodd" xlink:href="#path-1"></use>
-                    <rect stroke="#FFFFFF" stroke-width="1" x="10.5" y="3.64285714" width="1" height="1"></rect>
-                </g>
+        <g id="icon-svift-bot">
+            <g id="Group">
+                <rect id="Rectangle-5" stroke="#FFFFFF" x="0.5" y="6.5" width="19" height="14" rx="2"></rect>
+                <polygon id="Rectangle-8" fill="#FFFFFF" points="6 16 9.90294805 16 14 16 14 18 6 18"></polygon>
+                <circle id="Oval-3" stroke="#FFFFFF" cx="6" cy="11" r="1.5"></circle>
+                <circle id="Oval-3-Copy" stroke="#FFFFFF" cx="14" cy="11" r="1.5"></circle>
+                <path d="M6.5,4.5 C5.94771525,4.5 5.5,4.94771525 5.5,5.5 L5.5,6.5 L15.5,6.5 L15.5,5.5 C15.5,4.94771525 15.0522847,4.5 14.5,4.5 L6.5,4.5 Z" id="Rectangle-3-Copy" stroke="#FFFFFF"></path>
+                <circle id="Oval-2-Copy" stroke="#FFFFFF" cx="10.5" cy="1.5" r="1"></circle>
+                <rect id="Rectangle-6" fill="#FFFFFF" x="10" y="2" width="1" height="2"></rect>
             </g>
         </g>
     </g>
