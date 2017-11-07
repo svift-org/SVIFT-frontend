@@ -29,7 +29,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^4.0.2",
     "jshint": "^2.9.5",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.6.0",
     "uglify-js2": "^2.1.11"
   }
 }
