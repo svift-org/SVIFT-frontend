@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="styles/app/app.css">
   <link rel="stylesheet" href="styles/bot/bot.css">
   <link href="https://fonts.googleapis.com/css?family=Merriweather|Poppins|Roboto+Mono" rel="stylesheet">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/manifest.json">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <meta name="msapplication-config" content="favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
@@ -64,13 +73,14 @@
       },
       "style": {
         "font": "DecimaMonoProBold",
+        "fontLables": "Arial",
         // "font": "Futura",
         "color": {
           "main": "#71609B",
           // "main": "#00C8E2",
           "second": "#D8D8D8",
           "background": "#fff",
-          "dataColors": ["#EF0077","#00007F","#24B151","#F7FF52","blue","red"]
+          "dataColors": ["#EF0077", "#00007F", "#24B151", "#F7FF52", "blue", "red"]
         }
       },
       "data": {
@@ -79,54 +89,54 @@
         "data": [],
         "title": "Your title",
         "subTitle": "Your subtitle",
-        "attribution": "Some attribution here",
-        "source": "source: svift team"
+        "attribution": "made with svift",
+        "source": "Source: InfratestDimap"
       }
     }
 
-      function addDefaultData(d){
-        if(d=="columns" || d=="gooey" ){
-          dataTemp.data.data = [["A",6],["B",4], ["C",5],["D",3],["E",2],["F",4]]
-        }
-        else{
-          dataTemp.data.data=[25];
-        }
+    function addDefaultData(d) {
+      if (d == "columns" || d == "gooey") {
+        dataTemp.data.data = [["CDU", 26], ["SPD", 14], ["Grüne", 10], ["Linke", 5], ["AFD", 3], ["FDP", 4]]
       }
+      else {
+        dataTemp.data.data = [25];
+      }
+    }
 
 
-  //   var dataTemp ={
-  //   "params":{
-  //     "dev":true
-  //   },
-  //   "vis":{
-  //     "type":"columns",
-  //     "title":"Column Chart"
-  //   },
-  //   "style": {
-  //     "font": "DecimaMonoProBold",
-  //     "color": {
-  //       "main": "#71609B",
-  //       "second": "#D8D8D8",
-  //       "background": "#fff"
-  //     }
-  //   },
-  //   "data":{
-  //     "columns":["Text","Wert"],
-  //     "types":["string","int"],
-  //     "data":[
-  //       [2017,6],
-  //       [2016,4.1],
-  //       [2015,4.6],
-  //       [2014,3.0],
-  //       [2013,5.2],
-  //       [2099,4.5]
-  //     ],
-  //     "title": "Title here",
-  //     "subTitle": "some sub title",
-  //     "attribution": "created with svift",
-  //     "source": "source: svift team"
-  //   }
-  // }
+    //   var dataTemp ={
+    //   "params":{
+    //     "dev":true
+    //   },
+    //   "vis":{
+    //     "type":"columns",
+    //     "title":"Column Chart"
+    //   },
+    //   "style": {
+    //     "font": "DecimaMonoProBold",
+    //     "color": {
+    //       "main": "#71609B",
+    //       "second": "#D8D8D8",
+    //       "background": "#fff"
+    //     }
+    //   },
+    //   "data":{
+    //     "columns":["Text","Wert"],
+    //     "types":["string","int"],
+    //     "data":[
+    //       [2017,6],
+    //       [2016,4.1],
+    //       [2015,4.6],
+    //       [2014,3.0],
+    //       [2013,5.2],
+    //       [2099,4.5]
+    //     ],
+    //     "title": "Title here",
+    //     "subTitle": "some sub title",
+    //     "attribution": "created with svift",
+    //     "source": "source: svift team"
+    //   }
+    // }
 
     //dataTemp.style.color.main
 
@@ -234,13 +244,13 @@
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input').attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input', SVIFT.helper.debouncer(function(e){updateData()},500));
+          .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
         var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input').attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', SVIFT.helper.debouncer(function(e){updateData()},500));
+          .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
         var input = bubble.append('input').classed('number', true)
@@ -249,7 +259,7 @@
           .attr('placeholder', function () { return dataTemp.data.data })
           .attr('min', '0')
           .attr('max', '100')
-          .on('input', SVIFT.helper.debouncer(function(e){updateData()},500));
+          .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
 
         function updateData() {
 
