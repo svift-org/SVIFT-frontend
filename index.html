@@ -84,6 +84,16 @@
       }
     }
 
+      function addDefaultData(d){
+        if(d=="columns" || d=="gooey" ){
+          dataTemp.data.data = [["A",6],["B",4], ["C",5],["D",3],["E",2],["F",4]]
+        }
+        else{
+          dataTemp.data.data=[25];
+        }
+      }
+
+
   //   var dataTemp ={
   //   "params":{
   //     "dev":true
@@ -224,13 +234,13 @@
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input').attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input', updateData);
+          .on('input', SVIFT.helper.debouncer(function(e){updateData()},500));
         var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input').attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', updateData);
+          .on('input', SVIFT.helper.debouncer(function(e){updateData()},500));
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
         var input = bubble.append('input').classed('number', true)
@@ -239,7 +249,7 @@
           .attr('placeholder', function () { return dataTemp.data.data })
           .attr('min', '0')
           .attr('max', '100')
-          .on('input', updateData);
+          .on('input', SVIFT.helper.debouncer(function(e){updateData()},500));
 
         function updateData() {
 
@@ -267,7 +277,7 @@
             dataTemp.data.data = [d3.select("#number").node().value];
             d3.select("#number").attr('placeholder', '25');
           } else {
-            dataTemp.data.data = [25];
+            addDefaultData(visType);
           }
 
           // Redraw the new viz
@@ -698,12 +708,7 @@
 
         visType = d;
 
-        if(d=="columns" || d=="gooey" ){
-          dataTemp.data.data.push(["A",6],["B",4], ["C",5],["D",3],["E",2],["F",4])
-        }
-        else{
-          dataTemp.data.data.push(25);
-        }
+        addDefaultData(visType);
 
         console.log(d);
         var overlay = d3.select('#gui-1-overlay').html('');
