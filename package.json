@@ -19,7 +19,7 @@
     "svift-vis": "git+https://git@github.com/svift-org/vis-module.git",
     "svift-vis-barchart": "git+https://git@github.com/svift-org/vis-barchart-module.git",
     "svift-vis-columns": "git+https://git@github.com/svift-org/vis-columns-module.git",
-    "svift-vis-fatnr": "git+https://git@github.com/svift-org/vis-fatnr-module.git",
+    "svift-vis-count": "git+https://git@github.com/svift-org/vis-count-module.git",
     "svift-vis-mosaic": "git+https://git@github.com/svift-org/vis-mosaic-module.git"
   },
   "author": "Sebastian Meier",

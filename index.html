@@ -75,7 +75,7 @@
       "data": {
         "columns": ["Wert"],
         "types": ["int"],
-        "data": [25],
+        "data": [],
         "title": "Your title",
         "subTitle": "Your subtitle",
         "attribution": "Some attribution here",
@@ -696,6 +696,13 @@
       function createViz(d) {
 
         visType = d;
+
+        if(d=="columns"){
+          dataTemp.data.data.push(["A",6],["B",4], ["C",5],["D",3],["E",2],["F",4])
+        }
+        else{
+          dataTemp.data.data.push(25);
+        }
 
         console.log(d);
         var overlay = d3.select('#gui-1-overlay').html('');
