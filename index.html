@@ -70,7 +70,7 @@
           // "main": "#00C8E2",
           "second": "#D8D8D8",
           "background": "#fff",
-          "dataColors": ["#EF0077","#00007F","#24B151","#F7FF52","blue","pink","green"]
+          "dataColors": ["#EF0077","#00007F","#24B151","#F7FF52","blue","red"]
         }
       },
       "data": {
@@ -698,10 +698,7 @@
 
         visType = d;
 
-        if(d=="columns"){
-          dataTemp.data.data.push(["A",6],["B",4], ["C",5],["D",3],["E",2],["F",4])
-        }
-        else if(d=="gooey"){
+        if(d=="columns" || d=="gooey" ){
           dataTemp.data.data.push(["A",6],["B",4], ["C",5],["D",3],["E",2],["F",4])
         }
         else{
