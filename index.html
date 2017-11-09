@@ -299,15 +299,33 @@
       };
 
       module.types['table'] = function (bubble, options, callback) {
+        // bubble.style('background-color', '#fff');
+        // bubble.attr('class', 'cb-bubble-table');
+        // var rows = options.rows;
+        // var columns = options.columns;
+        // var selectables = options.selectables;
+
+        // var tableHead = bubble.append('div').attr('class', 'table-head');
+        // var heading = tableHead.append('div').attr('class', 'heading').text('Add your data');
+        // var subheading = tableHead.append('div').attr('class', 'subheading').text('Input your data and add or remove columns/rows');
+
         bubble.style('background-color', '#fff');
-        bubble.attr('class', 'cb-bubble-table');
+        bubble.attr('class', 'cb-bubble-input');
         var rows = options.rows;
         var columns = options.columns;
         var selectables = options.selectables;
 
-        var tableHead = bubble.append('div').attr('class', 'table-head');
-        var heading = tableHead.append('div').attr('class', 'heading').text('Add your data');
-        var subheading = tableHead.append('div').attr('class', 'subheading').text('Input your data and add or remove columns/rows');
+        var titleWrapper = bubble.append('div').classed('title', true);
+        titleWrapper.append('input').attr('id', 'title')
+          .attr('placeholder', 'Add your title here')
+          .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
+        var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
+
+        var subtitleWrapper = bubble.append('div').classed('subtitle', true);
+        subtitleWrapper.append('input').attr('id', 'subtitle')
+          .attr('placeholder', 'Add your subtitle here')
+          .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
+        var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
         var table = bubble.append('table').append('tbody');
         var tableRow = table.selectAll('.tr')
@@ -315,14 +333,15 @@
         var tableColumn = tableRow.selectAll('.td')
           .data(columns).enter().append('td').append('input').attr('placeholder', '25%');
 
-        var tableFoot = bubble.append('div').attr('class', 'table-foot');
-        var selector = tableFoot.append('div').attr('class', 'selector');
-        var label = selector.append('label').attr('for', 'dropdown').text('Select icon');
-        var dropdown = selector.append('select').attr('class', 'dropdown');
-        dropdown.selectAll('option').data(selectables).enter().append('option')
-          .text(function (d) { return d });
-        var deleteData = tableFoot.append('div').attr('class', 'delete').text('Delete data');
+        // var tableFoot = bubble.append('div').attr('class', 'table-foot');
+        // var selector = tableFoot.append('div').attr('class', 'selector');
+        // var label = selector.append('label').attr('for', 'dropdown').text('Select icon');
+        // var dropdown = selector.append('select').attr('class', 'dropdown');
+        // dropdown.selectAll('option').data(selectables).enter().append('option')
+        //   .text(function (d) { return d });
+        // var deleteData = tableFoot.append('div').attr('class', 'delete').text('Delete data');
       };
+
 
       // module.types['waiting'] = function (bubble, options, callback) {
       //   //no callback -> this bubble should be removed before adding the next
@@ -701,6 +720,7 @@
               setTimeout(function () {
 
                 cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
+                cb.addBubble({ type: 'table', rows: [1, 2], columns: [1, 2, 3, 4, 5, 6], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
 
 
                 cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, onDataSubmitted);
