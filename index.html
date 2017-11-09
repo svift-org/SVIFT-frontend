@@ -792,6 +792,8 @@
 
         addDefaultData(visType);
 
+        dataTemp.vis.type = visType
+
         console.log(d);
         var overlay = d3.select('#gui-1-overlay').html('');
 
@@ -823,7 +825,7 @@
 
         cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile', delay: 500 });
 
-        console.log('onFinish');
+        console.log( JSON.stringify(dataTemp));
 
         d3.request('https://svift-backend.herokuapp.com/render')
           .header("Content-Type", "application/json")
