@@ -251,6 +251,14 @@
     border-radius: 4px;
     margin-top: 20px;
 
+    table {
+        border-spacing: 0;
+
+        td:first-of-type {
+            padding-left: 0;
+        }
+    }
+
     // border: 3px solid #72f5bf;
 
     input {
