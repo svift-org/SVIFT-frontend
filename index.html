@@ -90,7 +90,7 @@
         "title": "Your title",
         "subTitle": "Your subtitle",
         "attribution": "made with svift",
-        "source": "Source: InfratestDimap"
+        "source": "Source: Your source"
       }
     }
 
@@ -242,13 +242,13 @@
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input').attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input', SVIFT.helper.debouncer(function (e) { updateTitle() }, 500));
+          .on('input',updateTitle);
         var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input').attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', SVIFT.helper.debouncer(function (e) { updateTitle() }, 500));
+          .on('input', updateTitle);
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
 
@@ -270,7 +270,7 @@
             .data(columns).enter().append('td').append('input')
             .attr('placeholder', function (d) {return d[1]})
             .attr("class", function (d,i) {return i})
-            .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
+            .on('input', SVIFT.helper.debouncer(function (e) {updateTableData(this) }, 500));
         }
         else {
           var input = bubble.append('input').classed('number', true)
@@ -281,6 +281,12 @@
             .attr('max', '100')
             .on('input', SVIFT.helper.debouncer(function (e) { updateSingleData() }, 500));
         }
+
+        var sourceWrapper = bubble.append('div').classed('source', true);
+        sourceWrapper.append('input').attr('id', 'source-input')
+          .attr('placeholder', 'Add your source here')
+          .on('input', updateTitle);
+        var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
 
         function redrawViz(){
@@ -309,7 +315,6 @@
         function updateTableDataTitle(x){
           var dataPosition = d3.select(x).attr("class");
           var dataValue = d3.select(x).node().value;
-          console.log(dataValue)
           dataTemp.data.data[dataPosition][0] = dataValue || d3.select(x).attr('placeholder');
           redrawViz()
         }
@@ -318,7 +323,6 @@
           var dataPosition = d3.select(x).attr("class");
           var dataValue = d3.select(x).node().value;
           dataTemp.data.data[dataPosition][1] = dataValue || d3.select(x).attr('placeholder');
-          console.log(dataValue)
           redrawViz()
         }
 
@@ -326,21 +330,22 @@
 
           // Handle empty input fields with placeholder values:
           // 1. Title
-          if (d3.select("#title").node().value != "") {
-            dataTemp.data.title = [d3.select("#title").node().value];
-            d3.select("#title").attr('placeholder', 'Add your title here');
-          } else {
-            dataTemp.data.title = 'Your title';
-          }
+          dataTemp.data.title = d3.select("#title").node().value || 'Your title';
+          d3.select("#title").attr('placeholder', 'Add your title here');
+          d3.select("#title-main").text(dataTemp.data.title)
+
           // 2. Subtitle
-          if (d3.select("#subtitle").node().value != "") {
-            dataTemp.data.subTitle = [d3.select("#subtitle").node().value];
-            d3.select("#subtitle").attr('placeholder', 'Add your subtitle here');
-          } else {
-            dataTemp.data.subTitle = 'Your subtitle';
-          }
+          dataTemp.data.subTitle = d3.select("#subtitle").node().value || 'Your subtitle';
+          d3.select("#subtitle").attr('placeholder', 'Add your subtitle here');
+          d3.select("#title-sub").text(dataTemp.data.subTitle)
+
+
+          dataTemp.data.source = d3.select("#source-input").node().value || 'Your source';
+          d3.select("#source-input").attr('placeholder', 'Add your source here');
+          d3.select("#source").text("Source: " + dataTemp.data.source)
+
           // Redraw the new viz
-          redrawViz()
+          // redrawViz()
         }
 
       };
