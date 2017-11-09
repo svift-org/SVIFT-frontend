@@ -309,14 +309,16 @@
         function updateTableDataTitle(x){
           var dataPosition = d3.select(x).attr("class");
           var dataValue = d3.select(x).node().value;
-          dataTemp.data.data[dataPosition][0] = dataValue;
+          console.log(dataValue)
+          dataTemp.data.data[dataPosition][0] = dataValue || d3.select(x).attr('placeholder');
           redrawViz()
         }
 
         function updateTableData(x){
           var dataPosition = d3.select(x).attr("class");
           var dataValue = d3.select(x).node().value;
-          dataTemp.data.data[dataPosition][1] = dataValue;
+          dataTemp.data.data[dataPosition][1] = dataValue || d3.select(x).attr('placeholder');
+          console.log(dataValue)
           redrawViz()
         }
 
