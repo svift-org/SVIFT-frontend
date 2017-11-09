@@ -51,7 +51,12 @@ html, body {
         }
 
         div.inner {
-            padding: 0 ($padding-big * 2);
+            padding: ($padding-big * 1.2) ($padding-big * 2);
+
+            .img-logo {
+                width: 120px;
+                height: auto;
+            }
 
             h1 {
                 padding: ($padding-big * 1.5) 0 $padding-big 0;
