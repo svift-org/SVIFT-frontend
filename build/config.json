@@ -1,14 +1,1 @@
-{
-    "mosaic": {
-        "title": "Mosaic"
-    },
-    "count": {
-        "title": "Count"
-    },
-    "columns": {
-        "title": "Column Chart"
-    },
-    "gooey": {
-        "title": "Gooey"
-    }
-}
+{"columns":{"title":"Column Chart"},"count":{"title":"Count"},"gooey":{"title":"Gooey"},"mosaic":{"title":"Mosaic"}}
