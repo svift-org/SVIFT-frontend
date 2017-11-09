@@ -51,7 +51,7 @@ html, body {
         }
 
         div.inner {
-            padding: ($padding-big * 1.2) ($padding-big * 2);
+            padding: ($padding-big * 1.5) ($padding-big * 2);
 
             .img-logo {
                 width: 120px;
@@ -59,7 +59,10 @@ html, body {
             }
 
             h1 {
-                padding: ($padding-big * 1.5) 0 $padding-big 0;
+                // padding: $padding-big 0;
+                margin: ($padding-big * 2) 0 $padding-big 0;
+
+                // padding: ($padding-big * 1.5) 0 $padding-big 0;
                 font-family: $font-family-mono;
                 font-size: $font-size-heading;
                 line-height: $line-height-heading;
@@ -67,15 +70,15 @@ html, body {
 
             .claim {
                 font-family: $font-family-sansDefault;
-                font-size: $font-size-text;
+                font-size: $font-size-text * 1.1;
             }
 
             .img-intro {
-                padding: ($padding-big * 2) 0;
-                text-align: center;
+                // padding: $padding-big 0;
+                // text-align: center;
 
                 img {
-                    width: 80%;
+                    width: 100%;
                 }
             }
         }
