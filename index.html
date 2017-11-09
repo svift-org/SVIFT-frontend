@@ -44,12 +44,11 @@
         <img class="img-logo" src="assets/img/wordmark-white.svg" alt="Svift Logo">
         <h1>Simply make your numbers look good</h1>
         <div class="claim">
-          <em>svift</em> is an open-source tool to easily turn your data into interesting charts for your everyday use. Need
-          your chart as an image, interactive iframe or an animated gif for social media? No worries, we’ve got you covered,
-          so you can save time. No need for long configurations. Get started now!
+          <em>svift</em> is an open source tool to turn your numbers into beautiful charts - in no time.
+          <em>svift</em> is currently in private beta. Try our prototype now and let us know what you think!
         </div>
         <div class="img-intro">
-          <img src="assets/img/gui-1-intro.svg" alt="Svift Intro Image">
+          <img src="assets/img/linechart.svg" alt="Svift Intro Image">
         </div>
       </div>
     </div>
@@ -243,7 +242,7 @@
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input').attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input',updateTitle);
+          .on('input', updateTitle);
         var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
@@ -269,9 +268,9 @@
           var tableRowNumbers = table.append('tr');
           tableRowNumbers.selectAll('.td')
             .data(columns).enter().append('td').append('input')
-            .attr('placeholder', function (d) {return d[1]})
-            .attr("class", function (d,i) {return i})
-            .on('input', SVIFT.helper.debouncer(function (e) {updateTableData(this) }, 500));
+            .attr('placeholder', function (d) { return d[1] })
+            .attr("class", function (d, i) { return i })
+            .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
         }
         else {
           var input = bubble.append('input').classed('number', true)

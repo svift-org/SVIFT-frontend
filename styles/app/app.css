@@ -141,23 +141,20 @@ html, body {
         height: 10px;
         border-bottom: 3px solid #fff; }
     .app #gui-1 div.inner {
-      padding: 6% 10%; }
+      padding: 7.5% 10%; }
       .app #gui-1 div.inner .img-logo {
         width: 120px;
         height: auto; }
       .app #gui-1 div.inner h1 {
-        padding: 7.5% 0 5% 0;
+        margin: 10% 0 5% 0;
         font-family: "DecimaMonoProBold", monospace;
         font-size: 3em;
         line-height: 53px; }
       .app #gui-1 div.inner .claim {
         font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
-        font-size: 1em; }
-      .app #gui-1 div.inner .img-intro {
-        padding: 10% 0;
-        text-align: center; }
-        .app #gui-1 div.inner .img-intro img {
-          width: 80%; }
+        font-size: 1.1em; }
+      .app #gui-1 div.inner .img-intro img {
+        width: 100%; }
     .app #gui-1 #gui-1-overlay {
       display: flex;
       flex-direction: column;
