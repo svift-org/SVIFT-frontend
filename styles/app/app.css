@@ -141,7 +141,10 @@ html, body {
         height: 10px;
         border-bottom: 3px solid #fff; }
     .app #gui-1 div.inner {
-      padding: 0 10%; }
+      padding: 6% 10%; }
+      .app #gui-1 div.inner .img-logo {
+        width: 120px;
+        height: auto; }
       .app #gui-1 div.inner h1 {
         padding: 7.5% 0 5% 0;
         font-family: "DecimaMonoProBold", monospace;

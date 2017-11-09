@@ -291,6 +291,10 @@
   padding: 20px;
   border-radius: 4px;
   margin-top: 20px; }
+  .cb-bubble-input table {
+    border-spacing: 0; }
+    .cb-bubble-input table td:first-of-type {
+      padding-left: 0; }
   .cb-bubble-input input {
     cursor: pointer;
     font-family: "DecimaMonoProBold", monospace;
