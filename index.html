@@ -41,8 +41,8 @@
       </ul>
     </div> -->
       <div class="inner">
-        <h1>SVIFT &mdash;
-          <br>Create your chart in three simple steps</h1>
+        <img class="img-logo" src="assets/img/wordmark-white.svg" alt="Svift Logo">
+        <h1>Simply make your numbers look good</h1>
         <div class="claim">
           <em>svift</em> is an open-source tool to easily turn your data into interesting charts for your everyday use. Need
           your chart as an image, interactive iframe or an animated gif for social media? No worries, we’ve got you covered,
@@ -73,14 +73,14 @@
       },
       "style": {
         "font": "DecimaMonoProBold",
-        "fontLables": "Arial",
+        "fontLables": "InterfaceRegular",
         // "font": "Futura",
         "color": {
           "main": "#71609B",
           // "main": "#00C8E2",
           "second": "#D8D8D8",
           "background": "#fff",
-          "dataColors": ["#EF0077", "#00007F", "#24B151", "#F7FF52", "blue", "red"]
+          "dataColors": ["#434343", "#FF5858", "#99C3F3", "#FFF680", "#EF96FF", "#B9FF6C"]
         }
       },
       "data": {
@@ -90,13 +90,14 @@
         "title": "Your title",
         "subTitle": "Your subtitle",
         "attribution": "made with svift",
-        "source": "Source: InfratestDimap"
+        "source": "Source: Your source"
+
       }
     }
 
     function addDefaultData(d) {
       if (d == "columns" || d == "gooey") {
-        dataTemp.data.data = [["CDU", 26], ["SPD", 14], ["Grüne", 10], ["Linke", 5], ["AFD", 3], ["FDP", 4]]
+        dataTemp.data.data = [["A", 33], ["B", 20.5], ["C", 12.6], ["D", 10.7], ["E", 9.2], ["F", 8.9]]
       }
       else {
         dataTemp.data.data = [25];
@@ -235,54 +236,73 @@
       };
 
       module.types['input'] = function (bubble, options, callback) {
+
         bubble.style('background-color', '#fff');
         bubble.attr('class', 'cb-bubble-input');
-        var rows = options.rows;
-        var columns = options.columns;
-        var selectables = options.selectables;
 
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input').attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
+          .on('input',updateTitle);
         var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input').attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
+          .on('input', updateTitle);
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
-        var input = bubble.append('input').classed('number', true)
-          .attr('id', 'number')
-          .attr('type', 'number')
-          .attr('placeholder', function () { return dataTemp.data.data })
-          .attr('min', '0')
-          .attr('max', '100')
-          .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
 
-        function updateData() {
+        if (visType == "columns" || visType == "gooey") {
+
+          var columns = dataTemp.data.data;
+          var table = bubble.append('table').append('tbody');
+
+          var tableRowTitle = table.append('tr');
+          tableRowTitle.selectAll('.td')
+            .data(columns).enter().append('td')
+            .append('input')
+            .attr('placeholder', function (d) { return d[0] })
+            .attr("class", function (d, i) { return i })
+            .on('input', SVIFT.helper.debouncer(function (e) { updateTableDataTitle(this) }, 500));
+
+          var tableRowNumbers = table.append('tr');
+          tableRowNumbers.selectAll('.td')
+            .data(columns).enter().append('td').append('input')
+            .attr('placeholder', function (d) {return d[1]})
+            .attr("class", function (d,i) {return i})
+            .on('input', SVIFT.helper.debouncer(function (e) {updateTableData(this) }, 500));
+        }
+        else {
+          var input = bubble.append('input').classed('number', true)
+            .attr('id', 'number')
+            .attr('type', 'number')
+            .attr('placeholder', function () { return dataTemp.data.data })
+            .attr('min', '0')
+            .attr('max', '100')
+            .on('input', SVIFT.helper.debouncer(function (e) { updateSingleData() }, 500));
+        }
+
+        var sourceWrapper = bubble.append('div').classed('source', true);
+        sourceWrapper.append('input').attr('id', 'source-input')
+          .attr('placeholder', 'Add your source here')
+          .on('input', updateTitle);
+        var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
+
+
+        function redrawViz() {
+          d3.select('.viz-container-inner svg').remove();
+          var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container-inner'));
+          vis.init();
+          vis.start();
+        }
+
+        function updateSingleData() {
 
           if (d3.select("#number").node().value > 100) {
             d3.select("#number").property("value", d3.select("#number").node().value.slice(0, 2));
           }
 
-          // Handle empty input fields with placeholder values:
-          // 1. Title
-          if (d3.select("#title").node().value != "") {
-            dataTemp.data.title = [d3.select("#title").node().value];
-            d3.select("#title").attr('placeholder', 'Add your title here');
-          } else {
-            dataTemp.data.title = 'Your title';
-          }
-          // 2. Subtitle
-          if (d3.select("#subtitle").node().value != "") {
-            dataTemp.data.subTitle = [d3.select("#subtitle").node().value];
-            d3.select("#subtitle").attr('placeholder', 'Add your subtitle here');
-          } else {
-            dataTemp.data.subTitle = 'Your subtitle';
-          }
-          // 3. Number
           if (d3.select("#number").node().value != "") {
             dataTemp.data.data = [d3.select("#number").node().value];
             d3.select("#number").attr('placeholder', '25');
@@ -290,39 +310,91 @@
             addDefaultData(visType);
           }
 
-          // Redraw the new viz
-          d3.select('.viz-container-inner svg').remove();
-          var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container-inner'));
-          vis.init();
-          vis.start();
+          redrawViz()
         }
+
+        function updateTableDataTitle(x) {
+          var dataPosition = d3.select(x).attr("class");
+          var dataValue = d3.select(x).node().value;
+          dataTemp.data.data[dataPosition][0] = dataValue || d3.select(x).attr('placeholder');
+          redrawViz()
+        }
+
+        function updateTableData(x) {
+          var dataPosition = d3.select(x).attr("class");
+          var dataValue = d3.select(x).node().value;
+          dataTemp.data.data[dataPosition][1] = dataValue || d3.select(x).attr('placeholder');
+          redrawViz()
+        }
+
+        function updateTitle() {
+
+          // Handle empty input fields with placeholder values:
+          // 1. Title
+          dataTemp.data.title = d3.select("#title").node().value || 'Your title';
+          d3.select("#title").attr('placeholder', 'Add your title here');
+          d3.select("#title-main").text(dataTemp.data.title)
+
+          // 2. Subtitle
+          dataTemp.data.subTitle = d3.select("#subtitle").node().value || 'Your subtitle';
+          d3.select("#subtitle").attr('placeholder', 'Add your subtitle here');
+          d3.select("#title-sub").text(dataTemp.data.subTitle)
+
+
+          dataTemp.data.source = d3.select("#source-input").node().value || 'Your source';
+          d3.select("#source-input").attr('placeholder', 'Add your source here');
+          d3.select("#source").text("Source: " + dataTemp.data.source)
+
+          // Redraw the new viz
+          // redrawViz()
+        }
+
       };
 
-      module.types['table'] = function (bubble, options, callback) {
-        bubble.style('background-color', '#fff');
-        bubble.attr('class', 'cb-bubble-table');
-        var rows = options.rows;
-        var columns = options.columns;
-        var selectables = options.selectables;
+      // module.types['table'] = function (bubble, options, callback) {
+      //   // bubble.style('background-color', '#fff');
+      //   // bubble.attr('class', 'cb-bubble-table');
+      //   // var rows = options.rows;
+      //   // var columns = options.columns;
+      //   // var selectables = options.selectables;
 
-        var tableHead = bubble.append('div').attr('class', 'table-head');
-        var heading = tableHead.append('div').attr('class', 'heading').text('Add your data');
-        var subheading = tableHead.append('div').attr('class', 'subheading').text('Input your data and add or remove columns/rows');
+      //   // var tableHead = bubble.append('div').attr('class', 'table-head');
+      //   // var heading = tableHead.append('div').attr('class', 'heading').text('Add your data');
+      //   // var subheading = tableHead.append('div').attr('class', 'subheading').text('Input your data and add or remove columns/rows');
 
-        var table = bubble.append('table').append('tbody');
-        var tableRow = table.selectAll('.tr')
-          .data(rows).enter().append('tr');
-        var tableColumn = tableRow.selectAll('.td')
-          .data(columns).enter().append('td').append('input').attr('placeholder', '25%');
+      //   bubble.style('background-color', '#fff');
+      //   bubble.attr('class', 'cb-bubble-input');
+      //   var rows = options.rows;
+      //   var columns = options.columns;
+      //   var selectables = options.selectables;
 
-        var tableFoot = bubble.append('div').attr('class', 'table-foot');
-        var selector = tableFoot.append('div').attr('class', 'selector');
-        var label = selector.append('label').attr('for', 'dropdown').text('Select icon');
-        var dropdown = selector.append('select').attr('class', 'dropdown');
-        dropdown.selectAll('option').data(selectables).enter().append('option')
-          .text(function (d) { return d });
-        var deleteData = tableFoot.append('div').attr('class', 'delete').text('Delete data');
-      };
+      //   var titleWrapper = bubble.append('div').classed('title', true);
+      //   titleWrapper.append('input').attr('id', 'title')
+      //     .attr('placeholder', 'Add your title here')
+      //     .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
+      //   var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
+
+      //   var subtitleWrapper = bubble.append('div').classed('subtitle', true);
+      //   subtitleWrapper.append('input').attr('id', 'subtitle')
+      //     .attr('placeholder', 'Add your subtitle here')
+      //     .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
+      //   var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
+
+      //   var table = bubble.append('table').append('tbody');
+      //   var tableRow = table.selectAll('.tr')
+      //     .data(rows).enter().append('tr');
+      //   var tableColumn = tableRow.selectAll('.td')
+      //     .data(columns).enter().append('td').append('input').attr('placeholder', '25%');
+
+      //   // var tableFoot = bubble.append('div').attr('class', 'table-foot');
+      //   // var selector = tableFoot.append('div').attr('class', 'selector');
+      //   // var label = selector.append('label').attr('for', 'dropdown').text('Select icon');
+      //   // var dropdown = selector.append('select').attr('class', 'dropdown');
+      //   // dropdown.selectAll('option').data(selectables).enter().append('option')
+      //   //   .text(function (d) { return d });
+      //   // var deleteData = tableFoot.append('div').attr('class', 'delete').text('Delete data');
+      // };
+
 
       // module.types['waiting'] = function (bubble, options, callback) {
       //   //no callback -> this bubble should be removed before adding the next
@@ -700,7 +772,8 @@
 
               setTimeout(function () {
 
-                cb.addBubble({ type: 'input', rows: [1, 2, 3], columns: [1, 2, 3], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
+                cb.addBubble({ type: 'input', class: 'human' });
+                // cb.addBubble({ type: 'table', rows: [1, 2], columns: [1, 2, 3, 4, 5, 6], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
 
 
                 cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, onDataSubmitted);
