@@ -71,7 +71,7 @@
         "title": "Mosaic"
       },
       "style": {
-        "font": "DecimaMonoProBold",
+        "font": "Poppins",
         "fontLables": "InterfaceRegular",
         // "font": "Futura",
         "color": {
@@ -113,7 +113,7 @@
     //     "title":"Column Chart"
     //   },
     //   "style": {
-    //     "font": "DecimaMonoProBold",
+    //     "font": "Poppins",
     //     "color": {
     //       "main": "#71609B",
     //       "second": "#D8D8D8",
@@ -458,7 +458,7 @@
           switch (theme) {
             case "saturn":
               dataTemp.style.color.main = 'rgba(113, 96, 155, 1)';
-              dataTemp.style.font = 'DecimaMonoProBold';
+              dataTemp.style.font = 'Poppins';
               break;
             case "mars":
               dataTemp.style.color.main = '#FE9592';
@@ -877,7 +877,7 @@
                 if (jResponse.status == 2) {
                   clearInterval(inter);
 
-                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);" href="http://localhost:8000/download.html">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="'+window.location.href+'download.html#'+rawData.response +'">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
                   cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
                   cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
                 }

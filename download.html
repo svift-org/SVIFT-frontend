@@ -22,9 +22,15 @@
 
         var icons = ['png', 'svg', 'gif', 'video', 'html'];
 
+        var loactionHash = window.location.hash;
+        var datalink =  loactionHash.replace("#","");
+        console.log(datalink)
+
         var ctBody = container.append('div').attr('class', 'ct-body');
         ctBody.selectAll('.dl-icon').data(icons).enter()
             .append('div').classed('dl-icon', true)
+            .append('a')
+            .attr('href',function (d) { return 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + datalink + "/" +datalink + "." + d })
             .append('img')
             .attr('src', function (d) { return 'assets/img/download-icons/' + d + '.svg' })
             .attr('class', 'dl-img')
