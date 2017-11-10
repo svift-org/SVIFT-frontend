@@ -28,7 +28,7 @@ function buildFile(vi){
     name = ''
   base.forEach(function(b){
     if(b.indexOf('svift-vis')>=0){
-      style += fs.readFileSync(__dirname + '/node_modules/svift-vis/style.scss', 'utf8')
+      style += fs.readFileSync('./node_modules/svift-vis/style.scss', 'utf8')
     }
     files.push(b)
   })
