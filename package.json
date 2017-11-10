@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "jshint index.js",
+    "prebuild": "npm run lint",
     "build": "node build.js",
     "update": "npm update && npm run build",
     "postinstall": "npm run build"
@@ -15,6 +16,11 @@
     "url": "git+https://git@github.com/svift-org/svift-frontend.git"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
+    "fs-extra": "^4.0.2",
+    "jshint": "^2.9.5",
+    "node-sass": "^4.6.0",
+    "uglify-js2": "^2.1.11",
     "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
     "svift-vis": "git+https://git@github.com/svift-org/vis-module.git",
     "svift-vis-columns": "git+https://git@github.com/svift-org/vis-columns-module.git",
@@ -26,10 +32,5 @@
   "license": "MIT",
   "homepage": "https://github.com/svift-org/svift-frontend#readme",
   "devDependencies": {
-    "fs": "0.0.1-security",
-    "fs-extra": "^4.0.2",
-    "jshint": "^2.9.5",
-    "node-sass": "^4.6.0",
-    "uglify-js2": "^2.1.11"
   }
 }
