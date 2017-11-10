@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "jshint index.js",
-    "prebuild": "npm run lint",
     "build": "node build.js",
     "update": "npm update && npm run build",
     "postinstall": "npm run build"
