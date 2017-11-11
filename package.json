@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Main frontend file for merging all frontend files",
   "main": "index.js",
-  "engines": {
-    "node": "7.9.0"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "jshint index.js",
