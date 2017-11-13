@@ -3,7 +3,7 @@
 </html>
 
 <head>
-  <title>svift demo</title>
+  <title>svift_v1</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="styles/app/normalize.css">
   <link rel="stylesheet" href="styles/app/app.css">
@@ -41,7 +41,7 @@
       </ul>
     </div> -->
       <div class="inner">
-        <img class="img-logo" src="assets/img/wordmark-white.svg" alt="Svift Logo">
+        <img class="img-logo" src="assets/img/wordmark-white.png" alt="Svift Logo">
         <h1>Simply make your numbers look good</h1>
         <div class="claim">
           <em>svift</em> is an open source tool to turn your numbers into beautiful charts - in no time.
@@ -255,7 +255,7 @@
         if (visType == "columns" || visType == "gooey") {
 
           var columns = dataTemp.data.data;
-          var tableWrapper = bubble.append('div').attr("class","table-wrapper");
+          var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
 
           var table = tableWrapper.append('table').append('tbody');
 
@@ -277,30 +277,30 @@
 
           var editRow = tableWrapper.append('div').classed('row-editor-wrapper', true);
           editRow.append('div').classed('row-editor-add', true)
-            .on('click', function (d) {addRow(d);});
+            .on('click', function (d) { addRow(d); });
           editRow.append('div').classed('row-editor-remove', true)
-            .on('click', function (d) {removeRow(d);});
+            .on('click', function (d) { removeRow(d); });
 
 
           function addRow() {
-          
-          var lastEntry = dataTemp.data.data[dataTemp.data.data.length-1];
-          dataTemp.data.data.push([lastEntry[0]+"b",lastEntry[1]])
+
+            var lastEntry = dataTemp.data.data[dataTemp.data.data.length - 1];
+            dataTemp.data.data.push([lastEntry[0] + "b", lastEntry[1]])
 
 
-          tableRowTitle.selectAll('td')
-            .data(columns).enter().append('td')
-            .append('input')
-            .attr('placeholder', function (d) { return d[0] })
-            .attr("class", function (d, i) { return i })
-            .on('input', SVIFT.helper.debouncer(function (e) { updateTableDataTitle(this) }, 500));
+            tableRowTitle.selectAll('td')
+              .data(columns).enter().append('td')
+              .append('input')
+              .attr('placeholder', function (d) { return d[0] })
+              .attr("class", function (d, i) { return i })
+              .on('input', SVIFT.helper.debouncer(function (e) { updateTableDataTitle(this) }, 500));
 
-          tableRowNumbers.selectAll('td')
-            .data(dataTemp.data.data).enter()
-            .append('td').append('input')
-            .attr('placeholder', function (d) { return d[1] })
-            .attr("class", function (d, i) { return i })
-            .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
+            tableRowNumbers.selectAll('td')
+              .data(dataTemp.data.data).enter()
+              .append('td').append('input')
+              .attr('placeholder', function (d) { return d[1] })
+              .attr("class", function (d, i) { return i })
+              .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
 
             redrawViz(dataTemp)
           }
@@ -391,9 +391,9 @@
           d3.select("#title-sub").text(dataTemp.data.subTitle)
 
           // Source
-          if (d3.select("#source-input").node().value ){
+          if (d3.select("#source-input").node().value) {
             dataTemp.data.source = "Source: " + d3.select("#source-input").node().value;
-          }else{
+          } else {
             dataTemp.data.source = "Source: Your source";
           }
           d3.select("#source-input").attr('placeholder', 'Add your source here');
@@ -880,7 +880,7 @@
 
         cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile', delay: 500 });
 
-        console.log( JSON.stringify(dataTemp));
+        console.log(JSON.stringify(dataTemp));
 
         d3.request('https://svift-backend.herokuapp.com/render')
           .header("Content-Type", "application/json")
@@ -932,7 +932,7 @@
                 if (jResponse.status == 2) {
                   clearInterval(inter);
 
-                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="'+'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/'+rawData.response+'/'+rawData.response+'.gif'+'">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + '.gif' + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
                   cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
                   cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
                 }

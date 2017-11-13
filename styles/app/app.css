@@ -142,9 +142,6 @@ html, body {
         border-bottom: 3px solid #fff; }
     .app #gui-1 div.inner {
       padding: 7.5% 10%; }
-      .app #gui-1 div.inner .img-logo {
-        width: 120px;
-        height: auto; }
       .app #gui-1 div.inner h1 {
         margin: 10% 0 5% 0;
         font-family: "DecimaMonoProBold", monospace;
