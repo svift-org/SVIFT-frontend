@@ -14,6 +14,10 @@
 - Chatbot as own library
 - Chatbot structure and navigation
 - How to embed chroma.js (Hans) > do we really need chroma? (Seb)
+- send animation length to backend
+- add pause to gif if loop
+
+
 
 - Make sharable, fully functional prototype for user testing (until 15 Nov)
     - Make all 4 chart types in overview functional
@@ -41,7 +45,8 @@
 - Check GNI
 - preview diffrent chart sizes (e.g. twitter, facebook)
 - add feedback
-- Fix bug in barchart module
+- send viz size to server
+- add logic to table input
 
 ## Future:
 - Show tooltips on charts

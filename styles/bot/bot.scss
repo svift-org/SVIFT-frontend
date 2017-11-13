@@ -251,13 +251,52 @@
     border-radius: 4px;
     margin-top: 20px;
 
-    table {
-        border-spacing: 0;
+    .table-wrapper{
+        overflow-y:hidden;
+        display: flex;
 
-        td:first-of-type {
-            padding-left: 0;
+        .row-editor-wrapper {
+            flex: 1;
+            display: flex;
+            margin-top: 30px;
+            margin-left: 10px;
+
+            .row-editor-add{
+                // flex: 1;
+                height: 30px;
+                width: 30px;
+                background-color: #EEEEEE;
+                border-radius: 40px;
+
+            }
+
+            .row-editor-remove{
+                // flex: 1;
+                height: 30px;
+                width: 30px;
+                background-color: #EEEEEE;
+                border-radius: 40px;
+                margin-left: 5px;
+            }
+
+        }
+
+
+        table {
+            flex: 4;
+            border-spacing: 0;
+
+            td:first-of-type {
+                padding-left: 0;
+            }
+
+            td{
+                min-width: 50px;
+            }
         }
     }
+
+
 
     // border: 3px solid #72f5bf;
 
