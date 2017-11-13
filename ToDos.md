@@ -12,6 +12,8 @@
 - Accessibility Module
 
 ## Alsino
+- Style table editor
+- Add dynamic text for viz thumbnails
 - Make frontend responsive
 - Add menu (Imprint, info, AGBs, etc.)
 
