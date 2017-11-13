@@ -881,7 +881,7 @@
                 if (jResponse.status == 2) {
                   clearInterval(inter);
 
-                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="'+window.location.href+'download.html#'+rawData.response +'">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="'+'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/'+rawData.response+'/'+rawData.response+'.gif'+'">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
                   cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
                   cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
                 }
