@@ -25,13 +25,14 @@ html, body {
     color: $white;
     overflow: hidden;
 
-    .gui {}
-
     #gui-1 {
         flex: 1;
         display: flex;
         padding: $padding-big 0;
-        background-color: $svift-primary;
+        background: #5C258D; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
         line-height: $line-height-default;
 
         nav {
@@ -53,11 +54,6 @@ html, body {
         div.inner {
             padding: ($padding-big * 1.5) ($padding-big * 2);
 
-            // .img-logo {
-            //     width: 120px;
-            //     height: auto;
-            // }
-
             h1 {
                 // padding: $padding-big 0;
                 margin: ($padding-big * 2) 0 $padding-big 0;
@@ -76,10 +72,7 @@ html, body {
             .img-intro {
                 // padding: $padding-big 0;
                 // text-align: center;
-
-                img {
-                    width: 100%;
-                }
+           
             }
         }
 
