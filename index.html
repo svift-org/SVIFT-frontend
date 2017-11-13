@@ -96,7 +96,7 @@
 
     function addDefaultData(d) {
       if (d == "columns" || d == "gooey") {
-        dataTemp.data.data = [["A", 33], ["B", 20.5], ["C", 12.6], ["D", 10.7], ["E", 9.2]]
+        dataTemp.data.data = [["A", 33], ["B", 20], ["C", 120], ["D", 6], ["E",22]]
       }
       else {
         dataTemp.data.data = [25];
@@ -290,6 +290,7 @@
 
 
         function redrawViz() {
+          console.log(dataTemp)
           d3.select('.viz-container-inner svg').remove();
           var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container-inner'));
           vis.init();
@@ -303,7 +304,7 @@
           }
 
           if (d3.select("#number").node().value != "") {
-            dataTemp.data.data = [d3.select("#number").node().value];
+            dataTemp.data.data = [Number(d3.select("#number").node().value)];
             d3.select("#number").attr('placeholder', '25');
           } else {
             addDefaultData(visType);
@@ -314,14 +315,14 @@
 
         function updateTableDataTitle(x) {
           var dataPosition = d3.select(x).attr("class");
-          var dataValue = d3.select(x).node().value;
+          var dataValue = Number(d3.select(x).node().value);
           dataTemp.data.data[dataPosition][0] = dataValue || d3.select(x).attr('placeholder');
           redrawViz()
         }
 
         function updateTableData(x) {
           var dataPosition = d3.select(x).attr("class");
-          var dataValue = d3.select(x).node().value;
+          var dataValue = Number(d3.select(x).node().value);
           dataTemp.data.data[dataPosition][1] = dataValue || d3.select(x).attr('placeholder');
           redrawViz()
         }

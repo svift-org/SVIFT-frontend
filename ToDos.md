@@ -36,11 +36,12 @@
 
 ## Hans
 - Fix bug in count module -> single digit does not work
-- How to embed chroma.js (Hans) > do we really need chroma? (Seb)
 - Chatbot as own library
 - Chatbot structure and navigation
 - Check GNI
-
+- preview diffrent chart sizes (e.g. twitter, facebook)
+- add feedback
+- Fix bug in barchart module
 
 ## Future:
 - Show tooltips on charts
