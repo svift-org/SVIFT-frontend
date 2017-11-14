@@ -343,8 +343,8 @@
 
 
         function redrawViz(xxx) {
-          d3.select('.viz-container-inner svg').remove();
-          var vis = SVIFT.vis[visType](xxx, d3.select('.viz-container-inner'));
+          d3.select('.viz-container svg').remove();
+          var vis = SVIFT.vis[visType](xxx, d3.select('.viz-container'));
           vis.init();
           vis.start();
         }
@@ -529,8 +529,8 @@
               dataTemp.style.color.main = 'rgba(113, 96, 155, 1)';
           };
 
-          d3.select('.viz-container-inner svg').remove();
-          var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container-inner'));
+          d3.select('.viz-container svg').remove();
+          var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
           vis.init();
           vis.start();
         };
@@ -858,13 +858,13 @@
           .attr('class', 'viz-container').style('opacity', 0).transition().style('opacity', 1);
 
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
-        d3.select('.viz-container').append('div').attr('class', 'viz-container-inner');
+        // d3.select('.viz-container').append('div').attr('class', 'viz-container-inner');
 
         overlay.append('a').attr('class', 'btn-back').attr("href", '#').html('&#8592; Select different chart type');
 
         var container = d3.select('.viz-container');
 
-        var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container-inner'));
+        var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
         vis.init();
         vis.start();
 
@@ -874,8 +874,8 @@
         //   vis.start();
         // })
 
-        //Add viz sizes
-        var vizSizes = [["twitter",100,100],["facebook",200,100],["instagram",500,600],["other",200,200]];
+        //Change viz sizes
+        var vizSizes = [["twitter",500,500],["facebook",400,200],["instagram",500,300],["other",400,400]];
         overlay.append("div").attr("class","viz-sizes-wrapper").selectAll('.viz-sizes')
             .data(vizSizes).enter().append('div')
             .attr('placeholder', function (d) { return d[0] })
@@ -884,9 +884,14 @@
             .on('click', function (d) {resizeViz(d)});
 
         function resizeViz(d){
-          d3.select(".viz-container-inner")
+          d3.select(".viz-container")
             .style("width",d[1]+"px" )
             .style("height",d[2]+"px")
+
+          d3.select('.viz-container svg').remove();
+          var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
+          vis.init();
+          vis.start();
         }
 
       }
