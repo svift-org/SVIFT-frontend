@@ -284,14 +284,16 @@
 
           function addRow() {
 
+            var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
             var lastEntry = dataTemp.data.data[dataTemp.data.data.length - 1];
-            dataTemp.data.data.push([lastEntry[0] + "b", lastEntry[1]])
+            dataTemp.data.data.push([alphabet[dataTemp.data.data.length], lastEntry[1]])
 
 
             tableRowTitle.selectAll('td')
               .data(columns).enter().append('td')
               .append('input')
-              .attr('placeholder', function (d) { return d[0] })
+              .attr('placeholder', function (d, i) { return alphabet[i]})
               .attr("class", function (d, i) { return i })
               .on('input', SVIFT.helper.debouncer(function (e) { updateTableDataTitle(this) }, 500));
 
@@ -871,6 +873,21 @@
         //   vis.init();
         //   vis.start();
         // })
+
+        //Add viz sizes
+        var vizSizes = [["twitter",100,100],["facebook",200,100],["instagram",500,600],["other",200,200]];
+        overlay.append("div").attr("class","viz-sizes-wrapper").selectAll('.viz-sizes')
+            .data(vizSizes).enter().append('div')
+            .attr('placeholder', function (d) { return d[0] })
+            .attr("class", "viz-sizes")
+            .html(function (d) { return d[0] })
+            .on('click', function (d) {resizeViz(d)});
+
+        function resizeViz(d){
+          d3.select(".viz-container-inner")
+            .style("width",d[1]+"px" )
+            .style("height",d[2]+"px")
+        }
 
       }
 

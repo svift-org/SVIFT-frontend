@@ -18,13 +18,11 @@
 - Add menu (Imprint, info, AGBs, etc.)
 
 ## Hans
-- Fix bug in count module -> single digit does not work
 - Chatbot as own library
 - Chatbot structure and navigation
 - preview diffrent chart sizes (e.g. twitter, facebook)
 - add feedback
 - send viz size to server
-- add logic to table input
 
 ## Future:
 - Show tooltips on charts
