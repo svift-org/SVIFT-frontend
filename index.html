@@ -342,9 +342,9 @@
         var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
 
-        function redrawViz(xxx) {
+        function redrawViz(data) {
           d3.select('.viz-container svg').remove();
-          var vis = SVIFT.vis[visType](xxx, d3.select('.viz-container'));
+          var vis = SVIFT.vis[visType](data, d3.select('.viz-container'));
           vis.init();
           vis.start();
         }
@@ -538,7 +538,7 @@
 
       module.types['download'] = function (bubble, options, callback) {
 
-        var icons = ['png', 'svg', 'gif', 'mpeg', 'html'];
+        var icons = ['png', 'svg', 'gif', 'mp4', 'html'];
         var downloadWrapper = bubble.append('div')
           .attr('class', 'cb-download-wrapper');
 
@@ -552,10 +552,11 @@
           .startAngle(0)
         // .cornerRadius(50);
 
-        var group = downloadWrapper.selectAll('div').data(icons).enter()
-          .append('div')
+        var group = downloadWrapper.selectAll('a').data(icons).enter()
+          .append('a')
           // .html(function (d) {return '<span>'+d+'</span>'})
           // .attr('class','download-text')
+          .attr('target','"_blank"')
           .append('svg')
           .attr('class', function (d) { return 'download-thumb download-thumb-' + d + ' radial' })
           .on('click', function (d) {
@@ -888,10 +889,21 @@
             .style("width",d[1]+"px" )
             .style("height",d[2]+"px")
 
-          d3.select('.viz-container svg').remove();
-          var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
-          vis.init();
-          vis.start();
+          
+
+          setTimeout(function(){ 
+
+
+            // window.dispatchEvent(new Event('resize'));
+
+            d3.select('.viz-container svg').remove();
+            var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
+            vis.init();
+            vis.start();
+
+          }, 1500);
+
+
         }
 
       }
@@ -947,14 +959,20 @@
                     };
                   }
 
+                  if(jResponse.full[type]==1){
+
+                    var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
+                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type );
+                  }
+
                 }
 
-
+                //https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + '.gif
 
                 if (jResponse.status == 2) {
                   clearInterval(inter);
 
-                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + '.gif' + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
                   cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
                   cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
                 }

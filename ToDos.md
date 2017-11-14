@@ -23,6 +23,7 @@
 - preview diffrent chart sizes (e.g. twitter, facebook)
 - add feedback
 - send viz size to server
+- download stuff directly from frontend
 
 ## Future:
 - Show tooltips on charts
