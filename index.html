@@ -275,10 +275,10 @@
             .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
 
 
-          var editRow = tableWrapper.append('div').classed('row-editor-wrapper', true);
-          editRow.append('div').classed('row-editor-add', true)
+          var editRow = tableWrapper.append('div').classed('column-editor-wrapper', true);
+          editRow.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
             .on('click', function (d) { addRow(d); });
-          editRow.append('div').classed('row-editor-remove', true)
+          editRow.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–')
             .on('click', function (d) { removeRow(d); });
 
 
