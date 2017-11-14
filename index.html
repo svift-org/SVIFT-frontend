@@ -275,10 +275,10 @@
             .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
 
 
-          var editRow = tableWrapper.append('div').classed('row-editor-wrapper', true);
-          editRow.append('div').classed('row-editor-add', true)
+          var editRow = tableWrapper.append('div').classed('column-editor-wrapper', true);
+          editRow.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
             .on('click', function (d) { addRow(d); });
-          editRow.append('div').classed('row-editor-remove', true)
+          editRow.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–')
             .on('click', function (d) { removeRow(d); });
 
 
@@ -384,12 +384,12 @@
           // Handle empty input fields with placeholder values:
           // 1. Title
           dataTemp.data.title = d3.select("#title").node().value || 'Your title';
-          d3.select("#title").attr('placeholder', 'Add your title here');
+          d3.select("#title").attr('placeholder', ' Add your title here');
           d3.select("#title-main").text(dataTemp.data.title)
 
           // 2. Subtitle
           dataTemp.data.subTitle = d3.select("#subtitle").node().value || 'Your subtitle';
-          d3.select("#subtitle").attr('placeholder', 'Add your subtitle here');
+          d3.select("#subtitle").attr('placeholder', ' Add your subtitle here');
           d3.select("#title-sub").text(dataTemp.data.subTitle)
 
           // Source
