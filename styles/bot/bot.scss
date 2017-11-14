@@ -350,12 +350,11 @@
         display: flex;
 
         input {
-            flex: 4;
+            flex: 3.8;
             color: $svift-primary;
             font-size: 1.2em;
             background-color: $table-background;
             padding-top: 12px;
-            padding: 10px 0;
 
             &::placeholder {
                 color: $svift-human;
@@ -376,11 +375,10 @@
         display: flex;
 
         input {
-            flex: 4;
+            flex: 3.8;
             color: $text-subheading;
             font-size: 1em;
             background-color: $table-background;
-            padding: 10px 0;
 
             &::placeholder {
                 color: $text-subheading;

@@ -367,12 +367,11 @@
   .cb-bubble-input .title {
     display: flex; }
     .cb-bubble-input .title input {
-      flex: 4;
+      flex: 3.8;
       color: #71609b;
       font-size: 1.2em;
       background-color: #eeeeee;
-      padding-top: 12px;
-      padding: 10px 0; }
+      padding-top: 12px; }
       .cb-bubble-input .title input::placeholder {
         color: #75FABF;
         font-size: 1.2em; }
@@ -385,11 +384,10 @@
   .cb-bubble-input .subtitle {
     display: flex; }
     .cb-bubble-input .subtitle input {
-      flex: 4;
+      flex: 3.8;
       color: #9a9a9a;
       font-size: 1em;
-      background-color: #eeeeee;
-      padding: 10px 0; }
+      background-color: #eeeeee; }
       .cb-bubble-input .subtitle input::placeholder {
         color: #9a9a9a;
         font-size: 1em; }
