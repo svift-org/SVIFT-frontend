@@ -309,6 +309,7 @@
             border-spacing: 0;
             overflow-x: auto;
             flex: 4;
+            margin: 15px 0;
 
             td:first-of-type {
                 padding-left: 0;
@@ -327,6 +328,7 @@
         font-family: $font-family-mono;
         padding: 10px 10px;
         color: $text-bot;
+        margin: 3px 0;
 
         // margin: ($margin-small / 3) ($margin-small / 3) ($margin-small / 3) 0;
         border-style: none;
@@ -353,6 +355,7 @@
             font-size: 1.2em;
             background-color: $table-background;
             padding-top: 12px;
+            padding: 10px 0;
 
             &::placeholder {
                 color: $svift-human;
@@ -377,6 +380,7 @@
             color: $text-subheading;
             font-size: 1em;
             background-color: $table-background;
+            padding: 10px 0;
 
             &::placeholder {
                 color: $text-subheading;
