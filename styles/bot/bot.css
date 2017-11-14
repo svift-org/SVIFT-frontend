@@ -363,7 +363,8 @@
     .cb-bubble-input input:focus {
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
     .cb-bubble-input input::placeholder {
-      font-family: "DecimaMonoProBold", monospace; }
+      font-family: "DecimaMonoProBold", monospace;
+      color: #9a9a9a; }
   .cb-bubble-input .title {
     display: flex; }
     .cb-bubble-input .title input {
@@ -379,7 +380,6 @@
       flex: 1;
       cursor: pointer;
       width: 30px;
-      height: 30px;
       background: url("../../assets/img/icon-toggle-off.svg") center center no-repeat; }
   .cb-bubble-input .subtitle {
     display: flex; }
@@ -395,7 +395,6 @@
       flex: 1;
       cursor: pointer;
       width: 30px;
-      height: 30px;
       background: url("../../assets/img/icon-toggle-off.svg") center center no-repeat; }
   .cb-bubble-input .number {
     position: relative;

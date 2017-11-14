@@ -293,7 +293,7 @@
             tableRowTitle.selectAll('td')
               .data(columns).enter().append('td')
               .append('input')
-              .attr('placeholder', function (d, i) { return alphabet[i]})
+              .attr('placeholder', function (d, i) { return alphabet[i] })
               .attr("class", function (d, i) { return i })
               .on('input', SVIFT.helper.debouncer(function (e) { updateTableDataTitle(this) }, 500));
 
@@ -556,7 +556,7 @@
           .append('a')
           // .html(function (d) {return '<span>'+d+'</span>'})
           // .attr('class','download-text')
-          .attr('target','"_blank"')
+          .attr('target', '"_blank"')
           .append('svg')
           .attr('class', function (d) { return 'download-thumb download-thumb-' + d + ' radial' })
           .on('click', function (d) {
@@ -861,6 +861,38 @@
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
         // d3.select('.viz-container').append('div').attr('class', 'viz-container-inner');
 
+        //Change viz sizes
+        var vizSizes = [["twitter", 500, 500], ["facebook", 400, 500], ["instagram", 500, 300], ["snapchat", 400, 400]];
+        var vizSizesWrapper = overlay.append("div").attr("class", "viz-sizes-wrapper");
+        var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your preferred format:');
+        var vizSizesBody = vizSizesWrapper.append('div').classed('viz-sizes-body', true);
+
+        vizSizesBody.selectAll('.viz-sizes')
+          .data(vizSizes).enter().append('div')
+          .attr("class", "viz-sizes")
+          .attr('id', function (d) { return d[0] })
+          .html(function (d) { return d[0] })
+          .on('click', function (d) { resizeViz(d) });
+
+
+
+        function resizeViz(d) {
+          d3.select(".viz-container")
+            .style("width", d[1] + "px")
+            .style("height", d[2] + "px")
+
+
+          d3.select('.viz-container svg').remove();
+          setTimeout(function () {
+            // window.dispatchEvent(new Event('resize'));
+
+            var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
+            vis.init();
+            vis.start();
+
+          }, 800);
+        }
+
         overlay.append('a').attr('class', 'btn-back').attr("href", '#').html('&#8592; Select different chart type');
 
         var container = d3.select('.viz-container');
@@ -869,42 +901,13 @@
         vis.init();
         vis.start();
 
+
+
         // d3.json('build/data/data.json', function (err, data) {
         //   var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container-inner'));
         //   vis.init();
         //   vis.start();
         // })
-
-        //Change viz sizes
-        var vizSizes = [["twitter",500,500],["facebook",400,200],["instagram",500,300],["other",400,400]];
-        overlay.append("div").attr("class","viz-sizes-wrapper").selectAll('.viz-sizes')
-            .data(vizSizes).enter().append('div')
-            .attr('placeholder', function (d) { return d[0] })
-            .attr("class", "viz-sizes")
-            .html(function (d) { return d[0] })
-            .on('click', function (d) {resizeViz(d)});
-
-        function resizeViz(d){
-          d3.select(".viz-container")
-            .style("width",d[1]+"px" )
-            .style("height",d[2]+"px")
-
-          
-
-          setTimeout(function(){ 
-
-
-            // window.dispatchEvent(new Event('resize'));
-
-            d3.select('.viz-container svg').remove();
-            var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
-            vis.init();
-            vis.start();
-
-          }, 1500);
-
-
-        }
 
       }
 
@@ -959,10 +962,10 @@
                     };
                   }
 
-                  if(jResponse.full[type]==1){
+                  if (jResponse.full[type] == 1) {
 
                     var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
-                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type );
+                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
                   }
 
                 }

@@ -343,6 +343,7 @@
 
         &::placeholder {
             font-family: $font-family-mono;
+            color: $text-subheading;
         }
     }
 
@@ -366,7 +367,6 @@
             flex: 1;
             cursor: pointer;
             width: 30px;
-            height: 30px;
             background: url("../../assets/img/icon-toggle-off.svg") center center no-repeat;
         }
     }
@@ -390,7 +390,6 @@
             flex: 1;
             cursor: pointer;
             width: 30px;
-            height: 30px;
             background: url("../../assets/img/icon-toggle-off.svg") center center no-repeat;
         }
     }
