@@ -301,6 +301,20 @@
                     background-color: $svift-delete;
                     color: $white;
                 }
+
+            }
+
+            .disabled{
+
+                background-color: #ddd;
+                color: $white;
+                border-color: #fff;
+
+                &:hover {
+                    background-color: #ddd;
+                    color: $white;
+                }
+
             }
         }
 
@@ -590,4 +604,8 @@
     //     text-align: center;
     //     margin-top: 40px;
     // }
+}
+
+.disabled{
+    background-color: red;
 }

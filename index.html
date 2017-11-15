@@ -70,6 +70,7 @@
         "type": "mosaic",
         "title": "Mosaic"
       },
+      "size":[100,100],
       "style": {
         "font": "Poppins",
         "fontLables": "InterfaceRegular",
@@ -90,7 +91,6 @@
         "subTitle": "Your subtitle",
         "attribution": "made with svift",
         "source": "Source: Your source"
-
       }
     }
 
@@ -278,11 +278,15 @@
           var editRow = tableWrapper.append('div').classed('column-editor-wrapper', true);
           editRow.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
             .on('click', function (d) { addRow(d); });
-          editRow.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–')
+          editRow.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–').classed('disabled', true)
             .on('click', function (d) { removeRow(d); });
 
 
           function addRow() {
+
+            if(dataTemp.data.data.length>=2){
+              d3.select(".column-editor-btn.btn-remove").classed('disabled', false)
+            }
 
             var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -308,6 +312,13 @@
           }
 
           function removeRow() {
+
+            if(dataTemp.data.data.length==2){
+              return
+            }
+            if(dataTemp.data.data.length==3){
+              d3.select(".column-editor-btn.btn-remove").classed('disabled', true)
+            }
 
             dataTemp.data.data.pop();
 
@@ -809,7 +820,7 @@
 
           setTimeout(function () {
             // setTimeout(function () {
-            cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human' }, onFinish);
+            cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human send' }, onFinish);
             // }, delay)
             // cb.addBubble({ type: 'text', value: 'Perfect! Let me know when you have finished!', class: 'bot' });
           }, 500)
@@ -859,7 +870,18 @@
           .attr('class', 'viz-container').style('opacity', 0).transition().style('opacity', 1);
 
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
-        // d3.select('.viz-container').append('div').attr('class', 'viz-container-inner');
+
+
+        overlay.append('a')
+          .attr('class', 'btn-back')
+          .attr("href", '#')
+          .html('&#8592; Select different chart type')
+          .on('click', function (d) { 
+            d3.select('.viz-container').remove();
+            onEntry();
+            createThumbs();
+          });
+
 
         //Change viz sizes
         var vizSizes = [["twitter", 500, 500], ["facebook", 400, 500], ["instagram", 500, 300], ["snapchat", 400, 400]];
@@ -875,11 +897,13 @@
           .on('click', function (d) { resizeViz(d) });
 
 
-
         function resizeViz(d) {
+
+          var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
+
           d3.select(".viz-container")
-            .style("width", d[1] + "px")
-            .style("height", d[2] + "px")
+            .style("width", containerWidth + "px")
+            .style("height", (containerWidth/d[1]) * d[2] + "px")
 
 
           d3.select('.viz-container svg').remove();
@@ -893,25 +917,21 @@
           }, 800);
         }
 
-        overlay.append('a').attr('class', 'btn-back').attr("href", '#').html('&#8592; Select different chart type');
-
-        var container = d3.select('.viz-container');
 
         var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
         vis.init();
         vis.start();
 
-
-
-        // d3.json('build/data/data.json', function (err, data) {
-        //   var vis = SVIFT.vis.mosaic(data, d3.select('.viz-container-inner'));
-        //   vis.init();
-        //   vis.start();
-        // })
-
       }
 
+      var requestSend = false;
       function onFinish() {
+
+        if(requestSend){return}
+        requestSend = true;
+        d3.select(".cb-bubble.human.send .cb-choice").classed('disabled', true)
+
+
         var inter = null;
         var oldAngle = 0;
 
