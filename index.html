@@ -22,7 +22,6 @@
 
 <body>
 
-
   <div class="app">
     <div id="gui-1" class="gui">
       <div id="gui-1-overlay"></div>
@@ -59,6 +58,7 @@
   <!-- <script src="libs/d3.v4.min.js"></script> -->
   <script src="build/d3.v4.min.js"></script>
   <script src="build/svift.min.js"></script>
+  <script src="build/chatbot.js"></script>
   <script type="text/javascript">
 
 
@@ -105,125 +105,100 @@
     }
 
 
-    //   var dataTemp ={
-    //   "params":{
-    //     "dev":true
-    //   },
-    //   "vis":{
-    //     "type":"columns",
-    //     "title":"Column Chart"
-    //   },
-    //   "style": {
-    //     "font": "Poppins",
-    //     "color": {
-    //       "main": "#71609B",
-    //       "second": "#D8D8D8",
-    //       "background": "#fff"
-    //     }
-    //   },
-    //   "data":{
-    //     "columns":["Text","Wert"],
-    //     "types":["string","int"],
-    //     "data":[
-    //       [2017,6],
-    //       [2016,4.1],
-    //       [2015,4.6],
-    //       [2014,3.0],
-    //       [2013,5.2],
-    //       [2099,4.5]
-    //     ],
-    //     "title": "Title here",
-    //     "subTitle": "some sub title",
-    //     "attribution": "created with svift",
-    //     "source": "source: svift team"
-    //   }
-    // }
+    var cb;
 
-    //dataTemp.style.color.main
-
-    /*
-    
-    The chatbot module should only manage the GUI, not the underlying logic, similar to the VIEW Component in an MVC setup
-    Doing so, we can release this as a standalone library, which can be used to build generic chatbots for future projects!
-    
-    */
-
-    var chatbot = (function (container) {
-      var module = {};
-
-      module.container = container;
-      module.config = null;
-      module.bubbles = [];
-      module.ID = 0;
-      module.keys = {};
-      module.types = {};
-      module.scroll = container.append('div').attr('id', 'cb-flow');
-      module.flow = module.scroll.append('div').attr('class', 'cb-inner');
-      module.input = container.append('div').attr('id', 'cb-input').style('display', 'none');
-      module.input.append('input').attr('type', 'text');
-      module.input.append('button').text('+');
-
-      module.addBubble = function (options, callback) {
-        callback = callback || function () { };
-
-        if (!(options.type in module.types)) {
-          throw 'Unknown bubble type';
-        } else {
-
-          module.ID++;
-          var id = module.ID;
-          module.bubbles.push({
-            id: id,
-            type: options.type
-            //additional info
-          });
-          module.keys[id] = module.bubbles.length - 1;
-
-          //segment container
-          var outer = module.flow.append('div')
-            .attr('class', 'cb-segment cb-' + options.class)
-            .attr('id', 'cb-segment-' + id);
-
-          //speaker icon
-          outer.append('div').attr('class', 'cb-icon');
-
-          var bubble = outer.append('div')
-            .attr('class', 'cb-bubble ' + options.class)
-            // .style("height", "50px")
-            .append('div')
-            .attr('class', 'cb-inner');
-
-
-          outer.append('hr');
-
-          module.types[options.type](bubble, options, callback);
-
-          module.scrollTo('end');
-
-          return module.ID;
-        }
-      };
-
-      //Default Bubble Types
-      //The individual types are being organised this way in order to make it as easy as possible to extend the basic types.
-      //cb.types['custom-1'] = function(bubble, options, callback){ custom_code; };
+    d3.json('./build/config.json', function (err, data) {
+      if (err) { console.log(err); }
 
       /*
-   
-     //Example for custom bubble type
-   
-     var hw = 0;
-     cb.types['hello'] = function(bubble, options, callback){
-       hw++;
-       bubble.append('p').text('Hello World ('+hw+')');
-     };
-   
-     cb.addBubble({type:'hello', class:'bot'});
-     cb.addBubble({type:'hello', class:'human'});
-   
-     */
+    
+        //data contains an array of available visualisation types:
+    
+        //the thumbnails are available under:
+        for(var key in data){
+          var src = './build/thumbs/'+key+'_thumb.png';
+          var src2 = './build/thumbs/'+key+'_thumb@2x.png';
+        }
 
-      module.types['select'] = function (bubble, options, callback) {
+    
+        //in order to load more config info on the selected vis load:
+    
+        d3.json('./build/'+key+'.json', function(err, data){
+          //This json contains title and input method, in the future we can pack more meta data into this json, which will help us automatically generate the chatbot steps, right now only the data.input is relevant (we should come up with a set of rules)
+        });
+    
+        //as we are using svift.min.js, which contains all available visualisations, we don't need to load individual vis types
+        //in order to initiate one visualisation:
+        for(var key in data){
+          var vis = SVIFT.vis[(key.split('-'))[2]](DATA_FOR_VIS, d3.select('#VIS_CONTAINER'));
+            vis.init();
+            vis.start(); 
+        }
+    
+        //After all elements are being entered, the resulting vis can be send to the backend via
+        //The structure of output is collected from the vis modules
+    
+        var output = {
+          "params":{
+            "dev":true
+          },
+          "vis":{
+            "type":"barchart",
+            "title":"Barchart"
+          },
+          "data":{
+            "columns":["Jahr","Wert"],
+            "types":["date","int"],
+            "data":[
+              [2017,3.9],
+              [2016,4.1],
+              [2015,4.6],
+              [2014,5.0],
+              [2013,5.2],
+              [2012,5.5],
+              [2011,5.9],
+              [2010,7.1],
+              [2009,7.8]
+            ]
+          }
+        };
+    
+        //The request will return an ID
+    
+        d3.xhr(URL OF SERVER)
+          .header("Content-Type", "application/json")
+          .post(
+              JSON.stringify(output),
+              function(err, rawData){
+                  var data = JSON.parse(rawData);
+                  console.log("got response", data);
+              }
+          );
+    
+        //This ID can then be used to poll the backend every 200 - milliseconds, in order to get the status of the rendering (right now this only returns an output when everything is done, this will be my (SEB) TODO for the weekend to send detailed progress information, but it will be something like this:
+    
+        //for each type the result is 0-1 (1 = done)
+    
+        var feedback = {
+          svg:0.5,
+          png:1,
+          html:1,
+          ...
+        };
+    
+        //The ID is also equivalent to the permanent (7 day) url: svift.xyz/?/ID/ (index.html) > the index.html is actually not yet there, but i (SEB) will also take care of this...
+      */
+
+
+
+
+      cb = chatbot(d3.select('#gui-2'));
+      cb.showInput();
+
+
+      /*Define the diffrent bubble types*/
+
+      cb.types['select'] = function (bubble, options, callback) {
         bubble.style('background-color', '#fff');
         bubble.selectAll('.cb-choice')
           .data(options.value).enter().append('div')
@@ -236,7 +211,8 @@
           });
       };
 
-      module.types['input'] = function (bubble, options, callback) {
+
+      cb.types['input'] = function (bubble, options, callback) {
 
         bubble.style('background-color', '#fff');
         bubble.attr('class', 'cb-bubble-input');
@@ -332,11 +308,7 @@
 
             redrawViz(dataTemp)
 
-          }
-
-
-
-          ;
+          };
         }
         else {
           var input = bubble.append('input').classed('number', true)
@@ -414,67 +386,13 @@
           d3.select("#source-input").attr('placeholder', 'Add your source here');
           d3.select("#source").text(dataTemp.data.source)
 
-          // Redraw the new viz
-          // redrawViz()
         }
 
       };
 
-      // module.types['table'] = function (bubble, options, callback) {
-      //   // bubble.style('background-color', '#fff');
-      //   // bubble.attr('class', 'cb-bubble-table');
-      //   // var rows = options.rows;
-      //   // var columns = options.columns;
-      //   // var selectables = options.selectables;
-
-      //   // var tableHead = bubble.append('div').attr('class', 'table-head');
-      //   // var heading = tableHead.append('div').attr('class', 'heading').text('Add your data');
-      //   // var subheading = tableHead.append('div').attr('class', 'subheading').text('Input your data and add or remove columns/rows');
-
-      //   bubble.style('background-color', '#fff');
-      //   bubble.attr('class', 'cb-bubble-input');
-      //   var rows = options.rows;
-      //   var columns = options.columns;
-      //   var selectables = options.selectables;
-
-      //   var titleWrapper = bubble.append('div').classed('title', true);
-      //   titleWrapper.append('input').attr('id', 'title')
-      //     .attr('placeholder', 'Add your title here')
-      //     .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
-      //   var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
-
-      //   var subtitleWrapper = bubble.append('div').classed('subtitle', true);
-      //   subtitleWrapper.append('input').attr('id', 'subtitle')
-      //     .attr('placeholder', 'Add your subtitle here')
-      //     .on('input', SVIFT.helper.debouncer(function (e) { updateData() }, 500));
-      //   var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
-
-      //   var table = bubble.append('table').append('tbody');
-      //   var tableRow = table.selectAll('.tr')
-      //     .data(rows).enter().append('tr');
-      //   var tableColumn = tableRow.selectAll('.td')
-      //     .data(columns).enter().append('td').append('input').attr('placeholder', '25%');
-
-      //   // var tableFoot = bubble.append('div').attr('class', 'table-foot');
-      //   // var selector = tableFoot.append('div').attr('class', 'selector');
-      //   // var label = selector.append('label').attr('for', 'dropdown').text('Select icon');
-      //   // var dropdown = selector.append('select').attr('class', 'dropdown');
-      //   // dropdown.selectAll('option').data(selectables).enter().append('option')
-      //   //   .text(function (d) { return d });
-      //   // var deleteData = tableFoot.append('div').attr('class', 'delete').text('Delete data');
-      // };
 
 
-      // module.types['waiting'] = function (bubble, options, callback) {
-      //   //no callback -> this bubble should be removed before adding the next
-      //   var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
-
-      //   bubble.append('div')
-      //     .attr('class', 'cb-waiting')
-      //     .html(animatedCircles);
-      // };
-
-      module.types['text'] = function (bubble, options, callback) {
+      cb.types['text'] = function (bubble, options, callback) {
 
         if (('delay' in options) && options.delay) {
           var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
@@ -492,25 +410,27 @@
           appendText(bubble, options, callback);
         }
 
-      }
 
-      function appendText(bubble, options, callback) {
-        bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
-          .style("width", "50px")
-          .html(options.value)
-          .transition()
-          .duration(200)
-          .style("width", "auto")
-          .style('opacity', 1);
+        function appendText(bubble, options, callback) {
+          bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
+            .style("width", "50px")
+            .html(options.value)
+            .transition()
+            .duration(200)
+            .style("width", "auto")
+            .style('opacity', 1);
 
-        if (options.emoji) {
-          bubble.append('img').attr('class', 'emoji').attr('src', './assets/emojis/' + options.emoji + '.png');
+          if (options.emoji) {
+            bubble.append('img').attr('class', 'emoji').attr('src', './assets/emojis/' + options.emoji + '.png');
+          }
+
+          callback();
         }
 
-        callback();
       }
 
-      module.types['themes'] = function (bubble, options, callback) {
+
+      cb.types['themes'] = function (bubble, options, callback) {
         var themes = ['saturn', 'mars', 'pluto'];
         var themesWrapper = bubble.append('div')
           .attr('class', 'cb-themes-wrapper');
@@ -549,7 +469,8 @@
         };
       }
 
-      module.types['download'] = function (bubble, options, callback) {
+
+      cb.types['download'] = function (bubble, options, callback) {
 
         var icons = ['png', 'svg', 'gif', 'mpeg', 'html'];
         var downloadWrapper = bubble.append('div')
@@ -567,14 +488,9 @@
 
         var group = downloadWrapper.selectAll('a').data(icons).enter()
           .append('a')
-          // .html(function (d) {return '<span>'+d+'</span>'})
-          // .attr('class','download-text')
           .attr('target', '"_blank"')
           .append('svg')
           .attr('class', function (d) { return 'download-thumb download-thumb-' + d + ' radial' })
-          .on('click', function (d) {
-            downloadAsset(d);
-          })
 
         group.append("g").append("text")
           .text(function (d) { return d })
@@ -583,193 +499,22 @@
           .attr("font-size", "15px")
           .attr("x", "40px")
           .attr("y", "45px")
-        // .attr("class", "text")
-        // .attr("font-family", "")
-
 
         group.append('g').append("path")
           .datum({ endAngle: 0 })
           .attr("class", "arc")
           .attr("d", arc);
 
-        // group.append('div')
-        //   .attr('class','download-text')
-        //   .html("JJJJ")
-
-
-        function downloadAsset(d) {
-          console.log('I want to download a ' + d)
-        }
-
       }
 
-      module.showInput = function (submitCallback, typeCallback) {
-        //TODO: check if one can overwrite callbacks or if callbacks need to be properly removed
-        if (typeCallback) {
-          module.input.select('input')
-            .on('change', function () {
-              typeCallback(d3.select(this).node().value);
-            });
-        } else {
-          module.input.select('input').on('change', function () { });
-        }
-
-        module.input.select('button')
-          .on('click', function () {
-            submitCallback(module.input.select('input').node().value);
-          });
-
-        module.input.style('display', 'block');
-        module.flow.classed('cb-w-input', true);
-
-        //TODO: set focus -> check if this works
-        module.input.select('input').node().blur();
-        module.scrollTo('end');
-      };
-
-      module.hideInput = function () {
-        module.input.style('display', 'none');
-        module.flow.classed('cb-w-input', false);
-        module.scrollTo('end');
-      };
-
-      module.removeBubble = function (id) {
-        module.flow.select('#cb-segment-' + id).remove();
-        module.bubbles.splice(module.keys[id], 1);
-        delete module.keys[id];
-      };
-
-      module.removeBubbles = function (id) {
-        for (var i = module.bubbles.length - 1; i >= module.keys[id]; i--) {
-          module.removeBubble(module.bubbles[i].id);
-        }
-      };
-
-      module.getBubble = function (id) {
-        return {
-          el: module.flow.select('#cb-segment-' + id),
-          obj: module.bubbles[module.keys[id]]
-        };
-      };
-
-      //Accepts position = 'end' (bottom) || 'start' (top)
-      module.scrollTo = function (position) {
-        //start
-        var s = 0;
-        //end
-        if (position == 'end') {
-          s = module.scroll.property('scrollHeight') - window.innerHeight;
-        }
-        d3.select('#cb-flow').transition()
-          .duration(300)
-          .tween("scroll", scrollTween(s));
-
-      };
-
-      function scrollTween(offset) {
-        return function () {
-          var i = d3.interpolateNumber(module.scroll.property('scrollTop'), offset);
-          return function (t) { module.scroll.property('scrollTop', i(t)); };
-        };
-      }
-
-      return module;
-    });
 
 
-    var cb;
-
-    d3.json('./build/config.json', function (err, data) {
-      if (err) { console.log(err); }
-
-      /*
-    
-        //data contains an array of available visualisation types:
-    
-        //the thumbnails are available under:
-        for(var key in data){
-          var src = './build/thumbs/'+key+'_thumb.png';
-          var src2 = './build/thumbs/'+key+'_thumb@2x.png';
-        }
-
-    
-        //in order to load more config info on the selected vis load:
-    
-        d3.json('./build/'+key+'.json', function(err, data){
-          //This json contains title and input method, in the future we can pack more meta data into this json, which will help us automatically generate the chatbot steps, right now only the data.input is relevant (we should come up with a set of rules)
-        });
-    
-        //as we are using svift.min.js, which contains all available visualisations, we don't need to load individual vis types
-        //in order to initiate one visualisation:
-        for(var key in data){
-          var vis = SVIFT.vis[(key.split('-'))[2]](DATA_FOR_VIS, d3.select('#VIS_CONTAINER'));
-            vis.init();
-            vis.start(); 
-        }
-    
-        //After all elements are being entered, the resulting vis can be send to the backend via
-        //The structure of output is collected from the vis modules
-    
-        var output = {
-          "params":{
-            "dev":true
-          },
-          "vis":{
-            "type":"barchart",
-            "title":"Barchart"
-          },
-          "data":{
-            "columns":["Jahr","Wert"],
-            "types":["date","int"],
-            "data":[
-              [2017,3.9],
-              [2016,4.1],
-              [2015,4.6],
-              [2014,5.0],
-              [2013,5.2],
-              [2012,5.5],
-              [2011,5.9],
-              [2010,7.1],
-              [2009,7.8]
-            ]
-          }
-        };
-    
-        //The request will return an ID
-    
-        d3.xhr(URL OF SERVER)
-          .header("Content-Type", "application/json")
-          .post(
-              JSON.stringify(output),
-              function(err, rawData){
-                  var data = JSON.parse(rawData);
-                  console.log("got response", data);
-              }
-          );
-    
-        //This ID can then be used to poll the backend every 200 - milliseconds, in order to get the status of the rendering (right now this only returns an output when everything is done, this will be my (SEB) TODO for the weekend to send detailed progress information, but it will be something like this:
-    
-        //for each type the result is 0-1 (1 = done)
-    
-        var feedback = {
-          svg:0.5,
-          png:1,
-          html:1,
-          ...
-        };
-    
-        //The ID is also equivalent to the permanent (7 day) url: svift.xyz/?/ID/ (index.html) > the index.html is actually not yet there, but i (SEB) will also take care of this...
-      */
-
-      cb = chatbot(d3.select('#gui-2'));
-
-      cb.showInput();
 
 
-      var delay = 1000;
-      // cb.showInput();
 
-      // var img = './assets/emojis/smile.png';
+
+      /*Start Chatbot*/
+
       cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave', delay: 1000 }, function () {
         cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot', delay: 500 }, function () {
           setTimeout(function () {
@@ -778,21 +523,7 @@
         });
       });
 
-
-      // cb.addBubble({ type: 'table', class: 'bot' });
-
-
-      // cb.addBubble({ type: 'text', value: '…', class: 'bot' });
-      // cb.showInput(function (input) {
-      //   // cb.addBubble({ type: 'text', value: "Hi there!", class: 'human' });
-      //   cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project? 😊', class: 'bot' });
-      //   cb.showInput(function (input) {
-      //     cb.addBubble({ type: 'text', value: "Sounds great! Let’s go!", class: 'human' });
-      //   });
-      // });
-
       createThumbs();
-
 
       function createThumbs() {
         var overlay = d3.select('#gui-1-overlay')
@@ -906,13 +637,10 @@
         var vizSizesIconWrapper = vizSizesBody.append('div').classed('viz-sizes-icon-wrapper', true);
 
 
-
-
         vizSizesIconWrapper.selectAll('.viz-sizes')
           .data(vizSizes).enter().append('div')
           .attr("class", function (d) { return "viz-sizes" + " " + "icon" + " " + "icon-" + d[0] })
           .attr('id', function (d) { return d[0] })
-          // .html(function (d) { return d[0] })
           .on('click', function (d) { resizeViz(d) });
 
 
@@ -921,13 +649,11 @@
           var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
 
           d3.select(".viz-container")
-            // .style("width", containerWidth + "px")
             .style("height", (containerWidth / d[1]) * d[2] + "px")
 
 
           d3.select('.viz-container svg').remove();
           setTimeout(function () {
-            // window.dispatchEvent(new Event('resize'));
 
             var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
             vis.init();
@@ -980,9 +706,6 @@
 
                 for (var type in jResponse.full) {
 
-                  // db.el.select('.download-thumb-' + type).style('background-color', 'rgba(117,250,191,' + jResponse.full[type] + ')');
-                  // db.el.select('path.arc-' + type).style('fill', 'rgba(0,0,0,' + jResponse.full[type] + ')');
-
                   var tau = 2 * Math.PI;
 
                   d3.select(".download-thumb-" + type + " .arc")
@@ -1009,8 +732,6 @@
 
                 }
 
-                //https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + '.gif
-
                 if (jResponse.status == 2) {
                   clearInterval(inter);
 
@@ -1024,16 +745,6 @@
           }
           );
 
-        /*console.log('User has finished!');
-        
-        setTimeout(function () {
-          cb.addBubble({ type: 'text', value: 'Your chart is now ready!', class: 'bot' });          
-
-          setTimeout(function () {
-            
-            
-          }, delay * 5)
-        }, delay * 4)*/
       }
     });
 

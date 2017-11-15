@@ -18,6 +18,7 @@
     "url": "git+https://git@github.com/svift-org/svift-frontend.git"
   },
   "dependencies": {
+    "chatbot-module": "https://github.com/svift-org/chatbot-module.git",
     "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
     "svift-vis": "git+https://git@github.com/svift-org/vis-module.git",
     "svift-vis-columns": "git+https://git@github.com/svift-org/vis-columns-module.git",
