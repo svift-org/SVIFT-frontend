@@ -207,10 +207,6 @@ html, body {
           text-transform: uppercase;
           padding: 10px 20px;
           box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
-        .app #gui-1 #gui-1-overlay div.viz-container div.viz-container-inner {
-          width: 80%;
-          height: 80%;
-          border: 3px solid #75FABF; }
         .app #gui-1 #gui-1-overlay div.viz-container svg {
           border-radius: 4px; }
       .app #gui-1 #gui-1-overlay a.btn-back {
