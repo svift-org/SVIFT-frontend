@@ -189,11 +189,169 @@
 
 
 
+      //Make thumbs
+      createThumbs();
+
+      function createThumbs(){
+        var overlay = d3.select('#gui-1-overlay')
+          .style('background-color', '#75FABF')
+          .append('div')
+          .attr('class', 'thumb-wrapper');
+
+        overlay.selectAll('.thumb')
+          .data(d3.keys(data)).enter().append('div')
+          .attr('class', 'thumb')
+          .attr('id', function (d) { return 'thumb-' + d })
+          .append('img')
+          .attr('src', function (d) { return './build/thumbs/' + d + '_thumb.png' })
+          .on('click', selectViz);
+      };
+
+
+
+
+      function createViz(d) {
+
+        visType = d;
+
+        addDefaultData(visType);
+
+        dataTemp.vis.type = visType
+
+        console.log(d);
+        var overlay = d3.select('#gui-1-overlay').html('');
+
+        var vizContainer = overlay.append('div')
+          .attr('class', 'viz-container')
+          .style('opacity', 0)
+          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
+          .transition()
+          .style('opacity', 1)
+
+        d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
+
+        overlay.append('a')
+          .attr('class', 'btn-back')
+          .attr("href", '#')
+          .html('&#8592; Select different chart type')
+          .on('click', function (d) {
+            d3.select('.viz-container').remove();
+            onEntry();
+            createThumbs();
+            d3.select(this).remove();
+          });
+
+        //Change viz sizes
+        var vizSizes = [["twitter", 900, 450], ["facebook", 1200, 630], ["instagram", 1080, 1080], ["snapchat", 1080, 1920]];
+        var vizSizesWrapper = overlay.append("div").attr("class", "viz-sizes-wrapper");
+        var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your format');
+        var vizSizesBody = vizSizesWrapper.append('div').classed('viz-sizes-body', true);
+
+        var vizSizesInputWrapper = vizSizesBody.append('div').classed('viz-sizes-input-wrapper', true);
+        vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
+        vizSizesInputWrapper.append('div').html('x');
+        vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
+
+        var vizSizesIconWrapper = vizSizesBody.append('div').classed('viz-sizes-icon-wrapper', true);
+
+        vizSizesIconWrapper.selectAll('.viz-sizes')
+          .data(vizSizes).enter().append('div')
+          .attr("class", function (d) { return "viz-sizes" + " " + "icon" + " " + "icon-" + d[0] })
+          .attr('id', function (d) { return d[0] })
+          .on('click', function (d) { resizeViz(d) });
+
+        function resizeViz(d) {
+
+          var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
+
+          d3.select(".viz-container")
+            .style("height", (containerWidth / d[1]) * d[2] + "px")
+
+
+          d3.select('.viz-container svg').remove();
+          setTimeout(function () {
+
+            var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
+            vis.init();
+            vis.start();
+
+          }, 700);
+        }
+
+        var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
+        vis.init();
+        vis.start();
+
+      }
+
+
+      function renderViz(){
+        d3.request('https://svift-backend.herokuapp.com/render')
+          .header("Content-Type", "application/json")
+          .mimeType("application/json")
+          .post(
+          JSON.stringify(dataTemp),
+          function (err, rawData) {
+            var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
+
+
+            inter = setInterval(function () {
+              d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
+
+                var jResponse = JSON.parse(data.response);
+
+                var db = cb.getBubble(downloadBubble);
+
+
+                for (var type in jResponse.full) {
+
+                  var tau = 2 * Math.PI;
+
+                  d3.select(".download-thumb-" + type + " .arc")
+                    .transition()
+                    .duration(1400)
+                    .attrTween("d", arcTween(jResponse.full[type] * tau, type));
+
+                  function arcTween(newAngle, type) {
+                    return function (d) {
+                      var interpolate = d3.interpolate(d.endAngle, newAngle);
+                      return function (t) {
+                        d.endAngle = interpolate(t);
+                        d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
+                        return arc(d);
+                      };
+                    };
+                  }
+
+                  if (jResponse.full[type] == 1) {
+
+                    var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
+                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
+                  }
+
+                }
+
+                if (jResponse.status == 2) {
+                  clearInterval(inter);
+
+                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+                  cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
+                  cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
+                }
+
+              });
+            }, 1500);
+          }
+          );
+      }
+
+
+      //Define Chatbot
       cb = chatbot(d3.select('#gui-2'));
       cb.showInput();
 
 
-      /*Define the diffrent bubble types*/
+      /*Define bubble types*/
 
       cb.types['select'] = function (bubble, options, callback) {
         bubble.style('background-color', '#fff');
@@ -231,7 +389,6 @@
 
           var columns = dataTemp.data.data;
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
-
           var table = tableWrapper.append('table').append('tbody');
 
           var tableRowTitle = table.append('tr');
@@ -407,7 +564,6 @@
           appendText(bubble, options, callback);
         }
 
-
         function appendText(bubble, options, callback) {
           bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
             .style("width", "50px")
@@ -508,8 +664,6 @@
 
 
 
-
-
       /*Start Chatbot*/
 
       cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave', delay: 1000 }, function () {
@@ -520,49 +674,16 @@
         });
       });
 
-      createThumbs();
-
-      function createThumbs() {
-        var overlay = d3.select('#gui-1-overlay')
-          .style('background-color', '#75FABF')
-          .append('div')
-          .attr('class', 'thumb-wrapper');
-
-        overlay.selectAll('.thumb')
-          .data(d3.keys(data)).enter().append('div')
-          .attr('class', 'thumb')
-          .attr('id', function (d) { return 'thumb-' + d })
-          .append('img')
-          .attr('src', function (d) { return './build/thumbs/' + d + '_thumb.png' })
-          .on('click', selectViz);
-      }
-
       function onEntry() {
         d3.select('#gui-1-overlay').style('left', '0');
         cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay: 1200 });
       }
 
-      function onDataSubmitted() {
-        // console.log("Data has been submitted!");
-        cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', emoji: 'style', delay: 500 }, function () {
-
-          cb.addBubble({ type: 'themes', class: 'human' });
-
-          setTimeout(function () {
-            // setTimeout(function () {
-            cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human send' }, onFinish);
-            // }, delay)
-            // cb.addBubble({ type: 'text', value: 'Perfect! Let me know when you have finished!', class: 'bot' });
-          }, 500)
-
-        })
-
-      }
 
       function selectViz() {
         var tile = d3.selectAll('.thumb');
         tile.on('click', function (d) {
-          // console.log('You have chosen the ' + d + ' visualization!');
+
           cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' }, function () {
             cb.addBubble({ type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write', delay: 500 }, function () {
 
@@ -571,12 +692,7 @@
               setTimeout(function () {
 
                 cb.addBubble({ type: 'input', class: 'human' });
-                // cb.addBubble({ type: 'table', rows: [1, 2], columns: [1, 2, 3, 4, 5, 6], selectables: ['Bicycle', 'Car', 'House', 'Person'], class: 'human' });
-
-
                 cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, onDataSubmitted);
-
-
 
               }, 500)
             });
@@ -585,86 +701,22 @@
       }
 
 
-      function createViz(d) {
+      function onDataSubmitted() {
 
-        visType = d;
+        cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', emoji: 'style', delay: 500 }, function () {
 
-        addDefaultData(visType);
+          cb.addBubble({ type: 'themes', class: 'human' });
 
-        dataTemp.vis.type = visType
-
-        console.log(d);
-        var overlay = d3.select('#gui-1-overlay').html('');
-
-        var vizContainer = overlay.append('div')
-          .attr('class', 'viz-container')
-          .style('opacity', 0)
-          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
-          .transition()
-          .style('opacity', 1)
-
-
-
-        d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
-
-
-        overlay.append('a')
-          .attr('class', 'btn-back')
-          .attr("href", '#')
-          .html('&#8592; Select different chart type')
-          .on('click', function (d) {
-            d3.select('.viz-container').remove();
-            onEntry();
-            createThumbs();
-            d3.select(this).remove();
-          });
-
-
-        //Change viz sizes
-        var vizSizes = [["twitter", 900, 450], ["facebook", 400, 500], ["instagram", 500, 300], ["snapchat", 400, 400]];
-        var vizSizesWrapper = overlay.append("div").attr("class", "viz-sizes-wrapper");
-        var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your format');
-        var vizSizesBody = vizSizesWrapper.append('div').classed('viz-sizes-body', true);
-
-        var vizSizesInputWrapper = vizSizesBody.append('div').classed('viz-sizes-input-wrapper', true);
-        vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
-        vizSizesInputWrapper.append('div').html('x');
-        vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
-
-        var vizSizesIconWrapper = vizSizesBody.append('div').classed('viz-sizes-icon-wrapper', true);
-
-
-        vizSizesIconWrapper.selectAll('.viz-sizes')
-          .data(vizSizes).enter().append('div')
-          .attr("class", function (d) { return "viz-sizes" + " " + "icon" + " " + "icon-" + d[0] })
-          .attr('id', function (d) { return d[0] })
-          .on('click', function (d) { resizeViz(d) });
-
-
-        function resizeViz(d) {
-
-          var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
-
-          d3.select(".viz-container")
-            .style("height", (containerWidth / d[1]) * d[2] + "px")
-
-
-          d3.select('.viz-container svg').remove();
           setTimeout(function () {
 
-            var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
-            vis.init();
-            vis.start();
+            cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human send' }, onFinish);
 
-          }, 700);
-        }
+          }, 500)
 
-
-        var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
-        vis.init();
-        vis.start();
+        })
 
       }
+
 
       var requestSend = false;
       function onFinish() {
@@ -673,76 +725,10 @@
         requestSend = true;
         d3.select(".cb-bubble.human.send .cb-choice").classed('disabled', true)
 
-
-        var inter = null;
-        var oldAngle = 0;
-
-        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile', delay: 500 });
-
-        console.log(JSON.stringify(dataTemp));
-
-        d3.request('https://svift-backend.herokuapp.com/render')
-          .header("Content-Type", "application/json")
-          .mimeType("application/json")
-          .post(
-          JSON.stringify(dataTemp),
-          function (err, rawData) {
-            var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
-
-
-
-            inter = setInterval(function () {
-              d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
-
-                var jResponse = JSON.parse(data.response);
-
-                var db = cb.getBubble(downloadBubble);
-
-
-
-
-                for (var type in jResponse.full) {
-
-                  var tau = 2 * Math.PI;
-
-                  d3.select(".download-thumb-" + type + " .arc")
-                    .transition()
-                    .duration(1400)
-                    .attrTween("d", arcTween(jResponse.full[type] * tau, type));
-
-                  function arcTween(newAngle, type) {
-                    return function (d) {
-                      var interpolate = d3.interpolate(d.endAngle, newAngle);
-                      return function (t) {
-                        d.endAngle = interpolate(t);
-                        d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
-                        return arc(d);
-                      };
-                    };
-                  }
-
-                  if (jResponse.full[type] == 1) {
-
-                    var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
-                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
-                  }
-
-                }
-
-                if (jResponse.status == 2) {
-                  clearInterval(inter);
-
-                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
-                  cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
-                  cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
-                }
-
-              });
-            }, 1500);
-          }
-          );
+        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile', delay: 500 }, renderViz);
 
       }
+
     });
 
   </script>
