@@ -70,7 +70,8 @@
         "type": "mosaic",
         "title": "Mosaic"
       },
-      "size":[100,100],
+      "size": [100, 100],
+      "length":3000,
       "style": {
         "font": "Poppins",
         "fontLables": "InterfaceRegular",
@@ -231,6 +232,7 @@
           .on('click', function (d) {
             d3.select('this').classed('cb-active', true);
             callback(d);
+            console.log(d)
           });
       };
 
@@ -284,7 +286,7 @@
 
           function addRow() {
 
-            if(dataTemp.data.data.length>=2){
+            if (dataTemp.data.data.length >= 2) {
               d3.select(".column-editor-btn.btn-remove").classed('disabled', false)
             }
 
@@ -313,10 +315,10 @@
 
           function removeRow() {
 
-            if(dataTemp.data.data.length==2){
+            if (dataTemp.data.data.length == 2) {
               return
             }
-            if(dataTemp.data.data.length==3){
+            if (dataTemp.data.data.length == 3) {
               d3.select(".column-editor-btn.btn-remove").classed('disabled', true)
             }
 
@@ -549,7 +551,7 @@
 
       module.types['download'] = function (bubble, options, callback) {
 
-        var icons = ['png', 'svg', 'gif', 'mp4', 'html'];
+        var icons = ['png', 'svg', 'gif', 'mpeg', 'html'];
         var downloadWrapper = bubble.append('div')
           .attr('class', 'cb-download-wrapper');
 
@@ -882,7 +884,7 @@
           .attr('class', 'btn-back')
           .attr("href", '#')
           .html('&#8592; Select different chart type')
-          .on('click', function (d) { 
+          .on('click', function (d) {
             d3.select('.viz-container').remove();
             onEntry();
             createThumbs();
@@ -899,8 +901,9 @@
         vizSizesBody.selectAll('.viz-sizes')
           .data(vizSizes).enter().append('div')
           .attr("class", "viz-sizes")
+          .attr("class", function (d) { return "viz-sizes" + " " + "icon-" + d[0] })
           .attr('id', function (d) { return d[0] })
-          .html(function (d) { return d[0] })
+          // .html(function (d) { return d[0] })
           .on('click', function (d) { resizeViz(d) });
 
 
@@ -910,7 +913,7 @@
 
           d3.select(".viz-container")
             // .style("width", containerWidth + "px")
-            .style("height", (containerWidth/d[1]) * d[2] + "px")
+            .style("height", (containerWidth / d[1]) * d[2] + "px")
 
 
           d3.select('.viz-container svg').remove();
@@ -934,7 +937,7 @@
       var requestSend = false;
       function onFinish() {
 
-        if(requestSend){return}
+        if (requestSend) { return }
         requestSend = true;
         d3.select(".cb-bubble.human.send .cb-choice").classed('disabled', true)
 

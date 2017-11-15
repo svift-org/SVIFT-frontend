@@ -142,15 +142,10 @@ html, body {
                     box-shadow: $box-shadow-default;
                 }
 
-                // div.viz-container-inner {
-                //     width: 80%;
-                //     height: 80%;
-                //     border: 3px solid #75FABF;
-                // }
-
                 svg {
                     border-radius: $border-radius-default;
                 }
+
             }
 
             a.btn-back {
@@ -170,19 +165,24 @@ html, body {
             }
 
             .viz-sizes-wrapper {
-                position: fixed;
-                bottom: 5%;
                 display: block;
                 flex-wrap: nowrap;
                 justify-content: space-between;
-                width: 30%;
                 text-align: center;
                 font-size: 1em;
                 line-height: 1.7;
+                margin-top: 20px;
 
                 .viz-sizes-header {
+                    text-align: center;
+                    height: 40px;
+                    background: $svift-primary;
+                    border-radius: $border-radius-default;
                     font-family: $font-family-mono;
-                    color: #fff;
+                    font-size: 0.8em;
+                    text-transform: uppercase;
+                    padding: $margin-small ($margin-small * 2);
+                    box-shadow: $box-shadow-default;
                 }
 
                 .viz-sizes-body {
@@ -190,13 +190,31 @@ html, body {
 
                     .viz-sizes {
                         flex: 1;
-                        font-family: $font-family-mono;
+
+                        // font-family: $font-family-mono;
+                        font-family: $font-family-icons;
                         color: #fff;
                         cursor: pointer;
                         transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
 
                         &:hover {
                             color: $svift-primary;
+                        }
+
+                        &.icon-twitter:before {
+                            content: '\f099';
+                        }
+
+                        &.icon-facebook:before {
+                            content: '\f09a';
+                        }
+
+                        &.icon-snapchat:before {
+                            content: '\f2ac';
+                        }
+
+                        &.icon-instagram:before {
+                            content: '\f32d';
                         }
                     }
                 }

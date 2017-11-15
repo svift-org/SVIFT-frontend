@@ -33,7 +33,6 @@
 - Reset gooey center
 - Fix text labels when many data points
 - preview diffrent chart sizes (e.g. twitter, facebook) -> in ratio
-- add feedback bubble (which vis type would you like to see included -> input)
 - download stuff directly from frontend
 - show chart selection: 1) end, 2) selection besides chart
 - Chatbot as own library
@@ -45,3 +44,4 @@
 - Show tooltips on charts
 - Show annotations (i.e. swoopy arrows)
 - Style: Gradients in charts?
+- add feedback bubble (which vis type would you like to see included -> input)
