@@ -43,6 +43,12 @@
   src: url("../../assets/fonts/Interface/Interface-Bold.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Bold.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal; }
+@font-face {
+  font-family: 'svift-iconfont';
+  src: url("../../assets/fonts/IconFont/svift-iconfont.eot");
+  src: url("../../assets/fonts/IconFont/svift-iconfont.eot") format("embedded-opentype"), url("../../assets/fonts/IconFont/svift-iconfont.woff2") format("woff2"), url("../../assets/fonts/IconFont/svift-iconfont.woff") format("woff"), url("../../assets/fonts/IconFont/svift-iconfont.ttf") format("truetype"), url("../../assets/fonts/IconFont/svift-iconfont.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 /* --- FONTS --- */
 /* Font families*/
 /* Font sizes*/
@@ -103,6 +109,12 @@
   src: url("../../assets/fonts/Interface/Interface-Bold.eot");
   src: url("../../assets/fonts/Interface/Interface-Bold.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Bold.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Bold.ttf") format("truetype");
   font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'svift-iconfont';
+  src: url("../../assets/fonts/IconFont/svift-iconfont.eot");
+  src: url("../../assets/fonts/IconFont/svift-iconfont.eot") format("embedded-opentype"), url("../../assets/fonts/IconFont/svift-iconfont.woff2") format("woff2"), url("../../assets/fonts/IconFont/svift-iconfont.woff") format("woff"), url("../../assets/fonts/IconFont/svift-iconfont.ttf") format("truetype"), url("../../assets/fonts/IconFont/svift-iconfont.svg") format("svg");
+  font-weight: normal;
   font-style: normal; }
 * {
   -webkit-box-sizing: border-box;
@@ -222,28 +234,41 @@ html, body {
         .app #gui-1 #gui-1-overlay a.btn-back:hover {
           color: #71609b; }
       .app #gui-1 #gui-1-overlay .viz-sizes-wrapper {
-        position: fixed;
-        bottom: 5%;
         display: block;
         flex-wrap: nowrap;
         justify-content: space-between;
-        width: 30%;
         text-align: center;
         font-size: 1em;
-        line-height: 1.7; }
+        line-height: 1.7;
+        margin-top: 20px; }
         .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-header {
+          text-align: center;
+          height: 40px;
+          background: #71609b;
+          border-radius: 4px;
           font-family: "DecimaMonoProBold", monospace;
-          color: #fff; }
+          font-size: 0.8em;
+          text-transform: uppercase;
+          padding: 10px 20px;
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
         .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body {
           display: flex; }
           .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes {
             flex: 1;
-            font-family: "DecimaMonoProBold", monospace;
+            font-family: "svift-iconfont";
             color: #fff;
             cursor: pointer;
             transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
             .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes:hover {
               color: #71609b; }
+            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes.icon-twitter:before {
+              content: '\f099'; }
+            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes.icon-facebook:before {
+              content: '\f09a'; }
+            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes.icon-snapchat:before {
+              content: '\f2ac'; }
+            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes.icon-instagram:before {
+              content: '\f32d'; }
 
 #gui-2 {
   flex: 1;
