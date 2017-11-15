@@ -38,6 +38,7 @@
 - show chart selection: 1) end, 2) selection besides chart
 - Chatbot as own library
 - Chatbot structure and navigation
+- make all vis-modules responsive
 
 ## Future:
 - Show preview of stream for different uses, i.e. facebook, twitter 
