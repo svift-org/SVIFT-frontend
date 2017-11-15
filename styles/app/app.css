@@ -245,30 +245,57 @@ html, body {
           text-align: center;
           height: 40px;
           background: #71609b;
-          border-radius: 4px;
           font-family: "DecimaMonoProBold", monospace;
           font-size: 0.8em;
           text-transform: uppercase;
           padding: 10px 20px;
-          box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+          border-radius: 4px 4px 0 0; }
         .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body {
-          display: flex; }
-          .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes {
-            flex: 1;
-            font-family: "svift-iconfont";
-            color: #fff;
-            cursor: pointer;
-            transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
-            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes:hover {
-              color: #71609b; }
-            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes.icon-twitter:before {
-              content: '\f099'; }
-            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes.icon-facebook:before {
-              content: '\f09a'; }
-            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes.icon-snapchat:before {
-              content: '\f2ac'; }
-            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes.icon-instagram:before {
-              content: '\f32d'; }
+          display: flex;
+          position: relative; }
+          .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-input-wrapper {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #fff;
+            border-radius: 0 0 0 4px;
+            color: #3A3A3A;
+            font-family: "DecimaMonoProBold", monospace; }
+            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-input-wrapper input {
+              width: 70%;
+              cursor: pointer;
+              font-family: "DecimaMonoProBold", monospace;
+              padding: 10px 10px;
+              color: #3A3A3A;
+              border-style: none;
+              border-radius: 4px;
+              transition: box-shadow 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), transform 375ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s, opacity 375ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; }
+          .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper {
+            display: flex;
+            flex: 3;
+            background-color: #fff;
+            border-radius: 0 0 4px 0; }
+            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper .viz-sizes {
+              flex: 1;
+              font-family: "svift-iconfont";
+              color: #71609b;
+              cursor: pointer;
+              transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
+              .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper .viz-sizes:hover {
+                color: #75FABF; }
+              .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper .viz-sizes.icon:before {
+                position: absolute;
+                top: 6px; }
+              .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper .viz-sizes.icon-twitter:before {
+                content: '\f099'; }
+              .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper .viz-sizes.icon-facebook:before {
+                content: '\f09a'; }
+              .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper .viz-sizes.icon-snapchat:before {
+                content: '\f2ac'; }
+              .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper .viz-sizes.icon-instagram:before {
+                content: '\f32d'; }
 
 #gui-2 {
   flex: 1;

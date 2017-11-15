@@ -885,15 +885,24 @@
 
 
         //Change viz sizes
-        var vizSizes = [["twitter", 500, 500], ["facebook", 400, 500], ["instagram", 500, 300], ["snapchat", 400, 400]];
+        var vizSizes = [["twitter", 900, 450], ["facebook", 400, 500], ["instagram", 500, 300], ["snapchat", 400, 400]];
         var vizSizesWrapper = overlay.append("div").attr("class", "viz-sizes-wrapper");
-        var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your preferred format:');
+        var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your preferred format');
         var vizSizesBody = vizSizesWrapper.append('div').classed('viz-sizes-body', true);
 
-        vizSizesBody.selectAll('.viz-sizes')
+        var vizSizesInputWrapper = vizSizesBody.append('div').classed('viz-sizes-input-wrapper', true);
+        vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
+        vizSizesInputWrapper.append('div').html('x');
+        vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
+
+        var vizSizesIconWrapper = vizSizesBody.append('div').classed('viz-sizes-icon-wrapper', true);
+
+
+
+
+        vizSizesIconWrapper.selectAll('.viz-sizes')
           .data(vizSizes).enter().append('div')
-          .attr("class", "viz-sizes")
-          .attr("class", function (d) { return "viz-sizes" + " " + "icon-" + d[0] })
+          .attr("class", function (d) { return "viz-sizes" + " " + "icon" + " " + "icon-" + d[0] })
           .attr('id', function (d) { return d[0] })
           // .html(function (d) { return d[0] })
           .on('click', function (d) { resizeViz(d) });
