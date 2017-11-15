@@ -205,9 +205,6 @@
 
 .cb-choice {
     flex: 1;
-
-    // width: auto;
-    // height: auto;
     display: inline-block;
     text-align: center;
     cursor: pointer;
@@ -215,8 +212,6 @@
     border-radius: 2em;
     padding: 20px;
     margin-left: 10px;
-
-    // margin: 0 0 0 20px;
     font-family: $font-family-bold;
     transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
 
@@ -301,11 +296,9 @@
                     background-color: $svift-delete;
                     color: $white;
                 }
-
             }
 
-            .disabled{
-
+            .disabled-btn {
                 background-color: #ddd;
                 color: $white;
                 border-color: #fff;
@@ -314,7 +307,6 @@
                     background-color: #ddd;
                     color: $white;
                 }
-
             }
         }
 
@@ -606,6 +598,22 @@
     // }
 }
 
-.disabled{
-    background-color: red;
+.disabled {
+    background-color: $white;
+    color: $text-disabled;
+    border: $border-disabled;
+
+    &:before {
+        background-color: $text-disabled;
+    }
+
+    &:hover {
+        transform: translateY(0);
+        background-color: $white;
+        color: $text-disabled;
+
+        &:before {
+            background-color: $text-disabled;
+        }
+    }
 }

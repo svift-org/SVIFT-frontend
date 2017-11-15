@@ -21,11 +21,11 @@
 - Make thumb titles dynamic
 - Responsiveness (i.e. thumbs, preview, etc. )
 - Add menu (Imprint, info, AGBs, etc.)
-- Table: Minimum columns -> 2 - disabled button styling
 - style send button when classed "disabled"
 
 ## Hans
 
+- Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
 - Write sizes to object
 - send viz size to server
 - Reset gooey center

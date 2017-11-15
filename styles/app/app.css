@@ -202,6 +202,7 @@ html, body {
         align-items: center;
         background-color: white;
         width: 70%;
+        margin-top: 10%;
         border-radius: 8px;
         opacity: 0;
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
@@ -237,12 +238,9 @@ html, body {
         flex-wrap: nowrap;
         justify-content: space-between;
         text-align: center;
-        font-size: 1em;
-        line-height: 1.7;
         margin-top: 20px; }
         .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-header {
           text-align: center;
-          height: 40px;
           background: #71609b;
           font-family: "DecimaMonoProBold", monospace;
           font-size: 0.8em;

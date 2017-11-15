@@ -57,7 +57,7 @@
 
   <script src="build/d3.v4.min.js"></script>
   <script src="build/svift.min.js"></script>
-  <script src="chatbot.js"></script> -->
+  <script src="chatbot.js"></script>
   <script type="text/javascript">
 
 
@@ -192,7 +192,7 @@
       //Make thumbs
       createThumbs();
 
-      function createThumbs(){
+      function createThumbs() {
         var overlay = d3.select('#gui-1-overlay')
           .style('background-color', '#75FABF')
           .append('div')
@@ -285,7 +285,7 @@
       }
 
 
-      function renderViz(){
+      function renderViz() {
         d3.request('https://svift-backend.herokuapp.com/render')
           .header("Content-Type", "application/json")
           .mimeType("application/json")
@@ -408,16 +408,16 @@
 
 
           var editRow = tableWrapper.append('div').classed('column-editor-wrapper', true);
+          editRow.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–').classed('disabled-btn', true)
+            .on('click', function (d) { removeRow(d); });
           editRow.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
             .on('click', function (d) { addRow(d); });
-          editRow.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–').classed('disabled', true)
-            .on('click', function (d) { removeRow(d); });
 
 
           function addRow() {
 
             if (dataTemp.data.data.length >= 2) {
-              d3.select(".column-editor-btn.btn-remove").classed('disabled', false)
+              d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false)
             }
 
             var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -449,7 +449,7 @@
               return
             }
             if (dataTemp.data.data.length == 3) {
-              d3.select(".column-editor-btn.btn-remove").classed('disabled', true)
+              d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
             }
 
             dataTemp.data.data.pop();
