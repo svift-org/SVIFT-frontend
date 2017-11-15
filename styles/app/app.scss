@@ -122,6 +122,7 @@ html, body {
                 align-items: center;
                 background-color: white;
                 width: 70%;
+
                 // height: 70%;
                 border-radius: $border-radius-default * 2;
                 opacity: 0;
@@ -145,7 +146,6 @@ html, body {
                 svg {
                     border-radius: $border-radius-default;
                 }
-
             }
 
             a.btn-back {
@@ -196,23 +196,27 @@ html, body {
                         justify-content: space-around;
                         background-color: $white;
                         border-radius: 0 0 0 $border-radius-default;
-
-                        // border-radius: $border-radius-default;
-                        color: $text-bot;
                         font-family: $font-family-mono;
+                        border-right: 1px solid $bot-bubble;
+
+                        div {
+                            color: $svift-primary;
+                        }
 
                         input {
                             width: 70%;
                             cursor: pointer;
-                            font-family: $font-family-mono;
+                            font-family: $font-family-sansDefault;
+                            font-size: 0.9em;
+                            color: $svift-primary;
                             padding: 10px 10px;
-                            color: $text-bot;
                             border-style: none;
                             border-radius: $border-radius-default;
                             transition: box-shadow 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), transform 375ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s, opacity 375ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 
-                            // background-color: $table-background;
-                       
+                            &::placeholder {
+                                color: $svift-primary;
+                            }
                         }
                     }
 

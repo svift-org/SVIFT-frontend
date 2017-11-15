@@ -21,8 +21,6 @@
 - Make thumb titles dynamic
 - Responsiveness (i.e. thumbs, preview, etc. )
 - Add menu (Imprint, info, AGBs, etc.)
-- Sizes: New style and custom format input
-- make s
 - Table: Minimum columns -> 2 - disabled button styling
 - style send button when classed "disabled"
 
