@@ -260,17 +260,22 @@ html, body {
             justify-content: space-around;
             background-color: #fff;
             border-radius: 0 0 0 4px;
-            color: #3A3A3A;
-            font-family: "DecimaMonoProBold", monospace; }
+            font-family: "DecimaMonoProBold", monospace;
+            border-right: 1px solid #E6E6E6; }
+            .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-input-wrapper div {
+              color: #71609b; }
             .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-input-wrapper input {
               width: 70%;
               cursor: pointer;
-              font-family: "DecimaMonoProBold", monospace;
+              font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
+              font-size: 0.9em;
+              color: #71609b;
               padding: 10px 10px;
-              color: #3A3A3A;
               border-style: none;
               border-radius: 4px;
               transition: box-shadow 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), transform 375ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s, opacity 375ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; }
+              .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-input-wrapper input::placeholder {
+                color: #71609b; }
           .app #gui-1 #gui-1-overlay .viz-sizes-wrapper .viz-sizes-body .viz-sizes-icon-wrapper {
             display: flex;
             flex: 3;

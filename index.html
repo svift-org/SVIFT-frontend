@@ -71,7 +71,7 @@
         "title": "Mosaic"
       },
       "size": [100, 100],
-      "length":3000,
+      "length": 3000,
       "style": {
         "font": "Poppins",
         "fontLables": "InterfaceRegular",
@@ -868,13 +868,13 @@
         console.log(d);
         var overlay = d3.select('#gui-1-overlay').html('');
 
-        overlay.append('div')
+        var vizContainer = overlay.append('div')
           .attr('class', 'viz-container')
           .style('opacity', 0)
-          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7)+"px")
+          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
           .transition()
           .style('opacity', 1)
-          
+
 
 
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
@@ -895,7 +895,7 @@
         //Change viz sizes
         var vizSizes = [["twitter", 900, 450], ["facebook", 400, 500], ["instagram", 500, 300], ["snapchat", 400, 400]];
         var vizSizesWrapper = overlay.append("div").attr("class", "viz-sizes-wrapper");
-        var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your preferred format');
+        var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your format');
         var vizSizesBody = vizSizesWrapper.append('div').classed('viz-sizes-body', true);
 
         var vizSizesInputWrapper = vizSizesBody.append('div').classed('viz-sizes-input-wrapper', true);
