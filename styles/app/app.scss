@@ -177,44 +177,85 @@ html, body {
                     text-align: center;
                     height: 40px;
                     background: $svift-primary;
-                    border-radius: $border-radius-default;
                     font-family: $font-family-mono;
                     font-size: 0.8em;
                     text-transform: uppercase;
                     padding: $margin-small ($margin-small * 2);
                     box-shadow: $box-shadow-default;
+                    border-radius: $border-radius-default $border-radius-default 0 0;
                 }
 
                 .viz-sizes-body {
                     display: flex;
+                    position: relative;
 
-                    .viz-sizes {
-                        flex: 1;
+                    .viz-sizes-input-wrapper {
+                        flex: 2;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        background-color: $white;
+                        border-radius: 0 0 0 $border-radius-default;
 
-                        // font-family: $font-family-mono;
-                        font-family: $font-family-icons;
-                        color: #fff;
-                        cursor: pointer;
-                        transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+                        // border-radius: $border-radius-default;
+                        color: $text-bot;
+                        font-family: $font-family-mono;
 
-                        &:hover {
+                        input {
+                            width: 70%;
+                            cursor: pointer;
+                            font-family: $font-family-mono;
+                            padding: 10px 10px;
+                            color: $text-bot;
+                            border-style: none;
+                            border-radius: $border-radius-default;
+                            transition: box-shadow 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), transform 375ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s, opacity 375ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+
+                            // background-color: $table-background;
+                       
+                        }
+                    }
+
+                    .viz-sizes-icon-wrapper {
+                        display: flex;
+                        flex: 3;
+                        background-color: $white;
+                        border-radius: 0 0 $border-radius-default 0;
+
+                        .viz-sizes {
+                            flex: 1;
+
+                            // position: absolute;
+                            // top: 3px;
+                            font-family: $font-family-icons;
                             color: $svift-primary;
-                        }
+                            cursor: pointer;
+                            transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-                        &.icon-twitter:before {
-                            content: '\f099';
-                        }
+                            &:hover {
+                                color: $svift-human;
+                            }
 
-                        &.icon-facebook:before {
-                            content: '\f09a';
-                        }
+                            &.icon:before {
+                                position: absolute;
+                                top: 6px;
+                            }
 
-                        &.icon-snapchat:before {
-                            content: '\f2ac';
-                        }
+                            &.icon-twitter:before {
+                                content: '\f099';
+                            }
 
-                        &.icon-instagram:before {
-                            content: '\f32d';
+                            &.icon-facebook:before {
+                                content: '\f09a';
+                            }
+
+                            &.icon-snapchat:before {
+                                content: '\f2ac';
+                            }
+
+                            &.icon-instagram:before {
+                                content: '\f32d';
+                            }
                         }
                     }
                 }
