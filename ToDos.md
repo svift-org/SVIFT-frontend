@@ -36,6 +36,9 @@
 - Chatbot as own library
 - Chatbot structure and navigation
 - make all vis-modules responsive
+- input data validator
+- counter-module -> set position according to font
+
 
 ## Future:
 - Show preview of stream for different uses, i.e. facebook, twitter 
