@@ -24,21 +24,20 @@
 - check delete of folders
 
 ## Alsino
+- Legal note grey bubble at start
 - New thumbs 
 - Make thumb titles dynamic
 - Responsiveness (i.e. thumbs, preview, etc. )
-- Add menu (Imprint, info, AGBs, etc.)
-- style send button when classed "disabled"
+- Add new pages (Imprint, info, AGBs, etc.)
 
 ## Hans
 - Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
 - Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
 - Reset gooey center
-- Fix text labels when many data points
+- Fix text labels when many data points or long labels
 - preview diffrent chart sizes (e.g. twitter, facebook) -> in ratio
 - download stuff directly from frontend
 - show chart selection: 1) end, 2) selection besides chart
-- Chatbot as own library
 - Chatbot structure and navigation
 - make all vis-modules responsive
 - input data validator
