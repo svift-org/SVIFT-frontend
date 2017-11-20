@@ -35,8 +35,8 @@
         <li>Home | Build a vis</li>
         <li>About</li>
         <li>Dev / Docs</li>
-        <li>Legal Note</li>
-        <li>Contact</li>
+        <li>Contact / Legal Note</li>
+        <li>Pro<li>
       </ul>
     </div> -->
       <div class="inner">
@@ -69,7 +69,6 @@
         "type": "mosaic",
         "title": "Mosaic"
       },
-      "size": [100, 100],
       "length": 3000,
       "style": {
         "font": "Poppins",
@@ -334,7 +333,7 @@
                 if (jResponse.status == 2) {
                   clearInterval(inter);
 
-                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
                   cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
                   cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
                 }
