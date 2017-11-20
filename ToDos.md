@@ -26,8 +26,6 @@
 ## Hans
 
 - Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
-- Write sizes to object
-- send viz size to server
 - Reset gooey center
 - Fix text labels when many data points
 - preview diffrent chart sizes (e.g. twitter, facebook) -> in ratio
@@ -38,6 +36,7 @@
 - make all vis-modules responsive
 - input data validator
 - counter-module -> set position according to font
+- no return
 
 
 ## Future:
@@ -46,3 +45,4 @@
 - Show annotations (i.e. swoopy arrows)
 - Style: Gradients in charts?
 - add feedback bubble (which vis type would you like to see included -> input)
+- Chatbot help -> "Can I help you with you data?""
