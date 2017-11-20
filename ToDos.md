@@ -12,9 +12,16 @@
 =======
 
 ## Seb
-- Social Media Sizes and default images in root (render first, then the series)
-- Accessibility Module
+0: - Chatbox jQuery
+0: - medium post: conversational
+
+1: - Download Page
+2: - Social Media Sizes and default images in root (render first, then the series)
+
+3: - Accessibility Module
+
 - Fix fonts in html export
+- check delete of folders
 
 ## Alsino
 - New thumbs 
@@ -24,7 +31,7 @@
 - style send button when classed "disabled"
 
 ## Hans
-
+- Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
 - Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
 - Reset gooey center
 - Fix text labels when many data points
@@ -37,7 +44,6 @@
 - input data validator
 - counter-module -> set position according to font
 - no return
-
 
 ## Future:
 - Show preview of stream for different uses, i.e. facebook, twitter 
