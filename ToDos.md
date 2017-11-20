@@ -25,7 +25,7 @@
 
 ## Alsino
 - New thumbs 
-- Make thumb titles dynamic
+- Make thumb titles dynamic 
 - Responsiveness (i.e. thumbs, preview, etc. )
 - Add menu (Imprint, info, AGBs, etc.)
 - style send button when classed "disabled"
