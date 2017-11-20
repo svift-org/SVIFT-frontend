@@ -12,12 +12,16 @@
 =======
 
 ## Seb
-- Social Media Sizes and default images in root (render first, then the series)
-- Accessibility Module
+0: - Chatbox jQuery
+0: - medium post: conversational
+
+1: - Download Page
+2: - Social Media Sizes and default images in root (render first, then the series)
+
+3: - Accessibility Module
+
 - Fix fonts in html export
-- Download Page
-- Chatbox jQuery
-- medium post: conversational
+- check delete of folders
 
 ## Alsino
 - New thumbs 
