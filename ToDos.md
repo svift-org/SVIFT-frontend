@@ -31,7 +31,7 @@
 - style send button when classed "disabled"
 
 ## Hans
-
+- Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
 - Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
 - Write sizes to object
 - send viz size to server
