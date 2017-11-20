@@ -15,6 +15,9 @@
 - Social Media Sizes and default images in root (render first, then the series)
 - Accessibility Module
 - Fix fonts in html export
+- Download Page
+- Chatbox jQuery
+- medium post: conversational
 
 ## Alsino
 - New thumbs 
@@ -38,7 +41,6 @@
 - make all vis-modules responsive
 - input data validator
 - counter-module -> set position according to font
-
 
 ## Future:
 - Show preview of stream for different uses, i.e. facebook, twitter 
