@@ -209,6 +209,7 @@
 
 
 
+
       function createViz(d) {
 
         visType = d;
@@ -229,16 +230,16 @@
 
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
 
-        overlay.append('a')
-          .attr('class', 'btn-back')
-          .attr("href", '#')
-          .html('&#8592; Select different chart type')
-          .on('click', function (d) {
-            d3.select('.viz-container').remove();
-            onEntry();
-            createThumbs();
-            d3.select(this).remove();
-          });
+        // overlay.append('a')
+        //   .attr('class', 'btn-back')
+        //   .attr("href", '#')
+        //   .html('&#8592; Select different chart type')
+        //   .on('click', function (d) {
+        //     d3.select('.viz-container').remove();
+        //     onEntry();
+        //     createThumbs();
+        //     d3.select(this).remove();
+        //   });
 
         //Change viz sizes
         var vizSizes = [["twitter", 900, 450], ["facebook", 1200, 630], ["instagram", 1080, 1080], ["snapchat", 1080, 1920]];
@@ -285,62 +286,64 @@
 
 
       function renderViz() {
+
         d3.request('https://svift-backend.herokuapp.com/render')
           .header("Content-Type", "application/json")
           .mimeType("application/json")
           .post(
-          JSON.stringify(dataTemp),
-          function (err, rawData) {
-            var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
+            JSON.stringify(dataTemp),
+            function (err, rawData) {
+              var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
+              inter = setInterval(function () {
+                d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
 
+                  var jResponse = JSON.parse(data.response);
 
-            inter = setInterval(function () {
-              d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
+                  var db = cb.getBubble(downloadBubble);
+                  var responseCounter = 0;
 
-                var jResponse = JSON.parse(data.response);
+                  for (var type in jResponse.full) {
 
-                var db = cb.getBubble(downloadBubble);
+                    var tau = 2 * Math.PI;
 
+                    d3.select(".download-thumb-" + type + " .arc")
+                      .transition()
+                      .duration(1400)
+                      .attrTween("d", arcTween(jResponse.full[type] * tau, type));
 
-                for (var type in jResponse.full) {
-
-                  var tau = 2 * Math.PI;
-
-                  d3.select(".download-thumb-" + type + " .arc")
-                    .transition()
-                    .duration(1400)
-                    .attrTween("d", arcTween(jResponse.full[type] * tau, type));
-
-                  function arcTween(newAngle, type) {
-                    return function (d) {
-                      var interpolate = d3.interpolate(d.endAngle, newAngle);
-                      return function (t) {
-                        d.endAngle = interpolate(t);
-                        d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
-                        return arc(d);
+                    function arcTween(newAngle, type) {
+                      return function (d) {
+                        var interpolate = d3.interpolate(d.endAngle, newAngle);
+                        return function (t) {
+                          d.endAngle = interpolate(t);
+                          d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
+                          return arc(d);
+                        };
                       };
-                    };
+                    }
+
+                    if (jResponse.full[type] == 1) {
+                      responseCounter++;
+                      var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
+                      d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
+                    }
+
                   }
 
-                  if (jResponse.full[type] == 1) {
+                  if (responseCounter == 4) {
 
-                    var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
-                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
+                    clearInterval(inter);
+
+                    cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+                    cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
+                    cb.addBubble({ type: 'select', value: [{ label: 'Yes' }], class: 'human' }, function(){
+                      location.reload(); 
+                    });
                   }
 
-                }
-
-                if (jResponse.status == 2) {
-                  clearInterval(inter);
-
-                  cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
-                  cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
-                  cb.addBubble({ type: 'select', value: [{ label: 'Yes' }, { label: 'No' }], class: 'human' });
-                }
-
-              });
-            }, 1500);
-          }
+                });
+              }, 1500);
+            }
           );
       }
 
@@ -362,6 +365,7 @@
             d3.select('this').classed('cb-active', true);
             callback(d);
             console.log(d)
+
           });
       };
 
@@ -624,7 +628,7 @@
 
       cb.types['download'] = function (bubble, options, callback) {
 
-        var icons = ['png', 'svg', 'gif', 'mpeg', 'html'];
+        var icons = ['png', 'svg', 'gif', 'html']; //'mpeg'
         var downloadWrapper = bubble.append('div')
           .attr('class', 'cb-download-wrapper');
 
