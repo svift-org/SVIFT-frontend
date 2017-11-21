@@ -26,7 +26,7 @@
 ## Alsino
 - Legal note grey bubble at start
 - New thumbs 
-- Make thumb titles dynamic
+- Make thumb titles dynamic 
 - Responsiveness (i.e. thumbs, preview, etc. )
 - Add new pages (Imprint, info, AGBs, etc.)
 
