@@ -510,14 +510,20 @@
         function updateTableDataTitle(x) {
           var dataPosition = d3.select(x).attr("class");
           var dataValue = d3.select(x).node().value;
-          dataTemp.data.data[dataPosition][0] = dataValue || d3.select(x).attr('placeholder');
+          dataTemp.data.data[dataPosition][0] = dataValue || ""
+          if(!dataValue){
+            d3.select(x).attr('placeholder', '');
+          }
           redrawViz(dataTemp)
         }
 
         function updateTableData(x) {
           var dataPosition = d3.select(x).attr("class");
           var dataValue = Number(d3.select(x).node().value);
-          dataTemp.data.data[dataPosition][1] = dataValue || d3.select(x).attr('placeholder');
+          dataTemp.data.data[dataPosition][1] = dataValue || null;
+          if(!dataValue){
+            d3.select(x).attr('placeholder', null);
+          }
           redrawViz(dataTemp)
         }
 
