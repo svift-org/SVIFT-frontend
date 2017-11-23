@@ -479,13 +479,6 @@
             .on('input', SVIFT.helper.debouncer(function (e) { updateSingleData() }, 500));
 
 
-        var sourceWrapper = bubble.append('div').classed('source', true);
-        sourceWrapper.append('input').attr('id', 'source-input')
-          .attr('placeholder', 'Add your source here')
-          .on('input', function(){updateTitle("#source","#source-input","source","Source: Your source")});
-        var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
-
-
           function updateSingleData() {
 
             if (d3.select("#number").node().value > 100 && visType == "mosaic") {
@@ -500,6 +493,12 @@
 
 
         }
+
+        var sourceWrapper = bubble.append('div').classed('source', true);
+        sourceWrapper.append('input').attr('id', 'source-input')
+          .attr('placeholder', 'Add your source here')
+          .on('input', function(){updateTitle("#source","#source-input","source","Source: Your source")});
+        var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
 
         function redrawViz(data) {
