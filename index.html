@@ -378,14 +378,15 @@
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input').attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input', updateTitle);
+          .on('input', function(){updateTitle("#title-main","#title","title","Your title")});
         var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input').attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', updateTitle);
+          .on('input', function(){updateTitle("#title-sub","#subtitle","subTitle","Your sub title") });
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
+
 
 
         if (visType == "columns" || visType == "gooey") {
@@ -478,6 +479,13 @@
             .on('input', SVIFT.helper.debouncer(function (e) { updateSingleData() }, 500));
 
 
+        var sourceWrapper = bubble.append('div').classed('source', true);
+        sourceWrapper.append('input').attr('id', 'source-input')
+          .attr('placeholder', 'Add your source here')
+          .on('input', function(){updateTitle("#source","#source-input","source","Source: Your source")});
+        var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
+
+
           function updateSingleData() {
 
             if (d3.select("#number").node().value > 100 && visType == "mosaic") {
@@ -492,12 +500,6 @@
 
 
         }
-
-        var sourceWrapper = bubble.append('div').classed('source', true);
-        sourceWrapper.append('input').attr('id', 'source-input')
-          .attr('placeholder', 'Add your source here')
-          .on('input', updateTitle);
-        var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
 
         function redrawViz(data) {
@@ -535,7 +537,6 @@
           d3.select(obj).attr('placeholder', null);
 
           var dataPosition = d3.select(obj).attr("data-index");
-          console.log(dataPosition)
           var inputValue = d3.select(obj).node().value;
           var newData = validateNumber(inputValue);
 
@@ -549,27 +550,12 @@
           redrawViz(dataTemp)
         }
 
-        function updateTitle() {
+        function updateTitle(selectorViz, selectorInput,selectorData,altText) {
 
-          // Handle empty input fields with placeholder values:
-          // 1. Title
-          dataTemp.data.title = d3.select("#title").node().value || 'Your title';
-          d3.select("#title").attr('placeholder', ' Add your title here');
-          d3.select("#title-main").text(dataTemp.data.title)
-
-          // 2. Subtitle
-          dataTemp.data.subTitle = d3.select("#subtitle").node().value || 'Your subtitle';
-          d3.select("#subtitle").attr('placeholder', ' Add your subtitle here');
-          d3.select("#title-sub").text(dataTemp.data.subTitle)
-
-          // Source
-          if (d3.select("#source-input").node().value) {
-            dataTemp.data.source = "Source: " + d3.select("#source-input").node().value;
-          } else {
-            dataTemp.data.source = "Source: Your source";
-          }
-          d3.select("#source-input").attr('placeholder', 'Add your source here');
-          d3.select("#source").text(dataTemp.data.source)
+          var inputText = d3.select(selectorInput).node().value;
+          dataTemp.data[selectorData] = inputText || altText;
+          if(selectorData=="source" && inputText){dataTemp.data[selectorData] = "Source: " + inputText};
+          d3.select(selectorViz).text(dataTemp.data[selectorData]);
 
         }
 
