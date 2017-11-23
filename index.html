@@ -390,30 +390,29 @@
 
         if (visType == "columns" || visType == "gooey") {
 
-          var columns = dataTemp.data.data;
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
           var table = tableWrapper.append('table').append('tbody');
 
           var tableRowTitle = table.append('tr');
           tableRowTitle.selectAll('td')
-            .data(columns).enter().append('td')
+            .data(dataTemp.data.data).enter().append('td')
             .append('input')
             .attr('placeholder', function (d) { return d[0] })
-            .attr("class", function (d, i) { return i })
+            .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function (e) { updateTableDataTitle(this) }, 500));
 
           var tableRowNumbers = table.append('tr');
           tableRowNumbers.selectAll('td')
-            .data(columns).enter().append('td').append('input')
+            .data(dataTemp.data.data).enter().append('td').append('input')
             .attr('placeholder', function (d) { return d[1] })
-            .attr("class", function (d, i) { return i })
+            .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
 
 
-          var editRow = tableWrapper.append('div').classed('column-editor-wrapper', true);
-          editRow.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–').classed('disabled-btn', true)
+          var editRowButtons = tableWrapper.append('div').classed('column-editor-wrapper', true);
+          var removeButton = editRowButtons.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–').classed('disabled-btn', true)
             .on('click', function (d) { removeRow(d); });
-          editRow.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
+          var addButton = editRowButtons.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
             .on('click', function (d) { addRow(d); });
 
 
@@ -430,21 +429,22 @@
 
 
             tableRowTitle.selectAll('td')
-              .data(columns).enter().append('td')
+              .data(dataTemp.data.data).enter().append('td')
               .append('input')
               .attr('placeholder', function (d, i) { return alphabet[i] })
-              .attr("class", function (d, i) { return i })
-              .on('input', SVIFT.helper.debouncer(function (e) { updateTableDataTitle(this) }, 500));
+              .attr("data-index", function (d, i) { return i })
+              .on('input', SVIFT.helper.debouncer(function () {updateTableDataTitle(this)}, 500));
 
             tableRowNumbers.selectAll('td')
               .data(dataTemp.data.data).enter()
               .append('td').append('input')
               .attr('placeholder', function (d) { return d[1] })
-              .attr("class", function (d, i) { return i })
-              .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
+              .attr("data-index", function (d, i) { return i })
+              .on('input', SVIFT.helper.debouncer(function () { updateTableData(this) }, 500))
 
             redrawViz(dataTemp)
           }
+
 
           function removeRow() {
 
@@ -467,6 +467,7 @@
 
           };
         }
+        //if single Number
         else {
           var input = bubble.append('input').classed('number', true)
             .attr('id', 'number')
@@ -475,6 +476,21 @@
             .attr('min', '0')
             .attr('max', '100')
             .on('input', SVIFT.helper.debouncer(function (e) { updateSingleData() }, 500));
+
+
+          function updateSingleData() {
+
+            if (d3.select("#number").node().value > 100 && visType == "mosaic") {
+              d3.select("#number").property("value", d3.select("#number").node().value.slice(0, 2));
+            }
+
+            dataTemp.data.data = [Number(d3.select("#number").node().value)];
+            d3.select("#number").attr('placeholder', '');
+
+            redrawViz(dataTemp)
+          }
+
+
         }
 
         var sourceWrapper = bubble.append('div').classed('source', true);
@@ -491,39 +507,45 @@
           vis.start();
         }
 
-        function updateSingleData() {
 
-          if (d3.select("#number").node().value > 100) {
-            d3.select("#number").property("value", d3.select("#number").node().value.slice(0, 2));
+        function validateNumber(d){
+          var inputValue = d.replace(",",".");
+          if (isNaN(inputValue)){
+            inputValue = null;
+            return null
+          }else{
+            inputValue = Number(inputValue);
+            return inputValue;
           }
 
-          if (d3.select("#number").node().value != "") {
-            dataTemp.data.data = [Number(d3.select("#number").node().value)];
-            d3.select("#number").attr('placeholder', '25');
-          } else {
-            addDefaultData(visType);
-          }
+        }
+
+        function updateTableDataTitle(obj) {
+          var dataPosition = d3.select(obj).attr("data-index");
+          var dataValue = d3.select(obj).node().value;
+          dataTemp.data.data[dataPosition][0] = dataValue || "";
+
+          d3.select(obj).attr('placeholder', '');
 
           redrawViz(dataTemp)
         }
 
-        function updateTableDataTitle(x) {
-          var dataPosition = d3.select(x).attr("class");
-          var dataValue = d3.select(x).node().value;
-          dataTemp.data.data[dataPosition][0] = dataValue || ""
-          if(!dataValue){
-            d3.select(x).attr('placeholder', '');
-          }
-          redrawViz(dataTemp)
-        }
+        function updateTableData(obj) {
 
-        function updateTableData(x) {
-          var dataPosition = d3.select(x).attr("class");
-          var dataValue = Number(d3.select(x).node().value);
-          dataTemp.data.data[dataPosition][1] = dataValue || null;
-          if(!dataValue){
-            d3.select(x).attr('placeholder', null);
+          d3.select(obj).attr('placeholder', null);
+
+          var dataPosition = d3.select(obj).attr("data-index");
+          console.log(dataPosition)
+          var inputValue = d3.select(obj).node().value;
+          var newData = validateNumber(inputValue);
+
+          if(newData==null){
+            d3.select(obj).classed('bad-input-data', true)
+          }else{
+            d3.select(obj).classed('bad-input-data', false)
           }
+          dataTemp.data.data[dataPosition][1] = newData;
+  
           redrawViz(dataTemp)
         }
 

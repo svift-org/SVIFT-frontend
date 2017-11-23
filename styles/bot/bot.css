@@ -358,6 +358,8 @@
         .cb-bubble-input .table-wrapper .column-editor-wrapper .disabled-btn:hover {
           background-color: #ddd;
           color: #fff; }
+    .cb-bubble-input .table-wrapper .bad-input-data {
+      background-color: #FF5858; }
     .cb-bubble-input .table-wrapper table {
       display: inline-flex;
       border-spacing: 0;

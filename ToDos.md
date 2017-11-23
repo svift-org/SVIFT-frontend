@@ -37,12 +37,10 @@
 - Fix text labels when many data points or long labels
 - preview diffrent chart sizes (e.g. twitter, facebook) -> in ratio
 - download stuff directly from frontend
-- show chart selection: 1) end, 2) selection besides chart
 - Chatbot structure and navigation
 - make all vis-modules responsive
 - input data validator
 - counter-module -> set position according to font
-- no return
 
 ## Future:
 - Show preview of stream for different uses, i.e. facebook, twitter 
