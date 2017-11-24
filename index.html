@@ -61,7 +61,7 @@
   <script type="text/javascript">
 
 
-    var dataTemp = {
+    var dummyData = {
       "params": {
         "dev": true
       },
@@ -93,10 +93,10 @@
 
     function addDefaultData(d) {
       if (d == "columns" || d == "gooey") {
-        dataTemp.data.data = [["A", 33], ["B", 20]]
+        dummyData.data.data = [["A", 33], ["B", 20]]
       }
       else {
-        dataTemp.data.data = [25];
+        dummyData.data.data = [25];
       }
     }
 
@@ -216,7 +216,7 @@
 
         addDefaultData(visType);
 
-        dataTemp.vis.type = visType
+        dummyData.vis.type = visType
 
         console.log(d);
         var overlay = d3.select('#gui-1-overlay').html('');
@@ -229,17 +229,6 @@
           .style('opacity', 1)
 
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
-
-        // overlay.append('a')
-        //   .attr('class', 'btn-back')
-        //   .attr("href", '#')
-        //   .html('&#8592; Select different chart type')
-        //   .on('click', function (d) {
-        //     d3.select('.viz-container').remove();
-        //     onEntry();
-        //     createThumbs();
-        //     d3.select(this).remove();
-        //   });
 
         //Change viz sizes
         var vizSizes = [["twitter", 900, 450], ["facebook", 1200, 630], ["instagram", 1080, 1080], ["snapchat", 1080, 1920]];
@@ -271,14 +260,14 @@
           d3.select('.viz-container svg').remove();
           setTimeout(function () {
 
-            var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
+            var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
             vis.init();
             vis.start();
 
           }, 700);
         }
 
-        var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
+        var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
         vis.init();
         vis.start();
 
@@ -291,7 +280,7 @@
           .header("Content-Type", "application/json")
           .mimeType("application/json")
           .post(
-            JSON.stringify(dataTemp),
+            JSON.stringify(dummyData),
             function (err, rawData) {
               var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
               inter = setInterval(function () {
@@ -333,12 +322,8 @@
                   if (responseCounter == 4) {
 
                     clearInterval(inter);
+                    addFinalBubbles(rawData)
 
-                    cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
-                    cb.addBubble({ type: 'text', value: 'Thanks for using svift! Want to build another chart?', class: 'bot' });
-                    cb.addBubble({ type: 'select', value: [{ label: 'Yes' }], class: 'human' }, function(){
-                      location.reload(); 
-                    });
                   }
 
                 });
@@ -355,6 +340,36 @@
 
       /*Define bubble types*/
 
+      cb.types['feedback'] = function (bubble, options, callback) {
+        var feedbackWrapper = bubble.append('div').classed('feedback', true);
+        feedbackWrapper.append('textarea').attr('id', 'feedback')
+          .attr('placeholder', 'Feedback')
+      }
+
+      cb.types['send-feedback'] = function (bubble, options, callback) {
+        bubble.style('background-color', '#fff');
+        bubble.selectAll('.cb-choice')
+          .data(options.value).enter().append('div')
+          .attr('class', 'cb-choice')
+          .text(function (d) { return d.label; })
+          .on('click', function (d) {
+            if(d.feedback){
+
+              var feedbackText = d3.select("#feedback").node().value;
+              console.log(feedbackText)
+              //send feeback here 
+
+              cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
+
+            }
+
+            d3.select(this).classed('cb-active', true);
+            callback(d);
+
+
+          });
+      }
+
       cb.types['select'] = function (bubble, options, callback) {
         bubble.style('background-color', '#fff');
         bubble.selectAll('.cb-choice')
@@ -362,7 +377,7 @@
           .attr('class', 'cb-choice')
           .text(function (d) { return d.label; })
           .on('click', function (d) {
-            d3.select('this').classed('cb-active', true);
+            d3.select(this).classed('cb-active', true);
             callback(d);
             console.log(d)
 
@@ -396,7 +411,7 @@
 
           var tableRowTitle = table.append('tr');
           tableRowTitle.selectAll('td')
-            .data(dataTemp.data.data).enter().append('td')
+            .data(dummyData.data.data).enter().append('td')
             .append('input')
             .attr('placeholder', function (d) { return d[0] })
             .attr("data-index", function (d, i) { return i })
@@ -404,7 +419,7 @@
 
           var tableRowNumbers = table.append('tr');
           tableRowNumbers.selectAll('td')
-            .data(dataTemp.data.data).enter().append('td').append('input')
+            .data(dummyData.data.data).enter().append('td').append('input')
             .attr('placeholder', function (d) { return d[1] })
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
@@ -419,52 +434,52 @@
 
           function addRow() {
 
-            if (dataTemp.data.data.length >= 2) {
+            if (dummyData.data.data.length >= 2) {
               d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false)
             }
 
             var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            var lastEntry = dataTemp.data.data[dataTemp.data.data.length - 1];
-            dataTemp.data.data.push([alphabet[dataTemp.data.data.length], lastEntry[1]])
+            var lastEntry = dummyData.data.data[dummyData.data.data.length - 1];
+            dummyData.data.data.push([alphabet[dummyData.data.data.length], lastEntry[1]])
 
 
             tableRowTitle.selectAll('td')
-              .data(dataTemp.data.data).enter().append('td')
+              .data(dummyData.data.data).enter().append('td')
               .append('input')
               .attr('placeholder', function (d, i) { return alphabet[i] })
               .attr("data-index", function (d, i) { return i })
               .on('input', SVIFT.helper.debouncer(function () {updateTableDataTitle(this)}, 500));
 
             tableRowNumbers.selectAll('td')
-              .data(dataTemp.data.data).enter()
+              .data(dummyData.data.data).enter()
               .append('td').append('input')
               .attr('placeholder', function (d) { return d[1] })
               .attr("data-index", function (d, i) { return i })
               .on('input', SVIFT.helper.debouncer(function () { updateTableData(this) }, 500))
 
-            redrawViz(dataTemp)
+            redrawViz(dummyData)
           }
 
 
           function removeRow() {
 
-            if (dataTemp.data.data.length == 2) {
+            if (dummyData.data.data.length == 2) {
               return
             }
-            if (dataTemp.data.data.length == 3) {
+            if (dummyData.data.data.length == 3) {
               d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
             }
 
-            dataTemp.data.data.pop();
+            dummyData.data.data.pop();
 
             tableRowTitle.selectAll('td')
-              .data(dataTemp.data.data).exit().remove();
+              .data(dummyData.data.data).exit().remove();
 
             tableRowNumbers.selectAll('td')
-              .data(dataTemp.data.data).exit().remove();
+              .data(dummyData.data.data).exit().remove();
 
-            redrawViz(dataTemp)
+            redrawViz(dummyData)
 
           };
         }
@@ -473,7 +488,7 @@
           var input = bubble.append('input').classed('number', true)
             .attr('id', 'number')
             .attr('type', 'number')
-            .attr('placeholder', function () { return dataTemp.data.data })
+            .attr('placeholder', function () { return dummyData.data.data })
             .attr('min', '0')
             .attr('max', '100')
             .on('input', SVIFT.helper.debouncer(function (e) { updateSingleData() }, 500));
@@ -485,10 +500,10 @@
               d3.select("#number").property("value", d3.select("#number").node().value.slice(0, 2));
             }
 
-            dataTemp.data.data = [Number(d3.select("#number").node().value)];
+            dummyData.data.data = [Number(d3.select("#number").node().value)];
             d3.select("#number").attr('placeholder', '');
 
-            redrawViz(dataTemp)
+            redrawViz(dummyData)
           }
 
 
@@ -524,11 +539,11 @@
         function updateTableDataTitle(obj) {
           var dataPosition = d3.select(obj).attr("data-index");
           var dataValue = d3.select(obj).node().value;
-          dataTemp.data.data[dataPosition][0] = dataValue || "";
+          dummyData.data.data[dataPosition][0] = dataValue || "";
 
           d3.select(obj).attr('placeholder', '');
 
-          redrawViz(dataTemp)
+          redrawViz(dummyData)
         }
 
         function updateTableData(obj) {
@@ -544,17 +559,17 @@
           }else{
             d3.select(obj).classed('bad-input-data', false)
           }
-          dataTemp.data.data[dataPosition][1] = newData;
+          dummyData.data.data[dataPosition][1] = newData;
   
-          redrawViz(dataTemp)
+          redrawViz(dummyData)
         }
 
         function updateTitle(selectorViz, selectorInput,selectorData,altText) {
 
           var inputText = d3.select(selectorInput).node().value;
-          dataTemp.data[selectorData] = inputText || altText;
-          if(selectorData=="source" && inputText){dataTemp.data[selectorData] = "Source: " + inputText};
-          d3.select(selectorViz).text(dataTemp.data[selectorData]);
+          dummyData.data[selectorData] = inputText || altText;
+          if(selectorData=="source" && inputText){dummyData.data[selectorData] = "Source: " + inputText};
+          d3.select(selectorViz).text(dummyData.data[selectorData]);
 
         }
 
@@ -616,23 +631,23 @@
         function selectTheme(theme) {
           switch (theme) {
             case "saturn":
-              dataTemp.style.color.main = 'rgba(113, 96, 155, 1)';
-              dataTemp.style.font = 'Poppins';
+              dummyData.style.color.main = 'rgba(113, 96, 155, 1)';
+              dummyData.style.font = 'Poppins';
               break;
             case "mars":
-              dataTemp.style.color.main = '#FE9592';
-              dataTemp.style.font = 'Merriweather';
+              dummyData.style.color.main = '#FE9592';
+              dummyData.style.font = 'Merriweather';
               break;
             case "pluto":
-              dataTemp.style.color.main = '#FBC469';
-              dataTemp.style.font = 'Roboto Mono';
+              dummyData.style.color.main = '#FBC469';
+              dummyData.style.font = 'Roboto Mono';
               break;
             default:
-              dataTemp.style.color.main = 'rgba(113, 96, 155, 1)';
+              dummyData.style.color.main = 'rgba(113, 96, 155, 1)';
           };
 
           d3.select('.viz-container svg').remove();
-          var vis = SVIFT.vis[visType](dataTemp, d3.select('.viz-container'));
+          var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
           vis.init();
           vis.start();
         };
@@ -692,7 +707,7 @@
 
       function onEntry() {
         d3.select('#gui-1-overlay').style('left', '0');
-        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type!', class: 'bot', delay: 1200 });
+        cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type on the left side!', class: 'bot', delay: 1200 });
       }
 
 
@@ -740,9 +755,34 @@
         if (requestSend) { return }
         requestSend = true;
         d3.select(".cb-bubble.human.send .cb-choice").classed('disabled', true)
-
         cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile', delay: 500 }, renderViz);
 
+      }
+
+      function addFinalBubbles(rawData){
+
+          cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+
+          setTimeout(function () {
+
+          cb.addBubble({ type: 'text', value: 'Thanks for using svift! Would you like to give us some feedback?', class: 'bot' });
+          setTimeout(function () {
+            cb.addBubble({ type: 'feedback', class: 'human' });
+            cb.addBubble({ type: 'send-feedback', value: [{ label: 'send feedback',feedback:true },{ label: 'next time',feedback:false  }], class: 'bot' },function(){
+
+              setTimeout(function () {
+
+                cb.addBubble({ type: 'text', value: 'Would you like to build another chart?', class: 'bot' });
+                cb.addBubble({ type: 'select', value: [{ label: 'Yes' }], class: 'human' }, function(){
+                  location.reload(); 
+                });
+
+              },500)
+
+            });
+          },500)
+
+        },1000)
       }
 
     });

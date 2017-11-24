@@ -237,6 +237,12 @@
     }
 }
 
+.cb-active{
+    background-color: $svift-human;
+    color: #000;
+    transform: translateY(3px);
+}
+
 .cb-bubble-input {
     width: 590px;
     background-color: rgb(251, 251, 251);

@@ -297,6 +297,11 @@
   .cb-choice:hover:before {
     background-color: #fff; }
 
+.cb-active {
+  background-color: #75FABF;
+  color: #000;
+  transform: translateY(3px); }
+
 .cb-bubble-input {
   width: 590px;
   background-color: #fbfbfb;
