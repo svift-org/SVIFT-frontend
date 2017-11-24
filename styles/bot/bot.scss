@@ -237,11 +237,39 @@
     }
 }
 
-.cb-active{
-    background-color: $svift-human;
-    color: #000;
-    transform: translateY(3px);
+// .cb-active{
+//     background-color: #ddd;
+//     color: $white;
+//     border-color: #fff;
+
+//     &:hover {
+//         background-color: #ddd;
+//         color: $white;
+//     }
+// }
+
+
+.cb-active {
+    background-color: $white;
+    color: $text-disabled;
+    border: $border-disabled;
+
+    &:before {
+        background-color: $text-disabled;
+    }
+
+    &:hover {
+        transform: translateY(0);
+        background-color: $white;
+        color: $text-disabled;
+        cursor: default;
+
+        &:before {
+            background-color: $text-disabled;
+        }
+    }
 }
+
 
 .cb-bubble-input {
     width: 590px;
@@ -585,19 +613,24 @@
         margin: 10px;
         transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
         cursor: pointer;
-        background-color: none;
         font-family: $font-family-mono;
         color: #000;
         text-transform: uppercase;
-        box-shadow: $box-shadow-default;
         border-radius: $border-radius-circle;
-
-        &:hover {
-            transform: translateY(5px);
-        }
+        background-color: $bot-bubble;
 
         .thumb-name {
             margin-bottom: 5px;
+        }
+    }
+
+    .download-active{
+        // box-shadow: $box-shadow-default;
+        background-color: #fff;
+
+        &:hover {
+            transform: translateY(5px);
+            background-color: $svift-human;
         }
     }
 
@@ -609,22 +642,22 @@
     // }
 }
 
-.disabled {
-    background-color: $white;
-    color: $text-disabled;
-    border: $border-disabled;
+// .disabled {
+//     background-color: $white;
+//     color: $text-disabled;
+//     border: $border-disabled;
 
-    &:before {
-        background-color: $text-disabled;
-    }
+//     &:before {
+//         background-color: $text-disabled;
+//     }
 
-    &:hover {
-        transform: translateY(0);
-        background-color: $white;
-        color: $text-disabled;
+//     &:hover {
+//         transform: translateY(0);
+//         background-color: $white;
+//         color: $text-disabled;
 
-        &:before {
-            background-color: $text-disabled;
-        }
-    }
-}
+//         &:before {
+//             background-color: $text-disabled;
+//         }
+//     }
+// }

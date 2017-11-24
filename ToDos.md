@@ -48,7 +48,6 @@ cities ranking
 - download stuff directly from frontend
 - Chatbot structure and navigation
 - make all vis-modules responsive
-- input data validator
 - counter-module -> set position according to font
 
 ## Future:
