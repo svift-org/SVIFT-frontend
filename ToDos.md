@@ -38,6 +38,8 @@ cities ranking
 - Make thumb titles dynamic 
 - Responsiveness (i.e. thumbs, preview, etc. )
 - Add new pages (Imprint, info, AGBs, etc.)
+- more color themes
+- replace font: Merriweather
 
 ## Hans
 - Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
