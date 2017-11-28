@@ -68,13 +68,17 @@ html, body {
                 line-height: $line-height-heading;
 
                 @include for-tablet {
-                    font-size: 2.5em;
+                    font-size: $font-size-heading * 0.8;
                 }
             }
 
             .claim {
                 font-family: $font-family-sansDefault;
                 font-size: $font-size-text * 1.1;
+
+                @include for-tablet {
+                    font-size: $font-size-text * 0.95;
+                }
             }
 
             .img-intro {

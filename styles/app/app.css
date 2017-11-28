@@ -170,10 +170,13 @@ html, body {
         line-height: 53px; }
         @media (max-width: 1300px) {
           .app #gui-1 div.inner h1 {
-            font-size: 2.5em; } }
+            font-size: 2.4em; } }
       .app #gui-1 div.inner .claim {
         font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
         font-size: 1.1em; }
+        @media (max-width: 1300px) {
+          .app #gui-1 div.inner .claim {
+            font-size: 0.95em; } }
       .app #gui-1 div.inner .img-intro img {
         max-width: 100%;
         height: auto; }
