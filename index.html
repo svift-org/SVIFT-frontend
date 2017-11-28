@@ -393,9 +393,7 @@
                 console.log(feedbackText)
                 //send feeback here 
                 cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
-
               }
-
               d3.select(this).classed('cb-active', true);
               callback(d);
             }
@@ -756,6 +754,9 @@
           d3.select('#gui-1-overlay').style('left', '0');
           createThumbs();
         }, 500)
+        d3.select('.inner').transition().delay(1000).style('display', 'none');
+        d3.select('#gui-1').transition().delay(1000).style('background', '#75FABF');
+
       }
 
 

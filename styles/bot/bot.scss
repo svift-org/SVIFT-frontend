@@ -1,6 +1,7 @@
 /* BOT CSS Namespace 'cb-' */
 @import "../variables/variables.scss";
 @import "../fonts/fonts.scss";
+@import "./mixins/mixins";
 
 *:focus {
     outline: none;
@@ -248,7 +249,6 @@
 //     }
 // }
 
-
 .cb-active {
     background-color: $white;
     color: $text-disabled;
@@ -269,7 +269,6 @@
         }
     }
 }
-
 
 .cb-bubble-input {
     width: 590px;
@@ -342,10 +341,9 @@
                     color: $white;
                 }
             }
-
         }
 
-        .bad-input-data{
+        .bad-input-data {
             background-color: $svift-delete;
         }
 
@@ -624,7 +622,7 @@
         }
     }
 
-    .download-active{
+    .download-active {
         // box-shadow: $box-shadow-default;
         background-color: #fff;
 

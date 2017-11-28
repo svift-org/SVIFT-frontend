@@ -1,6 +1,1 @@
-{
-    "name": "columns",
-    "description": "columns module",
-    "title": "Column Chart",
-    "input": "number"
-}
+{"name":"columns","description":"columns module","title":"Column Chart","input":"number"}

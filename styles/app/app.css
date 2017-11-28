@@ -133,9 +133,13 @@ html, body {
 
 .app {
   display: flex;
+  flex-direction: row;
   height: 100vh;
   color: #fff;
   overflow: hidden; }
+  @media (max-width: 599px) {
+    .app {
+      flex-direction: column; } }
   .app #gui-1 {
     flex: 1;
     display: flex;
@@ -169,6 +173,7 @@ html, body {
         font-size: 1.1em; }
     .app #gui-1 #gui-1-overlay {
       display: flex;
+      flex: 1;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -182,24 +187,37 @@ html, body {
       .app #gui-1 #gui-1-overlay div.thumb-wrapper {
         display: flex;
         flex-wrap: wrap;
+        flex-direction: row;
         justify-content: center;
-        align-items: flex-end; }
+        align-items: flex-end;
+        padding: 5vw; }
+        @media (max-width: 1300px) {
+          .app #gui-1 #gui-1-overlay div.thumb-wrapper {
+            padding: 3vw; } }
         .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb {
-          display: inline-flex;
+          display: flex;
           justify-content: center;
           align-items: center;
           position: relative;
-          margin: 20px;
           transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-          cursor: pointer; }
+          cursor: pointer;
+          padding: 30px 20px;
+          width: calc(100% / 2); }
           .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb:hover {
             transform: translateY(5px); }
           .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb img {
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
             border-radius: 4px; }
+            @media (max-width: 1300px) {
+              .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb img {
+                max-width: 100%;
+                height: auto; } }
+          @media (max-width: 1300px) {
+            .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb {
+              padding: 20px 10px; } }
           .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb .thumb-eyebrow {
             position: absolute;
-            bottom: -20px;
+            bottom: 0px;
             height: 40px;
             background-color: #fff;
             color: #71609b;
