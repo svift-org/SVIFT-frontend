@@ -3,11 +3,10 @@
 
 ## Next steps:
 - send animation length to backend
-- add pause to gif if loop
 - Add Category filter
 - Handle font sizes
 - Pause gif between loops (in animation or gif meta data?)
-- Add color picker
+- Direct posting to social media (twitter, fb, instagram)
 
 =======
 
@@ -34,9 +33,6 @@ cities ranking
 
 ## Alsino
 - Legal note grey bubble at start
-- New thumbs 
-- Make thumb titles dynamic 
-- Responsiveness (i.e. thumbs, preview, etc. )
 - Add new pages (Imprint, info, AGBs, etc.)
 - more color themes
 - replace font: Merriweather

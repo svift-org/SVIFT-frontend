@@ -1,6 +1,7 @@
 /* APP CSS */
 @import "./variables/variables";
 @import "./fonts/fonts";
+@import "./mixins/mixins";
 
 * {
     -webkit-box-sizing: border-box;
@@ -21,6 +22,7 @@ html, body {
 
 .app {
     display: flex;
+    flex-direction: row;
     height: 100vh;
     color: $white;
     overflow: hidden;
@@ -35,49 +37,81 @@ html, body {
 
         line-height: $line-height-default;
 
-        nav {
+        .container {
             position: absolute;
             top: $padding-big;
             left: $padding-big - 2%;
+            display: inline-block;
+            transition: 0.4s;
 
             &:hover {
                 cursor: pointer;
             }
 
-            div {
+            .bar1, .bar2, .bar3 {
                 width: 30px;
-                height: 10px;
-                border-bottom: 3px solid $white;
+                height: 3px;
+                background-color: #fff;
+                margin: 6px 0;
+                transition: 0.4s;
+            }
+
+            .change {
+                &.bar1 {
+                    -webkit-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+                }
+
+                &.bar2 {
+                    opacity: 0;
+                }
+
+                &.bar3 {
+                    -webkit-transform: rotate(45deg) translate(-13px, -12px);
+                    transform: rotate(45deg) translate(-13px, -12px);
+                }
             }
         }
 
         div.inner {
             padding: ($padding-big * 1.5) ($padding-big * 2);
 
-            h1 {
-                // padding: $padding-big 0;
-                margin: ($padding-big * 2) 0 $padding-big 0;
+            @include for-tablet {
+                padding: ($padding-big * 1) ($padding-big * 1.5);
+            }
 
-                // padding: ($padding-big * 1.5) 0 $padding-big 0;
+
+            h1 {
+                margin: ($padding-big * 2) 0 $padding-big 0;
                 font-family: $font-family-mono;
                 font-size: $font-size-heading;
                 line-height: $line-height-heading;
+
+                @include for-tablet {
+                    font-size: $font-size-heading * 0.8;
+                }
             }
 
             .claim {
                 font-family: $font-family-sansDefault;
                 font-size: $font-size-text * 1.1;
+
+                @include for-tablet {
+                    font-size: $font-size-text * 0.95;
+                }
             }
 
             .img-intro {
-                // padding: $padding-big 0;
-                // text-align: center;
-           
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
             }
         }
 
         #gui-1-overlay {
             display: flex;
+            flex: 1;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -92,16 +126,35 @@ html, body {
             div.thumb-wrapper {
                 display: flex;
                 flex-wrap: wrap;
+                flex-direction: row;
                 justify-content: center;
                 align-items: flex-end;
+                padding: 5vw;
 
-                // background-color: red;
+                @include for-tablet {
+                    padding: 3vw;
+                }
+
 
                 div.thumb {
-                    display: inline-block;
-                    margin: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
                     transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
                     cursor: pointer;
+                    padding: 30px 20px;
+                    width: calc(100% / 2);
+
+                    @include for-tablet {
+                        padding: 20px 10px;
+                    }
+
+
+                    @include for-phone {
+                        width: 100%;
+                    }
+
 
                     &:hover {
                         transform: translateY(5px);
@@ -110,6 +163,37 @@ html, body {
                     img {
                         box-shadow: $box-shadow-default;
                         border-radius: $border-radius-default;
+
+                        @include for-tablet {
+                            max-width: 100%;
+                            height: auto;
+                        }
+
+
+                        @include for-phone {
+                            width: 80%;
+                            height: auto;
+                        }
+                    }
+
+                    .thumb-eyebrow {
+                        position: absolute;
+                        bottom: 10px;
+                        height: 40px;
+                        background-color: $white;
+                        color: $svift-primary;
+                        text-align: center;
+                        border-radius: 4px;
+                        font-family: "DecimaMonoProBold", monospace;
+                        font-size: 0.8em;
+                        text-transform: uppercase;
+                        padding: 10px 30px;
+                        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+
+                        @include for-tablet {
+                            // width: 100%;
+                            // height: auto;
+                        }
                     }
                 }
             }
