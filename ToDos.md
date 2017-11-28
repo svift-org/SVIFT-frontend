@@ -44,13 +44,14 @@ cities ranking
 ## Hans
 - Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
 - Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
-- Reset gooey center
 - Fix text labels when many data points or long labels
 - preview diffrent chart sizes (e.g. twitter, facebook) -> in ratio
 - download stuff directly from frontend
 - Chatbot structure and navigation
+
 - make all vis-modules responsive
 - counter-module -> set position according to font
+- Reset gooey center
 
 ## Future:
 - Show preview of stream for different uses, i.e. facebook, twitter 
