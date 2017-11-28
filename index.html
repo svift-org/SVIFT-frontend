@@ -197,18 +197,29 @@
           .append('div')
           .attr('class', 'thumb-wrapper');
 
-        overlay.selectAll('.thumb')
+        var thumb = overlay.selectAll('.thumb')
           .data(d3.keys(data)).enter().append('div')
           .attr('class', 'thumb')
-          .attr('id', function (d) { return 'thumb-' + d })
+          .attr('id', function (d) { return 'thumb-' + d });
+
+        thumb
           .append('img')
           .attr('src', function (d) { return './build/thumbs/' + d + '_thumb.png' })
           .on('click', selectViz)
-          .style('opacity',0)
+          .style('opacity', 0)
           .transition()
-          .delay(function (d,i) { return i * 500 })
-          .style('opacity',1)
+          .delay(function (d, i) { return i * 300 })
+          .style('opacity', 1);
+
+        thumb.append('div').attr('class', "thumb-eyebrow").style('opacity', 0)
+          .transition()
+          .delay(function (d, i) { return i * 300 })
+          .style('opacity', 1)
+          .text(function (d) { return d });
       };
+
+
+
 
 
 
@@ -284,72 +295,72 @@
           .header("Content-Type", "application/json")
           .mimeType("application/json")
           .post(
-            JSON.stringify(dummyData),
-            function (err, rawData) {
+          JSON.stringify(dummyData),
+          function (err, rawData) {
 
-              var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
-              var hasRequested = false;
+            var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
+            var hasRequested = false;
 
-              inter = setInterval(function () {
-                d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
+            inter = setInterval(function () {
+              d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
 
-                if(!hasRequested){
+                if (!hasRequested) {
                   // setTimeout(function () {
-                    cb.addBubble({ type: 'text', value: 'We are currently rendering your image', class: 'bot', delay: 2000 },function(){
-                      cb.addBubble({ type: 'text', value: 'You can either download the images directly above', class: 'bot', delay: 2000 },function(){
-                        cb.addBubble({ type: 'text', value: 'or the linke below', class: 'bot', delay: 2000 });
-                      });
+                  cb.addBubble({ type: 'text', value: 'We are currently rendering your image', class: 'bot', delay: 2000 }, function () {
+                    cb.addBubble({ type: 'text', value: 'You can either download the images directly above', class: 'bot', delay: 2000 }, function () {
+                      cb.addBubble({ type: 'text', value: 'or the linke below', class: 'bot', delay: 2000 });
                     });
+                  });
 
                   // },1000)
-                  hasRequested=true;
+                  hasRequested = true;
                 }
 
-                  var jResponse = JSON.parse(data.response);
+                var jResponse = JSON.parse(data.response);
 
-                  // var db = cb.getBubble(downloadBubble);
-                  var responseCounter = 0;
+                // var db = cb.getBubble(downloadBubble);
+                var responseCounter = 0;
 
-                  for (var type in jResponse.full) {
+                for (var type in jResponse.full) {
 
-                    var tau = 2 * Math.PI;
+                  var tau = 2 * Math.PI;
 
-                    d3.select(".download-thumb-" + type + " .arc")
-                      .transition()
-                      .duration(900)
-                      .attrTween("d", arcTween(jResponse.full[type] * tau, type));
+                  d3.select(".download-thumb-" + type + " .arc")
+                    .transition()
+                    .duration(900)
+                    .attrTween("d", arcTween(jResponse.full[type] * tau, type));
 
-                    function arcTween(newAngle, type) {
-                      return function (d) {
-                        var interpolate = d3.interpolate(d.endAngle, newAngle);
-                        return function (t) {
-                          d.endAngle = interpolate(t);
-                          d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
-                          return arc(d);
-                        };
+                  function arcTween(newAngle, type) {
+                    return function (d) {
+                      var interpolate = d3.interpolate(d.endAngle, newAngle);
+                      return function (t) {
+                        d.endAngle = interpolate(t);
+                        d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
+                        return arc(d);
                       };
-                    }
-
-                    if (jResponse.full[type] == 1) {
-                      responseCounter++;
-                      d3.select(".download-thumb-" + type).classed("download-active",true)
-                      var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
-
-                      d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
-                    }
-
+                    };
                   }
 
-                  if (responseCounter == 4) {
+                  if (jResponse.full[type] == 1) {
+                    responseCounter++;
+                    d3.select(".download-thumb-" + type).classed("download-active", true)
+                    var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
 
-                    clearInterval(inter);
-                    addFinalBubbles(rawData)
-
+                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
                   }
 
-                });
-              }, 1000);
-            }
+                }
+
+                if (responseCounter == 4) {
+
+                  clearInterval(inter);
+                  addFinalBubbles(rawData)
+
+                }
+
+              });
+            }, 1000);
+          }
           );
 
       }
@@ -375,8 +386,8 @@
           .attr('class', 'cb-choice')
           .text(function (d) { return d.label; })
           .on('click', function (d) {
-            if(!d3.select(this).classed('cb-active')){
-              if(d.feedback){
+            if (!d3.select(this).classed('cb-active')) {
+              if (d.feedback) {
 
                 var feedbackText = d3.select("#feedback").node().value;
                 console.log(feedbackText)
@@ -400,7 +411,7 @@
           .text(function (d) { return d.label; })
           .on('click', function (d) {
 
-            if(!d3.select(this).classed('cb-active')){
+            if (!d3.select(this).classed('cb-active')) {
               d3.select(this).classed('cb-active', true);
               callback(d);
               console.log(d)
@@ -419,13 +430,13 @@
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input').attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input', function(){updateTitle("#title-main","#title","title","Your title")});
+          .on('input', function () { updateTitle("#title-main", "#title", "title", "Your title") });
         var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input').attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', function(){updateTitle("#title-sub","#subtitle","subTitle","Your sub title") });
+          .on('input', function () { updateTitle("#title-sub", "#subtitle", "subTitle", "Your sub title") });
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
 
@@ -475,7 +486,7 @@
               .append('input')
               .attr('placeholder', function (d, i) { return alphabet[i] })
               .attr("data-index", function (d, i) { return i })
-              .on('input', SVIFT.helper.debouncer(function () {updateTableDataTitle(this)}, 500));
+              .on('input', SVIFT.helper.debouncer(function () { updateTableDataTitle(this) }, 500));
 
             tableRowNumbers.selectAll('td')
               .data(dummyData.data.data).enter()
@@ -540,7 +551,7 @@
         var sourceWrapper = bubble.append('div').classed('source', true);
         sourceWrapper.append('input').attr('id', 'source-input')
           .attr('placeholder', 'Add your source here')
-          .on('input', function(){updateTitle("#source","#source-input","source","Source: Your source")});
+          .on('input', function () { updateTitle("#source", "#source-input", "source", "Source: Your source") });
         var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
 
@@ -552,12 +563,12 @@
         }
 
 
-        function validateNumber(d){
-          var inputValue = d.replace(",",".");
-          if (isNaN(inputValue)){
+        function validateNumber(d) {
+          var inputValue = d.replace(",", ".");
+          if (isNaN(inputValue)) {
             inputValue = null;
             return null
-          }else{
+          } else {
             inputValue = Number(inputValue);
             return inputValue;
           }
@@ -582,21 +593,21 @@
           var inputValue = d3.select(obj).node().value;
           var newData = validateNumber(inputValue);
 
-          if(newData==null){
+          if (newData == null) {
             d3.select(obj).classed('bad-input-data', true)
-          }else{
+          } else {
             d3.select(obj).classed('bad-input-data', false)
           }
           dummyData.data.data[dataPosition][1] = newData;
-  
+
           redrawViz(dummyData)
         }
 
-        function updateTitle(selectorViz, selectorInput,selectorData,altText) {
+        function updateTitle(selectorViz, selectorInput, selectorData, altText) {
 
           var inputText = d3.select(selectorInput).node().value;
           dummyData.data[selectorData] = inputText || altText;
-          if(selectorData=="source" && inputText){dummyData.data[selectorData] = "Source: " + inputText};
+          if (selectorData == "source" && inputText) { dummyData.data[selectorData] = "Source: " + inputText };
           d3.select(selectorViz).text(dummyData.data[selectorData]);
 
         }
@@ -686,10 +697,10 @@
 
         var icons = ['png', 'svg', 'gif', 'html']; //'mpeg'
         var altNames = {
-          "png":"Picture",
+          "png": "Picture",
           "svg": "Vector",
-          "gif":"gif",
-          "html":"embed"
+          "gif": "gif",
+          "html": "embed"
         }
         var downloadWrapper = bubble.append('div')
           .attr('class', 'cb-download-wrapper');
@@ -744,7 +755,7 @@
         setTimeout(function () {
           d3.select('#gui-1-overlay').style('left', '0');
           createThumbs();
-        },500)
+        }, 500)
       }
 
 
@@ -792,35 +803,35 @@
         if (requestSend) { return }
         requestSend = true;
         d3.select(".cb-bubble.human.send .cb-choice").classed('cb-active', true)
-        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile'}, renderViz);
+        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' }, renderViz);
 
       }
 
-      function addFinalBubbles(rawData){
+      function addFinalBubbles(rawData) {
 
-          cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+        cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
 
-          setTimeout(function () {
+        setTimeout(function () {
 
           cb.addBubble({ type: 'text', value: 'Thanks for using svift! Would you like to give us some feedback?', class: 'bot' });
 
           setTimeout(function () {
             cb.addBubble({ type: 'feedback', class: 'human' });
-            cb.addBubble({ type: 'send-feedback', value: [{ label: 'send feedback',feedback:true },{ label: 'next time',feedback:false  }], class: 'human' },function(){
+            cb.addBubble({ type: 'send-feedback', value: [{ label: 'send feedback', feedback: true }, { label: 'next time', feedback: false }], class: 'human' }, function () {
 
               setTimeout(function () {
 
                 cb.addBubble({ type: 'text', value: 'Would you like to build another chart?', class: 'bot' });
-                cb.addBubble({ type: 'select', value: [{ label: 'Yes' }], class: 'human' }, function(){
-                  location.reload(); 
+                cb.addBubble({ type: 'select', value: [{ label: 'Yes' }], class: 'human' }, function () {
+                  location.reload();
                 });
 
-              },500)
+              }, 500)
 
             });
-          },500)
+          }, 500)
 
-        },1000)
+        }, 1000)
       }
 
     });

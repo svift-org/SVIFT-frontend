@@ -3,11 +3,10 @@
 
 ## Next steps:
 - send animation length to backend
-- add pause to gif if loop
 - Add Category filter
 - Handle font sizes
 - Pause gif between loops (in animation or gif meta data?)
-- Add color picker
+- Direct posting to social media (twitter, fb, instagram)
 
 =======
 

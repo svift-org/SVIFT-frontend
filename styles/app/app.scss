@@ -98,7 +98,10 @@ html, body {
                 // background-color: red;
 
                 div.thumb {
-                    display: inline-block;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
                     margin: 20px;
                     transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
                     cursor: pointer;
@@ -110,6 +113,21 @@ html, body {
                     img {
                         box-shadow: $box-shadow-default;
                         border-radius: $border-radius-default;
+                    }
+
+                    .thumb-eyebrow {
+                        position: absolute;
+                        bottom: -20px;
+                        height: 40px;
+                        background-color: $white;
+                        color: $svift-primary;
+                        text-align: center;
+                        border-radius: 4px;
+                        font-family: "DecimaMonoProBold", monospace;
+                        font-size: 0.8em;
+                        text-transform: uppercase;
+                        padding: 10px 30px;
+                        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
                     }
                 }
             }
