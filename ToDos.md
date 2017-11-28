@@ -33,7 +33,6 @@ cities ranking
 
 ## Alsino
 - Legal note grey bubble at start
-- Responsiveness (i.e. thumbs, preview, etc. )
 - Add new pages (Imprint, info, AGBs, etc.)
 - more color themes
 - replace font: Merriweather

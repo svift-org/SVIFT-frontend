@@ -148,16 +148,28 @@ html, body {
     background: linear-gradient(to right top, #71609b, #4B4B81);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     line-height: 1.5; }
-    .app #gui-1 nav {
+    .app #gui-1 .container {
       position: absolute;
       top: 5%;
-      left: 3%; }
-      .app #gui-1 nav:hover {
+      left: 3%;
+      display: inline-block;
+      transition: 0.4s; }
+      .app #gui-1 .container:hover {
         cursor: pointer; }
-      .app #gui-1 nav div {
+      .app #gui-1 .container .bar1, .app #gui-1 .container .bar2, .app #gui-1 .container .bar3 {
         width: 30px;
-        height: 10px;
-        border-bottom: 3px solid #fff; }
+        height: 3px;
+        background-color: #fff;
+        margin: 6px 0;
+        transition: 0.4s; }
+      .app #gui-1 .container .change.bar1 {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg); }
+      .app #gui-1 .container .change.bar2 {
+        opacity: 0; }
+      .app #gui-1 .container .change.bar3 {
+        -webkit-transform: rotate(45deg) translate(-13px, -12px);
+        transform: rotate(45deg) translate(-13px, -12px); }
     .app #gui-1 div.inner {
       padding: 7.5% 10%; }
       @media (max-width: 1300px) {

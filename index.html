@@ -25,11 +25,11 @@
   <div class="app">
     <div id="gui-1" class="gui">
       <div id="gui-1-overlay"></div>
-      <nav>
-        <div></div>
-        <div></div>
-        <div></div>
-      </nav>
+      <div class='container'>
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
       <!-- <div id="nav">
       <ul>
         <li>Home | Build a vis</li>
@@ -99,6 +99,8 @@
         dummyData.data.data = [25];
       }
     }
+
+
 
 
     var cb;
@@ -364,6 +366,10 @@
           );
 
       }
+
+      d3.select('.container').on('click', function () {
+        d3.select(this).selectAll('div').classed('change', true);
+      });
 
 
       //Define Chatbot
