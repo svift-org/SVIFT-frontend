@@ -27,11 +27,6 @@ html, body {
     color: $white;
     overflow: hidden;
 
-    @include for-phone {
-        flex-direction: column;
-    }
-
-
     #gui-1 {
         flex: 1;
         display: flex;
@@ -61,14 +56,20 @@ html, body {
         div.inner {
             padding: ($padding-big * 1.5) ($padding-big * 2);
 
-            h1 {
-                // padding: $padding-big 0;
-                margin: ($padding-big * 2) 0 $padding-big 0;
+            @include for-tablet {
+                padding: ($padding-big * 1) ($padding-big * 1.5);
+            }
 
-                // padding: ($padding-big * 1.5) 0 $padding-big 0;
+
+            h1 {
+                margin: ($padding-big * 2) 0 $padding-big 0;
                 font-family: $font-family-mono;
                 font-size: $font-size-heading;
                 line-height: $line-height-heading;
+
+                @include for-tablet {
+                    font-size: 2.5em;
+                }
             }
 
             .claim {
@@ -77,9 +78,10 @@ html, body {
             }
 
             .img-intro {
-                // padding: $padding-big 0;
-                // text-align: center;
-           
+                img {
+                    max-width: 100%;
+                    height: auto;
+                }
             }
         }
 
@@ -120,6 +122,16 @@ html, body {
                     padding: 30px 20px;
                     width: calc(100% / 2);
 
+                    @include for-tablet {
+                        padding: 20px 10px;
+                    }
+
+
+                    @include for-phone {
+                        width: 100%;
+                    }
+
+
                     &:hover {
                         transform: translateY(5px);
                     }
@@ -132,16 +144,17 @@ html, body {
                             max-width: 100%;
                             height: auto;
                         }
-                    }
 
-                    @include for-tablet {
-                        padding: 20px 10px;
-                    }
 
+                        @include for-phone {
+                            width: 80%;
+                            height: auto;
+                        }
+                    }
 
                     .thumb-eyebrow {
                         position: absolute;
-                        bottom: 0px;
+                        bottom: 10px;
                         height: 40px;
                         background-color: $white;
                         color: $svift-primary;
