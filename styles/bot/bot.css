@@ -528,7 +528,7 @@
 .cb-themes-wrapper {
   display: flex;
   justify-content: space-between;
-  height: 210px; }
+  flex-wrap: wrap; }
   .cb-themes-wrapper .theme-thumb {
     flex: 1;
     margin: 10px;
