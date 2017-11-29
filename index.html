@@ -314,11 +314,13 @@
 
                 if (!hasRequested) {
                   // setTimeout(function () {
-                  cb.addBubble({ type: 'text', value: 'We are currently rendering your image', class: 'bot', delay: 2000 }, function () {
-                    cb.addBubble({ type: 'text', value: 'You can either download the images directly above', class: 'bot', delay: 2000 }, function () {
-                      cb.addBubble({ type: 'text', value: 'or the linke below', class: 'bot', delay: 2000 });
+                  // cb.addBubble({ type: 'text', value: 'We are currently rendering your chart...', class: 'bot', delay: 1500 }, function () {
+                    
+                    cb.addBubble({ type: 'text', value: 'In the meantime you can preview your chart for different media channels', class: 'bot', delay: 2000 }, function () {
+                      cb.addBubble({ type: 'resize', class: 'human' });
+                      // cb.addBubble({ type: 'text', value: 'or the linke below', class: 'bot', delay: 2000 });
                     });
-                  });
+                  // });
 
                   // },1000)
                   hasRequested = true;
@@ -389,7 +391,46 @@
           .attr('placeholder', 'Feedback')
       }
 
-      cb.types['send-feedback'] = function (bubble, options, callback) {
+      cb.types['resize'] = function (bubble, options, callback) {
+
+
+        function resizeViz(d) {
+
+          var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
+
+          d3.select(".viz-container")
+            .style("height", (containerWidth / d[0]) * d[1] + "px")
+
+          d3.select('.viz-container svg').remove();
+          setTimeout(function () {
+
+            var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
+            vis.init();
+            vis.start();
+
+          }, 700);
+        }
+
+        var sizes = [
+          {'name':'gif','format':[100,100]},
+          {'name':'Twitter','format':[100,50]},
+          {'name':'Facebook','format':[100,50]},
+          {'name':'LinkedIn','format':[100,100]},
+        ];
+
+        bubble.style('background-color', '#fff');
+        bubble.selectAll('.cb-choice')
+          .data(sizes).enter().append('div')
+          .attr('class', 'cb-choice')
+          .text(function (d) { return d.name; })
+          .on('click', function (d) {
+            resizeViz(d.format)
+          });
+
+      }
+
+
+      cb.types['sendFeedback'] = function (bubble, options, callback) {
         bubble.style('background-color', '#fff');
         bubble.selectAll('.cb-choice')
           .data(options.value).enter().append('div')
@@ -824,11 +865,11 @@
 
         setTimeout(function () {
 
-          cb.addBubble({ type: 'text', value: 'Thanks for using svift! Would you like to give us some feedback?', class: 'bot' });
+          cb.addBubble({ type: 'text', value: 'Thanks for using svift! Would you like to give us some feedback?', class: 'bot',delay:1500 });
 
           setTimeout(function () {
             cb.addBubble({ type: 'feedback', class: 'human' });
-            cb.addBubble({ type: 'send-feedback', value: [{ label: 'send feedback', feedback: true }, { label: 'next time', feedback: false }], class: 'human' }, function () {
+            cb.addBubble({ type: 'sendFeedback', value: [{ label: 'send feedback', feedback: true }, { label: 'next time', feedback: false }], class: 'human' }, function () {
 
               setTimeout(function () {
 
