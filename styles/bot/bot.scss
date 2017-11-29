@@ -277,6 +277,16 @@
     border-radius: 4px;
     margin-top: 20px;
 
+    @include large {
+        width: 450px;
+    }
+
+
+    @include medium {
+        width: auto;
+    }
+
+
     .table-wrapper {
         overflow-y: hidden;
         display: flex;

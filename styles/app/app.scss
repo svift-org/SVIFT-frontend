@@ -76,7 +76,7 @@ html, body {
         div.inner {
             padding: ($padding-big * 1.5) ($padding-big * 2);
 
-            @include for-tablet {
+            @include large {
                 padding: ($padding-big * 1) ($padding-big * 1.5);
             }
 
@@ -87,7 +87,7 @@ html, body {
                 font-size: $font-size-heading;
                 line-height: $line-height-heading;
 
-                @include for-tablet {
+                @include large {
                     font-size: $font-size-heading * 0.8;
                 }
             }
@@ -96,7 +96,7 @@ html, body {
                 font-family: $font-family-sansDefault;
                 font-size: $font-size-text * 1.1;
 
-                @include for-tablet {
+                @include large {
                     font-size: $font-size-text * 0.95;
                 }
             }
@@ -131,7 +131,7 @@ html, body {
                 align-items: flex-end;
                 padding: 5vw;
 
-                @include for-tablet {
+                @include large {
                     padding: 3vw;
                 }
 
@@ -146,12 +146,12 @@ html, body {
                     padding: 30px 20px;
                     width: calc(100% / 2);
 
-                    @include for-tablet {
+                    @include large {
                         padding: 20px 10px;
                     }
 
 
-                    @include for-phone {
+                    @include small {
                         width: 100%;
                     }
 
@@ -164,13 +164,13 @@ html, body {
                         box-shadow: $box-shadow-default;
                         border-radius: $border-radius-default;
 
-                        @include for-tablet {
+                        @include large {
                             max-width: 100%;
                             height: auto;
                         }
 
 
-                        @include for-phone {
+                        @include small {
                             width: 80%;
                             height: auto;
                         }
@@ -190,7 +190,7 @@ html, body {
                         padding: 10px 30px;
                         box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 
-                        @include for-tablet {
+                        @include large {
                             // width: 100%;
                             // height: auto;
                         }

@@ -60,6 +60,11 @@
   <script src="chatbot.js"></script>
   <script type="text/javascript">
 
+    // Animate Nav btn
+    d3.select('.container').on('click', function () {
+      d3.select(this).selectAll('div').classed('change', true);
+    });
+
 
     var dummyData = {
       "params": {
@@ -367,9 +372,7 @@
 
       }
 
-      d3.select('.container').on('click', function () {
-        d3.select(this).selectAll('div').classed('change', true);
-      });
+
 
 
       //Define Chatbot
