@@ -34,8 +34,55 @@ html, body {
         background: #5C258D; /* fallback for old browsers */
         background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
         line-height: $line-height-default;
+
+        nav {
+            background-color: $svift-human;
+            color: $white;
+            font-family: $font-family-mono;
+            font-size: 2em;
+            box-shadow: $box-shadow-default;
+            position: absolute;
+            top: -400px;
+            left: 0;
+            width: 50%;
+            border-bottom-left-radius: $border-radius-default;
+            border-bottom-right-radius: $border-radius-default;
+            text-align: center;
+            padding: $padding-default;
+            transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+            .close {
+                text-align: right;
+                font-size: 0.8em;
+
+                &:after {
+                    font-family: $font-family-icons;
+                    content: '\e800';
+                    cursor: pointer;
+                }
+
+                &:hover {
+                    color: $svift-primary;
+                }
+            }
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+
+                li {
+                    a {
+                        text-decoration: none;
+                        color: $white;
+
+                        &:hover {
+                            color: $svift-primary;
+                        }
+                    }
+                }
+            }
+        }
 
         .container {
             position: absolute;

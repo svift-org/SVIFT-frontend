@@ -30,15 +30,25 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
       </div>
-      <!-- <div id="nav">
-      <ul>
-        <li>Home | Build a vis</li>
-        <li>About</li>
-        <li>Dev / Docs</li>
-        <li>Contact / Legal Note</li>
-        <li>Pro<li>
-      </ul>
-    </div> -->
+
+      <nav>
+        <div class='close'></div>
+        <ul>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Docs</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+          <li>
+            <a href="#">Pro</a>
+          </li>
+        </ul>
+      </nav>
+
       <div class="inner">
         <img class="img-logo" src="assets/img/wordmark-white.png" alt="Svift Logo">
         <h1>Simply make your numbers look good</h1>
@@ -61,9 +71,15 @@
   <script type="text/javascript">
 
     // Animate Nav btn
-    d3.select('.container').on('click', function () {
-      d3.select(this).selectAll('div').classed('change', true);
-    });
+    d3.select('.container')
+      .on('mouseenter', function () {
+        d3.select(this).selectAll('div').classed('change', true);
+        d3.select('nav').style('top', 0);
+      })
+      .on('mouseleave', function () {
+        d3.select(this).selectAll('div').classed('change', false);
+      });
+
 
 
     var dummyData = {
@@ -215,16 +231,16 @@
           .on('click', selectViz)
           .style('opacity', 0)
           .transition()
-            .delay(function (d, i) { return i * 300 })
-            .style('opacity', 1);
+          .delay(function (d, i) { return i * 300 })
+          .style('opacity', 1);
 
         thumb.append('div')
           .attr('class', "thumb-eyebrow")
           .style('opacity', 0)
           .transition()
-            .delay(function (d, i) { return i * 300 })
-            .style('opacity', 1)
-            .text(function (d) { return d });
+          .delay(function (d, i) { return i * 300 })
+          .style('opacity', 1)
+          .text(function (d) { return d });
       };
 
 
@@ -705,15 +721,15 @@
       cb.types['themes'] = function (bubble, options, callback) {
 
         var themes = [
-          {'name':'mercury','color':'#71609B', 'font':'Open Sans'},
-          {'name':'venus','color':'#FE9592', 'font':'Noto Serif'},
-          {'name':'earth','color':'#B8E986', 'font':'Roboto Mono'},
-          {'name':'mars','color':'#FF5C5C', 'font':'Open Sans'},
-          {'name':'jupiter','color':'#75FABF', 'font':'Noto Serif'},
-          {'name':'saturn','color':'#FBC469', 'font':'Roboto Mono'},
-          {'name':'uranus','color':'#83C4FE', 'font':'Open Sans'},
-          {'name':'neptune','color':'#4554A5', 'font':'Noto Serif'},
-          {'name':'pluto','color':'#454545', 'font':'Roboto Mono'}
+          { 'name': 'mercury', 'color': '#71609B', 'font': 'Open Sans' },
+          { 'name': 'venus', 'color': '#FE9592', 'font': 'Noto Serif' },
+          { 'name': 'earth', 'color': '#B8E986', 'font': 'Roboto Mono' },
+          { 'name': 'mars', 'color': '#FF5C5C', 'font': 'Open Sans' },
+          { 'name': 'jupiter', 'color': '#75FABF', 'font': 'Noto Serif' },
+          { 'name': 'saturn', 'color': '#FBC469', 'font': 'Roboto Mono' },
+          { 'name': 'uranus', 'color': '#83C4FE', 'font': 'Open Sans' },
+          { 'name': 'neptune', 'color': '#4554A5', 'font': 'Noto Serif' },
+          { 'name': 'pluto', 'color': '#454545', 'font': 'Roboto Mono' }
         ]
 
         var themesWrapper = bubble.append('div')
