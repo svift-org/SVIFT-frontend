@@ -1,0 +1,79 @@
+/* About CSS */
+@import "./variables/variables";
+@import "./fonts/fonts";
+@import "./mixins/mixins";
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: $font-size-default;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+.app {
+    display: flex;
+    padding: 5% 10% 10% 10%;
+    flex-direction: row;
+    color: $svift-primary;
+    justify-content: center;
+
+    // align-items: center;
+
+    nav {
+        flex: 1;
+        align-self: center;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            font-family: $font-family-mono;
+            font-size: 1.2em;
+            line-height: 2;
+            list-style-type: none;
+
+            li {
+                a {
+                    color: $svift-human;
+                    text-decoration: none;
+                    text-transform: uppercase;
+
+                    &:hover {
+                        color: $svift-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .wrapper {
+        flex: 6;
+
+        header {
+            margin-bottom: 10%;
+        }
+
+        h1 {
+            color: $svift-human;
+            font-family: $font-family-mono;
+            font-size: 2em;
+            width: fit-content;
+            margin-top: 0;
+        }
+
+        p {
+            font-family: $font-family-sansDefault;
+            font-size: 1.3em;
+            line-height: 1.5;
+        }
+    }
+}

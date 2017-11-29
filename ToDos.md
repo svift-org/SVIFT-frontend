@@ -20,7 +20,7 @@ cities ranking
 ## Seb
 0: png background -> transparent
 
-0: - Chatbox jQuery
+0: - Chatbot jQuery
 0: - medium post: conversational
 
 1: - Download Page
@@ -32,12 +32,12 @@ cities ranking
 - check delete of folders
 
 ## Alsino
-- Legal note grey bubble at start
 - Add new pages (Imprint, info, AGBs, etc.)
-- linked in statt snapchat?
+- Contact social
 
 ## Hans
-- Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
+- Ask for email input for link
+- Two layouts for viz types
 - Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
 - Fix text labels when many data points or long labels
 - preview diffrent chart sizes (e.g. twitter, facebook) -> in ratio
@@ -48,6 +48,7 @@ cities ranking
 - counter-module -> set position according to font
 
 ## Future:
+- Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
 - Show preview of stream for different uses, i.e. facebook, twitter 
 - Show tooltips on charts
 - Show annotations (i.e. swoopy arrows)

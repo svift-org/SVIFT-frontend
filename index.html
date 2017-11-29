@@ -35,16 +35,16 @@
         <div class='close'></div>
         <ul>
           <li>
-            <a href="#">About</a>
+            <a href="about.html">About</a>
           </li>
           <li>
-            <a href="#">Docs</a>
+            <a href="docs.html">Docs</a>
           </li>
           <li>
-            <a href="#">Contact</a>
+            <a href="contact.html">Contact</a>
           </li>
           <li>
-            <a href="#">Pro</a>
+            <a href="pro.html">Pro*</a>
           </li>
         </ul>
       </nav>
@@ -70,14 +70,20 @@
   <script src="chatbot.js"></script>
   <script type="text/javascript">
 
-    // Animate Nav btn
+
+    // Show / hide Nav (needs to be cleaned up here..)
+    // var nav = d3.select('nav');
+    // var heightNav = nav.node().getBoundingClientRect().height;
+    // console.log(-heightNav);
+
     d3.select('.container')
-      .on('mouseenter', function () {
-        d3.select(this).selectAll('div').classed('change', true);
+      .on('click', function () {
         d3.select('nav').style('top', 0);
-      })
-      .on('mouseleave', function () {
-        d3.select(this).selectAll('div').classed('change', false);
+      });
+
+    d3.select('.close')
+      .on('click', function () {
+        d3.select('nav').style('top', '-400px');
       });
 
 
@@ -331,11 +337,11 @@
                 if (!hasRequested) {
                   // setTimeout(function () {
                   // cb.addBubble({ type: 'text', value: 'We are currently rendering your chart...', class: 'bot', delay: 1500 }, function () {
-                    
-                    cb.addBubble({ type: 'text', value: 'In the meantime you can preview your chart for different media channels', class: 'bot', delay: 2000 }, function () {
-                      cb.addBubble({ type: 'resize', class: 'human' });
-                      // cb.addBubble({ type: 'text', value: 'or the linke below', class: 'bot', delay: 2000 });
-                    });
+
+                  cb.addBubble({ type: 'text', value: 'In the meantime you can preview your chart for different media channels', class: 'bot', delay: 2000 }, function () {
+                    cb.addBubble({ type: 'resize', class: 'human' });
+                    // cb.addBubble({ type: 'text', value: 'or the linke below', class: 'bot', delay: 2000 });
+                  });
                   // });
 
                   // },1000)
@@ -428,10 +434,10 @@
         }
 
         var sizes = [
-          {'name':'gif','format':[100,100]},
-          {'name':'Twitter','format':[100,50]},
-          {'name':'Facebook','format':[100,50]},
-          {'name':'LinkedIn','format':[100,100]},
+          { 'name': 'gif', 'format': [100, 100] },
+          { 'name': 'Twitter', 'format': [100, 50] },
+          { 'name': 'Facebook', 'format': [100, 50] },
+          { 'name': 'LinkedIn', 'format': [100, 100] },
         ];
 
         bubble.style('background-color', '#fff');
@@ -881,7 +887,7 @@
 
         setTimeout(function () {
 
-          cb.addBubble({ type: 'text', value: 'Thanks for using svift! Would you like to give us some feedback?', class: 'bot',delay:1500 });
+          cb.addBubble({ type: 'text', value: 'Thanks for using svift! Would you like to give us some feedback?', class: 'bot', delay: 1500 });
 
           setTimeout(function () {
             cb.addBubble({ type: 'feedback', class: 'human' });
