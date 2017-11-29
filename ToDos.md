@@ -47,7 +47,6 @@ cities ranking
 
 - make all vis-modules responsive
 - counter-module -> set position according to font
-- Reset gooey center
 
 ## Future:
 - Show preview of stream for different uses, i.e. facebook, twitter 
