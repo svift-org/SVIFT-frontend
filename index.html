@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles/app/normalize.css">
   <link rel="stylesheet" href="styles/app/app.css">
   <link rel="stylesheet" href="styles/bot/bot.css">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Poppins|Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans|Roboto+Mono" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -76,7 +76,7 @@
       },
       "length": 3000,
       "style": {
-        "font": "Poppins",
+        "font": "Open Sans",
         "fontLables": "InterfaceRegular",
         "color": {
           "main": "#71609B",
@@ -91,7 +91,7 @@
         "data": [],
         "title": "Your title",
         "subTitle": "Your subtitle",
-        "attribution": "made with svift",
+        "attribution": "made with svift.xyz",
         "source": "Source: Your source"
       }
     }
@@ -662,6 +662,9 @@
 
       cb.types['themes'] = function (bubble, options, callback) {
         var themes = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+        var colorsThemes = ['#71609B', '#FE9592', '#B8E986', '#FF5C5C', '#75FABF', '#FBC469', '#83C4FE', '#4554A5', '#454545'];
+        var fontsThemes = ['Poppins', 'Noto Serif', 'Roboto Mono'];
+
         var themesWrapper = bubble.append('div')
           .attr('class', 'cb-themes-wrapper');
 
@@ -678,7 +681,7 @@
           switch (theme) {
             case "mercury":
               dummyData.style.color.main = 'rgba(113, 96, 155, 1)';
-              dummyData.style.font = 'Poppins';
+              dummyData.style.font = 'Open Sans';
               break;
             case "venus":
               dummyData.style.color.main = '#FE9592';
