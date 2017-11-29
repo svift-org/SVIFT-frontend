@@ -317,6 +317,12 @@
   padding: 20px;
   border-radius: 4px;
   margin-top: 20px; }
+  @media (max-width: 1300px) {
+    .cb-bubble-input {
+      width: 450px; } }
+  @media (max-width: 950px) {
+    .cb-bubble-input {
+      width: auto; } }
   .cb-bubble-input .table-wrapper {
     overflow-y: hidden;
     display: flex; }
@@ -522,7 +528,7 @@
 .cb-themes-wrapper {
   display: flex;
   justify-content: space-between;
-  height: 210px; }
+  flex-wrap: wrap; }
   .cb-themes-wrapper .theme-thumb {
     flex: 1;
     margin: 10px;

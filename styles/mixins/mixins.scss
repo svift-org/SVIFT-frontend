@@ -1,10 +1,16 @@
-@mixin for-tablet {
+@mixin large {
     @media (max-width: 1300px) {
         @content;
     }
 }
 
-@mixin for-phone {
+@mixin medium {
+    @media (max-width: 950px) {
+        @content;
+    }
+}
+
+@mixin small {
     @media (max-width: 699px) {
         @content;
     }

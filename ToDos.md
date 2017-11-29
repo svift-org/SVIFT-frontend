@@ -34,8 +34,7 @@ cities ranking
 ## Alsino
 - Legal note grey bubble at start
 - Add new pages (Imprint, info, AGBs, etc.)
-- more color themes
-- replace font: Merriweather
+- linked in statt snapchat?
 
 ## Hans
 - Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
