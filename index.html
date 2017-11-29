@@ -215,14 +215,16 @@
           .on('click', selectViz)
           .style('opacity', 0)
           .transition()
-          .delay(function (d, i) { return i * 300 })
-          .style('opacity', 1);
+            .delay(function (d, i) { return i * 300 })
+            .style('opacity', 1);
 
-        thumb.append('div').attr('class', "thumb-eyebrow").style('opacity', 0)
+        thumb.append('div')
+          .attr('class', "thumb-eyebrow")
+          .style('opacity', 0)
           .transition()
-          .delay(function (d, i) { return i * 300 })
-          .style('opacity', 1)
-          .text(function (d) { return d });
+            .delay(function (d, i) { return i * 300 })
+            .style('opacity', 1)
+            .text(function (d) { return d });
       };
 
 
@@ -240,7 +242,6 @@
 
         dummyData.vis.type = visType
 
-        console.log(d);
         var overlay = d3.select('#gui-1-overlay').html('');
 
         var vizContainer = overlay.append('div')
@@ -253,41 +254,41 @@
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
 
         //Change viz sizes
-        var vizSizes = [["twitter", 900, 450], ["facebook", 1200, 630], ["instagram", 1080, 1080], ["snapchat", 1080, 1920]];
-        var vizSizesWrapper = overlay.append("div").attr("class", "viz-sizes-wrapper");
-        var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your format');
-        var vizSizesBody = vizSizesWrapper.append('div').classed('viz-sizes-body', true);
+        // var vizSizes = [["twitter", 900, 450], ["facebook", 1200, 630], ["instagram", 1080, 1080], ["snapchat", 1080, 1920]];
+        // var vizSizesWrapper = overlay.append("div").attr("class", "viz-sizes-wrapper");
+        // var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your format');
+        // var vizSizesBody = vizSizesWrapper.append('div').classed('viz-sizes-body', true);
 
-        var vizSizesInputWrapper = vizSizesBody.append('div').classed('viz-sizes-input-wrapper', true);
-        vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
-        vizSizesInputWrapper.append('div').html('x');
-        vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
+        // var vizSizesInputWrapper = vizSizesBody.append('div').classed('viz-sizes-input-wrapper', true);
+        // vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
+        // vizSizesInputWrapper.append('div').html('x');
+        // vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
 
-        var vizSizesIconWrapper = vizSizesBody.append('div').classed('viz-sizes-icon-wrapper', true);
+        // var vizSizesIconWrapper = vizSizesBody.append('div').classed('viz-sizes-icon-wrapper', true);
 
-        vizSizesIconWrapper.selectAll('.viz-sizes')
-          .data(vizSizes).enter().append('div')
-          .attr("class", function (d) { return "viz-sizes" + " " + "icon" + " " + "icon-" + d[0] })
-          .attr('id', function (d) { return d[0] })
-          .on('click', function (d) { resizeViz(d) });
+        // vizSizesIconWrapper.selectAll('.viz-sizes')
+        //   .data(vizSizes).enter().append('div')
+        //   .attr("class", function (d) { return "viz-sizes" + " " + "icon" + " " + "icon-" + d[0] })
+        //   .attr('id', function (d) { return d[0] })
+        //   .on('click', function (d) { resizeViz(d) });
 
-        function resizeViz(d) {
+        // function resizeViz(d) {
 
-          var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
+        //   var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
 
-          d3.select(".viz-container")
-            .style("height", (containerWidth / d[1]) * d[2] + "px")
+        //   d3.select(".viz-container")
+        //     .style("height", (containerWidth / d[1]) * d[2] + "px")
 
 
-          d3.select('.viz-container svg').remove();
-          setTimeout(function () {
+        //   d3.select('.viz-container svg').remove();
+        //   setTimeout(function () {
 
-            var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
-            vis.init();
-            vis.start();
+        //     var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
+        //     vis.init();
+        //     vis.start();
 
-          }, 700);
-        }
+        //   }, 700);
+        // }
 
         var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
         vis.init();
@@ -661,44 +662,41 @@
 
 
       cb.types['themes'] = function (bubble, options, callback) {
-        var themes = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
-        var colorsThemes = ['#71609B', '#FE9592', '#B8E986', '#FF5C5C', '#75FABF', '#FBC469', '#83C4FE', '#4554A5', '#454545'];
-        var fontsThemes = ['Poppins', 'Noto Serif', 'Roboto Mono'];
+
+        var themes = [
+          {'name':'mercury','color':'#71609B', 'font':'Open Sans'},
+          {'name':'venus','color':'#FE9592', 'font':'Noto Serif'},
+          {'name':'earth','color':'#B8E986', 'font':'Roboto Mono'},
+          {'name':'mars','color':'#FF5C5C', 'font':'Open Sans'},
+          {'name':'jupiter','color':'#75FABF', 'font':'Noto Serif'},
+          {'name':'saturn','color':'#FBC469', 'font':'Roboto Mono'},
+          {'name':'uranus','color':'#83C4FE', 'font':'Open Sans'},
+          {'name':'neptune','color':'#4554A5', 'font':'Noto Serif'},
+          {'name':'pluto','color':'#454545', 'font':'Roboto Mono'}
+        ]
 
         var themesWrapper = bubble.append('div')
           .attr('class', 'cb-themes-wrapper');
 
         themesWrapper.selectAll('div').data(themes).enter()
           .append('div')
-          .attr('class', function (d) { return 'theme-thumb theme-thumb-' + d })
+          .attr('class', function (d) { return 'theme-thumb theme-thumb-' + d.name })
           .on('click', function (d) {
             selectTheme(d);
           })
           .append('img')
-          .attr('src', function (d) { return './assets/img/themes/theme-' + d + '.png' });
+          .attr('src', function (d) { return './assets/img/themes/theme-' + d.name + '.png' });
 
-        function selectTheme(theme) {
-          switch (theme) {
-            case "mercury":
-              dummyData.style.color.main = 'rgba(113, 96, 155, 1)';
-              dummyData.style.font = 'Open Sans';
-              break;
-            case "venus":
-              dummyData.style.color.main = '#FE9592';
-              dummyData.style.font = 'Noto Serif';
-              break;
-            case "earth":
-              dummyData.style.color.main = '#FBC469';
-              dummyData.style.font = 'Roboto Mono';
-              break;
-            default:
-              dummyData.style.color.main = 'rgba(113, 96, 155, 1)';
-          };
+        function selectTheme(d) {
+
+          dummyData.style.color.main = d.color;
+          dummyData.style.font = d.font;
 
           d3.select('.viz-container svg').remove();
           var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
           vis.init();
           vis.start();
+
         };
       }
 
