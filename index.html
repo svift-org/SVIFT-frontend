@@ -118,14 +118,228 @@
       }
     }
 
-    function addDefaultData(d) {
-      if (d == "columns" || d == "gooey") {
-        dummyData.data.data = [["A", 33], ["B", 20]]
-      }
-      else {
-        dummyData.data.data = [25];
-      }
+  
+
+
+    SVIFT.render = function() {
+
+      d3.request('https://svift-backend.herokuapp.com/render')
+        .header("Content-Type", "application/json")
+        .mimeType("application/json")
+        .post(
+        JSON.stringify(dummyData),
+        function (err, rawData) {
+
+          cb.addBubble({ type: 'download', class: 'human' });
+          cb.addBubble({ type: 'text', value: 'In the meantime you can preview your chart for different media channels', class: 'bot', delay: 2000 }, function () {
+              cb.addBubble({ type: 'resize', class: 'human' });
+          });
+
+          inter = setInterval(function () {
+            d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
+
+              var jResponse = JSON.parse(data.response);
+              var responseCounter = 0;
+
+              for (var type in jResponse.full) {
+
+                var tau = 2 * Math.PI;
+
+                d3.select(".download-thumb-" + type + " .arc")
+                  .transition()
+                  .duration(900)
+                  .attrTween("d", arcTween(jResponse.full[type] * tau, type));
+
+                function arcTween(newAngle, type) {
+                  return function (d) {
+                    var interpolate = d3.interpolate(d.endAngle, newAngle);
+                    return function (t) {
+                      d.endAngle = interpolate(t);
+                      d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
+                      return arc(d);
+                    };
+                  };
+                }
+
+                if (jResponse.full[type] == 1) {
+                  responseCounter++;
+                  d3.select(".download-thumb-" + type).classed("download-active", true)
+                  var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
+
+                  d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
+                }
+
+              }
+
+              if (responseCounter == 4) {
+
+                clearInterval(inter);
+                addFinalBubbles(rawData)
+
+              }
+
+            });
+          }, 1000);
+        }
+        );
     }
+
+
+
+    SVIFT.vis.init = function(d) {
+
+        visType = d;
+
+        if (d == "columns" || d == "gooey") {
+          dummyData.data.data = [["A", 33], ["B", 20]]
+        }else {
+          dummyData.data.data = [25];
+        }
+
+        dummyData.vis.type = visType
+
+        var overlay = d3.select('#gui-1-overlay').html('');
+
+        var vizContainer = overlay.append('div')
+          .attr('class', 'viz-container')
+          .style('opacity', 0)
+          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
+          .transition()
+          .style('opacity', 1)
+
+        d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
+
+        var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
+        vis.init();
+        vis.start();
+
+    }
+
+
+    SVIFT.vis.redraw = function(visType, data){
+
+      d3.select('.viz-container svg').remove();
+      var vis = SVIFT.vis[visType](data, d3.select('.viz-container'));
+      vis.init();
+      vis.start();
+
+    }
+
+    SVIFT.vis.resize = function(format){
+
+      var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
+      d3.select(".viz-container")
+        .style("height", (containerWidth / format[0]) * format[1] + "px");
+
+    }
+
+
+
+    SVIFT.table= {};
+
+    SVIFT.table.row = {};
+
+    SVIFT.table.row.add = function(visType,data){
+
+      if (data.data.data.length >= 2) {
+        d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false);
+      }
+
+      var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+      var lastEntry = data.data.data[data.data.data.length - 1];
+      data.data.data.push([alphabet[data.data.data.length], lastEntry[1]])
+
+      SVIFT.table.row.title.selectAll('td')
+        .data(data.data.data).enter().append('td')
+        .append('input')
+        .attr('placeholder', function (d, i) { return alphabet[i] })
+        .attr("data-index", function (d, i) { return i })
+        .on('input', SVIFT.helper.debouncer(function () { 
+          SVIFT.table.data.update.text(this);
+          SVIFT.vis.redraw(visType,data);
+        }, 500));
+
+      SVIFT.table.row.number.selectAll('td')
+        .data(data.data.data).enter()
+        .append('td').append('input')
+        .attr('placeholder', function (d) { return d[1] })
+        .attr("data-index", function (d, i) { return i })
+        .on('input', SVIFT.helper.debouncer(function () { 
+          SVIFT.table.data.update.numbers(this);
+          SVIFT.vis.redraw(visType,data);
+        }, 500))
+
+    }
+
+
+    SVIFT.table.row.remove = function(data){
+
+      if (data.data.data.length == 2) {
+        return
+      }
+      if (data.data.data.length == 3) {
+        d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
+      }
+
+      data.data.data.pop();
+
+      SVIFT.table.row.title.selectAll('td')
+        .data(data.data.data).exit().remove();
+
+      SVIFT.table.row.number.selectAll('td')
+        .data(data.data.data).exit().remove();
+
+    };
+
+
+    SVIFT.table.data = {};
+
+    SVIFT.table.data.validate = function(d){
+
+      var inputValue = d.replace(",", ".");
+      if (isNaN(inputValue)) {
+        inputValue = null;
+        return null
+      } else {
+        inputValue = Number(inputValue);
+        return inputValue;
+      }
+
+    };
+
+    SVIFT.table.data.update = {};
+
+    SVIFT.table.data.update.numbers = function(obj){
+
+      d3.select(obj).attr('placeholder', null);
+
+      var dataPosition = d3.select(obj).attr("data-index");
+      var inputValue = d3.select(obj).node().value;
+      var newData = SVIFT.table.data.validate(inputValue);
+
+      if (newData == null) {
+        d3.select(obj).classed('bad-input-data', true)
+      } else {
+        d3.select(obj).classed('bad-input-data', false)
+      }
+
+      dummyData.data.data[dataPosition][1] = newData;
+
+    }
+
+    SVIFT.table.data.update.text = function(obj){
+
+      var dataPosition = d3.select(obj).attr("data-index");
+      var dataValue = d3.select(obj).node().value;
+      dummyData.data.data[dataPosition][0] = dataValue || "";
+
+      d3.select(obj).attr('placeholder', '');
+
+    }
+
+
+
 
 
 
@@ -252,186 +466,21 @@
 
 
 
-
-
-
-
-      function createViz(d) {
-
-        visType = d;
-
-        addDefaultData(visType);
-
-        dummyData.vis.type = visType
-
-        var overlay = d3.select('#gui-1-overlay').html('');
-
-        var vizContainer = overlay.append('div')
-          .attr('class', 'viz-container')
-          .style('opacity', 0)
-          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
-          .transition()
-          .style('opacity', 1)
-
-        d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
-
-        //Change viz sizes
-        // var vizSizes = [["twitter", 900, 450], ["facebook", 1200, 630], ["instagram", 1080, 1080], ["snapchat", 1080, 1920]];
-        // var vizSizesWrapper = overlay.append("div").attr("class", "viz-sizes-wrapper");
-        // var vizSizesHeader = vizSizesWrapper.append('div').classed('viz-sizes-header', true).text('Choose your format');
-        // var vizSizesBody = vizSizesWrapper.append('div').classed('viz-sizes-body', true);
-
-        // var vizSizesInputWrapper = vizSizesBody.append('div').classed('viz-sizes-input-wrapper', true);
-        // vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
-        // vizSizesInputWrapper.append('div').html('x');
-        // vizSizesInputWrapper.append('div').append('input').attr('placeholder', "300");
-
-        // var vizSizesIconWrapper = vizSizesBody.append('div').classed('viz-sizes-icon-wrapper', true);
-
-        // vizSizesIconWrapper.selectAll('.viz-sizes')
-        //   .data(vizSizes).enter().append('div')
-        //   .attr("class", function (d) { return "viz-sizes" + " " + "icon" + " " + "icon-" + d[0] })
-        //   .attr('id', function (d) { return d[0] })
-        //   .on('click', function (d) { resizeViz(d) });
-
-        // function resizeViz(d) {
-
-        //   var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
-
-        //   d3.select(".viz-container")
-        //     .style("height", (containerWidth / d[1]) * d[2] + "px")
-
-
-        //   d3.select('.viz-container svg').remove();
-        //   setTimeout(function () {
-
-        //     var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
-        //     vis.init();
-        //     vis.start();
-
-        //   }, 700);
-        // }
-
-        var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
-        vis.init();
-        vis.start();
-
-      }
-
-
-      function renderViz() {
-
-        d3.request('https://svift-backend.herokuapp.com/render')
-          .header("Content-Type", "application/json")
-          .mimeType("application/json")
-          .post(
-          JSON.stringify(dummyData),
-          function (err, rawData) {
-
-            var downloadBubble = cb.addBubble({ type: 'download', class: 'human' });
-            var hasRequested = false;
-
-            inter = setInterval(function () {
-              d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
-
-                if (!hasRequested) {
-                  // setTimeout(function () {
-                  // cb.addBubble({ type: 'text', value: 'We are currently rendering your chart...', class: 'bot', delay: 1500 }, function () {
-
-                  cb.addBubble({ type: 'text', value: 'In the meantime you can preview your chart for different media channels', class: 'bot', delay: 2000 }, function () {
-                    cb.addBubble({ type: 'resize', class: 'human' });
-                    // cb.addBubble({ type: 'text', value: 'or the linke below', class: 'bot', delay: 2000 });
-                  });
-                  // });
-
-                  // },1000)
-                  hasRequested = true;
-                }
-
-                var jResponse = JSON.parse(data.response);
-
-                // var db = cb.getBubble(downloadBubble);
-                var responseCounter = 0;
-
-                for (var type in jResponse.full) {
-
-                  var tau = 2 * Math.PI;
-
-                  d3.select(".download-thumb-" + type + " .arc")
-                    .transition()
-                    .duration(900)
-                    .attrTween("d", arcTween(jResponse.full[type] * tau, type));
-
-                  function arcTween(newAngle, type) {
-                    return function (d) {
-                      var interpolate = d3.interpolate(d.endAngle, newAngle);
-                      return function (t) {
-                        d.endAngle = interpolate(t);
-                        d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
-                        return arc(d);
-                      };
-                    };
-                  }
-
-                  if (jResponse.full[type] == 1) {
-                    responseCounter++;
-                    d3.select(".download-thumb-" + type).classed("download-active", true)
-                    var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
-
-                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
-                  }
-
-                }
-
-                if (responseCounter == 4) {
-
-                  clearInterval(inter);
-                  addFinalBubbles(rawData)
-
-                }
-
-              });
-            }, 1000);
-          }
-          );
-
-      }
-
-
-
-
       //Define Chatbot
       cb = chatbot(d3.select('#gui-2'));
       cb.showInput();
 
-
       /*Define bubble types*/
 
+      /*Add a feedback textarea*/
       cb.types['feedback'] = function (bubble, options, callback) {
         var feedbackWrapper = bubble.append('div').classed('feedback', true);
         feedbackWrapper.append('textarea').attr('id', 'feedback')
           .attr('placeholder', 'Feedback')
       }
 
+      /* Show bubbles which resize the viz*/
       cb.types['resize'] = function (bubble, options, callback) {
-
-
-        function resizeViz(d) {
-
-          var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
-
-          d3.select(".viz-container")
-            .style("height", (containerWidth / d[0]) * d[1] + "px")
-
-          d3.select('.viz-container svg').remove();
-          setTimeout(function () {
-
-            var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
-            vis.init();
-            vis.start();
-
-          }, 700);
-        }
 
         var sizes = [
           { 'name': 'gif', 'format': [100, 100] },
@@ -446,12 +495,15 @@
           .attr('class', 'cb-choice')
           .text(function (d) { return d.name; })
           .on('click', function (d) {
-            resizeViz(d.format)
+            SVIFT.vis.resize(d.format);
+            setTimeout(function () {
+              SVIFT.vis.redraw(visType,dummyData);
+            },700)
           });
 
       }
 
-
+      /* Ask user if he/she wants to give feedback */
       cb.types['sendFeedback'] = function (bubble, options, callback) {
         bubble.style('background-color', '#fff');
         bubble.selectAll('.cb-choice')
@@ -474,6 +526,7 @@
           });
       }
 
+      /* A select bubble which returns inits a function*/
       cb.types['select'] = function (bubble, options, callback) {
         bubble.style('background-color', '#fff');
         bubble.selectAll('.cb-choice')
@@ -485,14 +538,12 @@
             if (!d3.select(this).classed('cb-active')) {
               d3.select(this).classed('cb-active', true);
               callback(d);
-              console.log(d)
             }
-
 
           });
       };
 
-
+      /* Add input */
       cb.types['input'] = function (bubble, options, callback) {
 
         bubble.style('background-color', '#fff');
@@ -511,95 +562,60 @@
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
 
-
         if (visType == "columns" || visType == "gooey") {
 
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
           var table = tableWrapper.append('table').append('tbody');
 
-          var tableRowTitle = table.append('tr');
-          tableRowTitle.selectAll('td')
+          SVIFT.table.row.title = table.append('tr');
+          SVIFT.table.row.title.selectAll('td')
             .data(dummyData.data.data).enter().append('td')
             .append('input')
             .attr('placeholder', function (d) { return d[0] })
             .attr("data-index", function (d, i) { return i })
-            .on('input', SVIFT.helper.debouncer(function (e) { updateTableDataTitle(this) }, 500));
+            .on('input', SVIFT.helper.debouncer(function (e) { 
+              SVIFT.table.data.update.text(this);
+              SVIFT.vis.redraw(visType,dummyData);
+            }, 500));
 
-          var tableRowNumbers = table.append('tr');
-          tableRowNumbers.selectAll('td')
+          SVIFT.table.row.number = table.append('tr');
+          SVIFT.table.row.number.selectAll('td')
             .data(dummyData.data.data).enter().append('td').append('input')
             .attr('placeholder', function (d) { return d[1] })
             .attr("data-index", function (d, i) { return i })
-            .on('input', SVIFT.helper.debouncer(function (e) { updateTableData(this) }, 500));
+            .on('input', SVIFT.helper.debouncer(function (e) { 
+              SVIFT.table.data.update.numbers(this);
+              SVIFT.vis.redraw(visType,dummyData);
+            }, 500));
 
 
           var editRowButtons = tableWrapper.append('div').classed('column-editor-wrapper', true);
           var removeButton = editRowButtons.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–').classed('disabled-btn', true)
-            .on('click', function (d) { removeRow(d); });
+            .on('click', function (d) { 
+              SVIFT.table.row.remove(dummyData) 
+              SVIFT.vis.redraw(visType,dummyData);
+            });
+
           var addButton = editRowButtons.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
-            .on('click', function (d) { addRow(d); });
+            .on('click', function (d) { 
+              SVIFT.table.row.add(visType,dummyData);
+              SVIFT.vis.redraw(visType,dummyData); 
+            });
 
-
-          function addRow() {
-
-            if (dummyData.data.data.length >= 2) {
-              d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false)
-            }
-
-            var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-            var lastEntry = dummyData.data.data[dummyData.data.data.length - 1];
-            dummyData.data.data.push([alphabet[dummyData.data.data.length], lastEntry[1]])
-
-
-            tableRowTitle.selectAll('td')
-              .data(dummyData.data.data).enter().append('td')
-              .append('input')
-              .attr('placeholder', function (d, i) { return alphabet[i] })
-              .attr("data-index", function (d, i) { return i })
-              .on('input', SVIFT.helper.debouncer(function () { updateTableDataTitle(this) }, 500));
-
-            tableRowNumbers.selectAll('td')
-              .data(dummyData.data.data).enter()
-              .append('td').append('input')
-              .attr('placeholder', function (d) { return d[1] })
-              .attr("data-index", function (d, i) { return i })
-              .on('input', SVIFT.helper.debouncer(function () { updateTableData(this) }, 500))
-
-            redrawViz(dummyData)
-          }
-
-
-          function removeRow() {
-
-            if (dummyData.data.data.length == 2) {
-              return
-            }
-            if (dummyData.data.data.length == 3) {
-              d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
-            }
-
-            dummyData.data.data.pop();
-
-            tableRowTitle.selectAll('td')
-              .data(dummyData.data.data).exit().remove();
-
-            tableRowNumbers.selectAll('td')
-              .data(dummyData.data.data).exit().remove();
-
-            redrawViz(dummyData)
-
-          };
         }
         //if single Number
         else {
+
           var input = bubble.append('input').classed('number', true)
             .attr('id', 'number')
             .attr('type', 'number')
             .attr('placeholder', function () { return dummyData.data.data })
             .attr('min', '0')
             .attr('max', '100')
-            .on('input', SVIFT.helper.debouncer(function (e) { updateSingleData() }, 500));
+            .on('input', SVIFT.helper.debouncer(function (e) { 
+              updateSingleData();
+              SVIFT.vis.redraw(visType,dummyData);
+            }, 500));
 
 
           function updateSingleData() {
@@ -613,7 +629,7 @@
             dummyData.data.data = [inputValue];
             d3.select("#number").attr('placeholder', '');
 
-            redrawViz(dummyData)
+            
           }
 
 
@@ -626,53 +642,6 @@
         var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
 
-        function redrawViz(data) {
-          d3.select('.viz-container svg').remove();
-          var vis = SVIFT.vis[visType](data, d3.select('.viz-container'));
-          vis.init();
-          vis.start();
-        }
-
-
-        function validateNumber(d) {
-          var inputValue = d.replace(",", ".");
-          if (isNaN(inputValue)) {
-            inputValue = null;
-            return null
-          } else {
-            inputValue = Number(inputValue);
-            return inputValue;
-          }
-
-        }
-
-        function updateTableDataTitle(obj) {
-          var dataPosition = d3.select(obj).attr("data-index");
-          var dataValue = d3.select(obj).node().value;
-          dummyData.data.data[dataPosition][0] = dataValue || "";
-
-          d3.select(obj).attr('placeholder', '');
-
-          redrawViz(dummyData)
-        }
-
-        function updateTableData(obj) {
-
-          d3.select(obj).attr('placeholder', null);
-
-          var dataPosition = d3.select(obj).attr("data-index");
-          var inputValue = d3.select(obj).node().value;
-          var newData = validateNumber(inputValue);
-
-          if (newData == null) {
-            d3.select(obj).classed('bad-input-data', true)
-          } else {
-            d3.select(obj).classed('bad-input-data', false)
-          }
-          dummyData.data.data[dataPosition][1] = newData;
-
-          redrawViz(dummyData)
-        }
 
         function updateTitle(selectorViz, selectorInput, selectorData, altText) {
 
@@ -686,7 +655,7 @@
       };
 
 
-
+      /* Add text */
       cb.types['text'] = function (bubble, options, callback) {
 
         if (('delay' in options) && options.delay) {
@@ -723,7 +692,7 @@
 
       }
 
-
+      /* Select a theme */
       cb.types['themes'] = function (bubble, options, callback) {
 
         var themes = [
@@ -763,7 +732,7 @@
         };
       }
 
-
+      /* Add download buttons */
       cb.types['download'] = function (bubble, options, callback) {
 
         var icons = ['png', 'svg', 'gif', 'html']; //'mpeg'
@@ -840,7 +809,7 @@
           cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' }, function () {
             cb.addBubble({ type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write', delay: 500 }, function () {
 
-              createViz(d);
+              SVIFT.vis.init(d);
 
               setTimeout(function () {
 
@@ -871,17 +840,14 @@
       }
 
 
-      var requestSend = false;
       function onFinish() {
 
-        if (requestSend) { return }
-        requestSend = true;
         d3.select(".cb-bubble.human.send .cb-choice").classed('cb-active', true)
-        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' }, renderViz);
+        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' }, SVIFT.render);
 
       }
 
-      function addFinalBubbles(rawData) {
+      addFinalBubbles = function(rawData) {
 
         cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
 
