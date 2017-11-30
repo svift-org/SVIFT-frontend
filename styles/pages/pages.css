@@ -167,5 +167,8 @@ html, body {
       font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
       font-size: 1.3em;
       line-height: 1.5; }
+      .app .wrapper p a {
+        color: #75FABF;
+        text-decoration: none; }
 
 /*# sourceMappingURL=pages.css.map */

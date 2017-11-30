@@ -71,10 +71,10 @@
                     d3.select('.app').attr('id', function () { return d.value.url });
                     // Switch content
                     var key = d.key;
-                    var h1 = d3.select('h1').text(key);
-                    var p1 = d3.select('.p1').text(d.value.p1);
-                    var p2 = d3.select('.p2').text(d.value.p2);
-                    var p3 = d3.select('.p3').text(d.value.p3);
+                    var h1 = d3.select('h1').html(key);
+                    var p1 = d3.select('.p1').html(d.value.p1);
+                    var p2 = d3.select('.p2').html(d.value.p2);
+                    var p3 = d3.select('.p3').html(d.value.p3);
                 });
         });
     </script>

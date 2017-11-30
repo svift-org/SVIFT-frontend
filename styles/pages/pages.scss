@@ -78,6 +78,11 @@ html, body {
             font-family: $font-family-sansDefault;
             font-size: 1.3em;
             line-height: 1.5;
+
+            a {
+                color: $svift-human;
+                text-decoration: none;
+            }
         }
     }
 }
