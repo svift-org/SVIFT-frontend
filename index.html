@@ -35,16 +35,16 @@
         <div class='close'></div>
         <ul>
           <li>
-            <a href="about.html">About</a>
+            <a href="pages.html#about">About</a>
           </li>
           <li>
-            <a href="docs.html">Docs</a>
+            <a href="pages.html#docs">Docs</a>
           </li>
           <li>
-            <a href="contact.html">Contact</a>
+            <a href="pages.html#contact">Contact</a>
           </li>
           <li>
-            <a href="pro.html">Pro*</a>
+            <a href="pages.html#pro">Pro*</a>
           </li>
         </ul>
       </nav>
@@ -118,10 +118,10 @@
       }
     }
 
-  
 
 
-    SVIFT.render = function() {
+
+    SVIFT.render = function () {
 
       d3.request('https://svift-backend.herokuapp.com/render')
         .header("Content-Type", "application/json")
@@ -132,7 +132,7 @@
 
           cb.addBubble({ type: 'download', class: 'human' });
           cb.addBubble({ type: 'text', value: 'In the meantime you can preview your chart for different media channels', class: 'bot', delay: 2000 }, function () {
-              cb.addBubble({ type: 'resize', class: 'human' });
+            cb.addBubble({ type: 'resize', class: 'human' });
           });
 
           inter = setInterval(function () {
@@ -186,37 +186,37 @@
 
 
 
-    SVIFT.vis.init = function(d) {
+    SVIFT.vis.init = function (d) {
 
-        visType = d;
+      visType = d;
 
-        if (d == "columns" || d == "gooey") {
-          dummyData.data.data = [["A", 33], ["B", 20]]
-        }else {
-          dummyData.data.data = [25];
-        }
+      if (d == "columns" || d == "gooey") {
+        dummyData.data.data = [["A", 33], ["B", 20]]
+      } else {
+        dummyData.data.data = [25];
+      }
 
-        dummyData.vis.type = visType
+      dummyData.vis.type = visType
 
-        var overlay = d3.select('#gui-1-overlay').html('');
+      var overlay = d3.select('#gui-1-overlay').html('');
 
-        var vizContainer = overlay.append('div')
-          .attr('class', 'viz-container')
-          .style('opacity', 0)
-          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
-          .transition()
-          .style('opacity', 1)
+      var vizContainer = overlay.append('div')
+        .attr('class', 'viz-container')
+        .style('opacity', 0)
+        .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
+        .transition()
+        .style('opacity', 1)
 
-        d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
+      d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
 
-        var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
-        vis.init();
-        vis.start();
+      var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
+      vis.init();
+      vis.start();
 
     }
 
 
-    SVIFT.vis.redraw = function(visType, data){
+    SVIFT.vis.redraw = function (visType, data) {
 
       d3.select('.viz-container svg').remove();
       var vis = SVIFT.vis[visType](data, d3.select('.viz-container'));
@@ -225,7 +225,7 @@
 
     }
 
-    SVIFT.vis.resize = function(format){
+    SVIFT.vis.resize = function (format) {
 
       var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
       d3.select(".viz-container")
@@ -235,11 +235,11 @@
 
 
 
-    SVIFT.table= {};
+    SVIFT.table = {};
 
     SVIFT.table.row = {};
 
-    SVIFT.table.row.add = function(visType,data){
+    SVIFT.table.row.add = function (visType, data) {
 
       if (data.data.data.length >= 2) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false);
@@ -255,9 +255,9 @@
         .append('input')
         .attr('placeholder', function (d, i) { return alphabet[i] })
         .attr("data-index", function (d, i) { return i })
-        .on('input', SVIFT.helper.debouncer(function () { 
+        .on('input', SVIFT.helper.debouncer(function () {
           SVIFT.table.data.update.text(this);
-          SVIFT.vis.redraw(visType,data);
+          SVIFT.vis.redraw(visType, data);
         }, 500));
 
       SVIFT.table.row.number.selectAll('td')
@@ -265,15 +265,15 @@
         .append('td').append('input')
         .attr('placeholder', function (d) { return d[1] })
         .attr("data-index", function (d, i) { return i })
-        .on('input', SVIFT.helper.debouncer(function () { 
+        .on('input', SVIFT.helper.debouncer(function () {
           SVIFT.table.data.update.numbers(this);
-          SVIFT.vis.redraw(visType,data);
+          SVIFT.vis.redraw(visType, data);
         }, 500))
 
     }
 
 
-    SVIFT.table.row.remove = function(data){
+    SVIFT.table.row.remove = function (data) {
 
       if (data.data.data.length == 2) {
         return
@@ -295,7 +295,7 @@
 
     SVIFT.table.data = {};
 
-    SVIFT.table.data.validate = function(d){
+    SVIFT.table.data.validate = function (d) {
 
       var inputValue = d.replace(",", ".");
       if (isNaN(inputValue)) {
@@ -310,7 +310,7 @@
 
     SVIFT.table.data.update = {};
 
-    SVIFT.table.data.update.numbers = function(obj){
+    SVIFT.table.data.update.numbers = function (obj) {
 
       d3.select(obj).attr('placeholder', null);
 
@@ -328,7 +328,7 @@
 
     }
 
-    SVIFT.table.data.update.text = function(obj){
+    SVIFT.table.data.update.text = function (obj) {
 
       var dataPosition = d3.select(obj).attr("data-index");
       var dataValue = d3.select(obj).node().value;
@@ -497,8 +497,8 @@
           .on('click', function (d) {
             SVIFT.vis.resize(d.format);
             setTimeout(function () {
-              SVIFT.vis.redraw(visType,dummyData);
-            },700)
+              SVIFT.vis.redraw(visType, dummyData);
+            }, 700)
           });
 
       }
@@ -573,9 +573,9 @@
             .append('input')
             .attr('placeholder', function (d) { return d[0] })
             .attr("data-index", function (d, i) { return i })
-            .on('input', SVIFT.helper.debouncer(function (e) { 
+            .on('input', SVIFT.helper.debouncer(function (e) {
               SVIFT.table.data.update.text(this);
-              SVIFT.vis.redraw(visType,dummyData);
+              SVIFT.vis.redraw(visType, dummyData);
             }, 500));
 
           SVIFT.table.row.number = table.append('tr');
@@ -583,23 +583,23 @@
             .data(dummyData.data.data).enter().append('td').append('input')
             .attr('placeholder', function (d) { return d[1] })
             .attr("data-index", function (d, i) { return i })
-            .on('input', SVIFT.helper.debouncer(function (e) { 
+            .on('input', SVIFT.helper.debouncer(function (e) {
               SVIFT.table.data.update.numbers(this);
-              SVIFT.vis.redraw(visType,dummyData);
+              SVIFT.vis.redraw(visType, dummyData);
             }, 500));
 
 
           var editRowButtons = tableWrapper.append('div').classed('column-editor-wrapper', true);
           var removeButton = editRowButtons.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–').classed('disabled-btn', true)
-            .on('click', function (d) { 
-              SVIFT.table.row.remove(dummyData) 
-              SVIFT.vis.redraw(visType,dummyData);
+            .on('click', function (d) {
+              SVIFT.table.row.remove(dummyData)
+              SVIFT.vis.redraw(visType, dummyData);
             });
 
           var addButton = editRowButtons.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
-            .on('click', function (d) { 
-              SVIFT.table.row.add(visType,dummyData);
-              SVIFT.vis.redraw(visType,dummyData); 
+            .on('click', function (d) {
+              SVIFT.table.row.add(visType, dummyData);
+              SVIFT.vis.redraw(visType, dummyData);
             });
 
         }
@@ -612,9 +612,9 @@
             .attr('placeholder', function () { return dummyData.data.data })
             .attr('min', '0')
             .attr('max', '100')
-            .on('input', SVIFT.helper.debouncer(function (e) { 
+            .on('input', SVIFT.helper.debouncer(function (e) {
               updateSingleData();
-              SVIFT.vis.redraw(visType,dummyData);
+              SVIFT.vis.redraw(visType, dummyData);
             }, 500));
 
 
@@ -629,7 +629,7 @@
             dummyData.data.data = [inputValue];
             d3.select("#number").attr('placeholder', '');
 
-            
+
           }
 
 
@@ -847,7 +847,7 @@
 
       }
 
-      addFinalBubbles = function(rawData) {
+      addFinalBubbles = function (rawData) {
 
         cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
 

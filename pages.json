@@ -1,0 +1,26 @@
+{
+    "About": {
+        "url": "about",
+        "p1": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue",
+        "p2": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue",
+        "p3": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue"
+    },
+    "Docs": {
+        "url": "docs",
+        "p1": "Svift is a lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda cumque asperiores eligendi magni, consequatur consequuntur recusandae alias officia, similique nam fugit est doloremque. Maxime rerum nemo quo tenetur amet.",
+        "p2": "Svift is a lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda cumque asperiores eligendi magni, consequatur consequuntur recusandae alias officia, similique nam fugit est doloremque. Maxime rerum nemo quo tenetur amet.",
+        "p3": "Svift is a lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda cumque asperiores eligendi magni, consequatur consequuntur recusandae alias officia, similique nam fugit est doloremque. Maxime rerum nemo quo tenetur amet."
+    },
+    "Contact": {
+        "url": "contact",
+        "p1": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        "p2": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        "p3": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+    },
+    "Pro*": {
+        "url": "pro",
+        "p1": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.",
+        "p2": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.",
+        "p3": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."
+    }
+}
