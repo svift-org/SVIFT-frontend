@@ -32,7 +32,7 @@ cities ranking
 - check delete of folders
 
 ## Alsino
-- Add new pages (Imprint, info, AGBs, etc.)
+- Finish new pages (Imprint, info, AGBs, etc.)
 - Contact social
 
 ## Hans
