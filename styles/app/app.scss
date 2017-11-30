@@ -37,8 +37,8 @@ html, body {
         line-height: $line-height-default;
 
         nav {
-            background-color: $svift-human;
-            color: $white;
+            background-color: $white;
+            color: $svift-human;
             font-family: $font-family-mono;
             font-size: 2em;
             box-shadow: $box-shadow-default;
@@ -51,6 +51,7 @@ html, body {
             text-align: center;
             padding: $padding-default;
             transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+            border-right: 1px solid rgb(243, 243, 243);
 
             .close {
                 text-align: right;
@@ -74,7 +75,7 @@ html, body {
                 li {
                     a {
                         text-decoration: none;
-                        color: $white;
+                        color: $svift-human;
 
                         &:hover {
                             color: $svift-primary;

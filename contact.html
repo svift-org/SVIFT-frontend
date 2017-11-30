@@ -6,7 +6,7 @@
     <title>svift_v1</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles/app/normalize.css">
-    <link rel="stylesheet" href="styles/about/about.css">
+    <link rel="stylesheet" href="styles/pages/pages.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans|Roboto+Mono" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -19,30 +19,12 @@
 </head>
 
 <body>
-
     <div class="app">
-        <nav>
-            <ul>
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-                <li>
-                    <a href="docs.html">Docs</a>
-                </li>
-                <li>
-                    <a href="contact.html">Contact</a>
-                </li>
-                <li>
-                    <a href="pro.html">Pro*</a>
-                </li>
-            </ul>
-        </nav>
         <div class='wrapper'>
             <header>
-                <img src='assets/img/wordmark-dark.png' alt=''>
+                <a href="index.html">
+                    <img src='assets/img/wordmark-dark.png' alt=''>
+                </a>
             </header>
 
             <h1>Contact</h1>
@@ -60,6 +42,18 @@
             </p>
         </div>
     </div>
+
+    <script src="build/d3.v4.min.js"></script>
+    <script>
+        d3.json('./nav.json', function (err, data) {
+            if (err) { console.log(err); }
+            var ul = d3.select('.app').insert('nav', '.wrapper').append('ul');
+            ul.selectAll('.li')
+                .data(d3.entries(data)).enter().append('li').append('a')
+                .attr('href', function (d) { return d.value.url })
+                .html(function (d) { return d.key });
+        });
+    </script>
 
 
 

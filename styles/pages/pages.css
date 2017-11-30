@@ -139,7 +139,8 @@ html, body {
   justify-content: center; }
   .app nav {
     flex: 1;
-    align-self: center; }
+    align-self: center;
+    margin-top: 10%; }
     .app nav ul {
       margin: 0;
       padding: 0;
@@ -168,4 +169,4 @@ html, body {
       font-size: 1.3em;
       line-height: 1.5; }
 
-/*# sourceMappingURL=about.css.map */
+/*# sourceMappingURL=pages.css.map */
