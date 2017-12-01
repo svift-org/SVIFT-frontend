@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles/app/normalize.css">
   <link rel="stylesheet" href="styles/app/app.css">
   <link rel="stylesheet" href="styles/bot/bot.css">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans|Roboto+Mono" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans|Roboto+Mono" rel="stylesheet"> -->
 
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -121,7 +121,7 @@
 
 
 
-    SVIFT.render = function () {
+    SVIFT.vis.render = function () {
 
       d3.request('https://svift-backend.herokuapp.com/render')
         .header("Content-Type", "application/json")
@@ -183,7 +183,6 @@
         }
         );
     }
-
 
 
     SVIFT.vis.init = function (d) {
@@ -256,7 +255,7 @@
         .attr('placeholder', function (d, i) { return alphabet[i] })
         .attr("data-index", function (d, i) { return i })
         .on('input', SVIFT.helper.debouncer(function () {
-          SVIFT.table.data.update.text(this);
+          SVIFT.table.data.update.lables(this);
           SVIFT.vis.redraw(visType, data);
         }, 500));
 
@@ -266,7 +265,7 @@
         .attr('placeholder', function (d) { return d[1] })
         .attr("data-index", function (d, i) { return i })
         .on('input', SVIFT.helper.debouncer(function () {
-          SVIFT.table.data.update.numbers(this);
+          SVIFT.table.data.update.values(this);
           SVIFT.vis.redraw(visType, data);
         }, 500))
 
@@ -310,7 +309,7 @@
 
     SVIFT.table.data.update = {};
 
-    SVIFT.table.data.update.numbers = function (obj) {
+    SVIFT.table.data.update.values = function (obj) {
 
       d3.select(obj).attr('placeholder', null);
 
@@ -328,13 +327,22 @@
 
     }
 
-    SVIFT.table.data.update.text = function (obj) {
-
-      var dataPosition = d3.select(obj).attr("data-index");
-      var dataValue = d3.select(obj).node().value;
-      dummyData.data.data[dataPosition][0] = dataValue || "";
+    SVIFT.table.data.update.lables = function (obj) {
 
       d3.select(obj).attr('placeholder', '');
+
+      var dataPosition = d3.select(obj).attr("data-index");
+      var inputValue = d3.select(obj).node().value;
+      dummyData.data.data[dataPosition][0] = inputValue || '';
+
+    }
+
+    SVIFT.table.data.update.text = function (selectorViz, selectorInput, selectorData, altText) {
+
+      var inputText = d3.select(selectorInput).node().value;
+      dummyData.data[selectorData] = inputText || altText;
+      if (selectorData == "source" && inputText) { dummyData.data[selectorData] = "Source: " + inputText };
+      d3.select(selectorViz).text(dummyData.data[selectorData]);
 
     }
 
@@ -552,13 +560,15 @@
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input').attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input', function () { updateTitle("#title-main", "#title", "title", "Your title") });
+          .on('input', function () { 
+            SVIFT.table.data.update.text("#title-main", "#title", "title", "Your title") 
+          });
         var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
 
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input').attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', function () { updateTitle("#title-sub", "#subtitle", "subTitle", "Your sub title") });
+          .on('input', function () { SVIFT.table.data.update.text("#title-sub", "#subtitle", "subTitle", "Your sub title") });
         var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
 
 
@@ -573,8 +583,8 @@
             .append('input')
             .attr('placeholder', function (d) { return d[0] })
             .attr("data-index", function (d, i) { return i })
-            .on('input', SVIFT.helper.debouncer(function (e) {
-              SVIFT.table.data.update.text(this);
+            .on('input', SVIFT.helper.debouncer(function () {
+              SVIFT.table.data.update.lables(this);
               SVIFT.vis.redraw(visType, dummyData);
             }, 500));
 
@@ -583,8 +593,8 @@
             .data(dummyData.data.data).enter().append('td').append('input')
             .attr('placeholder', function (d) { return d[1] })
             .attr("data-index", function (d, i) { return i })
-            .on('input', SVIFT.helper.debouncer(function (e) {
-              SVIFT.table.data.update.numbers(this);
+            .on('input', SVIFT.helper.debouncer(function () {
+              SVIFT.table.data.update.values(this);
               SVIFT.vis.redraw(visType, dummyData);
             }, 500));
 
@@ -612,7 +622,7 @@
             .attr('placeholder', function () { return dummyData.data.data })
             .attr('min', '0')
             .attr('max', '100')
-            .on('input', SVIFT.helper.debouncer(function (e) {
+            .on('input', SVIFT.helper.debouncer(function () {
               updateSingleData();
               SVIFT.vis.redraw(visType, dummyData);
             }, 500));
@@ -638,19 +648,9 @@
         var sourceWrapper = bubble.append('div').classed('source', true);
         sourceWrapper.append('input').attr('id', 'source-input')
           .attr('placeholder', 'Add your source here')
-          .on('input', function () { updateTitle("#source", "#source-input", "source", "Source: Your source") });
+          .on('input', function () { SVIFT.table.data.update.text("#source", "#source-input", "source", "Source: Your source") });
         var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
-
-
-        function updateTitle(selectorViz, selectorInput, selectorData, altText) {
-
-          var inputText = d3.select(selectorInput).node().value;
-          dummyData.data[selectorData] = inputText || altText;
-          if (selectorData == "source" && inputText) { dummyData.data[selectorData] = "Source: " + inputText };
-          d3.select(selectorViz).text(dummyData.data[selectorData]);
-
-        }
 
       };
 
@@ -843,7 +843,7 @@
       function onFinish() {
 
         d3.select(".cb-bubble.human.send .cb-choice").classed('cb-active', true)
-        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' }, SVIFT.render);
+        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' }, SVIFT.vis.render);
 
       }
 
