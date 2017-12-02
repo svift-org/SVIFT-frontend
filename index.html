@@ -554,22 +554,28 @@
       /* Add input */
       cb.types['input'] = function (bubble, options, callback) {
 
-        bubble.style('background-color', '#fff');
+        bubble.style('background-color', '#fff'); //in css
         bubble.attr('class', 'cb-bubble-input');
 
+        //title input
         var titleWrapper = bubble.append('div').classed('title', true);
-        titleWrapper.append('input').attr('id', 'title')
+        titleWrapper.append('input')
+          .attr('id', 'title')
           .attr('placeholder', 'Add your title here')
           .on('input', function () { 
             SVIFT.table.data.update.text("#title-main", "#title", "title", "Your title") 
           });
-        var titleIcon = titleWrapper.append('div').classed('icon-toggle', true);
+        var toggleTitle = titleWrapper.append('div').classed('icon-toggle', true);
 
+        //sub title input
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
-        subtitleWrapper.append('input').attr('id', 'subtitle')
+        subtitleWrapper.append('input')
+          .attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', function () { SVIFT.table.data.update.text("#title-sub", "#subtitle", "subTitle", "Your sub title") });
-        var subIcon = subtitleWrapper.append('div').classed('icon-toggle', true);
+          .on('input', function () { 
+            SVIFT.table.data.update.text("#title-sub", "#subtitle", "subTitle", "Your sub title") 
+          });
+        var toggleSubTitle = subtitleWrapper.append('div').classed('icon-toggle', true);
 
 
         if (visType == "columns" || visType == "gooey") {
@@ -599,14 +605,23 @@
             }, 500));
 
 
-          var editRowButtons = tableWrapper.append('div').classed('column-editor-wrapper', true);
-          var removeButton = editRowButtons.append('div').classed('column-editor-btn', true).classed('btn-remove', true).text('–').classed('disabled-btn', true)
+          var editRowButtons = tableWrapper.append('div')
+            .classed('column-editor-wrapper', true);
+
+          var removeButton = editRowButtons.append('div')
+            .classed('column-editor-btn', true)
+            .classed('btn-remove', true)
+            .text('–')
+            .classed('disabled-btn', true)
             .on('click', function (d) {
               SVIFT.table.row.remove(dummyData)
               SVIFT.vis.redraw(visType, dummyData);
             });
 
-          var addButton = editRowButtons.append('div').classed('column-editor-btn', true).classed('btn-add', true).text('+')
+          var addButton = editRowButtons.append('div')
+            .classed('column-editor-btn', true)
+            .classed('btn-add', true)
+            .text('+')
             .on('click', function (d) {
               SVIFT.table.row.add(visType, dummyData);
               SVIFT.vis.redraw(visType, dummyData);
@@ -616,12 +631,13 @@
         //if single Number
         else {
 
-          var input = bubble.append('input').classed('number', true)
+          var input = bubble.append('input')
+            .classed('number', true)
             .attr('id', 'number')
             .attr('type', 'number')
             .attr('placeholder', function () { return dummyData.data.data })
-            .attr('min', '0')
-            .attr('max', '100')
+            // .attr('min', '0')
+            // .attr('max', '100')
             .on('input', SVIFT.helper.debouncer(function () {
               updateSingleData();
               SVIFT.vis.redraw(visType, dummyData);
@@ -646,9 +662,12 @@
         }
 
         var sourceWrapper = bubble.append('div').classed('source', true);
-        sourceWrapper.append('input').attr('id', 'source-input')
+        sourceWrapper.append('input')
+          .attr('id', 'source-input')
           .attr('placeholder', 'Add your source here')
-          .on('input', function () { SVIFT.table.data.update.text("#source", "#source-input", "source", "Source: Your source") });
+          .on('input', function () { 
+            SVIFT.table.data.update.text("#source", "#source-input", "source", "Source: Your source") 
+          });
         var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
 
@@ -657,6 +676,7 @@
 
       /* Add text */
       cb.types['text'] = function (bubble, options, callback) {
+
 
         if (('delay' in options) && options.delay) {
           var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
