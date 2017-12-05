@@ -88,15 +88,13 @@
 
 
 
-
-
     SVIFT.vis.config ={
       "params": {
         "dev": true
       },
       "vis": {
-        "type": "mosaic",
-        "title": "Mosaic"
+        "type": "",
+        "title": ""
       },
       "length": 3000,
       "style": {
@@ -112,8 +110,8 @@
       "data": {
         "columns": ["Wert"],
         "types": ["int"],
-        "format": [],
-        "data": [],
+        // "format": "",
+        "data":[[["A", 25], ["B", 20]]] ,
         "title": "Your title",
         "subTitle": "Your subtitle",
         "attribution": "made with svift.xyz",
@@ -127,20 +125,15 @@
       //load data for specific vis type
       d3.json('./build/data/'+ vistype + '.json', function (err, visData) {
         if (err) { console.log(err); }
-        console.log(visData)
+        console.log(visData.data.format)
 
         SVIFT.vis.config.vis.type = vistype;
-        visType = SVIFT.vis.config.vis.type;
+        SVIFT.vis.config.data.format  = visData.data.format;
 
-        if (vistype == "columns" || vistype == "gooey") {
-          SVIFT.vis.config.data.data = [["A", 33], ["B", 20]];
-          SVIFT.vis.config.data.format = "one-col";
-
-        } else {
-          SVIFT.vis.config.data.data = [25];
-          SVIFT.vis.config.data.format = "one-number";
+        // "multi-set"
+        if (vistype == "columns") {
+         SVIFT.vis.config.data.format = "single-set"; //
         }
-
 
         var overlay = d3.select('#gui-1-overlay').html('');
 
@@ -248,21 +241,21 @@
 
     SVIFT.table = {};
 
-    SVIFT.table.row = {};
+    SVIFT.table.column = {};
 
-    SVIFT.table.row.add = function () {
+    SVIFT.table.column.add = function () {
 
-      if (SVIFT.vis.config.data.data.length >= 2) {
+      if (SVIFT.vis.config.data.data[0].length >= 2) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false);
       }
 
       var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-      var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1];
-      SVIFT.vis.config.data.data.push([alphabet[SVIFT.vis.config.data.data.length], lastEntry[1]])
+      var lastEntry = SVIFT.vis.config.data.data[0][SVIFT.vis.config.data.data[0].length - 1];
+      SVIFT.vis.config.data.data[0].push([alphabet[SVIFT.vis.config.data.data[0].length], lastEntry[1]])
 
-      SVIFT.table.row.title.selectAll('td')
-        .data(SVIFT.vis.config.data.data).enter().append('td')
+      SVIFT.table.column.title.selectAll('td')
+        .data(SVIFT.vis.config.data.data[0]).enter().append('td')
         .append('input')
         .attr('placeholder', function (d, i) { return alphabet[i] })
         .attr("data-index", function (d, i) { return i })
@@ -271,8 +264,8 @@
           SVIFT.vis.redraw()
         }, 500));
 
-      SVIFT.table.row.number.selectAll('td')
-        .data(SVIFT.vis.config.data.data).enter()
+      SVIFT.table.column.number.selectAll('td')
+        .data(SVIFT.vis.config.data.data[0]).enter()
         .append('td').append('input')
         .attr('placeholder', function (d) { return d[1] })
         .attr("data-index", function (d, i) { return i })
@@ -281,12 +274,14 @@
           SVIFT.vis.redraw()
         }, 500))
 
+      SVIFT.vis.redraw();
+
     }
 
 
-    SVIFT.table.row.remove = function () {
+    SVIFT.table.column.remove = function () {
 
-      var amountButtons = SVIFT.vis.config.data.data.length;
+      var amountButtons = SVIFT.vis.config.data.data[0].length;
       if (amountButtons === 2) {
         return
       }
@@ -294,13 +289,15 @@
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
       }
 
-      SVIFT.vis.config.data.data.pop();
+      SVIFT.vis.config.data.data[0].pop();
 
-      SVIFT.table.row.title.selectAll('td')
-        .data(SVIFT.vis.config.data.data).exit().remove();
+      SVIFT.table.column.title.selectAll('td')
+        .data(SVIFT.vis.config.data.data[0]).exit().remove();
 
-      SVIFT.table.row.number.selectAll('td')
-        .data(SVIFT.vis.config.data.data).exit().remove();
+      SVIFT.table.column.number.selectAll('td')
+        .data(SVIFT.vis.config.data.data[0]).exit().remove();
+
+      SVIFT.vis.redraw();
 
     };
 
@@ -320,7 +317,10 @@
 
     };
 
-    
+
+
+
+
     SVIFT.table.update = {};
 
     SVIFT.table.update.values = function (obj) {
@@ -331,13 +331,20 @@
       var inputValue = d3.select(obj).node().value;
       var newData = SVIFT.table.data.validate(inputValue);
 
+      if (newData > 100 && SVIFT.vis.config.vis.type == "mosaic") {
+        newData = Number(newData.toString().slice(0,2));
+        d3.select("#number").property("value", newData);
+      }
+      
       if (newData == null) {
         d3.select(obj).classed('bad-input-data', true)
       } else {
         d3.select(obj).classed('bad-input-data', false)
       }
 
-      SVIFT.vis.config.data.data[dataPosition][1] = newData;
+      SVIFT.vis.config.data.data[0][dataPosition][1] = newData;
+
+      SVIFT.vis.redraw();
 
     }
 
@@ -347,7 +354,9 @@
 
       var dataPosition = d3.select(obj).attr("data-index");
       var inputValue = d3.select(obj).node().value;
-      SVIFT.vis.config.data.data[dataPosition][0] = inputValue || '';
+      SVIFT.vis.config.data.data[0][dataPosition][0] = inputValue || '';
+
+      SVIFT.vis.redraw();
 
     }
 
@@ -593,30 +602,28 @@
         var toggleSubTitle = subtitleWrapper.append('div').classed('icon-toggle', true);
 
 
-        if (SVIFT.vis.config.data.format === "one-col") {
+        if (SVIFT.vis.config.data.format === "single-set") {
 
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
           var table = tableWrapper.append('table').append('tbody');
 
-          SVIFT.table.row.title = table.append('tr');
-          SVIFT.table.row.title.selectAll('td')
-            .data(SVIFT.vis.config.data.data).enter().append('td')
+          SVIFT.table.column.title = table.append('tr');
+          SVIFT.table.column.title.selectAll('td')
+            .data(SVIFT.vis.config.data.data[0]).enter().append('td')
             .append('input')
             .attr('placeholder', function (d) { return d[0] })
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function () {
               SVIFT.table.update.lables(this);
-              SVIFT.vis.redraw();
             }, 500));
 
-          SVIFT.table.row.number = table.append('tr');
-          SVIFT.table.row.number.selectAll('td')
-            .data(SVIFT.vis.config.data.data).enter().append('td').append('input')
+          SVIFT.table.column.number = table.append('tr');
+          SVIFT.table.column.number.selectAll('td')
+            .data(SVIFT.vis.config.data.data[0]).enter().append('td').append('input')
             .attr('placeholder', function (d) { return d[1] })
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function () {
               SVIFT.table.update.values(this);
-              SVIFT.vis.redraw();
             }, 500));
 
 
@@ -629,8 +636,7 @@
             .text('–')
             .classed('disabled-btn', true)
             .on('click', function (d) {
-              SVIFT.table.row.remove()
-              SVIFT.vis.redraw();
+              SVIFT.table.column.remove()
             });
 
           var addButton = editRowButtons.append('div')
@@ -638,41 +644,24 @@
             .classed('btn-add', true)
             .text('+')
             .on('click', function (d) {
-              SVIFT.table.row.add();
-              SVIFT.vis.redraw();
+              SVIFT.table.column.add();
             });
 
         }
         //if single Number
-        if (SVIFT.vis.config.data.format === "one-number") {
+        if (SVIFT.vis.config.data.format === "one-val") {
 
           var input = bubble.append('input')
             .classed('number', true)
             .attr('id', 'number')
             .attr('type', 'number')
-            .attr('placeholder', function () { return SVIFT.vis.config.data.data })
+            .attr('placeholder', function () { return SVIFT.vis.config.data.data[0][0][1] })
+            .attr("data-index", 0)
             // .attr('min', '0')
             // .attr('max', '100')
             .on('input', SVIFT.helper.debouncer(function () {
-              updateSingleData();
-              SVIFT.vis.redraw();
+              SVIFT.table.update.values(this)
             }, 500));
-
-
-          function updateSingleData() {
-
-            var inputValue = d3.select("#number").node().value;
-            if (inputValue > 100 && visType == "mosaic") {
-              inputValue = inputValue.slice(0, 2);
-              d3.select("#number").property("value", inputValue);
-            }
-
-            SVIFT.vis.config.data.data = [inputValue];
-            d3.select("#number").attr('placeholder', '');
-
-
-          }
-
 
         }
 
@@ -760,7 +749,7 @@
           SVIFT.vis.config.style.font = d.font;
 
           d3.select('.viz-container svg').remove();
-          var vis = SVIFT.vis[visType](SVIFT.vis.config, d3.select('.viz-container'));
+          var vis = SVIFT.vis[SVIFT.vis.config.vis.type](SVIFT.vis.config, d3.select('.viz-container'));
           vis.init();
           vis.start();
 

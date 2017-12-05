@@ -36,13 +36,13 @@ cities ranking
 - Contact social
 
 ## Hans
-- Ask for email input for link
 - Two layouts for viz types
-- Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
 - Fix text labels when many data points or long labels
-- download stuff directly from frontend
-- Chatbot structure and navigation
 
+- Ask for email input for link
+- Chatbot structure and navigation
+- download stuff directly from frontend
+- SVIFT.helper.debouncer for input fields
 - make all vis-modules responsive
 - counter-module -> set position according to font
 
