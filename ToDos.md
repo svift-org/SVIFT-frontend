@@ -40,7 +40,6 @@ cities ranking
 - Two layouts for viz types
 - Make Dynamic preview sizes work with text input (i.e. 300 x 500 px)
 - Fix text labels when many data points or long labels
-- preview diffrent chart sizes (e.g. twitter, facebook) -> in ratio
 - download stuff directly from frontend
 - Chatbot structure and navigation
 
