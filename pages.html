@@ -61,7 +61,7 @@
             ul.selectAll('.li')
                 .data(d3.entries(data)).enter().append('li').append('a')
                 .attr('href', function (d) { return '#' + d.key })
-                .html(function (d) { return d.key })
+                .html(function (d) { return d.value.title })
                 .on('click', function (d) {
                     var key = d.key;
                     d3.select('.app').attr('id', function () { return d.key });
