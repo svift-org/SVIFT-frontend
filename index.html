@@ -88,7 +88,9 @@
 
 
 
-    var dummyData = {
+
+
+    SVIFT.vis.config ={
       "params": {
         "dev": true
       },
@@ -120,7 +122,64 @@
     }
 
 
+    SVIFT.vis.init = function (vistype) {
 
+      //load data for specific vis type
+      d3.json('./build/data/'+ vistype + '.json', function (err, visData) {
+        if (err) { console.log(err); }
+        console.log(visData)
+
+        SVIFT.vis.config.vis.type = vistype;
+        visType = SVIFT.vis.config.vis.type;
+
+        if (vistype == "columns" || vistype == "gooey") {
+          SVIFT.vis.config.data.data = [["A", 33], ["B", 20]];
+          SVIFT.vis.config.data.format = "one-col";
+
+        } else {
+          SVIFT.vis.config.data.data = [25];
+          SVIFT.vis.config.data.format = "one-number";
+        }
+
+
+        var overlay = d3.select('#gui-1-overlay').html('');
+
+        var vizContainer = overlay.append('div')
+          .attr('class', 'viz-container')
+          .style('opacity', 0)
+          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
+          .transition()
+          .style('opacity', 1)
+
+        d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + SVIFT.vis.config.vis.type);
+
+        var vis = SVIFT.vis[SVIFT.vis.config.vis.type](SVIFT.vis.config, d3.select('.viz-container'));
+        vis.init();
+        vis.start();
+
+      })
+
+    }
+
+    SVIFT.vis.redraw = function () {
+
+      var type = SVIFT.vis.config.vis.type;
+      var data = SVIFT.vis.config;
+
+      d3.select('.viz-container svg').remove();
+      var vis = SVIFT.vis[SVIFT.vis.config.vis.type](data, d3.select('.viz-container'));
+      vis.init();
+      vis.start();
+
+    }
+
+    SVIFT.vis.resize = function (format) {
+
+      var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
+      d3.select(".viz-container")
+        .style("height", (containerWidth / format[0]) * format[1] + "px");
+
+    }
 
     SVIFT.vis.render = function () {
 
@@ -128,7 +187,7 @@
         .header("Content-Type", "application/json")
         .mimeType("application/json")
         .post(
-        JSON.stringify(dummyData),
+        JSON.stringify(SVIFT.vis.config),
         function (err, rawData) {
 
           cb.addBubble({ type: 'download', class: 'human' });
@@ -186,115 +245,62 @@
     }
 
 
-    SVIFT.vis.init = function (vistype) {
-
-      dummyData.vis.type = vistype;
-      visType = dummyData.vis.type;
-
-      if (vistype == "columns" || vistype == "gooey") {
-        dummyData.data.data = [["A", 33], ["B", 20]];
-        dummyData.data.format = "one-col";
-
-      } else {
-        dummyData.data.data = [25];
-        dummyData.data.format = "one-number";
-      }
-
-
-      var overlay = d3.select('#gui-1-overlay').html('');
-
-      var vizContainer = overlay.append('div')
-        .attr('class', 'viz-container')
-        .style('opacity', 0)
-        .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
-        .transition()
-        .style('opacity', 1)
-
-      d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + dummyData.vis.type);
-
-      var vis = SVIFT.vis[dummyData.vis.type](dummyData, d3.select('.viz-container'));
-      vis.init();
-      vis.start();
-
-    }
-
-
-    SVIFT.vis.redraw = function () {
-
-      var type = dummyData.vis.type;
-      var data = dummyData;
-
-      d3.select('.viz-container svg').remove();
-      var vis = SVIFT.vis[dummyData.vis.type](data, d3.select('.viz-container'));
-      vis.init();
-      vis.start();
-
-    }
-
-    SVIFT.vis.resize = function (format) {
-
-      var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
-      d3.select(".viz-container")
-        .style("height", (containerWidth / format[0]) * format[1] + "px");
-
-    }
-
-
 
     SVIFT.table = {};
 
     SVIFT.table.row = {};
 
-    SVIFT.table.row.add = function (visType, data) {
+    SVIFT.table.row.add = function () {
 
-      if (data.data.data.length >= 2) {
+      if (SVIFT.vis.config.data.data.length >= 2) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false);
       }
 
       var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-      var lastEntry = data.data.data[data.data.data.length - 1];
-      data.data.data.push([alphabet[data.data.data.length], lastEntry[1]])
+      var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1];
+      SVIFT.vis.config.data.data.push([alphabet[SVIFT.vis.config.data.data.length], lastEntry[1]])
 
       SVIFT.table.row.title.selectAll('td')
-        .data(data.data.data).enter().append('td')
+        .data(SVIFT.vis.config.data.data).enter().append('td')
         .append('input')
         .attr('placeholder', function (d, i) { return alphabet[i] })
         .attr("data-index", function (d, i) { return i })
         .on('input', SVIFT.helper.debouncer(function () {
-          SVIFT.table.data.update.lables(this);
+          SVIFT.table.update.lables(this);
           SVIFT.vis.redraw()
         }, 500));
 
       SVIFT.table.row.number.selectAll('td')
-        .data(data.data.data).enter()
+        .data(SVIFT.vis.config.data.data).enter()
         .append('td').append('input')
         .attr('placeholder', function (d) { return d[1] })
         .attr("data-index", function (d, i) { return i })
         .on('input', SVIFT.helper.debouncer(function () {
-          SVIFT.table.data.update.values(this);
+          SVIFT.table.update.values(this);
           SVIFT.vis.redraw()
         }, 500))
 
     }
 
 
-    SVIFT.table.row.remove = function (data) {
+    SVIFT.table.row.remove = function () {
 
-      if (data.data.data.length == 2) {
+      var amountButtons = SVIFT.vis.config.data.data.length;
+      if (amountButtons === 2) {
         return
       }
-      if (data.data.data.length == 3) {
+      if (amountButtons === 3) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
       }
 
-      data.data.data.pop();
+      SVIFT.vis.config.data.data.pop();
 
       SVIFT.table.row.title.selectAll('td')
-        .data(data.data.data).exit().remove();
+        .data(SVIFT.vis.config.data.data).exit().remove();
 
       SVIFT.table.row.number.selectAll('td')
-        .data(data.data.data).exit().remove();
+        .data(SVIFT.vis.config.data.data).exit().remove();
 
     };
 
@@ -314,9 +320,9 @@
 
     };
 
-    SVIFT.table.data.update = {};
+    SVIFT.table.update = {};
 
-    SVIFT.table.data.update.values = function (obj) {
+    SVIFT.table.update.values = function (obj) {
 
       d3.select(obj).attr('placeholder', null);
 
@@ -330,26 +336,26 @@
         d3.select(obj).classed('bad-input-data', false)
       }
 
-      dummyData.data.data[dataPosition][1] = newData;
+      SVIFT.vis.config.data.data[dataPosition][1] = newData;
 
     }
 
-    SVIFT.table.data.update.lables = function (obj) {
+    SVIFT.table.update.lables = function (obj) {
 
       d3.select(obj).attr('placeholder', '');
 
       var dataPosition = d3.select(obj).attr("data-index");
       var inputValue = d3.select(obj).node().value;
-      dummyData.data.data[dataPosition][0] = inputValue || '';
+      SVIFT.vis.config.data.data[dataPosition][0] = inputValue || '';
 
     }
 
-    SVIFT.table.data.update.text = function (selectorViz, selectorInput, selectorData, altText) {
+    SVIFT.table.update.text = function (selectorViz, selectorInput, selectorData, altText) {
 
       var inputText = d3.select(selectorInput).node().value;
-      dummyData.data[selectorData] = inputText || altText;
-      if (selectorData == "source" && inputText) { dummyData.data[selectorData] = "Source: " + inputText };
-      d3.select(selectorViz).text(dummyData.data[selectorData]);
+      SVIFT.vis.config.data[selectorData] = inputText || altText;
+      if (selectorData == "source" && inputText) { SVIFT.vis.config.data[selectorData] = "Source: " + inputText };
+      d3.select(selectorViz).text(SVIFT.vis.config.data[selectorData]);
 
     }
 
@@ -573,7 +579,7 @@
           .attr('id', 'title')
           .attr('placeholder', 'Add your title here')
           .on('input', function () { 
-            SVIFT.table.data.update.text("#title-main", "#title", "title", "Your title") 
+            SVIFT.table.update.text("#title-main", "#title", "title", "Your title") 
           });
         var toggleTitle = titleWrapper.append('div').classed('icon-toggle', true);
 
@@ -583,34 +589,34 @@
           .attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
           .on('input', function () { 
-            SVIFT.table.data.update.text("#title-sub", "#subtitle", "subTitle", "Your sub title") 
+            SVIFT.table.update.text("#title-sub", "#subtitle", "subTitle", "Your sub title") 
           });
         var toggleSubTitle = subtitleWrapper.append('div').classed('icon-toggle', true);
 
 
-        if (dummyData.data.format === "one-col") {
+        if (SVIFT.vis.config.data.format === "one-col") {
 
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
           var table = tableWrapper.append('table').append('tbody');
 
           SVIFT.table.row.title = table.append('tr');
           SVIFT.table.row.title.selectAll('td')
-            .data(dummyData.data.data).enter().append('td')
+            .data(SVIFT.vis.config.data.data).enter().append('td')
             .append('input')
             .attr('placeholder', function (d) { return d[0] })
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function () {
-              SVIFT.table.data.update.lables(this);
+              SVIFT.table.update.lables(this);
               SVIFT.vis.redraw();
             }, 500));
 
           SVIFT.table.row.number = table.append('tr');
           SVIFT.table.row.number.selectAll('td')
-            .data(dummyData.data.data).enter().append('td').append('input')
+            .data(SVIFT.vis.config.data.data).enter().append('td').append('input')
             .attr('placeholder', function (d) { return d[1] })
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function () {
-              SVIFT.table.data.update.values(this);
+              SVIFT.table.update.values(this);
               SVIFT.vis.redraw();
             }, 500));
 
@@ -624,7 +630,7 @@
             .text('–')
             .classed('disabled-btn', true)
             .on('click', function (d) {
-              SVIFT.table.row.remove(dummyData)
+              SVIFT.table.row.remove()
               SVIFT.vis.redraw();
             });
 
@@ -633,19 +639,19 @@
             .classed('btn-add', true)
             .text('+')
             .on('click', function (d) {
-              SVIFT.table.row.add(visType, dummyData);
+              SVIFT.table.row.add();
               SVIFT.vis.redraw();
             });
 
         }
         //if single Number
-        if (dummyData.data.format === "one-number") {
+        if (SVIFT.vis.config.data.format === "one-number") {
 
           var input = bubble.append('input')
             .classed('number', true)
             .attr('id', 'number')
             .attr('type', 'number')
-            .attr('placeholder', function () { return dummyData.data.data })
+            .attr('placeholder', function () { return SVIFT.vis.config.data.data })
             // .attr('min', '0')
             // .attr('max', '100')
             .on('input', SVIFT.helper.debouncer(function () {
@@ -662,7 +668,7 @@
               d3.select("#number").property("value", inputValue);
             }
 
-            dummyData.data.data = [inputValue];
+            SVIFT.vis.config.data.data = [inputValue];
             d3.select("#number").attr('placeholder', '');
 
 
@@ -676,7 +682,7 @@
           .attr('id', 'source-input')
           .attr('placeholder', 'Add your source here')
           .on('input', function () { 
-            SVIFT.table.data.update.text("#source", "#source-input", "source", "Source: Your source") 
+            SVIFT.table.update.text("#source", "#source-input", "source", "Source: Your source") 
           });
         var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
 
@@ -751,11 +757,11 @@
 
         function selectTheme(d) {
 
-          dummyData.style.color.main = d.color;
-          dummyData.style.font = d.font;
+          SVIFT.vis.config.style.color.main = d.color;
+          SVIFT.vis.config.style.font = d.font;
 
           d3.select('.viz-container svg').remove();
-          var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
+          var vis = SVIFT.vis[visType](SVIFT.vis.config, d3.select('.viz-container'));
           vis.init();
           vis.start();
 
