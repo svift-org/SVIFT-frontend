@@ -40,48 +40,39 @@
         d3.json('./pages.json', function (err, data) {
             if (err) { console.log(err); }
 
-            // console.log(d3.entries(data));
+            var currentPage = window.location.hash.substr(1);
 
-            var currentSite = window.location.hash.substr(1);
-            console.log(currentSite);
+            // Handle content for each page
+            addContent(currentPage);
 
+            function addContent(page) {
+                var pages = d3.keys(data);
+                var result = pages.indexOf(page);
+                var content = d3.entries(data)[result].value;
 
-            // addContent('#contact');
+                var h1 = d3.select('h1').text(content.title);
+                var p1 = d3.select('.p1').text(content.p1);
+                var p2 = d3.select('.p2').text(content.p2);
+                var p3 = d3.select('.p3').text(content.p3);
+            }
 
-            // function addContent(page) {
-            //     var site = page.substr(1);
-            //     console.log(site);
-
-            //     if (window.location.hash == site) {
-            //         var h1 = d3.select('h1').text(site.key);
-            //         var p1 = d3.select('.p1').text(site.value.p1);
-            //         var p2 = d3.select('.p2').text(site.value.p2);
-            //         var p3 = d3.select('.p3').text(site.value.p3);
-            //     }
-            // }
-
-
-            // Insert nav
+            // Handle navigaion
             var ul = d3.select('.app').insert('nav', '.wrapper').append('ul');
             ul.selectAll('.li')
                 .data(d3.entries(data)).enter().append('li').append('a')
-                .attr('href', function (d) { return '#' + d.value.url })
+                .attr('href', function (d) { return '#' + d.key })
                 .html(function (d) { return d.key })
                 .on('click', function (d) {
-                    d3.select('.app').attr('id', function () { return d.value.url });
-                    // Switch content
                     var key = d.key;
-                    var h1 = d3.select('h1').html(key);
+                    d3.select('.app').attr('id', function () { return d.key });
+                    // Switch content
+                    var h1 = d3.select('h1').html(d.value.title);
                     var p1 = d3.select('.p1').html(d.value.p1);
                     var p2 = d3.select('.p2').html(d.value.p2);
                     var p3 = d3.select('.p3').html(d.value.p3);
                 });
         });
     </script>
-
-
-
-
 </body>
 
 </html>

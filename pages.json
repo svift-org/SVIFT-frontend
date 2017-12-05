@@ -1,24 +1,24 @@
 {
-    "About": {
-        "url": "about",
+    "about": {
+        "title": "About",
         "p1": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue",
         "p2": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue",
         "p3": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue"
     },
-    "Docs": {
-        "url": "docs",
+    "docs": {
+        "title": "Docs",
         "p1": "Svift is a lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda cumque asperiores eligendi magni, consequatur consequuntur recusandae alias officia, similique nam fugit est doloremque. Maxime rerum nemo quo tenetur amet.",
         "p2": "Svift is a lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda cumque asperiores eligendi magni, consequatur consequuntur recusandae alias officia, similique nam fugit est doloremque. Maxime rerum nemo quo tenetur amet.",
         "p3": "Svift is a lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos assumenda cumque asperiores eligendi magni, consequatur consequuntur recusandae alias officia, similique nam fugit est doloremque. Maxime rerum nemo quo tenetur amet."
     },
-    "Contact": {
-        "url": "contact",
+    "contact": {
+        "title": "Contact",
         "p1": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
         "p2": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
         "p3": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
     },
-    "Pro*": {
-        "url": "pro",
+    "pro": {
+        "title": "Pro*",
         "p1": "svift will also soon be available as a pro tool for your organization. It includes advanced features and can be highly customized according to your needs.",
         "p2": "For example, we can incorporate your corporate design (i.e. colors and/or custom fonts) or create new and exciting chart types that stand out. ",
         "p3": "Please <a href='mailto:hello@svift.xyz'>get in touch</a> with us if you are interested in getting to know more about our Pro options."
