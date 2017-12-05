@@ -156,7 +156,21 @@ html, body {
   .app .wrapper {
     flex: 6; }
     .app .wrapper header {
-      margin-bottom: 10%; }
+      margin-bottom: 10%;
+      display: flex;
+      align-items: center; }
+      .app .wrapper header a {
+        flex: 6; }
+      .app .wrapper header div.social {
+        flex: 1; }
+        .app .wrapper header div.social a {
+          color: #75FABF;
+          font-family: "DecimaMonoProBold", monospace;
+          font-size: 1.1em;
+          text-decoration: none;
+          text-transform: uppercase; }
+          .app .wrapper header div.social a:hover {
+            color: #71609b; }
     .app .wrapper h1 {
       color: #75FABF;
       font-family: "DecimaMonoProBold", monospace;
@@ -165,7 +179,7 @@ html, body {
       margin-top: 0; }
     .app .wrapper p {
       font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
-      font-size: 1.3em;
+      font-size: 1.2em;
       line-height: 1.5; }
       .app .wrapper p a {
         color: #75FABF;
