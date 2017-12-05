@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles/app/normalize.css">
   <link rel="stylesheet" href="styles/app/app.css">
   <link rel="stylesheet" href="styles/bot/bot.css">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans|Roboto+Mono" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans|Roboto+Mono" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -110,6 +110,7 @@
       "data": {
         "columns": ["Wert"],
         "types": ["int"],
+        "format": [],
         "data": [],
         "title": "Your title",
         "subTitle": "Your subtitle",
@@ -185,17 +186,20 @@
     }
 
 
-    SVIFT.vis.init = function (d) {
+    SVIFT.vis.init = function (vistype) {
 
-      visType = d;
+      dummyData.vis.type = vistype;
+      visType = dummyData.vis.type;
 
-      if (d == "columns" || d == "gooey") {
-        dummyData.data.data = [["A", 33], ["B", 20]]
+      if (vistype == "columns" || vistype == "gooey") {
+        dummyData.data.data = [["A", 33], ["B", 20]];
+        dummyData.data.format = "one-col";
+
       } else {
         dummyData.data.data = [25];
+        dummyData.data.format = "one-number";
       }
 
-      dummyData.vis.type = visType
 
       var overlay = d3.select('#gui-1-overlay').html('');
 
@@ -206,19 +210,22 @@
         .transition()
         .style('opacity', 1)
 
-      d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + d);
+      d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + dummyData.vis.type);
 
-      var vis = SVIFT.vis[visType](dummyData, d3.select('.viz-container'));
+      var vis = SVIFT.vis[dummyData.vis.type](dummyData, d3.select('.viz-container'));
       vis.init();
       vis.start();
 
     }
 
 
-    SVIFT.vis.redraw = function (visType, data) {
+    SVIFT.vis.redraw = function () {
+
+      var type = dummyData.vis.type;
+      var data = dummyData;
 
       d3.select('.viz-container svg').remove();
-      var vis = SVIFT.vis[visType](data, d3.select('.viz-container'));
+      var vis = SVIFT.vis[dummyData.vis.type](data, d3.select('.viz-container'));
       vis.init();
       vis.start();
 
@@ -256,7 +263,7 @@
         .attr("data-index", function (d, i) { return i })
         .on('input', SVIFT.helper.debouncer(function () {
           SVIFT.table.data.update.lables(this);
-          SVIFT.vis.redraw(visType, data);
+          SVIFT.vis.redraw()
         }, 500));
 
       SVIFT.table.row.number.selectAll('td')
@@ -266,7 +273,7 @@
         .attr("data-index", function (d, i) { return i })
         .on('input', SVIFT.helper.debouncer(function () {
           SVIFT.table.data.update.values(this);
-          SVIFT.vis.redraw(visType, data);
+          SVIFT.vis.redraw()
         }, 500))
 
     }
@@ -443,6 +450,9 @@
       // createThumbs();
 
       function createThumbs() {
+
+        d3.select('#gui-1-overlay').style('left', '0');
+        
         var overlay = d3.select('#gui-1-overlay')
           .style('background-color', '#75FABF')
           .append('div')
@@ -505,7 +515,7 @@
           .on('click', function (d) {
             SVIFT.vis.resize(d.format);
             setTimeout(function () {
-              SVIFT.vis.redraw(visType, dummyData);
+              SVIFT.vis.redraw();
             }, 700)
           });
 
@@ -578,7 +588,7 @@
         var toggleSubTitle = subtitleWrapper.append('div').classed('icon-toggle', true);
 
 
-        if (visType == "columns" || visType == "gooey") {
+        if (dummyData.data.format === "one-col") {
 
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
           var table = tableWrapper.append('table').append('tbody');
@@ -591,7 +601,7 @@
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function () {
               SVIFT.table.data.update.lables(this);
-              SVIFT.vis.redraw(visType, dummyData);
+              SVIFT.vis.redraw();
             }, 500));
 
           SVIFT.table.row.number = table.append('tr');
@@ -601,7 +611,7 @@
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function () {
               SVIFT.table.data.update.values(this);
-              SVIFT.vis.redraw(visType, dummyData);
+              SVIFT.vis.redraw();
             }, 500));
 
 
@@ -615,7 +625,7 @@
             .classed('disabled-btn', true)
             .on('click', function (d) {
               SVIFT.table.row.remove(dummyData)
-              SVIFT.vis.redraw(visType, dummyData);
+              SVIFT.vis.redraw();
             });
 
           var addButton = editRowButtons.append('div')
@@ -624,12 +634,12 @@
             .text('+')
             .on('click', function (d) {
               SVIFT.table.row.add(visType, dummyData);
-              SVIFT.vis.redraw(visType, dummyData);
+              SVIFT.vis.redraw();
             });
 
         }
         //if single Number
-        else {
+        if (dummyData.data.format === "one-number") {
 
           var input = bubble.append('input')
             .classed('number', true)
@@ -640,7 +650,7 @@
             // .attr('max', '100')
             .on('input', SVIFT.helper.debouncer(function () {
               updateSingleData();
-              SVIFT.vis.redraw(visType, dummyData);
+              SVIFT.vis.redraw();
             }, 500));
 
 
@@ -813,7 +823,6 @@
       function onEntry() {
         cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type on the left side!', class: 'bot', delay: 500 });
         setTimeout(function () {
-          d3.select('#gui-1-overlay').style('left', '0');
           createThumbs();
         }, 500)
         d3.select('.inner').transition().delay(1000).style('display', 'none');
