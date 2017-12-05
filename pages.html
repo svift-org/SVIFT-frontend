@@ -25,6 +25,9 @@
                 <a href="index.html">
                     <img src='assets/img/wordmark-dark.png' alt=''>
                 </a>
+                <div class='social'>
+                    <a target='_blank' href="https://medium.com/svift-blog">&raquo; Our Blog</a>
+                </div>
             </header>
             <div class='content'>
                 <h1></h1>
@@ -50,10 +53,10 @@
                 var result = pages.indexOf(page);
                 var content = d3.entries(data)[result].value;
 
-                var h1 = d3.select('h1').text(content.title);
-                var p1 = d3.select('.p1').text(content.p1);
-                var p2 = d3.select('.p2').text(content.p2);
-                var p3 = d3.select('.p3').text(content.p3);
+                var h1 = d3.select('h1').html(content.title);
+                var p1 = d3.select('.p1').html(content.p1);
+                var p2 = d3.select('.p2').html(content.p2);
+                var p3 = d3.select('.p3').html(content.p3);
             }
 
             // Handle navigaion

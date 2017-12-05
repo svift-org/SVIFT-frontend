@@ -64,6 +64,28 @@ html, body {
 
         header {
             margin-bottom: 10%;
+            display: flex;
+            align-items: center;
+
+            a {
+                flex: 6;
+            }
+
+            div.social {
+                flex: 1;
+
+                a {
+                    color: $svift-human;
+                    font-family: $font-family-mono;
+                    font-size: 1.1em;
+                    text-decoration: none;
+                    text-transform: uppercase;
+
+                    &:hover {
+                        color: $svift-primary;
+                    }
+                }
+            }
         }
 
         h1 {
@@ -76,7 +98,7 @@ html, body {
 
         p {
             font-family: $font-family-sansDefault;
-            font-size: 1.3em;
+            font-size: 1.2em;
             line-height: 1.5;
 
             a {
