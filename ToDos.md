@@ -32,7 +32,9 @@ cities ranking
 - check delete of folders
 
 ## Alsino
+- video
 - Pages content
+- css nav bug
 - Contact social
 - bubbles style
 - left side icon

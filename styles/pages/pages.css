@@ -150,8 +150,11 @@ html, body {
       .app nav ul li a {
         color: #75FABF;
         text-decoration: none;
-        text-transform: uppercase; }
+        text-transform: uppercase;
+        transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1); }
         .app nav ul li a:hover {
+          color: #71609b; }
+        .app nav ul li a.active {
           color: #71609b; }
   .app .wrapper {
     flex: 6; }
@@ -168,21 +171,24 @@ html, body {
           font-family: "DecimaMonoProBold", monospace;
           font-size: 1.1em;
           text-decoration: none;
-          text-transform: uppercase; }
+          text-transform: uppercase;
+          transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1); }
           .app .wrapper header div.social a:hover {
             color: #71609b; }
-    .app .wrapper h1 {
-      color: #75FABF;
-      font-family: "DecimaMonoProBold", monospace;
-      font-size: 2em;
-      width: fit-content;
-      margin-top: 0; }
-    .app .wrapper p {
-      font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
-      font-size: 1.2em;
-      line-height: 1.5; }
-      .app .wrapper p a {
+    .app .wrapper .content {
+      width: 90%; }
+      .app .wrapper .content h1 {
         color: #75FABF;
-        text-decoration: none; }
+        font-family: "DecimaMonoProBold", monospace;
+        font-size: 2em;
+        width: fit-content;
+        margin-top: 0; }
+      .app .wrapper .content p {
+        font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
+        font-size: 1.1em;
+        line-height: 1.5; }
+        .app .wrapper .content p a {
+          color: #75FABF;
+          text-decoration: none; }
 
 /*# sourceMappingURL=pages.css.map */

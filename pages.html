@@ -42,8 +42,10 @@
     <script>
         d3.json('./pages.json', function (err, data) {
             if (err) { console.log(err); }
-
             var currentPage = window.location.hash.substr(1);
+            var ul = d3.select('.app').insert('nav', '.wrapper').append('ul');
+
+
 
             // Handle content for each page
             addContent(currentPage);
@@ -57,23 +59,38 @@
                 var p1 = d3.select('.p1').html(content.p1);
                 var p2 = d3.select('.p2').html(content.p2);
                 var p3 = d3.select('.p3').html(content.p3);
+
+                // Handle navigaion
+                ul.selectAll('.li')
+                    .data(d3.entries(data)).enter().append('li').append('a')
+                    .attr('href', function (d) { return '#' + d.key })
+                    // .attr('class', function () {
+                    //     if (d3.select(this).attr('href', page)) {
+                    //         return 'active'
+                    //     }
+                    // })
+                    .html(function (d) { return d.value.title })
+                    .on('click', function (d) {
+
+                        // Set active class
+                        var key = d.key;
+                        d3.select('.app').attr('id', function () { return d.key });
+
+                        // Highlight selected nav item
+                        ul.selectAll('li').selectAll('a').classed('active', false);
+                        d3.select(this).classed('active', true);
+
+                        // Switch content
+                        var h1 = d3.select('h1').html(d.value.title);
+                        var p1 = d3.select('.p1').html(d.value.p1);
+                        var p2 = d3.select('.p2').html(d.value.p2);
+                        var p3 = d3.select('.p3').html(d.value.p3);
+                    });
+
+
             }
 
-            // Handle navigaion
-            var ul = d3.select('.app').insert('nav', '.wrapper').append('ul');
-            ul.selectAll('.li')
-                .data(d3.entries(data)).enter().append('li').append('a')
-                .attr('href', function (d) { return '#' + d.key })
-                .html(function (d) { return d.value.title })
-                .on('click', function (d) {
-                    var key = d.key;
-                    d3.select('.app').attr('id', function () { return d.key });
-                    // Switch content
-                    var h1 = d3.select('h1').html(d.value.title);
-                    var p1 = d3.select('.p1').html(d.value.p1);
-                    var p2 = d3.select('.p2').html(d.value.p2);
-                    var p3 = d3.select('.p3').html(d.value.p3);
-                });
+
         });
     </script>
 </body>

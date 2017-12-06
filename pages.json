@@ -1,9 +1,9 @@
 {
     "about": {
         "title": "About",
-        "p1": "svift is an open source tool to turn your numbers into beautiful charts - in no time. Read more about the idea behind svift on Medium. If you would like to test svift, please sign up. Any questions? Get in touch with us: hello@svift.xyz",
-        "p2": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue. <br><br> On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue. <br><br> On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue",
-        "p3": "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue"
+        "p1": "<em>svift</em> is an open source tool data visualization tool that helps you turn your numbers into beautiful charts - in no time. <em>svift</em> is essentially a tool for anyone who quickly wants to include data-driven graphics in their work without being a data visualization or visual design expert. ",
+        "p2": "If you need to have a chart ready for your next article or twitter post within the next few minutes, <em>svift</em> is your choice: Make an interactive chart, produce data-driven content for your social media posts or create a beautiful infographic for your print product, <em>svift</em> can do it all.",
+        "p3": "<em>svift</em> is free and open source software and all our code is available on <a target='blank' href='https://github.com/svift-org'>Github</a>. Please get in touch with us if you have suggestions or would like to contribute to the project. <br><br><em>svift</em> is designed and developed by <a target='blank' href='https://www.sebastianmeier.eu/'>Sebastian Meier</a>, <a target='blank' href='http://alsino.io/'>Alsino Skowronnek</a> and <a target='blank' href='http://hanshack.com/'>Hans Hack</a> in Berlin.<br><br>We are grateful for the financial support by the <a target='blank' href='http://www.miz-babelsberg.de/'>MIZ Babelsberg</a> to support the development of our first prototype."
     },
     "docs": {
         "title": "Docs",
@@ -13,14 +13,14 @@
     },
     "contact": {
         "title": "Contact",
-        "p1": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        "p2": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        "p3": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+        "p1": "If you have a question about <em>svift</em> or want to send us some funny gifs, just drop us a line: <a href='&#0109;&#097;&#0105;&#0108;&#0116;&#0111;&#058;&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;'>&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;</a>.",
+        "p2": "For updates, you can follow us on twitter: <a target='blank' href='&#0104;&#0116;&#0116;&#0112;&#0115;&#058;&#047;&#047;&#0116;&#0119;&#0105;&#0116;&#0116;&#0101;&#0114;&#046;&#099;&#0111;&#0109;&#047;&#083;&#0118;&#0105;&#0102;&#0116;&#084;&#0111;&#0111;&#0108;'>&#064;&#083;&#0118;&#0105;&#0102;&#0116;&#084;&#0111;&#0111;&#0108;</a>.",
+        "p3": "If that is not enough, you can read more about our motivation an processes on our <a href='https://medium.com/svift-blog'>blog</a>."
     },
     "pro": {
         "title": "Pro*",
-        "p1": "svift will also soon be available as a pro tool for your organization. It includes advanced features and can be highly customized according to your needs.",
-        "p2": "For example, we can incorporate your corporate design (i.e. colors and/or custom fonts) or create new and exciting chart types that stand out. ",
-        "p3": "Please <a href='mailto:hello@svift.xyz'>get in touch</a> with us if you are interested in getting to know more about our Pro options."
+        "p1": "<em>svift</em> will also soon be available as a pro tool for your organization. It will include advanced features and can be highly customized according to your needs.",
+        "p2": "For example, with the pro version you will be able to make an unlimited number of charts, work in teams, add a corporate design look (i.e. colors and custom fonts) and add new and exciting chart types that stand out from the masses.",
+        "p3": "Please <a href='&#0109;&#097;&#0105;&#0108;&#0116;&#0111;&#058;&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;'>get in touch</a> if you are interested to learn more about our pro options, available from mid-2018."
     }
 }

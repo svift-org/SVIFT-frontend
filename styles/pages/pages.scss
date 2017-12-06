@@ -50,8 +50,13 @@ html, body {
                     color: $svift-human;
                     text-decoration: none;
                     text-transform: uppercase;
+                    transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 
                     &:hover {
+                        color: $svift-primary;
+                    }
+
+                    &.active {
                         color: $svift-primary;
                     }
                 }
@@ -80,6 +85,7 @@ html, body {
                     font-size: 1.1em;
                     text-decoration: none;
                     text-transform: uppercase;
+                    transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 
                     &:hover {
                         color: $svift-primary;
@@ -88,22 +94,26 @@ html, body {
             }
         }
 
-        h1 {
-            color: $svift-human;
-            font-family: $font-family-mono;
-            font-size: 2em;
-            width: fit-content;
-            margin-top: 0;
-        }
+        .content {
+            width: 90%;
 
-        p {
-            font-family: $font-family-sansDefault;
-            font-size: 1.2em;
-            line-height: 1.5;
-
-            a {
+            h1 {
                 color: $svift-human;
-                text-decoration: none;
+                font-family: $font-family-mono;
+                font-size: 2em;
+                width: fit-content;
+                margin-top: 0;
+            }
+
+            p {
+                font-family: $font-family-sansDefault;
+                font-size: 1.1em;
+                line-height: 1.5;
+
+                a {
+                    color: $svift-human;
+                    text-decoration: none;
+                }
             }
         }
     }
