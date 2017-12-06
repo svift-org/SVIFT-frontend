@@ -183,12 +183,12 @@
         JSON.stringify(SVIFT.vis.config),
         function (err, rawData) {
 
-          // cb.addBubble({ type: 'download', class: 'human' });
+          cb.addBubble({ type: 'download', class: 'human' });
           cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
             cb.addBubble({ type: 'resize', class: 'human' });
-            setTimeout(function () {
-              cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
-          }, 1500)
+          //   setTimeout(function () {
+          //     cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
+          // }, 1500)
           });
 
           inter = setInterval(function () {
@@ -263,7 +263,7 @@
         .attr('placeholder', function (d, i) { return alphabet[i] })
         .attr("data-index", function (d, i) { return i })
         .on('input', SVIFT.helper.debouncer(function () {
-          SVIFT.table.update.lables(this);
+          SVIFT.table.lables.update(this);
           SVIFT.vis.redraw()
         }, 500));
 
@@ -273,7 +273,7 @@
         .attr('placeholder', function (d) { return d[1] })
         .attr("data-index", function (d, i) { return i })
         .on('input', SVIFT.helper.debouncer(function () {
-          SVIFT.table.update.values(this);
+          SVIFT.table.values.update(this);
           SVIFT.vis.redraw()
         }, 500))
 
@@ -324,9 +324,8 @@
 
 
 
-    SVIFT.table.update = {};
-
-    SVIFT.table.update.values = function (obj) {
+    SVIFT.table.values = {};
+    SVIFT.table.values.update = function (obj) {
 
       d3.select(obj).attr('placeholder', null);
 
@@ -351,7 +350,8 @@
 
     }
 
-    SVIFT.table.update.lables = function (obj) {
+    SVIFT.table.lables = {};
+    SVIFT.table.lables.update = function (obj) {
 
       d3.select(obj).attr('placeholder', '');
 
@@ -363,13 +363,38 @@
 
     }
 
-    SVIFT.table.update.text = function (selectorViz, selectorInput, selectorData, altText) {
+    SVIFT.table.text = {};
+    SVIFT.table.text.update = function (selectorViz, selectorInput, selectorData, altText) {
 
       var inputText = d3.select(selectorInput).node().value;
       SVIFT.vis.config.data[selectorData] = inputText || altText;
       if (selectorData == "source" && inputText) { SVIFT.vis.config.data[selectorData] = "Source: " + inputText };
       d3.select(selectorViz).text(SVIFT.vis.config.data[selectorData]);
 
+    }
+
+    SVIFT.table.text.toogle = function (obj,selectorViz, selectorInput, selectorData, altText){
+
+      var hidden = d3.select(obj.parentNode).classed("hidden");
+
+      if(!hidden){
+        d3.select(obj.parentNode).classed("hidden", true);
+
+        var inputText = "";
+        SVIFT.vis.config.data[selectorData] = inputText;
+        if (selectorData == "source" && inputText) { SVIFT.vis.config.data[selectorData] = "Source: " + inputText };
+        d3.select(selectorViz).text(SVIFT.vis.config.data[selectorData]);
+
+      }
+      else{
+        d3.select(obj.parentNode).classed("hidden", false);
+
+        var inputText = d3.select(selectorInput).node().value;
+        SVIFT.vis.config.data[selectorData] = inputText || altText;
+        if (selectorData == "source" && inputText) { SVIFT.vis.config.data[selectorData] = "Source: " + inputText };
+        d3.select(selectorViz).text(SVIFT.vis.config.data[selectorData]);
+      }
+      
     }
 
 
@@ -590,9 +615,14 @@
           .attr('id', 'title')
           .attr('placeholder', 'Add your title here')
           .on('input', function () { 
-            SVIFT.table.update.text("#title-main", "#title", "title", "Your title") 
+            SVIFT.table.text.update("#title-main", "#title", "title", "Your title") 
           });
-        var toggleTitle = titleWrapper.append('div').classed('icon-toggle', true);
+
+        var toggleTitle = titleWrapper.append('div')
+            .classed('icon-toggle', true)
+            .on('click', function (d) {
+              SVIFT.table.text.toogle(this,"#title-main", "#title", "title", "Your title")
+            });
 
         //sub title input
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
@@ -600,10 +630,14 @@
           .attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
           .on('input', function () { 
-            SVIFT.table.update.text("#title-sub", "#subtitle", "subTitle", "Your sub title") 
+            SVIFT.table.text.update("#title-sub", "#subtitle", "subTitle", "Your sub title") 
           });
-        var toggleSubTitle = subtitleWrapper.append('div').classed('icon-toggle', true);
 
+        var toggleSubTitle = subtitleWrapper.append('div')
+          .classed('icon-toggle', true)
+          .on('click', function (d) {
+            SVIFT.table.text.toogle(this, "#title-sub", "#subtitle", "subTitle", "Your sub title")
+          });
 
         if (SVIFT.vis.config.data.format === "single-set") {
 
@@ -617,7 +651,7 @@
             .attr('placeholder', function (d) { return d[0] })
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function () {
-              SVIFT.table.update.lables(this);
+              SVIFT.table.lables.update(this);
             }, 500));
 
           SVIFT.table.column.number = table.append('tr');
@@ -626,7 +660,7 @@
             .attr('placeholder', function (d) { return d[1] })
             .attr("data-index", function (d, i) { return i })
             .on('input', SVIFT.helper.debouncer(function () {
-              SVIFT.table.update.values(this);
+              SVIFT.table.values.update(this);
             }, 500));
 
 
@@ -663,7 +697,7 @@
             // .attr('min', '0')
             // .attr('max', '100')
             .on('input', SVIFT.helper.debouncer(function () {
-              SVIFT.table.update.values(this)
+              SVIFT.table.values.update(this)
             }, 500));
 
         }
@@ -673,10 +707,13 @@
           .attr('id', 'source-input')
           .attr('placeholder', 'Add your source here')
           .on('input', function () { 
-            SVIFT.table.update.text("#source", "#source-input", "source", "Source: Your source") 
+            SVIFT.table.text.update("#source", "#source-input", "source", "Source: Your source") 
           });
-        var subIcon = sourceWrapper.append('div').classed('icon-toggle', true);
-
+        var subIcon = sourceWrapper.append('div')
+          .classed('icon-toggle', true)
+          .on('click', function (d) {
+            SVIFT.table.text.toogle(this, "#source", "#source-input", "source", "Source: Your source")
+          });
 
       };
 
