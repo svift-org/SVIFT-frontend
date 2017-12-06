@@ -30,7 +30,7 @@
   "homepage": "https://github.com/svift-org/svift-frontend#readme",
   "devDependencies": {
     "fs": "0.0.1-security",
-    "fs-extra": "^4.0.2",
+    "fs-extra": "^4.0.3",
     "jshint": "^2.9.5",
     "node-sass": "^4.7.2",
     "pre-commit": "^1.2.2",

@@ -183,9 +183,12 @@
         JSON.stringify(SVIFT.vis.config),
         function (err, rawData) {
 
-          cb.addBubble({ type: 'download', class: 'human' });
-          cb.addBubble({ type: 'text', value: 'In the meantime you can preview your chart for different media channels', class: 'bot', delay: 2000 }, function () {
+          // cb.addBubble({ type: 'download', class: 'human' });
+          cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
             cb.addBubble({ type: 'resize', class: 'human' });
+            setTimeout(function () {
+              cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
+          }, 1500)
           });
 
           inter = setInterval(function () {

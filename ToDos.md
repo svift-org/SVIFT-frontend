@@ -34,11 +34,14 @@ cities ranking
 ## Alsino
 - Pages content
 - Contact social
+- bubbles style
+- left side icon
+- del column button style
 
 ## Hans
 - Two layouts for viz types
-- Fix text labels when many data points or long labels
 
+- Fix text labels when many data points or long labels
 - Ask for email input for link
 - Chatbot structure and navigation
 - download stuff directly from frontend
