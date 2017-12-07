@@ -406,6 +406,8 @@
     .cb-bubble-input input::placeholder {
       font-family: "DecimaMonoProBold", monospace;
       color: #9a9a9a; }
+  .cb-bubble-input .hidden {
+    background-color: red; }
   .cb-bubble-input .title {
     display: flex; }
     .cb-bubble-input .title input {
@@ -433,6 +435,21 @@
         color: #9a9a9a;
         font-size: 1em; }
     .cb-bubble-input .subtitle .icon-toggle {
+      flex: 1;
+      cursor: pointer;
+      width: 30px;
+      background: url("../../assets/img/icon-toggle-off.svg") center center no-repeat; }
+  .cb-bubble-input .source {
+    display: flex; }
+    .cb-bubble-input .source input {
+      flex: 3.8;
+      color: #9a9a9a;
+      font-size: 1em;
+      background-color: #eeeeee; }
+      .cb-bubble-input .source input::placeholder {
+        color: #9a9a9a;
+        font-size: 1em; }
+    .cb-bubble-input .source .icon-toggle {
       flex: 1;
       cursor: pointer;
       width: 30px;

@@ -709,7 +709,7 @@
           .on('input', function () { 
             SVIFT.table.text.update("#source", "#source-input", "source", "Source: Your source") 
           });
-        var subIcon = sourceWrapper.append('div')
+        var toogleSource = sourceWrapper.append('div')
           .classed('icon-toggle', true)
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#source", "#source-input", "source", "Source: Your source")
@@ -787,11 +787,7 @@
 
           SVIFT.vis.config.style.color.main = d.color;
           SVIFT.vis.config.style.font = d.font;
-
-          d3.select('.viz-container svg').remove();
-          var vis = SVIFT.vis[SVIFT.vis.config.vis.type](SVIFT.vis.config, d3.select('.viz-container'));
-          vis.init();
-          vis.start();
+          SVIFT.vis.redraw();
 
         };
       }

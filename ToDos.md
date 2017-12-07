@@ -39,6 +39,7 @@ cities ranking
 - bubbles style
 - left side icon
 - del column button style
+- style text toogle
 
 ## Hans
 - Two layouts for viz types

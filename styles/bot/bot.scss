@@ -400,6 +400,10 @@
         }
     }
 
+    .hidden{
+        background-color: red;
+    }
+
     .title {
         display: flex;
 
@@ -425,6 +429,29 @@
     }
 
     .subtitle {
+        display: flex;
+
+        input {
+            flex: 3.8;
+            color: $text-subheading;
+            font-size: 1em;
+            background-color: $table-background;
+
+            &::placeholder {
+                color: $text-subheading;
+                font-size: 1em;
+            }
+        }
+
+        .icon-toggle {
+            flex: 1;
+            cursor: pointer;
+            width: 30px;
+            background: url("../../assets/img/icon-toggle-off.svg") center center no-repeat;
+        }
+    }
+
+    .source {
         display: flex;
 
         input {
