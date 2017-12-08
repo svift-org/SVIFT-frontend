@@ -86,6 +86,7 @@
         d3.select('nav').style('top', '-400px');
       });
 
+      
 
 
     SVIFT.vis.config ={
@@ -133,6 +134,7 @@
         // "multi-set"
         if (vistype == "columns") {
          SVIFT.vis.config.data.format = "single-set"; //
+         SVIFT.vis.config.data.data = [[["A", 25], ["B", 20]],[["d", 25], ["e", 20]]]
         }
 
         var overlay = d3.select('#gui-1-overlay').html('');
@@ -644,6 +646,22 @@
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
           var table = tableWrapper.append('table').append('tbody');
 
+
+          // SVIFT.table.column.number = table.selectAll('tr')
+          //   .data(SVIFT.vis.config.data.data).enter().append('tr')
+
+          // // SVIFT.table.column.number.each(function(d,i) { console.log(d); });
+
+          // SVIFT.table.column.number.selectAll('td')
+          //   .data(function(d){return d}).enter().append('td')
+          //   .append('td').append('input')
+          //   .attr('placeholder', function (d) {console.log(d); return d[1] })
+          //   .attr("data-index", function (d, i) { return i })
+          //   .on('input', SVIFT.helper.debouncer(function () {
+          //     SVIFT.table.values.update(this);
+          //   }, 500));
+
+
           SVIFT.table.column.title = table.append('tr');
           SVIFT.table.column.title.selectAll('td')
             .data(SVIFT.vis.config.data.data[0]).enter().append('td')
@@ -664,10 +682,10 @@
             }, 500));
 
 
-          var editRowButtons = tableWrapper.append('div')
+          var editColButtons = tableWrapper.append('div')
             .classed('column-editor-wrapper', true);
 
-          var removeButton = editRowButtons.append('div')
+          var removeButton = editColButtons.append('div')
             .classed('column-editor-btn', true)
             .classed('btn-remove', true)
             .text('–')
@@ -676,7 +694,7 @@
               SVIFT.table.column.remove()
             });
 
-          var addButton = editRowButtons.append('div')
+          var addButton = editColButtons.append('div')
             .classed('column-editor-btn', true)
             .classed('btn-add', true)
             .text('+')
