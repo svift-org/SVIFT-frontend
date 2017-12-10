@@ -17,7 +17,7 @@
       vertical-align: top;
     }
   </style>
-  <link rel='stylesheet' href='../svift.css' type='text/css' media='all' />
+  <link rel='stylesheet' href='../build/svift.css' type='text/css' media='all' />
 </head>
 <body>
 
@@ -26,8 +26,10 @@
 <script src="../build/svift.min.js"></script>
 <script type="text/javascript">
 
-  d3.json('../data.json', function(err, data){
-    var vis = SVIFT.vis.{{visname}}(data, d3.select('#container'));
+  var vis;
+
+  d3.json('../build/data/{{visname}}.json', function(err, data){
+    vis = SVIFT.vis.{{visname}}(data, d3.select('#container'));
     vis.init();
     vis.start();  
   })  

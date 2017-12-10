@@ -40,6 +40,7 @@ cities ranking
 - left side icon
 - del column button style
 - style text toogle
+- icons for twitter,facebook,instagram,pinterest,snapchat,google+,linkedin,tumblr
 
 ## Hans
 - Two layouts for viz types

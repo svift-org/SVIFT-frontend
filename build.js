@@ -74,7 +74,7 @@ function buildFile(vi){
   )
 
   if(visualisations[vi]!='all'){
-    fs.writeFileSync(__dirname + '/tests/'+name.substring(1)+'.html', template.split('{{visname}}').join(name), 'utf8')
+    fs.writeFileSync(__dirname + '/tests/'+name.substring(1)+'.html', template.split('{{visname}}').join(name.substring(1)), 'utf8')
   }
 
   vi++

@@ -178,7 +178,7 @@
 
     SVIFT.vis.render = function () {
 
-      d3.request('https://svift-backend.herokuapp.com/render')
+      d3.request('https://svift-backend-dev.herokuapp.com/render')
         .header("Content-Type", "application/json")
         .mimeType("application/json")
         .post(
@@ -194,7 +194,7 @@
           });
 
           inter = setInterval(function () {
-            d3.request('https://svift-backend.herokuapp.com/status/' + rawData.response).get(function (err, data) {
+            d3.request('https://svift-backend-dev.herokuapp.com/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
               var responseCounter = 0;
