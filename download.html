@@ -19,44 +19,91 @@
 
     <link rel="stylesheet" href="styles/app/normalize.css">
     <link rel="stylesheet" href="styles/download/download.css">
+    <style type="text/css">
+        #error, #download{
+            display: none;
+        }
+
+    </style>
 </head>
 
 <body>
-    <div class="download"></div>
+    <div id="download" class="download">
+        <div class="ct">
+            <iframe style="width:500px; height:500px;"></iframe>
+            <textarea id="embed"></textarea>
+            <div ct-head>
+                <h1>Download your SVIFT chart</h1>
+                <h2>Choose your preferred format</h2>
+            </div>
+            <div class="ct-body">
+            </div>
+            <div class="ct-foot">
+                <div class="source"></div>
+            </div>
+        </div>
+    </div>
+    <div id="loading">Loading - Robot Face (robot face maybe)</div>
+    <div id="error"></div>
 
     <script>
-        var container = d3.select('.download').append('div').attr('class', 'ct');
-        var ctHead = container.append('div').attr('class', 'ct-head');
-        ctHead.append('h1').text('Download your SVIFT chart');
-        ctHead.append('h2').text('Choose your preferred format');
+        var id = window.location.hash.substr(1),
+            aws = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output-dev/'+id;
 
-        var icons = ['png', 'svg', 'gif', 'mp4', 'html'];
+        d3.json(aws+'/contents.json', function(err, data){
+            d3.select('#loading').style('display','none');
+            if(err){
+                d3.select('#error').style('display','block').html('We could not find your visualisation.<br />We only store visualisations for 10 days.');
+            }else{
+                d3.select('#download').style('display','block');
+                d3.select('#embed').html('<iframe style="width:500px; height:500px;" src="' + aws + '/html/index.html"></iframe>');
+                d3.select('iframe').attr('src', aws + '/html/index.html');
 
-        var loactionHash = window.location.hash;
-        var datalink = loactionHash.replace("#", "");
-        console.log(datalink)
+                //TODO: if required, the data item holds the date when the vis was created : data.date
 
-        var ctBody = container.append('div').attr('class', 'ct-body');
-        ctBody.selectAll('.dl-icon').data(icons).enter()
-            .append('div').classed('dl-icon', true)
-            .append('a')
-            .attr('href', function (d) {
-                console.log(d)
-                if (d != "gif" && d != "mp4") {
-                    d = "zip";
-                    console.log(d)
+                var groups = [];
+
+                for(var key in data){
+                    if(key != 'date' && key != 'html'){
+                        data[key].forEach(function(d,i){
+                            data[key][i].link = aws+'/';
+                            switch(key){
+                                case 'zips':
+                                    data[key][i].link += d.file + '.zip';
+                                break;
+                                case 'social':
+                                    data[key][i].link += 'social/' + d.file + '.png';
+                                break;
+                                case 'files':
+                                    data[key][i].link += id + '.' + d.file;
+                                break;
+                            }
+                        });
+                        groups.push({
+                            key:key,
+                            value:data[key]
+                        });
+                    }
                 }
-                return 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + datalink + "/" + datalink + "." + d
-            })
-            .append('img')
-            .attr('src', function (d) { return 'assets/img/download-icons/' + d + '.svg' })
-            .attr('class', 'dl-img')
-            .attr('id', function (d) { return 'dl- icon - ' + d });
+                var groups = d3.select('.ct-body').selectAll('div').data(groups).enter().append('div').attr('class', function(d){ return 'group g-'+d.key;});
+                groups.selectAll('.dl-icon').data(function(d){return d.value;}).enter().append('div')
+                    .attr('class','dl-icon')
+                    .append('a')
+                    .attr('href', function (d) { return d.link; })
+                    .text(function(d){
+                        return d.name;
+                    })
+                    .append('img')
+                    .attr('src', function (d) { d.icon = 'download'; return 'assets/img/download-icons/' + d.icon + '.svg' })
+                    .attr('class', 'dl-img')
+                    .attr('id', function (d) { return 'dl- icon - ' + d.class });
 
-        var ctFoot = container.append('div').attr('class', 'ct-foot');
-        var url = 'http://svift.xyz/users/653792';
-        ctFoot.append('div').classed('source', true).text('All of your charts will be available for 10 more days at: ' + url);
 
+            //TODO: This should be replaced through the correct final url
+            var url = 'http://svift.xyz/users/653792';
+            d3.select('.source').text('All of your charts will be available for 10 more days at: ' + url);
+            }
+        });
     </script>
 
 </body>

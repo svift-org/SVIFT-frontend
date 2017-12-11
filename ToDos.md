@@ -48,6 +48,7 @@ cities ranking
 - del column button style
 - style text toogle
 - icons for twitter,facebook,instagram,pinterest,snapchat,google+,linkedin,tumblr
+- retina logo on left page
 
 ## Hans
 - After the page has finished loading, visit heroku...../hello
