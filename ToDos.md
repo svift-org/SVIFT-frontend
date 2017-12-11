@@ -61,6 +61,8 @@ html variables unused?!
 - After the page has finished loading, visit heroku...../hello
 	hello > will return the number of visits of the user, more importantly if the system has been ideling for a while, it takes a few seconds to get back to running. Calling hello in the beginning will make sure everything is up and running once we reach rendering...
 
+- Sometimes after rendering is done the final message is triggered multiple times
+
 - There is a new type for the download which is being reported through status : 'social', as soon as social is '1' the whole set of social media images is ready on the aws system
 
 - After Resize we need to make sure to go back to the last/current keyframe, i have done a temporary fix in the renderer which jumps to the last frame after resizing the window, but this should be a default > module.playHead
