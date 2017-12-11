@@ -66,6 +66,7 @@ cities ranking
 - SVIFT.helper.debouncer for input fields
 - make all vis-modules responsive
 - counter-module -> set position according to font
+- Die Preview-Größen funzen teilweise nicht wirklich, weil die einfach zu klein sind. Um das zu umgehen könnte man das neue scale feature nutzen. Damit kann man die Größe verändern und der Inhalt wird währenddessen skaliert. Das mache ich zum Beispiel für die Retina renderings.
 
 ## Future:
 - Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)

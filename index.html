@@ -86,7 +86,8 @@
         d3.select('nav').style('top', '-400px');
       });
 
-      
+    
+    d3.request('https://svift-backend-dev.herokuapp.com/hello').get(function(){ console.log('server is awake'); });  
 
 
     SVIFT.vis.config ={
