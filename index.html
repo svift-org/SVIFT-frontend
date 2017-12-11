@@ -86,8 +86,9 @@
         d3.select('nav').style('top', '-400px');
       });
 
+    var heroku = 'https://svift-backend.herokuapp.com';
     
-    d3.request('https://svift-backend-dev.herokuapp.com/hello').get(function(){ console.log('server is awake'); });  
+    d3.request(heroku+'/hello').get(function(){ console.log('server is awake'); });  
 
 
     SVIFT.vis.config ={
@@ -179,7 +180,7 @@
 
     SVIFT.vis.render = function () {
 
-      d3.request('https://svift-backend-dev.herokuapp.com/render')
+      d3.request(heroku+'/render')
         .header("Content-Type", "application/json")
         .mimeType("application/json")
         .post(
@@ -195,7 +196,7 @@
           });
 
           inter = setInterval(function () {
-            d3.request('https://svift-backend-dev.herokuapp.com/status/' + rawData.response).get(function (err, data) {
+            d3.request(heroku+'/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
 

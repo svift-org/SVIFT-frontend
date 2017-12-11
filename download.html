@@ -48,7 +48,7 @@
 
     <script>
         var id = window.location.hash.substr(1),
-            aws = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output-dev/'+id;
+            aws = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/'+id;
 
         d3.json(aws+'/contents.json', function(err, data){
             d3.select('#loading').style('display','none');
