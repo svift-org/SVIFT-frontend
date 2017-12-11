@@ -29,6 +29,10 @@ cities ranking
 ## Seb
 0: png background -> transparent > this has turned out to be tricky, working on it, turns out, transparent PNGs have weird distortions in the grey fonts?!
 
+favicon not found
+
+html variables unused?!
+
 0: - Chatbot jQuery
 0: - medium post: conversational
 
@@ -56,6 +60,8 @@ cities ranking
 ## Hans
 - After the page has finished loading, visit heroku...../hello
 	hello > will return the number of visits of the user, more importantly if the system has been ideling for a while, it takes a few seconds to get back to running. Calling hello in the beginning will make sure everything is up and running once we reach rendering...
+
+- There is a new type for the download which is being reported through status : 'social', as soon as social is '1' the whole set of social media images is ready on the aws system
 
 - Two layouts for viz types
 
