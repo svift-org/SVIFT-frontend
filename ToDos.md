@@ -24,7 +24,7 @@ cities ranking
 0: - medium post: conversational
 
 1: - Download Page
-2: - Social Media Sizes and default images in root (render first, then the series)
+2: - Socials as SVG
 
 3: - Accessibility Module
 
@@ -43,6 +43,9 @@ cities ranking
 - icons for twitter,facebook,instagram,pinterest,snapchat,google+,linkedin,tumblr
 
 ## Hans
+- After the page has finished loading, visit heroku...../hello
+	hello > will return the number of visits of the user, more importantly if the system has been ideling for a while, it takes a few seconds to get back to running. Calling hello in the beginning will make sure everything is up and running once we reach rendering...
+
 - Two layouts for viz types
 
 - Fix text labels when many data points or long labels
