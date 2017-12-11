@@ -7,6 +7,7 @@
     - Email yes/no
     - asset download
 - Pages: content section "docs"
+- If somebody tries to visualise something with a too small window loads of errors are coming up, we should probably define a min-width and -height and if the container is smaller we just show the svift logo and say the container is too small
 
 
 ## Next steps:
@@ -31,7 +32,6 @@ cities ranking
 0: - Chatbot jQuery
 0: - medium post: conversational
 
-1: - Download Page
 2: - Socials as SVG
 
 3: - Accessibility Module
@@ -49,6 +49,9 @@ cities ranking
 - style text toogle
 - icons for twitter,facebook,instagram,pinterest,snapchat,google+,linkedin,tumblr
 - retina logo on left page
+- font-packs are double in some css files
+- reduce number of fonts on download page??
+- I have done an update to the download.html > every vis folder now contains a contents.json, which again contains info on what to expect, i have integrated this into the generation of the download content, but of course the layout is all messed up now. i also added an iframe to the download page so one, can see how an embed looks like
 
 ## Hans
 - After the page has finished loading, visit heroku...../hello
