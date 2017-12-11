@@ -1,6 +1,14 @@
 # ToDos:
 ---
 
+## Prios:
+- Video: Was, wie, wer?
+- Frontend - das Ende (
+    - Email yes/no
+    - asset download
+- Pages: content section "docs"
+
+
 ## Next steps:
 - send animation length to backend
 - Add Category filter
@@ -33,7 +41,6 @@ cities ranking
 
 ## Alsino
 - video
-- Pages content
 - css nav bug
 - Contact social
 - bubbles style
