@@ -1,8 +1,8 @@
 {
     "about": {
         "title": "About",
-        "p1": "<em>svift</em> is an open source tool data visualization tool that helps you turn your numbers into beautiful charts - in no time. <em>svift</em> is essentially a tool for anyone who quickly wants to include data-driven graphics in their work without being a data visualization or visual design expert. ",
-        "p2": "If you need to have a chart ready for your next article or twitter post within the next few minutes, <em>svift</em> is your choice: Make an interactive chart, produce data-driven content for your social media posts or create a beautiful infographic for your print product, <em>svift</em> can do it all.",
+        "p1": "<em>svift</em> is an open source tool data visualization tool that helps you turn your numbers into beautiful charts. It is for anyone who quickly wants to include data-driven graphics in their work without being a data visualization or visual design expert.",
+        "p2": "If you need to have a chart ready for your next article or twitter post within the next few minutes or so, <em>svift</em> is your choice: Make an interactive chart, produce data-driven content for your social media posts or create a beautiful infographic for your print product.",
         "p3": "<em>svift</em> is free and open source software and all our code is available on <a target='blank' href='https://github.com/svift-org'>Github</a>. Please get in touch with us if you have suggestions or would like to contribute to the project. <br><br><em>svift</em> is designed and developed by <a target='blank' href='https://www.sebastianmeier.eu/'>Sebastian Meier</a>, <a target='blank' href='http://alsino.io/'>Alsino Skowronnek</a> and <a target='blank' href='http://hanshack.com/'>Hans Hack</a> in Berlin.<br><br>We are grateful for the financial support by the <a target='blank' href='http://www.miz-babelsberg.de/'>MIZ Babelsberg</a> to support the development of our first prototype."
     },
     "docs": {
@@ -15,7 +15,7 @@
         "title": "Contact",
         "p1": "If you have a question about <em>svift</em> or want to send us some funny gifs, just drop us a line: <a href='&#0109;&#097;&#0105;&#0108;&#0116;&#0111;&#058;&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;'>&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;</a>.",
         "p2": "For updates, you can follow us on twitter: <a target='blank' href='&#0104;&#0116;&#0116;&#0112;&#0115;&#058;&#047;&#047;&#0116;&#0119;&#0105;&#0116;&#0116;&#0101;&#0114;&#046;&#099;&#0111;&#0109;&#047;&#083;&#0118;&#0105;&#0102;&#0116;&#084;&#0111;&#0111;&#0108;'>&#064;&#083;&#0118;&#0105;&#0102;&#0116;&#084;&#0111;&#0111;&#0108;</a>.",
-        "p3": "If that is not enough, you can read more about our motivation an processes on our <a href='https://medium.com/svift-blog'>blog</a>."
+        "p3": "And if you really dig us, you can read more about our motivation and processes on our <a target='_blank' href='https://medium.com/svift-blog'>blog</a>."
     },
     "pro": {
         "title": "Pro*",
