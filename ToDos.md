@@ -2,7 +2,7 @@
 ---
 
 ## Prios:
-- Video: Was, wie, wer?
+- Video: Was, wie, wer? 
 - Frontend - das Ende (
     - Email yes/no
     - asset download
@@ -13,7 +13,7 @@
 - send animation length to backend
 - Add Category filter
 - Handle font sizes
-- Pause gif between loops (in animation or gif meta data?)
+- Pause gif between loops (in animation or gif meta data?) > there is no pause, i could duplicate the last or either first frame, duplicate frames shouldn't be too bad for filesize (SEB)
 - Direct posting to social media (twitter, fb, instagram)
 
 =======
@@ -26,7 +26,7 @@ cities ranking
 
 
 ## Seb
-0: png background -> transparent
+0: png background -> transparent > this has turned out to be tricky, working on it, turns out, transparent PNGs have weird distortions in the grey fonts?!
 
 0: - Chatbot jQuery
 0: - medium post: conversational
