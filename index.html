@@ -70,6 +70,9 @@
   <script src="chatbot.js"></script>
   <script type="text/javascript">
 
+    showDownload = false;
+    renderingDone = false;
+    accessToken = "";
 
     // Show / hide Nav (needs to be cleaned up here..)
     // var nav = d3.select('nav');
@@ -210,7 +213,14 @@
               if(jResponse.status == 2){
 
                 clearInterval(inter);
-                doneRendering(rawData)
+
+                renderingDone = true;
+                accessToken = rawData;
+
+                if(showDownload){
+                  doneRendering(rawData)
+                }
+                
 
               }else{
 
@@ -925,8 +935,17 @@
 
           setTimeout(function () {
 
-            cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' });
-            cb.addBubble({ type: 'download', class: 'human' });
+            cb.addBubble({ type: 'select',value: [{ label: 'WoW!' }], class: 'human' }, function(){
+
+              cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' });
+              cb.addBubble({ type: 'download', class: 'human' });
+
+              showDownload = true;
+              if(renderingDone ){
+                doneRendering(accessToken);
+              }
+
+            })
 
           }, 2000)
 
