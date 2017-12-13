@@ -57,7 +57,7 @@
           <em>svift</em> is currently in private beta. Try our prototype now and let us know what you think!
         </div>
         <div class="img-intro">
-          <img src="assets/img/scatter.png" alt="Svift Intro Image">
+          <img src="assets/img/social.png" alt="Svift Intro Image">
         </div>
       </div>
     </div>
@@ -87,11 +87,11 @@
       });
 
     var heroku = 'https://svift-backend.herokuapp.com';
-    
-    d3.request(heroku+'/hello').get(function(){ console.log('server is awake'); });  
+
+    d3.request(heroku + '/hello').get(function () { console.log('server is awake'); });
 
 
-    SVIFT.vis.config ={
+    SVIFT.vis.config = {
       "params": {
         "dev": true
       },
@@ -114,7 +114,7 @@
         "columns": ["Wert"],
         "types": ["int"],
         // "format": "",
-        "data":[[["A", 25], ["B", 20]]] ,
+        "data": [[["A", 25], ["B", 20]]],
         "title": "Your title",
         "subTitle": "Your subtitle",
         "attribution": "made with svift.xyz",
@@ -126,18 +126,22 @@
     SVIFT.vis.init = function (vistype) {
 
       //load data for specific vis type
-      d3.json('./build/data/'+ vistype + '.json', function (err, visData) {
+      d3.json('./build/data/' + vistype + '.json', function (err, visData) {
         if (err) { console.log(err); }
         console.log(visData.data.format)
 
         SVIFT.vis.config.vis.type = vistype;
+<<<<<<< Updated upstream
         SVIFT.vis.config.data.format  = visData.data.format;
         // SVIFT.vis.config.data.data = visData.data.data;
+=======
+        SVIFT.vis.config.data.format = visData.data.format;
+>>>>>>> Stashed changes
 
         // "multi-set"
         if (vistype == "columns") {
-         SVIFT.vis.config.data.format = "single-set"; //
-         SVIFT.vis.config.data.data = [[["A", 25], ["B", 20]],[["d", 25], ["e", 20]]]
+          SVIFT.vis.config.data.format = "single-set"; //
+          SVIFT.vis.config.data.data = [[["A", 25], ["B", 20]], [["d", 25], ["e", 20]]]
         }
 
 
@@ -184,13 +188,14 @@
 
     SVIFT.vis.render = function () {
 
-      d3.request(heroku+'/render')
+      d3.request(heroku + '/render')
         .header("Content-Type", "application/json")
         .mimeType("application/json")
         .post(
         JSON.stringify(SVIFT.vis.config),
         function (err, rawData) {
 
+<<<<<<< Updated upstream
           // cb.addBubble({ type: 'download', class: 'human' });
           // cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
           //   cb.addBubble({ type: 'resize', class: 'human' });
@@ -199,20 +204,33 @@
           // }, 1500)
           // }
           // );
+=======
+          cb.addBubble({ type: 'download', class: 'human' });
+          cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
+            cb.addBubble({ type: 'resize', class: 'human' });
+            //   setTimeout(function () {
+            //     cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
+            // }, 1500)
+          });
+>>>>>>> Stashed changes
 
           inter = setInterval(function () {
-            d3.request(heroku+'/status/' + rawData.response).get(function (err, data) {
+            d3.request(heroku + '/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
 
+<<<<<<< Updated upstream
               console.log(jResponse)
 
               if(jResponse.status == 2){
+=======
+              if (jResponse.status == 2) {
+>>>>>>> Stashed changes
 
                 clearInterval(inter);
                 doneRendering(rawData)
 
-              }else{
+              } else {
 
                 for (var type in jResponse.full) {
 
@@ -348,10 +366,10 @@
       var newData = SVIFT.table.data.validate(inputValue);
 
       if (newData > 100 && SVIFT.vis.config.vis.type == "mosaic") {
-        newData = Number(newData.toString().slice(0,2));
+        newData = Number(newData.toString().slice(0, 2));
         d3.select("#number").property("value", newData);
       }
-      
+
       if (newData == null) {
         d3.select(obj).classed('bad-input-data', true)
       } else {
@@ -387,11 +405,11 @@
 
     }
 
-    SVIFT.table.text.toogle = function (obj,selectorViz, selectorInput, selectorData, altText){
+    SVIFT.table.text.toogle = function (obj, selectorViz, selectorInput, selectorData, altText) {
 
       var hidden = d3.select(obj.parentNode).classed("hidden");
 
-      if(!hidden){
+      if (!hidden) {
         d3.select(obj.parentNode).classed("hidden", true);
 
         var inputText = "";
@@ -400,7 +418,7 @@
         d3.select(selectorViz).text(SVIFT.vis.config.data[selectorData]);
 
       }
-      else{
+      else {
         d3.select(obj.parentNode).classed("hidden", false);
 
         var inputText = d3.select(selectorInput).node().value;
@@ -408,7 +426,7 @@
         if (selectorData == "source" && inputText) { SVIFT.vis.config.data[selectorData] = "Source: " + inputText };
         d3.select(selectorViz).text(SVIFT.vis.config.data[selectorData]);
       }
-      
+
     }
 
 
@@ -508,7 +526,7 @@
       function createThumbs() {
 
         d3.select('#gui-1-overlay').style('left', '0');
-        
+
         var overlay = d3.select('#gui-1-overlay')
           .style('background-color', '#75FABF')
           .append('div')
@@ -608,23 +626,23 @@
         titleWrapper.append('input')
           .attr('id', 'title')
           .attr('placeholder', 'Add your title here')
-          .on('input', function () { 
-            SVIFT.table.text.update("#title-main", "#title", "title", "Your title") 
+          .on('input', function () {
+            SVIFT.table.text.update("#title-main", "#title", "title", "Your title")
           });
 
         var toggleTitle = titleWrapper.append('div')
-            .classed('icon-toggle', true)
-            .on('click', function (d) {
-              SVIFT.table.text.toogle(this,"#title-main", "#title", "title", "Your title")
-            });
+          .classed('icon-toggle', true)
+          .on('click', function (d) {
+            SVIFT.table.text.toogle(this, "#title-main", "#title", "title", "Your title")
+          });
 
         //sub title input
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input')
           .attr('id', 'subtitle')
           .attr('placeholder', 'Add your subtitle here')
-          .on('input', function () { 
-            SVIFT.table.text.update("#title-sub", "#subtitle", "subTitle", "Your sub title") 
+          .on('input', function () {
+            SVIFT.table.text.update("#title-sub", "#subtitle", "subTitle", "Your sub title")
           });
 
         var toggleSubTitle = subtitleWrapper.append('div')
@@ -716,8 +734,8 @@
         sourceWrapper.append('input')
           .attr('id', 'source-input')
           .attr('placeholder', 'Add your source here')
-          .on('input', function () { 
-            SVIFT.table.text.update("#source", "#source-input", "source", "Source: Your source") 
+          .on('input', function () {
+            SVIFT.table.text.update("#source", "#source-input", "source", "Source: Your source")
           });
         var toogleSource = sourceWrapper.append('div')
           .classed('icon-toggle', true)
