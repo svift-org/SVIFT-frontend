@@ -18,6 +18,11 @@ html, body {
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     font-smoothing: antialiased;
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: -o-crisp-edges; /* Opera */
+    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
 }
 
 .app {
@@ -82,6 +87,16 @@ html, body {
 
             .svift-logo {
                 flex: 8;
+                width: 100%;
+                height: 45px;
+                background-image: url("../../assets/img/wordmark-white.png");
+                background-repeat: no-repeat;
+
+                // background-size: contain;
+
+                @include retina {
+                    background: url("../../assets/img/wordmark-white@2x.png");
+                }
             }
         }
 
@@ -135,7 +150,7 @@ html, body {
         }
 
         main {
-            padding: 8% 10% 0 10%;
+            padding: 5% 10% 0 10%;
 
             @include large {
                 padding: ($padding-big * 1) ($padding-big * 1.5);
@@ -165,15 +180,21 @@ html, body {
 
         div.hero {
             text-align: center;
+            width: 100%;
+            height: 100%;
+            background-image: url("../../assets/img/social.png");
+            background-repeat: no-repeat;
+
+            // background-size: contain;
+
+            @include retina {
+                background: url("../../assets/img/social@2x.png");
+            }
+
 
             img {
                 max-width: 100%;
                 height: auto;
-
-                // position: absolute;
-                // right: 635px;
-                // bottom: -6px;
-           
             }
         }
 
