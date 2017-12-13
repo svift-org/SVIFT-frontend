@@ -132,12 +132,16 @@
 
         SVIFT.vis.config.vis.type = vistype;
         SVIFT.vis.config.data.format  = visData.data.format;
+        // SVIFT.vis.config.data.data = visData.data.data;
 
         // "multi-set"
         if (vistype == "columns") {
          SVIFT.vis.config.data.format = "single-set"; //
          SVIFT.vis.config.data.data = [[["A", 25], ["B", 20]],[["d", 25], ["e", 20]]]
         }
+
+
+        // {"set1":[["A", 25], ["B", 20]],"set2":[["d", 25], ["e", 20]]}
 
         var overlay = d3.select('#gui-1-overlay').html('');
 
@@ -187,52 +191,58 @@
         JSON.stringify(SVIFT.vis.config),
         function (err, rawData) {
 
-          cb.addBubble({ type: 'download', class: 'human' });
-          cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
-            cb.addBubble({ type: 'resize', class: 'human' });
+          // cb.addBubble({ type: 'download', class: 'human' });
+          // cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
+          //   cb.addBubble({ type: 'resize', class: 'human' });
           //   setTimeout(function () {
           //     cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
           // }, 1500)
-          });
+          // }
+          // );
 
           inter = setInterval(function () {
             d3.request(heroku+'/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
 
+              console.log(jResponse)
+
               if(jResponse.status == 2){
 
                 clearInterval(inter);
-                addFinalBubbles(rawData)
+                doneRendering(rawData)
 
               }else{
 
                 for (var type in jResponse.full) {
 
-                  var tau = 2 * Math.PI;
+                  console.log(jResponse.full[type])
+                  d3.select("cb-download-wrapper").append("p").text(jResponse.full[type])
 
-                  d3.select(".download-thumb-" + type + " .arc")
-                    .transition()
-                    .duration(900)
-                    .attrTween("d", arcTween(jResponse.full[type] * tau, type));
+                  // var tau = 2 * Math.PI;
 
-                  function arcTween(newAngle, type) {
-                    return function (d) {
-                      var interpolate = d3.interpolate(d.endAngle, newAngle);
-                      return function (t) {
-                        d.endAngle = interpolate(t);
-                        d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
-                        return arc(d);
-                      };
-                    };
-                  }
+                  // d3.select(".download-thumb-" + type + " .arc")
+                  //   .transition()
+                  //   .duration(900)
+                  //   .attrTween("d", arcTween(jResponse.full[type] * tau, type));
 
-                  if (jResponse.full[type] == 1) {
-                    d3.select(".download-thumb-" + type).classed("download-active", true)
-                    var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
+                  // function arcTween(newAngle, type) {
+                  //   return function (d) {
+                  //     var interpolate = d3.interpolate(d.endAngle, newAngle);
+                  //     return function (t) {
+                  //       d.endAngle = interpolate(t);
+                  //       d3.select(".download-thumb-" + type + " .arc").datum({ endAngle: d.endAngle });
+                  //       return arc(d);
+                  //     };
+                  //   };
+                  // }
 
-                    d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
-                  }
+                  // if (jResponse.full[type] == 1) {
+                  //   d3.select(".download-thumb-" + type).classed("download-active", true)
+                  //   var parentDiv = d3.select(".download-thumb-" + type).node().parentNode;
+
+                  //   d3.select(parentDiv).attr('href', 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + rawData.response + '/' + rawData.response + "." + type);
+                  // }
 
                 }
 
@@ -547,48 +557,27 @@
       cb.types['resize'] = function (bubble, options, callback) {
 
         var sizes = [
-          { 'name': 'gif', 'format': [100, 100] },
-          { 'name': 'Twitter', 'format': [100, 50] },
-          { 'name': 'Facebook', 'format': [100, 50] },
-          { 'name': 'LinkedIn', 'format': [100, 100] },
+          { 'name': 'Square', 'format': [100, 100], 'pic': 'smile' },
+          { 'name': 'Landscape', 'format': [100, 50], 'pic': 'smile' },
+          { 'name': 'Long', 'format': [50, 100], 'pic': 'smile' },
+
         ];
 
         bubble.style('background-color', '#fff');
-        bubble.selectAll('.cb-choice')
+        bubble.selectAll('.cb-format')
           .data(sizes).enter().append('div')
-          .attr('class', 'cb-choice')
+          .attr('class', 'cb-format')
           .text(function (d) { return d.name; })
           .on('click', function (d) {
             SVIFT.vis.resize(d.format);
             setTimeout(function () {
               SVIFT.vis.redraw();
             }, 700)
-          });
+          })
+          .append('img').attr('class', 'emoji').attr('src',function (d) { return './assets/img/formats/' + d.pic + '.png'});
 
       }
 
-      /* Ask user if he/she wants to give feedback */
-      cb.types['sendFeedback'] = function (bubble, options, callback) {
-        bubble.style('background-color', '#fff');
-        bubble.selectAll('.cb-choice')
-          .data(options.value).enter().append('div')
-          .attr('class', 'cb-choice')
-          .text(function (d) { return d.label; })
-          .on('click', function (d) {
-            if (!d3.select(this).classed('cb-active')) {
-              if (d.feedback) {
-
-                var feedbackText = d3.select("#feedback").node().value;
-                console.log(feedbackText)
-                //send feeback here 
-                cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
-              }
-              d3.select(this).classed('cb-active', true);
-              callback(d);
-            }
-
-          });
-      }
 
       /* A select bubble which returns inits a function*/
       cb.types['select'] = function (bubble, options, callback) {
@@ -598,11 +587,12 @@
           .attr('class', 'cb-choice')
           .text(function (d) { return d.label; })
           .on('click', function (d) {
-
+            console.log(d)
             if (!d3.select(this).classed('cb-active')) {
               d3.select(this).classed('cb-active', true);
               callback(d);
             }
+
 
           });
       };
@@ -815,44 +805,44 @@
       /* Add download buttons */
       cb.types['download'] = function (bubble, options, callback) {
 
-        var icons = ['png', 'svg', 'gif', 'html']; //'mpeg'
-        var altNames = {
-          "png": "Picture",
-          "svg": "Vector",
-          "gif": "gif",
-          "html": "embed"
-        }
+        // var icons = ['png', 'svg', 'gif', 'html']; //'mpeg'
+        // var altNames = {
+        //   "png": "Picture",
+        //   "svg": "Vector",
+        //   "gif": "gif",
+        //   "html": "embed"
+        // }
         var downloadWrapper = bubble.append('div')
           .attr('class', 'cb-download-wrapper');
 
 
         // Progress arc animation from here: http://bl.ocks.org/mbostock/5100636
-        var tau = 2 * Math.PI;
+        // var tau = 2 * Math.PI;
 
-        arc = d3.arc()
-          .innerRadius(36)
-          .outerRadius(42)
-          .startAngle(0)
-        // .cornerRadius(50);
+        // arc = d3.arc()
+        //   .innerRadius(36)
+        //   .outerRadius(42)
+        //   .startAngle(0)
+        // // .cornerRadius(50);
 
-        var group = downloadWrapper.selectAll('a').data(icons).enter()
-          .append('a')
-          .attr('target', '"_blank"')
-          .append('svg')
-          .attr('class', function (d) { return 'download-thumb download-thumb-' + d + ' radial' })
+        // var group = downloadWrapper.selectAll('a').data(icons).enter()
+        //   .append('a')
+        //   .attr('target', '"_blank"')
+        //   .append('svg')
+        //   .attr('class', function (d) { return 'download-thumb download-thumb-' + d + ' radial' })
 
-        group.append("g").append("text")
-          .text(function (d) { return altNames[d] })
-          .attr("fill", "black")
-          .attr("text-anchor", "middle")
-          .attr("font-size", "15px")
-          .attr("x", "40px")
-          .attr("y", "45px")
+        // group.append("g").append("text")
+        //   .text(function (d) { return altNames[d] })
+        //   .attr("fill", "black")
+        //   .attr("text-anchor", "middle")
+        //   .attr("font-size", "15px")
+        //   .attr("x", "40px")
+        //   .attr("y", "45px")
 
-        group.append('g').append("path")
-          .datum({ endAngle: 0 })
-          .attr("class", "arc")
-          .attr("d", arc);
+        // group.append('g').append("path")
+        //   .datum({ endAngle: 0 })
+        //   .attr("class", "arc")
+        //   .attr("d", arc);
 
       }
 
@@ -874,7 +864,7 @@
         });
       });
 
-      function onEntry() {
+      function onEntry(d) {
         cb.addBubble({ type: 'text', value: 'Ok then, choose your chart type on the left side!', class: 'bot', delay: 500 });
         setTimeout(function () {
           createThumbs();
@@ -925,36 +915,59 @@
 
       function onFinish() {
 
-        d3.select(".cb-bubble.human.send .cb-choice").classed('cb-active', true)
-        cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' }, SVIFT.vis.render);
+        //start rendering process
+        SVIFT.vis.render();
+
+        // cb.addBubble({ type: 'download', class: 'human' });
+        cb.addBubble({ type: 'text', value: 'Look you can preview your charts in different formats', class: 'bot', delay: 1500 }, function () {
+
+          cb.addBubble({ type: 'resize', class: 'human' });
+
+          setTimeout(function () {
+
+            cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' });
+            cb.addBubble({ type: 'download', class: 'human' });
+
+          }, 2000)
+
+        })
+
 
       }
 
-      addFinalBubbles = function (rawData) {
+      doneRendering = function (rawData) {
 
-        cb.addBubble({ type: 'text', value: '<span>Get your charts here: <a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
-
-        setTimeout(function () {
-
-          cb.addBubble({ type: 'text', value: 'Thanks for using svift! Would you like to give us some feedback?', class: 'bot', delay: 1500 });
+        cb.addBubble({ type: 'text', value: '<span>Get your charts here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
 
           setTimeout(function () {
-            cb.addBubble({ type: 'feedback', class: 'human' });
-            cb.addBubble({ type: 'sendFeedback', value: [{ label: 'send feedback', feedback: true }, { label: 'next time', feedback: false }], class: 'human' }, function () {
 
-              setTimeout(function () {
+            cb.addBubble({ type: 'text', value: 'Thanks for using svift! What would you like to do next?', class: 'bot', delay: 1000 });
 
-                cb.addBubble({ type: 'text', value: 'Would you like to build another chart?', class: 'bot' });
-                cb.addBubble({ type: 'select', value: [{ label: 'Yes' }], class: 'human' }, function () {
+            setTimeout(function () {
+
+              cb.addBubble({ type: 'select', value: [{ label: 'give feedback', feedback: true }, { label: 'Make another data snap!', feedback: false }], class: 'human' },function(d){
+                
+                if (d.feedback) {
+                  cb.addBubble({ type: 'feedback', class: 'human' });
+                  cb.addBubble({ type: 'select',value: [{ label: 'send feedback' }], class: 'human' }, function(){
+                    var feedbackText = d3.select("#feedback").node().value;
+                    console.log(feedbackText)
+                    cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
+                    setTimeout(function () {
+                      cb.addBubble({ type: 'select',value: [{ label: 'Make another data snap!' }], class: 'human' }, function(){
+                        location.reload();
+                      });
+                    }, 500)
+
+                  })
+                } else{
                   location.reload();
-                });
+                }
+              });
 
-              }, 500)
+            }, 1100)
 
-            });
-          }, 500)
-
-        }, 1000)
+          }, 1000)
       }
 
     });
