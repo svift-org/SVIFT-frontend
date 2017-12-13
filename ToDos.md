@@ -44,8 +44,6 @@ html variables unused?!
 - check delete of folders
 
 ## Alsino
-- style home page
-- style download page
 - css nav bug
 - Contact social
 - bubbles style
