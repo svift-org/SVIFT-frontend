@@ -134,12 +134,8 @@
         console.log(visData.data.format)
 
         SVIFT.vis.config.vis.type = vistype;
-<<<<<<< Updated upstream
         SVIFT.vis.config.data.format  = visData.data.format;
         // SVIFT.vis.config.data.data = visData.data.data;
-=======
-        SVIFT.vis.config.data.format = visData.data.format;
->>>>>>> Stashed changes
 
         // "multi-set"
         if (vistype == "columns") {
@@ -198,37 +194,13 @@
         JSON.stringify(SVIFT.vis.config),
         function (err, rawData) {
 
-<<<<<<< Updated upstream
-          // cb.addBubble({ type: 'download', class: 'human' });
-          // cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
-          //   cb.addBubble({ type: 'resize', class: 'human' });
-          //   setTimeout(function () {
-          //     cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
-          // }, 1500)
-          // }
-          // );
-=======
-          cb.addBubble({ type: 'download', class: 'human' });
-          cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
-            cb.addBubble({ type: 'resize', class: 'human' });
-            //   setTimeout(function () {
-            //     cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
-            // }, 1500)
-          });
->>>>>>> Stashed changes
-
           inter = setInterval(function () {
             d3.request(heroku + '/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
 
-<<<<<<< Updated upstream
-              console.log(jResponse)
-
               if(jResponse.status == 2){
-=======
-              if (jResponse.status == 2) {
->>>>>>> Stashed changes
+
 
                 clearInterval(inter);
 
