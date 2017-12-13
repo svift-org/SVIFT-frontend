@@ -140,12 +140,39 @@ html, body {
   .app #gui-1 {
     flex: 1;
     display: flex;
-    padding: 5% 0;
+    flex-flow: column;
     background: #5C258D;
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right top, #71609b, #75FABF);
     background: linear-gradient(to right top, #71609b, #75FABF);
     line-height: 1.5; }
+    .app #gui-1 header {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      padding: 5%;
+      margin-top: 5%; }
+      .app #gui-1 header .burger {
+        flex: 2;
+        transition: 0.4s; }
+        .app #gui-1 header .burger:hover {
+          cursor: pointer; }
+        .app #gui-1 header .burger .bar1, .app #gui-1 header .burger .bar2, .app #gui-1 header .burger .bar3 {
+          width: 30px;
+          height: 3px;
+          background-color: #fff;
+          margin: 6px 0;
+          transition: 0.4s; }
+        .app #gui-1 header .burger .change.bar1 {
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg); }
+        .app #gui-1 header .burger .change.bar2 {
+          opacity: 0; }
+        .app #gui-1 header .burger .change.bar3 {
+          -webkit-transform: rotate(45deg) translate(-13px, -12px);
+          transform: rotate(45deg) translate(-13px, -12px); }
+      .app #gui-1 header .svift-logo {
+        flex: 8; }
     .app #gui-1 nav {
       background-color: #fff;
       color: #75FABF;
@@ -179,48 +206,28 @@ html, body {
           color: #75FABF; }
           .app #gui-1 nav ul li a:hover {
             color: #71609b; }
-    .app #gui-1 .container {
-      position: absolute;
-      top: 5%;
-      left: 3%;
-      display: inline-block;
-      transition: 0.4s; }
-      .app #gui-1 .container:hover {
-        cursor: pointer; }
-      .app #gui-1 .container .bar1, .app #gui-1 .container .bar2, .app #gui-1 .container .bar3 {
-        width: 30px;
-        height: 3px;
-        background-color: #fff;
-        margin: 6px 0;
-        transition: 0.4s; }
-      .app #gui-1 .container .change.bar1 {
-        -webkit-transform: rotate(-45deg);
-        transform: rotate(-45deg); }
-      .app #gui-1 .container .change.bar2 {
-        opacity: 0; }
-      .app #gui-1 .container .change.bar3 {
-        -webkit-transform: rotate(45deg) translate(-13px, -12px);
-        transform: rotate(45deg) translate(-13px, -12px); }
-    .app #gui-1 div.inner {
-      padding: 7.5% 10%; }
+    .app #gui-1 main {
+      padding: 8% 10% 0 10%; }
       @media (max-width: 1300px) {
-        .app #gui-1 div.inner {
+        .app #gui-1 main {
           padding: 5% 7.5%; } }
-      .app #gui-1 div.inner h1 {
-        margin: 10% 0 5% 0;
+      .app #gui-1 main h1 {
+        margin: 0;
         font-family: "DecimaMonoProBold", monospace;
-        font-size: 3em;
+        font-size: 2.5em;
         line-height: 53px; }
         @media (max-width: 1300px) {
-          .app #gui-1 div.inner h1 {
-            font-size: 2.4em; } }
-      .app #gui-1 div.inner .claim {
+          .app #gui-1 main h1 {
+            font-size: 2em; } }
+      .app #gui-1 main .claim {
         font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
-        font-size: 1.1em; }
+        font-size: 1em; }
         @media (max-width: 1300px) {
-          .app #gui-1 div.inner .claim {
+          .app #gui-1 main .claim {
             font-size: 0.95em; } }
-      .app #gui-1 div.inner .img-intro img {
+    .app #gui-1 div.hero {
+      text-align: center; }
+      .app #gui-1 div.hero img {
         max-width: 100%;
         height: auto; }
     .app #gui-1 #gui-1-overlay {

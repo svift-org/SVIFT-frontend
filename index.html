@@ -24,13 +24,24 @@
 
   <div class="app">
     <div id="gui-1" class="gui">
-      <div id="gui-1-overlay"></div>
-      <div class='container'>
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
+      <header>
 
+        <div class='svift-logo'>
+          <img src="assets/img/wordmark-white.png" alt="Svift Logo">
+        </div>
+        <div class='burger'>
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+      </header>
+      <main>
+        <h1>Your social chart tool</h1>
+        <div class="claim">
+          <em>svift</em> is an open source tool to turn your numbers into beautiful charts - in no time.
+          <em>svift</em> is currently in private beta. Try our prototype now and let us know what you think!
+        </div>
+      </main>
       <nav>
         <div class='close'></div>
         <ul>
@@ -48,18 +59,12 @@
           </li>
         </ul>
       </nav>
+      <!-- <div class="inner"></div> -->
 
-      <div class="inner">
-        <img class="img-logo" src="assets/img/wordmark-white.png" alt="Svift Logo">
-        <h1>Simply make your numbers look good</h1>
-        <div class="claim">
-          <em>svift</em> is an open source tool to turn your numbers into beautiful charts - in no time.
-          <em>svift</em> is currently in private beta. Try our prototype now and let us know what you think!
-        </div>
-        <div class="img-intro">
-          <img src="assets/img/social.png" alt="Svift Intro Image">
-        </div>
+      <div class="hero">
+        <img src="assets/img/social.png" alt="Svift Intro Image">
       </div>
+      <div id="gui-1-overlay"></div>
     </div>
     <div id="gui-2" class="gui">
     </div>
@@ -76,7 +81,7 @@
     // var heightNav = nav.node().getBoundingClientRect().height;
     // console.log(-heightNav);
 
-    d3.select('.container')
+    d3.select('.burger')
       .on('click', function () {
         d3.select('nav').style('top', 0);
       });
@@ -131,12 +136,8 @@
         console.log(visData.data.format)
 
         SVIFT.vis.config.vis.type = vistype;
-<<<<<<< Updated upstream
-        SVIFT.vis.config.data.format  = visData.data.format;
-        // SVIFT.vis.config.data.data = visData.data.data;
-=======
         SVIFT.vis.config.data.format = visData.data.format;
->>>>>>> Stashed changes
+        // SVIFT.vis.config.data.data = visData.data.data;
 
         // "multi-set"
         if (vistype == "columns") {
@@ -195,7 +196,6 @@
         JSON.stringify(SVIFT.vis.config),
         function (err, rawData) {
 
-<<<<<<< Updated upstream
           // cb.addBubble({ type: 'download', class: 'human' });
           // cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
           //   cb.addBubble({ type: 'resize', class: 'human' });
@@ -204,28 +204,15 @@
           // }, 1500)
           // }
           // );
-=======
-          cb.addBubble({ type: 'download', class: 'human' });
-          cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
-            cb.addBubble({ type: 'resize', class: 'human' });
-            //   setTimeout(function () {
-            //     cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
-            // }, 1500)
-          });
->>>>>>> Stashed changes
 
           inter = setInterval(function () {
             d3.request(heroku + '/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
 
-<<<<<<< Updated upstream
               console.log(jResponse)
 
-              if(jResponse.status == 2){
-=======
               if (jResponse.status == 2) {
->>>>>>> Stashed changes
 
                 clearInterval(inter);
                 doneRendering(rawData)
@@ -577,7 +564,7 @@
         var sizes = [
           { 'name': 'Square', 'format': [100, 100], 'pic': 'smile' },
           { 'name': 'Landscape', 'format': [100, 50], 'pic': 'smile' },
-          { 'name': 'Long', 'format': [50, 100], 'pic': 'smile' },
+          { 'name': 'Long', 'format': [100, 120], 'pic': 'smile' },
 
         ];
 
@@ -592,7 +579,7 @@
               SVIFT.vis.redraw();
             }, 700)
           })
-          .append('img').attr('class', 'emoji').attr('src',function (d) { return './assets/img/formats/' + d.pic + '.png'});
+          .append('img').attr('class', 'emoji').attr('src', function (d) { return './assets/img/formats/' + d.pic + '.png' });
 
       }
 
@@ -957,35 +944,35 @@
 
         cb.addBubble({ type: 'text', value: '<span>Get your charts here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
 
+        setTimeout(function () {
+
+          cb.addBubble({ type: 'text', value: 'Thanks for using svift! What would you like to do next?', class: 'bot', delay: 1000 });
+
           setTimeout(function () {
 
-            cb.addBubble({ type: 'text', value: 'Thanks for using svift! What would you like to do next?', class: 'bot', delay: 1000 });
+            cb.addBubble({ type: 'select', value: [{ label: 'Give feedback', feedback: true }, { label: 'Make another data snap', feedback: false }], class: 'human' }, function (d) {
 
-            setTimeout(function () {
+              if (d.feedback) {
+                cb.addBubble({ type: 'feedback', class: 'human' });
+                cb.addBubble({ type: 'select', value: [{ label: 'send feedback' }], class: 'human' }, function () {
+                  var feedbackText = d3.select("#feedback").node().value;
+                  console.log(feedbackText)
+                  cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
+                  setTimeout(function () {
+                    cb.addBubble({ type: 'select', value: [{ label: 'Make another data snap!' }], class: 'human' }, function () {
+                      location.reload();
+                    });
+                  }, 500)
 
-              cb.addBubble({ type: 'select', value: [{ label: 'give feedback', feedback: true }, { label: 'Make another data snap!', feedback: false }], class: 'human' },function(d){
-                
-                if (d.feedback) {
-                  cb.addBubble({ type: 'feedback', class: 'human' });
-                  cb.addBubble({ type: 'select',value: [{ label: 'send feedback' }], class: 'human' }, function(){
-                    var feedbackText = d3.select("#feedback").node().value;
-                    console.log(feedbackText)
-                    cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
-                    setTimeout(function () {
-                      cb.addBubble({ type: 'select',value: [{ label: 'Make another data snap!' }], class: 'human' }, function(){
-                        location.reload();
-                      });
-                    }, 500)
+                })
+              } else {
+                location.reload();
+              }
+            });
 
-                  })
-                } else{
-                  location.reload();
-                }
-              });
+          }, 1100)
 
-            }, 1100)
-
-          }, 1000)
+        }, 1000)
       }
 
     });
