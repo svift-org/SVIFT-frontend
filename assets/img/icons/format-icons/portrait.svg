@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>portrait</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="portrait" stroke="#000000">
+            <g>
+                <g transform="translate(12.000000, 12.000000) rotate(90.000000) translate(-12.000000, -12.000000) ">
+                    <polygon id="Stroke-1" stroke-opacity="0.00784313771" stroke-width="1.33333335e-11" points="0 0 23.9999985 0 23.9999985 23.9999985 0 23.9999985"></polygon>
+                    <g id="Group-4" transform="translate(1.000000, 4.000000)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1.99999982,-2.39999999e-07 L19.9999987,-2.39999999e-07 C21.3333326,-2.39999999e-07 21.9999986,0.66666622 21.9999986,1.99999964 L21.9999986,13.9999989 C21.9999986,15.3333327 21.3333326,15.9999988 19.9999987,15.9999988 L1.99999982,15.9999988 C0.66666652,15.9999988 -6e-08,15.3333327 -6e-08,13.9999989 L-6e-08,1.99999964 C-6e-08,0.66666622 0.66666652,-2.39999999e-07 1.99999982,-2.39999999e-07 Z" id="Stroke-2"></path>
+                    </g>
+                </g>
+                <g id="Group-2" transform="translate(4.000000, 4.000000)" stroke-width="2">
+                    <path d="M0.444307723,15.2145184 C5.10448495,12.4346419 5.4715825,8.69153848 8.36522205,10.5841704 C11.2588616,12.4768024 13.8262285,15.6868706 16.2861364,13.7789222 M11,4 C12.1045695,4 13,3.1045695 13,2 C13,0.8954305 12.1045695,0 11,0 C9.8954305,0 9,0.8954305 9,2 C9,3.1045695 9.8954305,4 11,4 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
