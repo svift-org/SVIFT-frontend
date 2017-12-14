@@ -579,9 +579,9 @@
       cb.types['resize'] = function (bubble, options, callback) {
 
         var sizes = [
-          { 'name': 'Square', 'format': [100, 100], 'pic': 'smile' },
-          { 'name': 'Landscape', 'format': [100, 50], 'pic': 'smile' },
-          { 'name': 'Portrait', 'format': [100, 120], 'pic': 'smile' },
+          { 'name': 'square', 'format': [100, 100], 'pic': 'smile' },
+          { 'name': 'landscape', 'format': [100, 50], 'pic': 'smile' },
+          { 'name': 'portrait', 'format': [100, 120], 'pic': 'smile' },
 
         ];
 
@@ -589,14 +589,14 @@
         bubble.selectAll('.cb-format')
           .data(sizes).enter().append('div')
           .attr('class', 'cb-format')
-          .text(function (d) { return d.name; })
+          // .text(function (d) { return d.name; })
           .on('click', function (d) {
             SVIFT.vis.resize(d.format);
             setTimeout(function () {
               SVIFT.vis.redraw();
             }, 700)
           })
-          .append('img').attr('class', 'emoji').attr('src', function (d) { return './assets/img/formats/' + d.pic + '.png' });
+          .append('img').attr('src', function (d) { return './assets/img/icons/format-icons/' + d.name + '.svg' });
 
       }
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>landscape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="landscape" stroke="#000000">
+            <g>
+                <polygon id="Stroke-1" stroke-opacity="0.00784313771" stroke-width="1.33333335e-11" points="0 0 23.9999985 0 23.9999985 23.9999985 0 23.9999985"></polygon>
+                <g id="Group-4" transform="translate(1.000000, 4.000000)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1.99999982,-2.39999999e-07 L19.9999987,-2.39999999e-07 C21.3333326,-2.39999999e-07 21.9999986,0.66666622 21.9999986,1.99999964 L21.9999986,13.9999989 C21.9999986,15.3333327 21.3333326,15.9999988 19.9999987,15.9999988 L1.99999982,15.9999988 C0.66666652,15.9999988 -6e-08,15.3333327 -6e-08,13.9999989 L-6e-08,1.99999964 C-6e-08,0.66666622 0.66666652,-2.39999999e-07 1.99999982,-2.39999999e-07 Z" id="Stroke-2"></path>
+                </g>
+                <g id="Group" transform="translate(1.000000, 6.000000)" stroke-width="2">
+                    <path d="M0,13.14408 C6.47172124,10.3642035 8.01915261,4.74618452 11.8399019,7.67161803 C15.6606511,10.5970515 18.5838557,13.6164321 22,11.7084838" id="Path-2"></path>
+                    <circle id="Oval-Copy" cx="17" cy="3" r="2"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
