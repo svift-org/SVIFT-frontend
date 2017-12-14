@@ -189,7 +189,15 @@
 
     SVIFT.vis.render = function () {
 
-      var socialRendered = false;
+      var complete = {
+        "gif": false,
+        "html": false,
+        "png": false,
+        "social": false,
+        "svg": false
+      };
+
+      var counter = 0;
 
       d3.request(heroku + '/render')
         .header("Content-Type", "application/json")
@@ -206,7 +214,8 @@
 
               console.log(jResponse)
 
-              if (jResponse.status == 2) {
+              // if (jResponse.status == 2) {
+              if (counter==5){  
 
                 clearInterval(inter);
 
@@ -222,16 +231,22 @@
 
                 for (var type in jResponse.full) {
 
-                  if(jResponse.full['social']!=0 && !socialRendered){
+                  if(jResponse.full[type]==1 && !complete[type]){
 
-                    SVIFT.status.rows.rowOne.selectAll('span')
-                      .transition()
-                      .delay(function (d, i) { return i * 1000 })
-                      .attr('class', 'complete')
+                    counter++;
 
-                    console.log(jResponse.full['social'])
+                    console.log(type)
 
-                    socialRendered = true;
+                    if(type == 'social'){
+                      SVIFT.status.rows.rowOne.selectAll('span')
+                        .transition()
+                        .delay(function (d, i) { return i * 1000 })
+                        .attr('class', 'complete')
+                    }else{
+                      d3.select('#status-' + type).attr('class', 'complete')
+                    }
+
+                    complete[type] = true;
 
                   }
 
@@ -881,8 +896,8 @@
         SVIFT.status.rows.rowTwo.selectAll('span').data(other).enter()
           .append('span')
           .text(function (d,i) { return otherText[i] })
-          .attr('class','cb-status-btn');
-
+          .attr('class','cb-status-btn')
+          .attr('id',function (d) { return 'status-' + d });
 
         // Progress arc animation from here: http://bl.ocks.org/mbostock/5100636
         // var tau = 2 * Math.PI;
