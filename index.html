@@ -533,7 +533,17 @@
 
         thumb
           .append('img')
-          .attr('src', function (d) { return './build/thumbs/' + d + '_thumb.png' })
+          .attr('src', function (d) {
+            var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
+                    (min--moz-device-pixel-ratio: 1.5),\
+                    (-o-min-device-pixel-ratio: 3/2),\
+                    (min-resolution: 1.5dppx)";
+            if (window.devicePixelRatio > 1 && window.matchMedia && window.matchMedia(mediaQuery).matches) {
+              return './build/thumbs/' + d + '_thumb@2x.png'
+            } else {
+              return './build/thumbs/' + d + '_thumb.png'
+            }
+          })
           .on('click', selectViz)
           .style('opacity', 0)
           .transition()
@@ -571,7 +581,7 @@
         var sizes = [
           { 'name': 'Square', 'format': [100, 100], 'pic': 'smile' },
           { 'name': 'Landscape', 'format': [100, 50], 'pic': 'smile' },
-          { 'name': 'Long', 'format': [100, 120], 'pic': 'smile' },
+          { 'name': 'Portrait', 'format': [100, 120], 'pic': 'smile' },
 
         ];
 
