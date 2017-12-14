@@ -189,6 +189,8 @@
 
     SVIFT.vis.render = function () {
 
+      var socialRendered = false;
+
       d3.request(heroku + '/render')
         .header("Content-Type", "application/json")
         .mimeType("application/json")
@@ -196,19 +198,11 @@
         JSON.stringify(SVIFT.vis.config),
         function (err, rawData) {
 
-          // cb.addBubble({ type: 'download', class: 'human' });
-          // cb.addBubble({ type: 'text', value: 'Look you can preview your charts for different media channels', class: 'bot', delay: 2000 }, function () {
-          //   cb.addBubble({ type: 'resize', class: 'human' });
-          //   setTimeout(function () {
-          //     cb.addBubble({ type: 'select', value: [{ label: 'Wow cool!' }], class: 'human' }, onEntry);
-          // }, 1500)
-          // }
-          // );
-
           inter = setInterval(function () {
             d3.request(heroku + '/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
+              
 
               console.log(jResponse)
 
@@ -228,9 +222,21 @@
 
                 for (var type in jResponse.full) {
 
-                  console.log(jResponse.full[type])
-                  d3.select("cb-download-wrapper").append("p").text(jResponse.full[type])
+                  if(jResponse.full['social']!=0 && !socialRendered){
 
+                    SVIFT.status.rows.rowOne.selectAll('span')
+                      .transition()
+                      .delay(function (d, i) { return i * 1000 })
+                      .attr('class', 'complete')
+
+                    console.log(jResponse.full['social'])
+
+                    socialRendered = true;
+
+                  }
+
+                  // console.log(jResponse.full[type])
+    
                   // var tau = 2 * Math.PI;
 
                   // d3.select(".download-thumb-" + type + " .arc")
@@ -269,14 +275,21 @@
 
 
     SVIFT.table = {};
+    SVIFT.table.maxRows = 15;
+    SVIFT.table.minRows = 2;
 
     SVIFT.table.column = {};
 
     SVIFT.table.column.add = function () {
 
-      if (SVIFT.vis.config.data.data[0].length >= 2) {
+      if (SVIFT.vis.config.data.data[0].length >= SVIFT.table.minRows) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false);
       }
+
+      if (SVIFT.vis.config.data.data[0].length === SVIFT.table.maxRows) {;
+        return
+      }
+
 
       var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -305,17 +318,24 @@
 
       SVIFT.vis.redraw();
 
+      if (SVIFT.vis.config.data.data[0].length === SVIFT.table.maxRows) {
+        d3.select(".column-editor-btn.btn-add").classed('disabled-btn', true);
+      }
+
     }
 
 
     SVIFT.table.column.remove = function () {
 
       var amountButtons = SVIFT.vis.config.data.data[0].length;
-      if (amountButtons === 2) {
+      if (amountButtons === SVIFT.table.minRows) {
         return
       }
       if (amountButtons === 3) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
+      }
+      if (amountButtons <= SVIFT.table.maxRows) {
+        d3.select(".column-editor-btn.btn-add").classed('disabled-btn', false)
       }
 
       SVIFT.vis.config.data.data[0].pop();
@@ -669,6 +689,13 @@
           SVIFT.table.column.title = table.append('tr');
           SVIFT.table.column.title.selectAll('td')
             .data(SVIFT.vis.config.data.data[0]).enter().append('td')
+            // .filter(function(d) {
+            //  if (SVIFT.vis.config.data.format === "single-set" ) {
+            //   return true; 
+            //  } else {
+            //   return false;
+            //  }
+            // })
             .append('input')
             .attr('placeholder', function (d) { return d[0] })
             .attr("data-index", function (d, i) { return i })
@@ -815,17 +842,36 @@
       }
 
       /* Add download buttons */
-      cb.types['download'] = function (bubble, options, callback) {
+      cb.types['status'] = function (bubble, options, callback) {
 
-        // var icons = ['png', 'svg', 'gif', 'html']; //'mpeg'
-        // var altNames = {
-        //   "png": "Picture",
-        //   "svg": "Vector",
-        //   "gif": "gif",
-        //   "html": "embed"
-        // }
+        SVIFT.status = {};
+        SVIFT.status.rows = {};
+
         var downloadWrapper = bubble.append('div')
-          .attr('class', 'cb-download-wrapper');
+          .attr('class', 'cb-status-wrapper')
+
+        SVIFT.status.rows.rowOne = downloadWrapper.append('div')
+          .attr('class','cb-status-row')
+          .text('Images:');
+
+        var socials = ['twitter', 'trtz', 'girtztf', 'rtzz'];
+
+        SVIFT.status.rows.rowOne.selectAll('span').data(socials).enter()
+          .append('span')
+          .text(function (d) { return d })
+          .attr('class','cb-status-btn');
+
+
+        SVIFT.status.rows.rowTwo = downloadWrapper.append('div')
+          .attr('class','cb-status-row')
+          .text('Other:');
+
+        var otherText = ['embed','SVG','Video Sequence','GIF']
+        var other = ['html','svg', 'png','gif'];
+        SVIFT.status.rows.rowTwo.selectAll('span').data(other).enter()
+          .append('span')
+          .text(function (d,i) { return otherText[i] })
+          .attr('class','cb-status-btn');
 
 
         // Progress arc animation from here: http://bl.ocks.org/mbostock/5100636
@@ -935,12 +981,12 @@
 
           cb.addBubble({ type: 'resize', class: 'human' });
 
-          setTimeout(function () {
+          // setTimeout(function () {
 
             cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
 
               cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' });
-              cb.addBubble({ type: 'download', class: 'human' });
+              cb.addBubble({ type: 'status', class: 'human' });
 
               showDownload = true;
               if (renderingDone) {
@@ -949,7 +995,7 @@
 
             })
 
-          }, 2000)
+          // }, 2000)
 
         })
 
@@ -988,7 +1034,7 @@
 
           }, 1100)
 
-        }, 1000)
+        }, 1500)
       }
 
     });
