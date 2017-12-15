@@ -72,10 +72,6 @@
   <script src="chatbot.js"></script>
   <script type="text/javascript">
 
-    showDownload = false;
-    renderingDone = false;
-    accessToken = "";
-
     // Show / hide Nav (needs to be cleaned up here..)
     // var nav = d3.select('nav');
     // var heightNav = nav.node().getBoundingClientRect().height;
@@ -191,8 +187,7 @@
 
     SVIFT.vis.render = function () {
 
-      var counter = 0;
-
+      
       d3.request(heroku + '/render')
         .header("Content-Type", "application/json")
         .mimeType("application/json")
@@ -204,32 +199,25 @@
             d3.request(heroku + '/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
-
+              var statusCounter = 0;
+              SVIFT.vis.render.token = rawData.response;
               console.log(jResponse)
 
               for (var type in jResponse.full) {
 
-                if(jResponse.full[type]==1 && !SVIFT.vis.render.status.rendered[type]){
-                  counter++;
+                if(jResponse.full[type]==1){
+
+                  statusCounter++;
                   SVIFT.vis.render.status.rendered[type] = true;
-                  SVIFT.vis.render.status.show()
+
                 }
 
               }
 
-              if (counter==5){  
+              //All things have been rendered stop request
+              if (statusCounter==5){clearInterval(inter);}
 
-                clearInterval(inter);
-
-                renderingDone = true;
-                accessToken = rawData;
-
-                if (showDownload) {
-                  doneRendering(rawData)
-                }
-
-              }
-
+              SVIFT.vis.render.status.show()
 
             });
           }, 1000);
@@ -237,7 +225,9 @@
         );
     }
 
+    SVIFT.vis.render.token = "";
     SVIFT.vis.render.status = {};
+    SVIFT.vis.render.status.visible = false;
 
     SVIFT.vis.render.status.rendered = {
       "gif": false,
@@ -250,18 +240,21 @@
 
     SVIFT.vis.render.status.show = function(){
 
-      if(showDownload){
+      if(SVIFT.vis.render.status.visible){
 
         var status = SVIFT.vis.render.status.rendered;
+        var counter = 0;
 
         for (var type in status) {
 
           if(status[type]){
 
+            counter++;
+
             if(type == 'social'){
               SVIFT.status.rows.rowOne.selectAll('span')
                 .transition()
-                .delay(function (d, i) { return i * 1000 })
+                .delay(function (d, i) { return i * 400 })
                 .attr('class', 'complete');
                 
             }else{
@@ -271,7 +264,17 @@
           }
 
         }  
-        
+
+        if(counter==5){
+
+          setTimeout(function () {
+
+            doneRendering();
+
+          },1500)
+
+        }
+
       }    
 
     }
@@ -633,12 +636,11 @@
           .attr('class', 'cb-choice')
           .text(function (d) { return d.label; })
           .on('click', function (d) {
-            console.log(d)
-            if (!d3.select(this).classed('cb-active')) {
+
+              //remove eventhandler from all bubbles when clicked
+              bubble.selectAll('.cb-choice').on('click',null);
               d3.select(this).classed('cb-active', true);
               callback(d);
-            }
-
 
           });
       };
@@ -754,7 +756,7 @@
           var input = bubble.append('input')
             .classed('number', true)
             .attr('id', 'number')
-            .attr('type', 'number')
+            // .attr('type', 'number')
             .attr('placeholder', function () { return SVIFT.vis.config.data.data[0][0][1] })
             .attr("data-index", 0)
             // .attr('min', '0')
@@ -962,37 +964,32 @@
         //start rendering process
         SVIFT.vis.render();
 
-        // cb.addBubble({ type: 'download', class: 'human' });
         cb.addBubble({ type: 'text', value: 'Look you can preview your chart in different formats', class: 'bot', delay: 1500 }, function () {
 
           cb.addBubble({ type: 'resize', class: 'human' });
 
-          // setTimeout(function () {
+          setTimeout(function () {
 
           cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
 
             cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' });
             cb.addBubble({ type: 'status', class: 'human' });
 
-              showDownload = true;
-              SVIFT.vis.render.status.show();
-
-              if (renderingDone) {
-                doneRendering(accessToken);
-              }
+            SVIFT.vis.render.status.visible = true;
+            SVIFT.vis.render.status.show();
 
           })
 
-          // }, 2000)
+          }, 500)
 
         })
 
 
       }
 
-      doneRendering = function (rawData) {
+      doneRendering = function () {
 
-        cb.addBubble({ type: 'text', value: '<span>Get your charts here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + rawData.response + '">www.svift.xyz/' + rawData.response + '</a></span>', class: 'bot' });
+        cb.addBubble({ type: 'text', value: '<span>Get your charts here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + SVIFT.vis.render.token + '">www.svift.xyz/' + SVIFT.vis.render.token + '</a></span>', class: 'bot' });
 
         setTimeout(function () {
 
