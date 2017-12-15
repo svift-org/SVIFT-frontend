@@ -531,11 +531,14 @@
   flex-direction: column; }
   .cb-status-wrapper .cb-status-row {
     display: flex; }
-    .cb-status-wrapper .cb-status-row .cb-status-btn {
-      color: #000;
-      width: 50px;
-      height: 50px; }
+    .cb-status-wrapper .cb-status-row span {
+      transition: all 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+      padding: 10px;
+      color: #fff;
+      border-radius: 2em;
+      background-color: #ddd; }
     .cb-status-wrapper .cb-status-row .complete {
-      background-color: green; }
+      background-color: #75FABF;
+      color: #fff; }
 
 /*# sourceMappingURL=bot.css.map */

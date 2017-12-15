@@ -649,78 +649,27 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    // height: 110px;
-    // padding: 0 ($margin-small * 2);
-
 
     .cb-status-row{
 
         display: flex;
 
-        .cb-status-btn{
-
-            color: #000;
-            width: 50px;
-            height: 50px;
+        span{
+            transition: all 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+            padding: 10px;
+            color: #fff;
+            border-radius: 2em;
+            background-color: #ddd;
 
         }
 
         .complete{
-            background-color: green;
+            background-color: $svift-human;;
+            color: #fff;
         }
     }
 
 
-
-
-    // svg {
-    //     g path.arc {
-    //         transform: translate(40px, 40px);
-    //         fill: $svift-human;
-
-    //         // stroke: red;
-       
-    //     }
-    // }
-
-    // .download-thumb {
-    //     flex: 1;
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: center;
-    //     align-items: center;
-    //     height: 80px;
-    //     width: 80px;
-    //     margin: 10px;
-    //     transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-    //     cursor: pointer;
-    //     font-family: $font-family-mono;
-    //     color: #000;
-    //     text-transform: uppercase;
-    //     border-radius: $border-radius-circle;
-    //     background-color: $bot-bubble;
-
-    //     .thumb-name {
-    //         margin-bottom: 5px;
-    //     }
-    // }
-
-    // .download-active {
-    //     // box-shadow: $box-shadow-default;
-    //     background-color: #fff;
-
-    //     &:hover {
-    //         transform: translateY(5px);
-    //         background-color: $svift-human;
-    //     }
-    // }
-
-    // .download-text{
-    //     width: 100px;
-    //     position: absolute;
-    //     text-align: center;
-    //     margin-top: 40px;
-    // }
 }
 
 
