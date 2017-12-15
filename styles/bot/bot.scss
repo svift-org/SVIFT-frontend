@@ -373,10 +373,6 @@
             }
         }
 
-        .bad-input-data {
-            background-color: $svift-delete;
-        }
-
         table {
             display: inline-flex;
             border-spacing: 0;
@@ -419,6 +415,11 @@
             color: $text-subheading;
         }
     }
+
+    .bad-input-data {
+        background-color: $svift-delete !important;
+    }
+
 
     .hidden {
         background-color: red;

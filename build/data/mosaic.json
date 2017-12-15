@@ -17,7 +17,7 @@
   "data":{
     "columns":["Wert"],
     "types":["int"],
-    "data":[[["A",59]]],
+    "data":{"set1":[["A", 25]]},
     "title": "SVIFT Entwicklungsstand",
     "subTitle": "am 29.09.2017",
     "attribution": "Some attribution here",

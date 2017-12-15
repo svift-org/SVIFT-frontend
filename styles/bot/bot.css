@@ -345,8 +345,6 @@
         .cb-bubble-input .table-wrapper .column-editor-wrapper .disabled-btn:hover {
           background-color: #fff;
           color: #ddd; }
-    .cb-bubble-input .table-wrapper .bad-input-data {
-      background-color: #FF5858; }
     .cb-bubble-input .table-wrapper table {
       display: inline-flex;
       border-spacing: 0;
@@ -373,6 +371,8 @@
     .cb-bubble-input input::placeholder {
       font-family: "DecimaMonoProBold", monospace;
       color: #9a9a9a; }
+  .cb-bubble-input .bad-input-data {
+    background-color: #FF5858 !important; }
   .cb-bubble-input .hidden {
     background-color: red; }
   .cb-bubble-input .title {
