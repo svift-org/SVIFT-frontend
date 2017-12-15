@@ -2,11 +2,9 @@
 ---
 
 ## Prios:
-- Video: Was, wie, wer? 
 - Frontend - das Ende (
     - Email yes/no
     - asset download
-- Pages: content section "docs"
 - If somebody tries to visualise something with a too small window loads of errors are coming up, we should probably define a min-width and -height and if the container is smaller we just show the svift logo and say the container is too small
 
 
@@ -27,6 +25,9 @@ cities ranking
 
 
 ## Seb
+
+- Fill "Docs" content (on additional info page)
+
 0: png background -> transparent > this has turned out to be tricky, working on it, turns out, transparent PNGs have weird distortions in the grey fonts?!
 
 favicon not found
