@@ -238,13 +238,13 @@
 }
 
 .cb-format {
-
     flex: 1;
     display: inline-block;
     text-align: center;
     cursor: pointer;
+
     // border: 3px solid $svift-human;
-    border-radius: 1em;
+    border-radius: $border-radius-default;
     padding: 20px;
     margin-left: 10px;
     font-family: $font-family-bold;
@@ -256,9 +256,7 @@
         color: #000;
         transform: translateY(3px);
     }
-
 }
-
 
 // .cb-active{
 //     background-color: #ddd;
@@ -422,7 +420,7 @@
         }
     }
 
-    .hidden{
+    .hidden {
         background-color: red;
     }
 
@@ -650,6 +648,7 @@
     justify-content: center;
     flex-direction: column;
 
+
     .cb-status-row{
 
         display: flex;
@@ -669,7 +668,4 @@
         }
     }
 
-
 }
-
-

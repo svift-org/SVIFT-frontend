@@ -253,7 +253,7 @@
   display: inline-block;
   text-align: center;
   cursor: pointer;
-  border-radius: 1em;
+  border-radius: 4px;
   padding: 20px;
   margin-left: 10px;
   font-family: "InterfaceRegularBold";

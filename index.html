@@ -204,6 +204,7 @@
             d3.request(heroku + '/status/' + rawData.response).get(function (err, data) {
 
               var jResponse = JSON.parse(data.response);
+
               console.log(jResponse)
 
               for (var type in jResponse.full) {
@@ -246,11 +247,10 @@
       "svg": false
     }
 
+
     SVIFT.vis.render.status.show = function(){
 
       if(showDownload){
-
-        console.log("MKK")
 
         var status = SVIFT.vis.render.status.rendered;
 
@@ -271,6 +271,7 @@
           }
 
         }  
+        
       }    
 
     }
@@ -288,7 +289,8 @@
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false);
       }
 
-      if (SVIFT.vis.config.data.data[0].length === SVIFT.table.maxRows) {;
+      if (SVIFT.vis.config.data.data[0].length === SVIFT.table.maxRows) {
+        ;
         return
       }
 
@@ -863,7 +865,7 @@
           .attr('class', 'cb-status-wrapper')
 
         SVIFT.status.rows.rowOne = downloadWrapper.append('div')
-          .attr('class','cb-status-row')
+          .attr('class', 'cb-status-row')
           .text('Images:');
 
         var socials = ['Twitter', 'LinkIn', 'Facebook','Snapchat','Pinterest','and more'];
@@ -871,15 +873,15 @@
         SVIFT.status.rows.rowOne.selectAll('span').data(socials).enter()
           .append('span')
           .text(function (d) { return d })
-          .attr('class','cb-status-btn');
+          .attr('class', 'cb-status-btn');
 
 
         SVIFT.status.rows.rowTwo = downloadWrapper.append('div')
-          .attr('class','cb-status-row')
+          .attr('class', 'cb-status-row')
           .text('Other:');
 
-        var otherText = ['embed','SVG','Video Sequence','GIF']
-        var other = ['html','svg', 'png','gif'];
+        var otherText = ['embed', 'SVG', 'Video Sequence', 'GIF']
+        var other = ['html', 'svg', 'png', 'gif'];
         SVIFT.status.rows.rowTwo.selectAll('span').data(other).enter()
           .append('span')
           .text(function (d,i) { return otherText[i] })
@@ -961,17 +963,16 @@
         SVIFT.vis.render();
 
         // cb.addBubble({ type: 'download', class: 'human' });
-        cb.addBubble({ type: 'text', value: 'Look you can preview your charts in different formats', class: 'bot', delay: 1500 }, function () {
+        cb.addBubble({ type: 'text', value: 'Look you can preview your chart in different formats', class: 'bot', delay: 1500 }, function () {
 
           cb.addBubble({ type: 'resize', class: 'human' });
 
           // setTimeout(function () {
 
-            cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
+          cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
 
-              cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' });
-              cb.addBubble({ type: 'status', class: 'human' });
-
+            cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' });
+            cb.addBubble({ type: 'status', class: 'human' });
 
               showDownload = true;
               SVIFT.vis.render.status.show();
@@ -980,7 +981,7 @@
                 doneRendering(accessToken);
               }
 
-            })
+          })
 
           // }, 2000)
 
