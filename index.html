@@ -989,7 +989,7 @@
 
             cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
 
-              cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="spinner"><div class="dot1"></div><div class="dot2"></div></div>', class: 'bot' });
+              cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader">Loading...</div>', class: 'bot' });
               cb.addBubble({ type: 'status', class: 'human' });
 
               SVIFT.vis.render.status.visible = true;
