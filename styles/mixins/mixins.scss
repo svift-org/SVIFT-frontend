@@ -31,15 +31,16 @@
     }
 
     .loader {
+        color: #e6e6e6;
         display: inline-block;
         margin: 60px auto;
         font-size: 10px;
         position: relative;
         text-indent: -9999em;
-        border-top: 0.6em solid rgba(255, 255, 255, 0.2);
-        border-right: 0.6em solid rgba(255, 255, 255, 0.2);
-        border-bottom: 0.6em solid rgba(255, 255, 255, 0.2);
-        border-left: 0.6em solid #ffffff;
+        border-top: 0.6em solid rgba(114, 244, 191, 0.2);
+        border-right: 0.6em solid rgba(114, 244, 191, 0.2);
+        border-bottom: 0.6em solid rgba(114, 244, 191, 0.2);
+        border-left: 0.6em solid #72f4bf;
         -webkit-transform: translateZ(0);
         -ms-transform: translateZ(0);
         transform: translateZ(0);
