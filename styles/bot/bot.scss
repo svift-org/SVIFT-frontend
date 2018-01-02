@@ -670,6 +670,5 @@
         }
     }
 }
-.loader{
-    @include spinner;
-}
+
+@include spinner;
