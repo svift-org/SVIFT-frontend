@@ -532,13 +532,18 @@
   .cb-status-wrapper .cb-status-row {
     display: flex; }
     .cb-status-wrapper .cb-status-row span {
+      height: 40px;
+      width: 40px;
+      text-align: center;
       transition: all 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
       padding: 10px;
-      color: #fff;
-      border-radius: 2em;
-      background-color: #ddd; }
+      color: #9a9a9a;
+      border-radius: 100px;
+      font-family: 'svift-iconfont';
+      border: 1px solid #D8D8D8; }
     .cb-status-wrapper .cb-status-row .complete {
       background-color: #75FABF;
-      color: #fff; }
+      color: #fff;
+      border: 1px solid #75FABF; }
 
 /*# sourceMappingURL=bot.css.map */

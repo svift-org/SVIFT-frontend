@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2017 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2018 by original authors @ fontello.com</metadata>
 <defs>
 <font id="svift-iconfont" horiz-adv-x="1000" >
 <font-face font-family="svift-iconfont" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
@@ -11,6 +11,8 @@
 <glyph glyph-name="twitter" unicode="&#xf099;" d="M904 622q-37-54-90-93 0-8 0-23 0-73-21-145t-64-139-103-117-144-82-181-30q-151 0-276 81 19-2 43-2 126 0 224 77-59 1-105 36t-64 89q19-3 34-3 24 0 48 6-63 13-104 62t-41 115v2q38-21 82-23-37 25-59 64t-22 86q0 49 25 91 68-83 164-133t208-55q-5 21-5 41 0 75 53 127t127 53q79 0 132-57 61 12 115 44-21-64-80-100 52 6 104 28z" horiz-adv-x="928.6" />
 
 <glyph glyph-name="facebook" unicode="&#xf09a;" d="M535 843v-147h-87q-48 0-65-20t-17-60v-106h164l-22-165h-142v-424h-171v424h-142v165h142v122q0 104 58 161t155 57q82 0 127-7z" horiz-adv-x="571.4" />
+
+<glyph glyph-name="linkedin" unicode="&#xf0e1;" d="M195 501v-553h-184v553h184z m12 171q0-41-29-68t-75-27h-1q-46 0-74 27t-28 68q0 41 29 68t75 27 74-27 29-68z m650-407v-317h-183v296q0 59-23 92t-71 33q-35 0-58-19t-36-48q-6-17-6-45v-309h-184q1 223 1 361t0 165l-1 27h184v-80h-1q11 18 23 31t31 29 49 24 64 9q95 0 153-63t58-186z" horiz-adv-x="857.1" />
 
 <glyph glyph-name="snapchat" unicode="&#xf2ac;" d="M473 779q75 0 134-39t92-107q15-32 15-100 0-26-5-106 8-4 15-4 10 0 29 7t28 8q16 0 32-10t15-26q0-18-18-30t-38-18-39-16-18-26q0-9 7-24 21-46 57-84t81-57q16-6 45-12 15-4 15-20 0-39-122-57-4-6-6-22t-8-26-18-10q-11 0-35 3t-36 4q-20 0-34-3-18-3-35-13t-33-21-32-22-43-19-55-8q-29 0-54 8t-41 19-33 22-32 21-35 13q-14 3-35 3-13 0-36-4t-33-5q-14 0-19 11t-8 26-6 23q-123 18-123 57 0 16 16 20 29 6 45 12 43 18 80 57t58 84q6 15 6 24 0 15-17 26t-39 17-39 17-18 29q0 15 15 26t31 10q8 0 26-7t30-7q10 0 18 4-5 79-5 106 0 68 15 100 36 76 96 110t147 36z" horiz-adv-x="928.6" />
 
