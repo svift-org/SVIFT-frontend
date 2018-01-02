@@ -19,14 +19,16 @@
     "data":{
       "columns":["Wert"],
       "types":["int"],
-      "data":
-        [
-          {"label":"A","data":[1]},
-          {"label":"B","data":[2]},
-          {"label":"C","data":[3]}
-        ]
-      ,
-      "lables":[null],
+      "data":[[
+        ["one",7],
+        ["two",4],
+        ["three",5],
+        ["four",2],
+        ["fives",5],
+        ["fives",5],
+        ["fives",5],
+        ["six",3]
+      ]],
       "title": "Titlge",
       "subTitle": "SÜub title",
       "attribution": "Some attribution here",
