@@ -141,8 +141,16 @@ select {
   width: 100%;
   padding: 10px;
   border-radius: 2em;
+  border: 2px solid #75FABF;
   font-family: "DecimaMonoProBold", monospace;
-  color: #9a9a9a; }
+  color: #9a9a9a;
+  background-image: url("https://media.kulturbanause.de/2015/03/form-styling/select-arrow.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: #fff; }
+  select:focus {
+    outline: none !important; }
 
 div.download {
   display: flex;

@@ -30,8 +30,18 @@ select {
     width: 100%;
     padding: 10px;
     border-radius: 2em;
+    border: $border-thick-svift;
     font-family: $font-family-mono;
     color: $text-subheading;
+    background-image: url("https://media.kulturbanause.de/2015/03/form-styling/select-arrow.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-color: $white;
+
+    &:focus {
+        outline: none !important;
+    }
 }
 
 div.download {
