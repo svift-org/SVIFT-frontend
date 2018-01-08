@@ -420,7 +420,6 @@
         background-color: $svift-delete !important;
     }
 
-
     .hidden {
         background-color: red;
     }
@@ -649,24 +648,27 @@
     justify-content: center;
     flex-direction: column;
 
-
-    .cb-status-row{
-
+    .cb-status-row {
         display: flex;
 
-        span{
+        span {
+            height: 40px;
+            width: 40px;
+            text-align: center;
             transition: all 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
             padding: 10px;
-            color: #fff;
-            border-radius: 2em;
-            background-color: #ddd;
-
+            color: $text-subheading;
+            border-radius: $border-radius-circle;
+            font-family: 'svift-iconfont';
+            border: $border-default;
         }
 
-        .complete{
-            background-color: $svift-human;;
+        .complete {
+            background-color: $svift-human;
             color: #fff;
+            border: $border-svift;
         }
     }
-
 }
+
+@include spinner;
