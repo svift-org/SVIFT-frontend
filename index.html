@@ -119,11 +119,11 @@
         // "data": {"set1":[["A", 25], ["B", 20]],"set2":[["d", 25], ["e", 20]]},
         "data":
           [
-            {"label":"A","data":[25]},
-            {"label":"B","data":[20]}
+            { "label": "A", "data": [25] },
+            { "label": "B", "data": [20] }
           ]
         ,
-        "lables":[null],
+        "lables": [null],
         "title": "Your title",
         "subTitle": "Your subtitle",
         "attribution": "made with svift.xyz",
@@ -141,7 +141,7 @@
 
         SVIFT.vis.config.vis.type = vistype;
         SVIFT.vis.config.data.format = visData.data.format;
-        // SVIFT.vis.config.data.data = visData.data.data;
+        SVIFT.vis.config.data.data = visData.data.data;
 
         // "multi-set"
         // if (vistype == "columns") {
@@ -184,7 +184,7 @@
 
     }
 
-    SVIFT.vis.redrawDebounce = SVIFT.helper.debouncer(function(){SVIFT.vis.redraw()}, 500)
+    SVIFT.vis.redrawDebounce = SVIFT.helper.debouncer(function () { SVIFT.vis.redraw() }, 500)
 
 
 
@@ -202,7 +202,7 @@
 
     SVIFT.vis.render = function () {
 
-      
+
       d3.request(heroku + '/render')
         .header("Content-Type", "application/json")
         .mimeType("application/json")
@@ -220,7 +220,7 @@
 
               for (var type in jResponse.full) {
 
-                if(jResponse.full[type]==1){
+                if (jResponse.full[type] == 1) {
 
                   statusCounter++;
                   SVIFT.vis.render.status.rendered[type] = true;
@@ -230,7 +230,7 @@
               }
 
               //All things have been rendered stop request
-              if (statusCounter==5){clearInterval(inter);}
+              if (statusCounter == 5) { clearInterval(inter); }
 
               SVIFT.vis.render.status.show()
 
@@ -253,44 +253,44 @@
     }
 
 
-    SVIFT.vis.render.status.show = function(){
+    SVIFT.vis.render.status.show = function () {
 
-      if(SVIFT.vis.render.status.visible){
+      if (SVIFT.vis.render.status.visible) {
 
         var status = SVIFT.vis.render.status.rendered;
         var counter = 0;
 
         for (var type in status) {
 
-          if(status[type]){
+          if (status[type]) {
 
             counter++;
 
-            if(type == 'social'){
+            if (type == 'social') {
               SVIFT.status.rows.rowOne.selectAll('span')
                 .transition()
                 .delay(function (d, i) { return i * 400 })
                 .attr('class', 'complete');
-                
-            }else{
+
+            } else {
               d3.select('#status-' + type).attr('class', 'complete')
             }
 
           }
 
-        }  
+        }
 
-        if(counter==5){
+        if (counter == 5) {
 
           setTimeout(function () {
 
             doneRendering();
 
-          },1500)
+          }, 1500)
 
         }
 
-      }    
+      }
 
     }
 
@@ -335,7 +335,7 @@
       SVIFT.table.column.number.selectAll('td')
         .data(SVIFT.vis.config.data.data).enter()
         .append('td').append('input')
-        .attr('placeholder', function (d) {console.log(d); return d.data[0] })
+        .attr('placeholder', function (d) { console.log(d); return d.data[0] })
         .attr("data-index", function (d, i) { return i })
         .on('input', function () {
           SVIFT.table.values.update(this);
@@ -377,7 +377,7 @@
 
     SVIFT.table.data = {};
 
-    SVIFT.table.data.validate = function (data,obj) {
+    SVIFT.table.data.validate = function (data, obj) {
 
       if (isNaN(data)) {
         d3.select(obj).classed('bad-input-data', true)
@@ -405,9 +405,9 @@
       }
       //
 
-      var validData = SVIFT.table.data.validate(inputValue,obj);
+      var validData = SVIFT.table.data.validate(inputValue, obj);
 
-      if(validData){
+      if (validData) {
         SVIFT.vis.config.data.data[dataPosition].data[0] = inputValue;
         SVIFT.vis.redrawDebounce();
       }
@@ -653,10 +653,10 @@
           .text(function (d) { return d.label; })
           .on('click', function (d) {
 
-              //remove eventhandler from all bubbles when clicked
-              bubble.selectAll('.cb-choice').on('click',null);
-              d3.select(this).classed('cb-active', true);
-              callback(d);
+            //remove eventhandler from all bubbles when clicked
+            bubble.selectAll('.cb-choice').on('click', null);
+            d3.select(this).classed('cb-active', true);
+            callback(d);
 
           });
       };
@@ -746,7 +746,7 @@
               // if(ok){
               //   SVIFT.vis.redrawDebounce();
               // }
-              
+
             });
 
 
@@ -886,28 +886,26 @@
           .attr('class', 'cb-status-wrapper')
 
         SVIFT.status.rows.rowOne = downloadWrapper.append('div')
-          .attr('class', 'cb-status-row')
-          .text('Images:');
+          .attr('class', 'cb-status-row');
 
-        var socials = ['Twitter', 'LinkIn', 'Facebook','Snapchat','Pinterest','and more'];
+        var socials = ['&#xf099', '&#xf09a', '&#xf0e1', '&#xf32d', '&#xf2ac'];
 
         SVIFT.status.rows.rowOne.selectAll('span').data(socials).enter()
           .append('span')
-          .text(function (d) { return d })
+          .html(function (d) { return d })
           .attr('class', 'cb-status-btn');
 
 
         SVIFT.status.rows.rowTwo = downloadWrapper.append('div')
-          .attr('class', 'cb-status-row')
-          .text('Other:');
+          .attr('class', 'cb-status-row');
 
         var otherText = ['embed', 'SVG', 'Video Sequence', 'GIF']
         var other = ['html', 'svg', 'png', 'gif'];
         SVIFT.status.rows.rowTwo.selectAll('span').data(other).enter()
           .append('span')
-          .text(function (d,i) { return otherText[i] })
-          .attr('class','cb-status-btn')
-          .attr('id',function (d) { return 'status-' + d });
+          .text(function (d, i) { return otherText[i] })
+          .attr('class', 'cb-status-btn')
+          .attr('id', function (d) { return 'status-' + d });
 
       }
 
@@ -989,15 +987,15 @@
 
           setTimeout(function () {
 
-          cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
+            cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
 
-            cb.addBubble({ type: 'text', value: 'Please wait while I build your chart', class: 'bot', emoji: 'smile' });
-            cb.addBubble({ type: 'status', class: 'human' });
+              cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader">Loading...</div>', class: 'bot' });
+              cb.addBubble({ type: 'status', class: 'human' });
 
-            SVIFT.vis.render.status.visible = true;
-            SVIFT.vis.render.status.show();
+              SVIFT.vis.render.status.visible = true;
+              SVIFT.vis.render.status.show();
 
-          })
+            })
 
           }, 500)
 
@@ -1016,7 +1014,7 @@
 
           setTimeout(function () {
 
-            cb.addBubble({ type: 'select', value: [{ label: 'Give feedback', feedback: true }, { label: 'Make another data snap', feedback: false }], class: 'human' }, function (d) {
+            cb.addBubble({ type: 'select', value: [{ label: 'Give feedback', feedback: true }, { label: 'Make another chart', feedback: false }], class: 'human' }, function (d) {
 
               if (d.feedback) {
                 cb.addBubble({ type: 'feedback', class: 'human' });
@@ -1025,7 +1023,7 @@
                   console.log(feedbackText)
                   cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
                   setTimeout(function () {
-                    cb.addBubble({ type: 'select', value: [{ label: 'Make another data snap!' }], class: 'human' }, function () {
+                    cb.addBubble({ type: 'select', value: [{ label: 'Make another chart!' }], class: 'human' }, function () {
                       location.reload();
                     });
                   }, 500)

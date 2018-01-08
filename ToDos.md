@@ -65,6 +65,7 @@ Download page:
 
 - After Resize we need to make sure to go back to the last/current keyframe, i have done a temporary fix in the renderer which jumps to the last frame after resizing the window, but this should be a default > module.playHead
 
+- colors-> where in the data.json?
 - Two layouts for viz types
 - replace 'set1
 - Fix text labels when many data points or long labels
