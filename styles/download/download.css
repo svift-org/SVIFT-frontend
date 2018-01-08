@@ -131,11 +131,27 @@ html, body {
   -moz-font-smoothing: antialiased;
   font-smoothing: antialiased; }
 
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  font-size: 1em;
+  width: 100%;
+  padding: 10px;
+  border-radius: 2em;
+  font-family: "DecimaMonoProBold", monospace;
+  color: #9a9a9a; }
+
 div.download {
   display: flex;
   height: 100vh;
   overflow: hidden;
-  background-color: #75FABF;
+  background: #5C258D;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right top, #71609b, #75FABF);
+  background: linear-gradient(to right top, #71609b, #75FABF);
   justify-content: center;
   align-items: center; }
   div.download .ct {
@@ -146,12 +162,12 @@ div.download {
     align-items: center;
     background-color: white;
     width: 60%;
-    height: 60%;
     border-radius: 8px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
     transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1); }
     div.download .ct .ct-head {
-      text-align: center; }
+      text-align: center;
+      margin: 3em 0 2em 0; }
       div.download .ct .ct-head h1 {
         font-size: 1.7em;
         font-family: "DecimaMonoProBold", monospace;
@@ -161,24 +177,44 @@ div.download {
         font-family: "DecimaMonoProBold", monospace;
         color: #9a9a9a; }
     div.download .ct .ct-body {
-      margin: 4em 0 4em 0;
-      width: 70%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around; }
+      width: 70%; }
+      div.download .ct .ct-body .dl-preview {
+        text-align: center; }
+        div.download .ct .ct-body .dl-preview img {
+          max-width: 40%;
+          height: auto; }
+      div.download .ct .ct-body .dl-links {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 20px 0; }
+        div.download .ct .ct-body .dl-links .dl-groups {
+          color: #71609b;
+          font-family: "DecimaMonoProBold", monospace; }
+          div.download .ct .ct-body .dl-links .dl-groups .dl-group-title {
+            margin-bottom: 5px; }
+      div.download .ct .ct-body #embed {
+        font-family: "DecimaMonoProBold", monospace;
+        color: #71609b;
+        margin-top: 40px; }
+        div.download .ct .ct-body #embed #embed-text {
+          color: #9a9a9a;
+          font-family: "DecimaMonoProBold", monospace;
+          width: 100%;
+          font-size: 0.9em;
+          border: none; }
       div.download .ct .ct-body .dl-icon {
         border-radius: 100px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-        transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
         cursor: pointer; }
-        div.download .ct .ct-body .dl-icon:hover {
-          transform: translateY(5px);
-          background-color: #75FABF; }
     div.download .ct .ct-foot {
+      margin: 2em 0 3em 0;
       width: 70%;
       display: flex;
       font-size: 0.9em;
       font-family: "DecimaMonoProBold", monospace;
-      color: #9a9a9a; }
+      color: #71609b; }
+      div.download .ct .ct-foot .source a {
+        text-decoration: none;
+        color: #9a9a9a; }
 
 /*# sourceMappingURL=download.css.map */
