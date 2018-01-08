@@ -142,6 +142,7 @@
         SVIFT.vis.config.vis.type = vistype;
         SVIFT.vis.config.data.format = visData.data.format;
         SVIFT.vis.config.data.data = visData.data.data;
+        SVIFT.vis.config.data.lables = visData.data.lables;
 
         // "multi-set"
         // if (vistype == "columns") {
@@ -297,18 +298,18 @@
 
     //Data input table
     SVIFT.table = {};
-    SVIFT.table.maxRows = 15;
-    SVIFT.table.minRows = 2;
+    SVIFT.table.maxCol = 15;
+    SVIFT.table.minCol = 2;
 
     SVIFT.table.column = {};
 
     SVIFT.table.column.add = function () {
 
-      if (SVIFT.vis.config.data.data.length >= SVIFT.table.minRows) {
+      if (SVIFT.vis.config.data.data.length >= SVIFT.table.minCol) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false);
       }
 
-      if (SVIFT.vis.config.data.data.length === SVIFT.table.maxRows) {
+      if (SVIFT.vis.config.data.data.length === SVIFT.table.maxCol) {
         return
       }
 
@@ -316,35 +317,65 @@
       var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
       var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1];
-      console.log(lastEntry)
       var newData = {};
       newData.label = alphabet[SVIFT.vis.config.data.data.length];
-      newData.data = [lastEntry.data[0]];
-      SVIFT.vis.config.data.data.push(newData)
+      newData.data = lastEntry.data;
+      SVIFT.vis.config.data.data.push(newData);
 
-      SVIFT.table.column.title.selectAll('td')
-        .data(SVIFT.vis.config.data.data).enter().append('td')
-        .append('input')
-        .attr('placeholder', function (d, i) { return alphabet[i] })
-        .attr("data-index", function (d, i) { return i })
-        .on('input', function () {
-          SVIFT.table.lables.update(this);
-          SVIFT.vis.redrawDebounce();
-        });
+      var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
-      SVIFT.table.column.number.selectAll('td')
-        .data(SVIFT.vis.config.data.data).enter()
-        .append('td').append('input')
-        .attr('placeholder', function (d) { console.log(d); return d.data[0] })
-        .attr("data-index", function (d, i) { return i })
-        .on('input', function () {
-          SVIFT.table.values.update(this);
-          // SVIFT.vis.redrawDebounce()
-        });
+      console.log(tableData);
+
+      // SVIFT.table.row.selectAll('tr')
+      //   .data(tableData).enter()
+      //   .selectAll('td')
+      //     .data(function(d){return d}).enter()
+      //     .append('td')
+      //       .append('input')
+      //       .attr("data-td-index", function (d, i) { return i })
+      //       .attr('placeholder', function (d) { return d })
+      //       .on('input',function(){SVIFT.table.values.update(this)});
+
+
+    SVIFT.table.row.selectAll('tr')
+      .data(tableData).enter();
+
+    SVIFT.table.td.selectAll('td')
+        .data(function(d){return d}).enter()
+        .append('td')
+          .append('input')
+          .attr("data-td-index", function (d, i) { return i })
+          .attr('placeholder', function (d) { return d })
+          .on('input',function(){SVIFT.table.values.update(this)});
+
+
+
+
+
+      // SVIFT.table.column.title.selectAll('td')
+      //   .data(SVIFT.vis.config.data.data).enter().append('td')
+      //   .append('input')
+      //   .attr('placeholder', function (d, i) { return alphabet[i] })
+      //   .attr("data-index", function (d, i) { return i })
+      //   .on('input', function () {
+      //     SVIFT.table.lables.update(this);
+      //     SVIFT.vis.redrawDebounce();
+      //   });
+
+      // SVIFT.table.column.number.selectAll('td')
+      //   .data(SVIFT.vis.config.data.data).enter()
+      //   .append('td').append('input')
+      //   .attr('placeholder', function (d) { console.log(d); return d.data[0] })
+      //   .attr("data-index", function (d, i) { return i })
+      //   .on('input', function () {
+      //     SVIFT.table.values.update(this);
+      //     // SVIFT.vis.redrawDebounce()
+      //   });
+
 
       SVIFT.vis.redrawDebounce();
 
-      if (SVIFT.vis.config.data.data.length === SVIFT.table.maxRows) {
+      if (SVIFT.vis.config.data.data.length === SVIFT.table.maxCol) {
         d3.select(".column-editor-btn.btn-add").classed('disabled-btn', true);
       }
 
@@ -353,29 +384,61 @@
     SVIFT.table.column.remove = function () {
 
       var amountButtons = SVIFT.vis.config.data.data.length;
-      if (amountButtons === SVIFT.table.minRows) {
+      if (amountButtons === SVIFT.table.minCol) {
         return
       }
       if (amountButtons === 3) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
       }
-      if (amountButtons <= SVIFT.table.maxRows) {
+      if (amountButtons <= SVIFT.table.maxCol) {
         d3.select(".column-editor-btn.btn-add").classed('disabled-btn', false)
       }
 
       SVIFT.vis.config.data.data.pop();
 
-      SVIFT.table.column.title.selectAll('td')
-        .data(SVIFT.vis.config.data.data).exit().remove();
+      var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
-      SVIFT.table.column.number.selectAll('td')
-        .data(SVIFT.vis.config.data.data).exit().remove();
+      SVIFT.table.row.selectAll('tr')
+        .data(tableData).enter()
+        .selectAll('td')
+        .data(function(d){return d}).exit().remove();
 
       SVIFT.vis.redrawDebounce();
 
     };
 
     SVIFT.table.data = {};
+
+
+    SVIFT.table.data.parse = function(data){
+
+      var tableData = [];
+
+      //Add column headers for first row
+      var headerRow = [""]; 
+      for (var i = 0; i < data.data.length; i++) {
+        headerRow.push(data.data[i].label)
+      }
+      tableData.push(headerRow);
+
+      //Add row data with lable
+      for (var i = 0; i < data.data[0].data.length; i++) {
+
+        var lable = data.lables[i] || "none";
+        var rowData = [lable];
+
+        for (var ii = 0; ii < data.data.length; ii++) {
+          rowData.push(data.data[ii].data[i]);
+        }
+
+        tableData.push(rowData)
+
+      }
+
+      return tableData;
+
+
+    }
 
     SVIFT.table.data.validate = function (data, obj) {
 
@@ -392,41 +455,73 @@
     SVIFT.table.values = {};
     SVIFT.table.values.update = function (obj) {
 
+      //remove placeholder
       d3.select(obj).attr('placeholder', null);
 
-      var dataPosition = d3.select(obj).attr("data-index");
+      //get index;
+      var rowIndex = d3.select(obj.parentNode.parentNode).attr("data-row-index");
+      var tdIndex = d3.select(obj).attr("data-td-index");
+
+      //get value
       var inputValue = d3.select(obj).node().value;
 
-      //put this in a function
-      inputValue = inputValue.replace(",", ".");
-      if (inputValue > 100 && SVIFT.vis.config.vis.type == "mosaic") {
-        inputValue = Number(inputValue.toString().slice(0, 2));
-        d3.select("#number").property("value", inputValue);
+      //if header is changed (A,B,C)
+      if(rowIndex==0){
+        console.log("header change")
+        SVIFT.vis.config.data.data[tdIndex-1].label = inputValue || '';
       }
-      //
-
-      var validData = SVIFT.table.data.validate(inputValue, obj);
-
-      if (validData) {
-        SVIFT.vis.config.data.data[dataPosition].data[0] = inputValue;
-        SVIFT.vis.redrawDebounce();
+      else{
+        //If Label is changed (line 1, 2)
+        if(tdIndex==0){
+          console.log("lable change")
+          SVIFT.vis.config.data.lables[rowIndex-1] = inputValue || '';
+        }
+        //if data is changed
+        else{
+          SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1] = Number(inputValue);
+          console.log("data change")
+        }
       }
+
+      SVIFT.vis.redrawDebounce();
+
+      console.log(SVIFT.vis.config.data)
+
+
+  
+      // var dataPosition = d3.select(obj).attr("data-index");
+      // var inputValue = d3.select(obj).node().value;
+
+      // //put this in a function
+      // inputValue = inputValue.replace(",", ".");
+      // if (inputValue > 100 && SVIFT.vis.config.vis.type == "mosaic") {
+      //   inputValue = Number(inputValue.toString().slice(0, 2));
+      //   d3.select("#number").property("value", inputValue);
+      // }
+      // //
+
+      // var validData = SVIFT.table.data.validate(inputValue, obj);
+
+      // if (validData) {
+      //   SVIFT.vis.config.data.data[dataPosition].data[0] = inputValue;
+      //   SVIFT.vis.redrawDebounce();
+      // }
 
 
 
     }
 
-    SVIFT.table.lables = {};
+    // SVIFT.table.lables = {};
 
-    SVIFT.table.lables.update = function (obj) {
+    // SVIFT.table.lables.update = function (obj) {
 
-      d3.select(obj).attr('placeholder', '');
+    //   d3.select(obj).attr('placeholder', '');
 
-      var dataPosition = d3.select(obj).attr("data-index");
-      var inputValue = d3.select(obj).node().value;
-      SVIFT.vis.config.data.data[dataPosition].label = inputValue || '';
+    //   var dataPosition = d3.select(obj).attr("data-index");
+    //   var inputValue = d3.select(obj).node().value;
+    //   SVIFT.vis.config.data.data[dataPosition].label = inputValue || '';
 
-    }
+    // }
 
     SVIFT.table.text = {};
 
@@ -697,10 +792,28 @@
             SVIFT.table.text.toogle(this, "#title-sub", "#subtitle", "subTitle", "Your sub title")
           });
 
+
         if (SVIFT.vis.config.data.format === "single-set") {
 
+          var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
+
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
-          var table = tableWrapper.append('table').append('tbody');
+          var table = tableWrapper.append('table').append('tbody')
+
+
+          SVIFT.table.row = table.selectAll('tr')
+            .data(tableData).enter()
+            .append('tr')
+            .attr("data-row-index", function (d, i) { return i })
+
+          SVIFT.table.td = SVIFT.table.row
+              .selectAll('td')
+              .data(function(d){return d}).enter()
+              .append('td')
+                .append('input')
+                .attr("data-td-index", function (d, i) { return i })
+                .attr('placeholder', function (d) { return d })
+                .on('input',function(){SVIFT.table.values.update(this)});
 
 
           // SVIFT.table.column.number = table.selectAll('tr')
@@ -718,36 +831,36 @@
           //   }, 500));
 
 
-          SVIFT.table.column.title = table.append('tr');
-          SVIFT.table.column.title.selectAll('td')
-            .data(SVIFT.vis.config.data.data).enter().append('td')
-            // .filter(function(d) {
-            //  if (SVIFT.vis.config.data.format === "single-set" ) {
-            //   return true; 
-            //  } else {
-            //   return false;
-            //  }
-            // })
-            .append('input')
-            .attr('placeholder', function (d) { return d.label })
-            .attr("data-index", function (d, i) { return i })
-            .on('input', function () {
-              SVIFT.table.lables.update(this);
-              SVIFT.vis.redrawDebounce();
-            });
+          // SVIFT.table.column.title = table.append('tr');
+          // SVIFT.table.column.title.selectAll('td')
+          //   .data(SVIFT.vis.config.data.data).enter().append('td')
+          //   // .filter(function(d) {
+          //   //  if (SVIFT.vis.config.data.format === "single-set" ) {
+          //   //   return true; 
+          //   //  } else {
+          //   //   return false;
+          //   //  }
+          //   // })
+          //   .append('input')
+          //   .attr('placeholder', function (d) { return d.label })
+          //   .attr("data-index", function (d, i) { return i })
+          //   .on('input', function () {
+          //     SVIFT.table.lables.update(this);
+          //     SVIFT.vis.redrawDebounce();
+          //   });
 
-          SVIFT.table.column.number = table.append('tr');
-          SVIFT.table.column.number.selectAll('td')
-            .data(SVIFT.vis.config.data.data).enter().append('td').append('input')
-            .attr('placeholder', function (d) { return d.data[0] })
-            .attr("data-index", function (d, i) { return i })
-            .on('input', function () {
-              SVIFT.table.values.update(this);
-              // if(ok){
-              //   SVIFT.vis.redrawDebounce();
-              // }
+          // SVIFT.table.column.number = table.append('tr');
+          // SVIFT.table.column.number.selectAll('td')
+          //   .data(SVIFT.vis.config.data.data).enter().append('td').append('input')
+          //   .attr('placeholder', function (d) { return d.data[0] })
+          //   .attr("data-index", function (d, i) { return i })
+          //   .on('input', function () {
+          //     SVIFT.table.values.update(this);
+          //     // if(ok){
+          //     //   SVIFT.vis.redrawDebounce();
+          //     // }
 
-            });
+          //   });
 
 
           var editColButtons = tableWrapper.append('div')
