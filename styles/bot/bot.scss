@@ -149,6 +149,7 @@
 }
 
 .cb-bubble .bubble-ctn-human {
+    display: flex;
     background-color: #fff;
     border-bottom-right-radius: 0px;
     text-align: right;
@@ -160,7 +161,12 @@
 }
 
 .cb-bubble .bubble-ctn-bot {
+    display: flex;
     padding: $margin-small;
+}
+
+.emoji {
+    padding-left: 5px;
 }
 
 .cb-waiting {
@@ -652,23 +658,28 @@
         display: flex;
 
         span {
-            height: 40px;
-            width: 40px;
+            height: 42px;
+            width: 42px;
             text-align: center;
             transition: all 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
             padding: 10px;
+            margin: 5px;
             color: $text-subheading;
             border-radius: $border-radius-circle;
             font-family: 'svift-iconfont';
-            border: $border-default;
+            border: $border-thick-default;
         }
 
         .complete {
             background-color: $svift-human;
             color: #fff;
-            border: $border-svift;
+            border: $border-thick-svift;
         }
     }
 }
+
+// .loader-wrapper {
+//     // display: flex;
+// }
 
 @include spinner;

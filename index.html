@@ -936,7 +936,8 @@
         }
 
         function appendText(bubble, options, callback) {
-          bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
+          bubble.attr('class', 'bubble-ctn-' + options.class).append('div')
+            // .style("display", "inline-flex")
             .style("width", "50px")
             .html(options.value)
             .transition()
@@ -1012,11 +1013,11 @@
         SVIFT.status.rows.rowTwo = downloadWrapper.append('div')
           .attr('class', 'cb-status-row');
 
-        var otherText = ['embed', 'SVG', 'Video Sequence', 'GIF']
+        var formats = ['&#xe801', '&#xe804', '&#xe803', '&#xe802']
         var other = ['html', 'svg', 'png', 'gif'];
         SVIFT.status.rows.rowTwo.selectAll('span').data(other).enter()
           .append('span')
-          .text(function (d, i) { return otherText[i] })
+          .html(function (d, i) { return formats[i] })
           .attr('class', 'cb-status-btn')
           .attr('id', function (d) { return 'status-' + d });
 
@@ -1150,6 +1151,8 @@
           }, 1100)
 
         }, 1500)
+
+        d3.select('.loader').style('display', 'none');
       }
 
     });
