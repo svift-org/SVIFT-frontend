@@ -36,7 +36,8 @@
             </div>
             <div class="ct-body">
                 <div class="dl-preview"></div>
-                <div class="dl-links"></div>
+                <!-- <div class="dl-links"></div> -->
+                <div class="social-buttons"></div>
                 <div id="embed">
                     <div>Embed chart as iframe</div>
                     <textarea id="embed-text"></textarea>
@@ -129,7 +130,7 @@
 
 
 
-                var mainLink = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + id;
+                var mainLink = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + id + '/';
 
                 var social = [
                     {"name":"gif","icon":"gif","link": id + ".gif"},
@@ -153,6 +154,10 @@
                 ]
 
                 console.log(social,extra)
+
+                var socialButtons = d3.select('.social-buttons').selectAll('div').data(social).enter().append('div')
+                    .attr('class', function (d) { return 'social' })
+                    .attr('href', function (d) { return mainLink + d.link; })
 
 
 
