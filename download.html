@@ -58,6 +58,8 @@
             aws = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + id;
 
         d3.json(aws + '/contents.json', function (err, data) {
+
+            console.log(data)
             d3.select('#loading').style('display', 'none');
             if (err) {
                 d3.select('#error').style('display', 'block').html('We could not find your visualisation.<br />We only store visualisations for 10 days.');
@@ -73,29 +75,90 @@
 
                 var groups = [];
 
-                for (var key in data) {
-                    if (key != 'date' && key != 'html') {
-                        data[key].forEach(function (d, i) {
-                            data[key][i].link = aws + '/';
-                            switch (key) {
-                                case 'zips':
-                                    data[key][i].link += d.file + '.zip';
-                                    break;
-                                case 'social':
-                                    data[key][i].link += 'social/' + d.file + '.png';
-                                    break;
-                                case 'files':
-                                    data[key][i].link += id + '.' + d.file;
-                                    break;
-                            }
-                        });
-                        groups.push({
-                            key: key,
-                            value: data[key],
-                            title: "test"
-                        });
-                    }
-                }
+                // for (var key in data) {
+                //     if (key != 'date' && key != 'html') {
+                //         data[key].forEach(function (d, i) {
+                //             data[key][i].link = aws + '/';
+                //             switch (key) {
+                //                 case 'zips':
+                //                     data[key][i].link += d.file + '.zip';
+                //                     break;
+                //                 case 'social':
+                //                     data[key][i].link += 'social/' + d.file + '.png';
+                //                     break;
+                //                 case 'files':
+                //                     data[key][i].link += id + '.' + d.file;
+                //                     break;
+                //             }
+                //         });
+                //         groups.push({
+                //             key: key,
+                //             value: data[key],
+                //             title: "test"
+                //         });
+                //     }
+                // }
+
+
+                // for (var key in data) {
+                //     if (key != 'date' && key != 'html') {
+                //         data[key].forEach(function (d, i) {
+                //             data[key][i].link = aws + '/';
+                //             switch (key) {
+                //                 case 'zips':
+                //                     data[key][i].link += d.file + '.zip';
+                //                     break;
+                //                 case 'social':
+                //                     data[key][i].link += 'social/' + d.file + '.png';
+                //                     break;
+                //                 case 'files':
+                //                     data[key][i].link += id + '.' + d.file;
+                //                     break;
+                //             }
+                //         });
+                //         groups.push({
+                //             key: key,
+                //             value: data[key],
+                //             title: "test"
+                //         });
+                //     }
+                // }
+
+
+                // console.log(JSON.stringify(groups));
+
+
+
+                var mainLink = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + id;
+
+                var social = [
+                    {"name":"gif","icon":"gif","link": id + ".gif"},
+                    {"name":"Google","icon":"google","link":"social/google.png"},
+                    {"name":"Instagram","icon":"instagram","link":"social/instagram.png"},
+                    {"name":"linkedin","icon":"linkedin","link":"social/linkedin.png"},
+                    {"name":"Tumblr","icon":"tumblr","link":"social/tumblr.png"},
+                    {"name":"Twitter","icon":"twitter","link":"social/twitter.png"},
+                    {"name":"snapchat","icon":"snapchat","link":"social/snapchat.png"},
+                    {"name":"Facebook","icon":"facebook","link":"social/facebook.png"}
+                ];
+
+                var extra = [
+                    {"name":"All Renderings","icon":"zip","link": id + ".zip"},
+                    {"name":"SVG","icon":"svg","link": id + ".svg.zip"},
+                    {"name":"PNG Sequence","icon":"png","link": id + ".png.zip"},
+                    {"name":"horizontal","icon":"horizontal","link":"social/horizontal.png"},
+                    {"name":"square","icon":"square","link":"social/square.png"},
+                    {"name":"/vertical","icon":"/vertical","link":"social//vertical.png"}
+
+                ]
+
+                console.log(social,extra)
+
+
+
+
+
+
                 // console.log(groups);
                 var groups = d3.select('.dl-links').selectAll('div').data(groups).enter().append('div').attr('class', function (d) { return 'dl-groups ' + d.key });
                 groups.append('div').classed('dl-group-title', true).html(function (d) { return d.key });
