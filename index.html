@@ -218,6 +218,7 @@
               var statusCounter = 0;
               SVIFT.vis.render.token = rawData.response;
               console.log(jResponse)
+              var finished = false;
 
               for (var type in jResponse.full) {
 
@@ -231,9 +232,13 @@
               }
 
               //All things have been rendered stop request
-              if (statusCounter == 5) { clearInterval(inter); }
+              if (jResponse.status == 2) { 
 
-              SVIFT.vis.render.status.show()
+                clearInterval(inter); 
+                finished = true;
+              }
+
+              SVIFT.vis.render.status.show(finished)
 
             });
           }, 1000);
@@ -254,18 +259,15 @@
     }
 
 
-    SVIFT.vis.render.status.show = function () {
+    SVIFT.vis.render.status.show = function (finished) {
 
       if (SVIFT.vis.render.status.visible) {
 
         var status = SVIFT.vis.render.status.rendered;
-        var counter = 0;
 
         for (var type in status) {
 
           if (status[type]) {
-
-            counter++;
 
             if (type == 'social') {
               SVIFT.status.rows.rowOne.selectAll('span')
@@ -281,7 +283,7 @@
 
         }
 
-        if (counter == 5) {
+        if (finished) {
 
           setTimeout(function () {
 
@@ -326,28 +328,16 @@
 
       console.log(tableData);
 
-      // SVIFT.table.row.selectAll('tr')
-      //   .data(tableData).enter()
-      //   .selectAll('td')
-      //     .data(function(d){return d}).enter()
-      //     .append('td')
-      //       .append('input')
-      //       .attr("data-td-index", function (d, i) { return i })
-      //       .attr('placeholder', function (d) { return d })
-      //       .on('input',function(){SVIFT.table.values.update(this)});
 
-
-    SVIFT.table.row.selectAll('tr')
-      .data(tableData).enter();
-
-    SVIFT.table.td.selectAll('td')
-        .data(function(d){return d}).enter()
-        .append('td')
-          .append('input')
-          .attr("data-td-index", function (d, i) { return i })
-          .attr('placeholder', function (d) { return d })
-          .on('input',function(){SVIFT.table.values.update(this)});
-
+      SVIFT.table.row.selectAll('tr')
+        .data(tableData).enter()
+          .selectAll('td')
+          .data(function(d){console.log(d);return d}).enter()
+          .append('td')
+            .append('input')
+            .attr("data-td-index", function (d, i) { return i })
+            .attr('placeholder', function (d) { return d })
+            .on('input',function(){SVIFT.table.values.update(this)});
 
 
 
@@ -397,6 +387,8 @@
       SVIFT.vis.config.data.data.pop();
 
       var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
+
+       console.log(tableData);
 
       SVIFT.table.row.selectAll('tr')
         .data(tableData).enter()
@@ -798,7 +790,7 @@
           var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
-          var table = tableWrapper.append('table').append('tbody')
+          var table = tableWrapper.append('table').append('tbody');
 
 
           SVIFT.table.row = table.selectAll('tr')
