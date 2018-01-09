@@ -152,6 +152,33 @@ select {
   select:focus {
     outline: none !important; }
 
+.social-buttons {
+  display: flex;
+  font-family: 'svift-iconfont'; }
+
+.social {
+  width: 50px;
+  height: 50px;
+  background-color: #ddd;
+  border-radius: 50px;
+  flex: 1;
+  text-align: center;
+  padding-top: 15px;
+  text-decoration: none;
+  color: black; }
+
+.extra-buttons {
+  display: flex; }
+
+.extra {
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  border-radius: 50px;
+  flex: 1;
+  text-decoration: none;
+  color: black; }
+
 div.download {
   display: flex;
   height: 100vh;

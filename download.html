@@ -19,12 +19,7 @@
 
     <link rel="stylesheet" href="styles/app/normalize.css">
     <link rel="stylesheet" href="styles/download/download.css">
-    <!-- <style type="text/css">
-        #error,
-        #download {
-            display: none;
-        }
-    </style> -->
+
 </head>
 
 <body>
@@ -38,6 +33,7 @@
                 <div class="dl-preview"></div>
                 <!-- <div class="dl-links"></div> -->
                 <div class="social-buttons"></div>
+                <div class="extra-buttons"></div>
                 <div id="embed">
                     <div>Embed chart as iframe</div>
                     <textarea id="embed-text"></textarea>
@@ -132,15 +128,18 @@
 
                 var mainLink = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + id + '/';
 
+var socials = ['&#xf099', '&#xf09a', '&#xf0e1', '&#xf32d', '&#xf2ac'];
+
+
                 var social = [
-                    {"name":"gif","icon":"gif","link": id + ".gif"},
-                    {"name":"Google","icon":"google","link":"social/google.png"},
-                    {"name":"Instagram","icon":"instagram","link":"social/instagram.png"},
-                    {"name":"linkedin","icon":"linkedin","link":"social/linkedin.png"},
-                    {"name":"Tumblr","icon":"tumblr","link":"social/tumblr.png"},
-                    {"name":"Twitter","icon":"twitter","link":"social/twitter.png"},
-                    {"name":"snapchat","icon":"snapchat","link":"social/snapchat.png"},
-                    {"name":"Facebook","icon":"facebook","link":"social/facebook.png"}
+                    {"name":"gif","icon":"gif","link": id + ".gif","html":''},
+                    {"name":"Google","icon":"google","link":"social/google.png","html":''},
+                    {"name":"Instagram","icon":"instagram","link":"social/instagram.png","html":'&#xf32d'},
+                    {"name":"linkedin","icon":"linkedin","link":"social/linkedin.png","html":'&#xf0e1'},
+                    {"name":"Tumblr","icon":"tumblr","link":"social/tumblr.png","html":''},
+                    {"name":"Twitter","icon":"twitter","link":"social/twitter.png","html":'&#xf099'},
+                    {"name":"snapchat","icon":"snapchat","link":"social/snapchat.png","html":'&#xf2ac'},
+                    {"name":"Facebook","icon":"facebook","link":"social/facebook.png","html":'&#xf09a'}
                 ];
 
                 var extra = [
@@ -149,18 +148,28 @@
                     {"name":"PNG Sequence","icon":"png","link": id + ".png.zip"},
                     {"name":"horizontal","icon":"horizontal","link":"social/horizontal.png"},
                     {"name":"square","icon":"square","link":"social/square.png"},
-                    {"name":"/vertical","icon":"/vertical","link":"social//vertical.png"}
+                    {"name":"vertical","icon":"vertical","link":"social/vertical.png"}
 
                 ]
 
                 console.log(social,extra)
 
-                var socialButtons = d3.select('.social-buttons').selectAll('div').data(social).enter().append('div')
-                    .attr('class', function (d) { return 'social' })
+                var socialButtons = d3.select('.social-buttons').selectAll('span').data(social).enter()
+                    .append('a')
+                    .attr('class', 'social')
+                    .attr('target','#_blank')
                     .attr('href', function (d) { return mainLink + d.link; })
+                    .append('span')
+                    .html(function (d) { return d.html })
+                    .attr('title', function (d) { return d.name })
 
 
-
+                var extra = d3.select('.extra-buttons').selectAll('span').data(extra).enter()
+                    .append('a')
+                    .attr('class', 'extra')
+                    .attr('href', function (d) { return mainLink + d.link; })
+                    .append('span')
+                    .text(function (d) { return d.name })
 
 
 
