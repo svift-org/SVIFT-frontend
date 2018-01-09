@@ -1087,7 +1087,7 @@
         //start rendering process
         SVIFT.vis.render();
 
-        cb.addBubble({ type: 'text', value: 'Look you can preview your chart in different formats', class: 'bot', delay: 1500 }, function () {
+        cb.addBubble({ type: 'text', value: 'Look! You can even preview your chart in different sizes', class: 'bot', delay: 1500 }, function () {
 
           cb.addBubble({ type: 'resize', class: 'human' });
 
@@ -1112,7 +1112,7 @@
 
       doneRendering = function () {
 
-        cb.addBubble({ type: 'text', value: '<span>Get your charts here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + SVIFT.vis.render.token + '">www.svift.xyz/' + SVIFT.vis.render.token + '</a></span>', class: 'bot' });
+        cb.addBubble({ type: 'text', value: '<span>Your charts are now ready! Download them here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + SVIFT.vis.render.token + '">www.svift.xyz/' + SVIFT.vis.render.token + '</a></span>', class: 'bot' });
 
         setTimeout(function () {
 
