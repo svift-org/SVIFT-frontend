@@ -326,13 +326,10 @@
 
       var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
-      console.log(tableData);
-
-
-      SVIFT.table.row.selectAll('tr')
-        .data(tableData).enter()
+      SVIFT.table.table.selectAll('tr')
+        .data(tableData)
           .selectAll('td')
-          .data(function(d){console.log(d);return d}).enter()
+          .data(function(d){return d}).enter()
           .append('td')
             .append('input')
             .attr("data-td-index", function (d, i) { return i })
@@ -340,30 +337,8 @@
             .on('input',function(){SVIFT.table.values.update(this)});
 
 
-
-
-      // SVIFT.table.column.title.selectAll('td')
-      //   .data(SVIFT.vis.config.data.data).enter().append('td')
-      //   .append('input')
-      //   .attr('placeholder', function (d, i) { return alphabet[i] })
-      //   .attr("data-index", function (d, i) { return i })
-      //   .on('input', function () {
-      //     SVIFT.table.lables.update(this);
-      //     SVIFT.vis.redrawDebounce();
-      //   });
-
-      // SVIFT.table.column.number.selectAll('td')
-      //   .data(SVIFT.vis.config.data.data).enter()
-      //   .append('td').append('input')
-      //   .attr('placeholder', function (d) { console.log(d); return d.data[0] })
-      //   .attr("data-index", function (d, i) { return i })
-      //   .on('input', function () {
-      //     SVIFT.table.values.update(this);
-      //     // SVIFT.vis.redrawDebounce()
-      //   });
-
-
       SVIFT.vis.redrawDebounce();
+
 
       if (SVIFT.vis.config.data.data.length === SVIFT.table.maxCol) {
         d3.select(".column-editor-btn.btn-add").classed('disabled-btn', true);
@@ -387,8 +362,6 @@
       SVIFT.vis.config.data.data.pop();
 
       var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
-
-       console.log(tableData);
 
       SVIFT.table.row.selectAll('tr')
         .data(tableData).enter()
@@ -447,6 +420,8 @@
     SVIFT.table.values = {};
     SVIFT.table.values.update = function (obj) {
 
+      console.log(SVIFT.vis.config.data,obj)
+
       //remove placeholder
       d3.select(obj).attr('placeholder', null);
 
@@ -470,6 +445,7 @@
         }
         //if data is changed
         else{
+          console.log(SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1], inputValue)
           SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1] = Number(inputValue);
           console.log("data change")
         }
@@ -479,10 +455,6 @@
 
       console.log(SVIFT.vis.config.data)
 
-
-  
-      // var dataPosition = d3.select(obj).attr("data-index");
-      // var inputValue = d3.select(obj).node().value;
 
       // //put this in a function
       // inputValue = inputValue.replace(",", ".");
@@ -498,7 +470,6 @@
       //   SVIFT.vis.config.data.data[dataPosition].data[0] = inputValue;
       //   SVIFT.vis.redrawDebounce();
       // }
-
 
 
     }
@@ -790,10 +761,10 @@
           var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
           var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
-          var table = tableWrapper.append('table').append('tbody');
+          SVIFT.table.table = tableWrapper.append('table').append('tbody');
 
 
-          SVIFT.table.row = table.selectAll('tr')
+          SVIFT.table.row = SVIFT.table.table.selectAll('tr')
             .data(tableData).enter()
             .append('tr')
             .attr("data-row-index", function (d, i) { return i })
