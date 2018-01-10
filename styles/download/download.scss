@@ -44,43 +44,6 @@ select {
     }
 }
 
-
-
-
-.social-buttons{
-    display: flex;
-    font-family: 'svift-iconfont';
-}
-
-.social{
-width: 50px;
-height: 50px;
-background-color: #ddd;
-border-radius: 50px;
-flex: 1;
-text-align: center;
-padding-top: 15px;
-text-decoration: none;
-color: black;
-}
-
-
-.extra-buttons{
-    display: flex;
-}
-
-.extra{
-    width: 50px;
-    height: 50px;
-    background-color: blue;
-    border-radius: 50px;
-    flex: 1;
-    text-decoration: none;
-color: black;
-}
-
-
-
 div.download {
     display: flex;
     height: 100vh;
@@ -142,12 +105,66 @@ div.download {
                 flex-wrap: wrap;
                 margin: 20px 0;
 
-                .dl-groups {
-                    color: $svift-primary;
-                    font-family: $font-family-mono;
+                .social-buttons, .extra-buttons {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 80%;
+                    margin: 0 auto;
+                }
 
-                    .dl-group-title {
-                        margin-bottom: 5px;
+                .social {
+                    background-color: transparent;
+                    flex: 1;
+                    max-width: 42px;
+                    text-align: center;
+                    padding-top: 15px;
+                    text-decoration: none;
+                    padding: 10px;
+                    margin: 5px;
+                    color: $text-subheading;
+                    border-radius: $border-radius-circle;
+                    font-family: 'svift-iconfont';
+                    border: $border-thick-default;
+                    transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+                    display: flex;
+                    justify-content: center;
+
+                    &:hover {
+                        transform: translateY(3px);
+                        color: $white;
+                        background-color: $svift-human;
+                        border: $border-thick-svift;
+                    }
+
+                    &#gif {
+                        font-size: 14px;
+                        font-family: $font-family-bold;
+                    }
+                }
+
+                .extra {
+                    background-color: transparent;
+                    flex: 1;
+                    text-align: center;
+                    padding-top: 15px;
+                    text-decoration: none;
+                    padding: 10px;
+                    margin: 5px;
+                    color: $text-subheading;
+                    border-radius: $border-radius-circle;
+                    border: $border-thick-default;
+                    font-size: 13px;
+                    font-family: $font-family-bold;
+                    transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+                    display: flex;
+                    justify-content: center;
+
+                    &:hover {
+                        transform: translateY(3px);
+                        color: $white;
+                        background-color: $svift-human;
+                        border: $border-thick-svift;
                     }
                 }
             }
@@ -155,7 +172,7 @@ div.download {
             #embed {
                 font-family: $font-family-mono;
                 color: $svift-primary;
-                margin-top: 40px;
+                margin-top: 20px;
 
                 #embed-text {
                     color: $text-subheading;

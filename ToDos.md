@@ -54,9 +54,6 @@ html variables unused?!
 - style text toogle
 - fix loader (stop scrolling)
 
-Download page:
-- New group names: Socials, Formats, Collections
-- Order groups differently: horizontal/square -> files
 
 ## Hans
 - After the page has finished loading, visit heroku...../hello
