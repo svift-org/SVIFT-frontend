@@ -31,9 +31,10 @@
             </div>
             <div class="ct-body">
                 <div class="dl-preview"></div>
-                <!-- <div class="dl-links"></div> -->
-                <div class="social-buttons"></div>
-                <div class="extra-buttons"></div>
+                <div class="dl-links">
+                    <div class="social-buttons"></div>
+                    <div class="extra-buttons"></div>
+                </div>
                 <div id="embed">
                     <div>Embed chart as iframe</div>
                     <textarea id="embed-text"></textarea>
@@ -106,66 +107,66 @@
 
 
                 var social = [
-                    {"name":"gif","icon":"gif","link": id + ".gif","html":''},
-                    {"name":"Google","icon":"google","link":"social/google.png","html":'&#xf0d5'},
-                    {"name":"Instagram","icon":"instagram","link":"social/instagram.png","html":'&#xf32d'},
-                    {"name":"linkedin","icon":"linkedin","link":"social/linkedin.png","html":'&#xf0e1'},
-                    {"name":"Tumblr","icon":"tumblr","link":"social/tumblr.png","html":'&#xf173'},
-                    {"name":"Twitter","icon":"twitter","link":"social/twitter.png","html":'&#xf099'},
-                    {"name":"snapchat","icon":"snapchat","link":"social/snapchat.png","html":'&#xf2ac'},
-                    {"name":"Facebook","icon":"facebook","link":"social/facebook.png","html":'&#xf09a'}
+                    { "name": "Gif", "icon": "gif", "link": id + ".gif", "html": 'GIF' },
+                    { "name": "Facebook", "icon": "facebook", "link": "social/facebook.png", "html": '&#xf09a' },
+                    { "name": "Twitter", "icon": "twitter", "link": "social/twitter.png", "html": '&#xf099' },
+                    { "name": "Instagram", "icon": "instagram", "link": "social/instagram.png", "html": '&#xf32d' },
+                    { "name": "Google", "icon": "google", "link": "social/google.png", "html": '&#xf0d5' },
+                    { "name": "Linkedin", "icon": "linkedin", "link": "social/linkedin.png", "html": '&#xf0e1' },
+                    { "name": "Tumblr", "icon": "tumblr", "link": "social/tumblr.png", "html": '&#xf173' },
+                    { "name": "Snapchat", "icon": "snapchat", "link": "social/snapchat.png", "html": '&#xf2ac' },
+
                 ];
 
                 var extra = [
-                    {"name":"All Renderings","icon":"zip","link": id + ".zip"},
-                    {"name":"SVG","icon":"svg","link": "svg.zip"},
-                    {"name":"PNG Sequence","icon":"png","link": "png.zip"},
-                    {"name":"horizontal","icon":"horizontal","link":"social/horizontal.png"},
-                    {"name":"square","icon":"square","link":"social/square.png"},
-                    {"name":"vertical","icon":"vertical","link":"social/vertical.png"}
-
+                    { "name": "All charts", "icon": "zip", "link": id + ".zip" },
+                    { "name": "SVG sequence", "icon": "svg", "link": "svg.zip" },
+                    { "name": "PNG sequence", "icon": "png", "link": "png.zip" },
+                    { "name": "Horizontal", "icon": "horizontal", "link": "social/horizontal.png" },
+                    { "name": "Vertical", "icon": "vertical", "link": "social/vertical.png" },
+                    { "name": "Square", "icon": "square", "link": "social/square.png" }
                 ]
 
 
                 var socialButtons = d3.select('.social-buttons').selectAll('span').data(social).enter()
                     .append('a')
                     .attr('class', 'social')
-                    .attr('target','#_blank')
+                    .attr('id', function (d) { return d.icon })
+                    .attr('target', '#_blank')
                     .attr('href', function (d) { return mainLink + d.link; })
-                        .append('span')
-                        .html(function (d) { return d.html })
-                        .attr('title', function (d) { return d.name })
+                    .append('span')
+                    .html(function (d) { return d.html })
+                    .attr('title', function (d) { return d.name })
 
 
                 var extra = d3.select('.extra-buttons').selectAll('span').data(extra).enter()
                     .append('a')
                     .attr('class', 'extra')
-                    .attr('target','#_blank')
+                    .attr('target', '#_blank')
                     .attr('href', function (d) { return mainLink + d.link; })
-                        .append('span')
-                        .text(function (d) { return d.name })
+                    .append('span')
+                    .text(function (d) { return d.name })
 
 
 
-                // console.log(groups);
-                var groups = d3.select('.dl-links').selectAll('div').data(groups).enter().append('div').attr('class', function (d) { return 'dl-groups ' + d.key });
-                groups.append('div').classed('dl-group-title', true).html(function (d) { return d.key });
+                // var groups = d3.select('.dl-links').selectAll('div').data(groups).enter().append('div').attr('class', function (d) { return 'dl-groups ' + d.key });
+                // groups.append('div').classed('dl-group-title', true).html(function (d) { return d.key });
 
-                var dropdown = groups.append('select').attr('class', function (d) { return 'dl-dropdown ' + d.key })
-                dropdown.selectAll('option').data(function (d) { return d.value; }).enter()
-                    .append('option')
-                    .property('value', function (d) { return d.file; })
-                    .html(function (d) { return d.name; });
+                // var dropdown = groups.append('select').attr('class', function (d) { return 'dl-dropdown ' + d.key })
+                // dropdown.selectAll('option').data(function (d) { return d.value; }).enter()
+                //     .append('option')
+                //     .property('value', function (d) { return d.file; })
+                //     .html(function (d) { return d.name; });
 
-                dropdown.on('change', function () {
-                    onSelected();
-                });
+                // dropdown.on('change', function () {
+                //     onSelected();
+                // });
 
-                function onSelected() {
-                    selectValue = d3.select('.dl-dropdown').property('value')
-                    console.log('.dl-dropdown');
-                    window.open(aws + '/social/' + selectValue + '.png', '_blank');
-                };
+                // function onSelected() {
+                //     selectValue = d3.select('.dl-dropdown').property('value')
+                //     console.log('.dl-dropdown');
+                //     window.open(aws + '/social/' + selectValue + '.png', '_blank');
+                // };
 
                 // var groups = d3.select('.dl-links').selectAll('div').data(groups).enter().append('select').attr('class', function (d) { return 'group g-' + d.key; });
                 // groups.selectAll('.dl-icon').data(function (d) { return d.value; }).enter().append('option')

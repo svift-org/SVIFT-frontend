@@ -152,33 +152,6 @@ select {
   select:focus {
     outline: none !important; }
 
-.social-buttons {
-  display: flex;
-  font-family: 'svift-iconfont'; }
-
-.social {
-  width: 50px;
-  height: 50px;
-  background-color: #ddd;
-  border-radius: 50px;
-  flex: 1;
-  text-align: center;
-  padding-top: 15px;
-  text-decoration: none;
-  color: black; }
-
-.extra-buttons {
-  display: flex; }
-
-.extra {
-  width: 50px;
-  height: 50px;
-  background-color: blue;
-  border-radius: 50px;
-  flex: 1;
-  text-decoration: none;
-  color: black; }
-
 div.download {
   display: flex;
   height: 100vh;
@@ -223,15 +196,61 @@ div.download {
         justify-content: space-around;
         flex-wrap: wrap;
         margin: 20px 0; }
-        div.download .ct .ct-body .dl-links .dl-groups {
-          color: #71609b;
-          font-family: "DecimaMonoProBold", monospace; }
-          div.download .ct .ct-body .dl-links .dl-groups .dl-group-title {
-            margin-bottom: 5px; }
+        div.download .ct .ct-body .dl-links .social-buttons, div.download .ct .ct-body .dl-links .extra-buttons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 80%;
+          margin: 0 auto; }
+        div.download .ct .ct-body .dl-links .social {
+          background-color: transparent;
+          flex: 1;
+          max-width: 42px;
+          text-align: center;
+          padding-top: 15px;
+          text-decoration: none;
+          padding: 10px;
+          margin: 5px;
+          color: #9a9a9a;
+          border-radius: 100px;
+          font-family: 'svift-iconfont';
+          border: 2px solid #D8D8D8;
+          transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+          display: flex;
+          justify-content: center; }
+          div.download .ct .ct-body .dl-links .social:hover {
+            transform: translateY(3px);
+            color: #fff;
+            background-color: #75FABF;
+            border: 2px solid #75FABF; }
+          div.download .ct .ct-body .dl-links .social#gif {
+            font-size: 14px;
+            font-family: "InterfaceRegularBold"; }
+        div.download .ct .ct-body .dl-links .extra {
+          background-color: transparent;
+          flex: 1;
+          text-align: center;
+          padding-top: 15px;
+          text-decoration: none;
+          padding: 10px;
+          margin: 5px;
+          color: #9a9a9a;
+          border-radius: 100px;
+          border: 2px solid #D8D8D8;
+          font-size: 13px;
+          font-family: "InterfaceRegularBold";
+          transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+          display: flex;
+          justify-content: center; }
+          div.download .ct .ct-body .dl-links .extra:hover {
+            transform: translateY(3px);
+            color: #fff;
+            background-color: #75FABF;
+            border: 2px solid #75FABF; }
       div.download .ct .ct-body #embed {
         font-family: "DecimaMonoProBold", monospace;
         color: #71609b;
-        margin-top: 40px; }
+        margin-top: 20px; }
         div.download .ct .ct-body #embed #embed-text {
           color: #9a9a9a;
           font-family: "DecimaMonoProBold", monospace;
