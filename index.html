@@ -107,7 +107,7 @@
         "fontLables": "InterfaceRegular",
         "color": {
           "main": "#71609B",
-          "second": "#D8D8D8",
+          "second": "#9A9A9A",
           "background": "#fff",
           "dataColors": ["#434343", "#FF5858", "#99C3F3", "#FFF680", "#EF96FF", "#B9FF6C"]
         }
@@ -115,8 +115,6 @@
       "data": {
         "columns": ["Wert"],
         "types": ["int"],
-        // "format": "",
-        // "data": {"set1":[["A", 25], ["B", 20]],"set2":[["d", 25], ["e", 20]]},
         "data":
           [
             { "label": "A", "data": [25] },
@@ -143,6 +141,8 @@
         SVIFT.vis.config.data.format = visData.data.format;
         SVIFT.vis.config.data.data = visData.data.data;
         SVIFT.vis.config.data.lables = visData.data.lables;
+        SVIFT.vis.config.data.colors = visData.data.colors || null;
+
 
         var overlay = d3.select('#gui-1-overlay').html('');
 
@@ -525,9 +525,6 @@
 
 
 
-
-
-
     var cb;
 
     d3.json('./build/config.json', function (err, data) {
@@ -725,6 +722,7 @@
         bubble.style('background-color', '#fff'); //in css
         bubble.attr('class', 'cb-bubble-input');
 
+
         //title input
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input')
@@ -740,6 +738,7 @@
             SVIFT.table.text.toogle(this, "#title-main", "#title", "title", "Your title")
           });
 
+
         //sub title input
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
         subtitleWrapper.append('input')
@@ -754,6 +753,7 @@
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#title-sub", "#subtitle", "subTitle", "Your sub title")
           });
+
 
 
         //add table / input data
@@ -774,6 +774,8 @@
             }
           })
 
+        var colorCounter = 0;
+
         SVIFT.table.td = SVIFT.table.row
             .selectAll('td')
             .data(function(d){return d}).enter()
@@ -784,12 +786,20 @@
               }
             })
               .append('input')
-              .classed('number',function(d,i){
-                if(SVIFT.vis.config.data.format === "one-val"){
-                  return true
-                }else{
-                  false
+              .style('border-left',function(d,i){
+                if(i==0 && SVIFT.vis.config.data.format === "multi-set"){
+                  colorCounter++
+                  if(colorCounter!==1){
+                    return '3px solid ' + SVIFT.vis.config.data.colors[colorCounter-2]
+                  }
+                  else{return null}
+
+                  
                 }
+              })
+              .classed('number',function(d,i){
+                if(SVIFT.vis.config.data.format === "one-val"){return true}
+                else{false}
               })
               .attr("data-td-index", function (d, i) { return i })
               .attr('placeholder', function (d) { return d })
@@ -1027,7 +1037,7 @@
 
             cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
 
-              cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader">Loading...</div>', class: 'bot' });
+              cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader"></div>', class: 'bot' });
               cb.addBubble({ type: 'status', class: 'human' });
 
               SVIFT.vis.render.status.visible = true;

@@ -26,6 +26,7 @@
         ]
       ,
       "lables":["line 1","line 2","line 3"],
+      "colors":["#C71E1D","#FFB55F","#15607A"],
       "title": "Title here",
       "subTitle": "some sub title",
       "attribution": "created with svift",
