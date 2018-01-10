@@ -52,6 +52,7 @@ html variables unused?!
 - bubbles style
 - left side icon
 - style text toogle
+- fix loader (stop scrolling)
 
 Download page:
 - New group names: Socials, Formats, Collections

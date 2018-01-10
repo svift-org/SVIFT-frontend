@@ -144,15 +144,6 @@
         SVIFT.vis.config.data.data = visData.data.data;
         SVIFT.vis.config.data.lables = visData.data.lables;
 
-        // "multi-set"
-        // if (vistype == "columns") {
-        //   SVIFT.vis.config.data.format = "single-set"; //
-        //   SVIFT.vis.config.data.data = {"set1":[["A", 25], ["B", 20]],"set2":[["d", 25], ["e", 20]]}
-        // }
-
-
-        // {"set1":[["A", 25], ["B", 20]],"set2":[["d", 25], ["e", 20]]}
-
         var overlay = d3.select('#gui-1-overlay').html('');
 
         var vizContainer = overlay.append('div')
@@ -319,7 +310,7 @@
       var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
       var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1].data;
-      
+
       var newData = {};
       newData.label = alphabet[SVIFT.vis.config.data.data.length];
       newData.data = JSON.parse(JSON.stringify(lastEntry));
@@ -444,10 +435,30 @@
         }
         //if data is changed
         else{
-          SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1] = Number(inputValue);
+
+          inputValue = inputValue.replace(",", ".");
+          if (inputValue > 100 && SVIFT.vis.config.vis.type == "mosaic") {
+            inputValue = Number(inputValue.toString().slice(0, 2));
+            xx = d3.select(obj);
+            d3.select(obj).property("value", inputValue);
+            return
+          }
+
+          var validData = SVIFT.table.data.validate(inputValue, obj);
+
+          if (validData) {
+            SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1] = inputValue;
+          }else{
+            return
+          }
+
           console.log("data change")
         }
       }
+
+
+
+
 
       SVIFT.vis.redrawDebounce();
 
@@ -471,18 +482,6 @@
 
     }
 
-    // SVIFT.table.lables = {};
-
-    // SVIFT.table.lables.update = function (obj) {
-
-    //   d3.select(obj).attr('placeholder', '');
-
-    //   var dataPosition = d3.select(obj).attr("data-index");
-    //   var inputValue = d3.select(obj).node().value;
-    //   SVIFT.vis.config.data.data[dataPosition].label = inputValue || '';
-
-    // }
-
     SVIFT.table.text = {};
 
     SVIFT.table.text.update = function (selectorViz, selectorInput, selectorData, altText) {
@@ -496,10 +495,12 @@
 
     SVIFT.table.text.toogle = function (obj, selectorViz, selectorInput, selectorData, altText) {
 
+
       var hidden = d3.select(obj.parentNode).classed("hidden");
 
       if (!hidden) {
         d3.select(obj.parentNode).classed("hidden", true);
+        d3.select(obj.parentNode).select('input').attr('disabled',true);
 
         var inputText = "";
         SVIFT.vis.config.data[selectorData] = inputText;
@@ -508,6 +509,8 @@
 
       }
       else {
+        d3.select(obj.parentNode).select('input').attr('disabled',null);
+
         d3.select(obj.parentNode).classed("hidden", false);
 
         var inputText = d3.select(selectorInput).node().value;
@@ -753,80 +756,48 @@
           });
 
 
-        if (SVIFT.vis.config.data.format !== "one-val") {
+        //add table / input data
+        //parse table data
+        var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
-          var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
+        var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
 
-          var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
-          SVIFT.table.table = tableWrapper.append('table').append('tbody');
+        SVIFT.table.table = tableWrapper.append('table').append('tbody');
 
+        SVIFT.table.row = SVIFT.table.table.selectAll('tr')
+          .data(tableData).enter()
+          .append('tr')
+          .attr("data-row-index", function (d, i) { return i })
+          .style('display',function(d,i){
+            if(i==0 && (SVIFT.vis.config.data.format === "one-val")){
+              return 'none'
+            }
+          })
 
-          SVIFT.table.row = SVIFT.table.table.selectAll('tr')
-            .data(tableData).enter()
-            .append('tr')
-            .attr("data-row-index", function (d, i) { return i })
-
-          SVIFT.table.td = SVIFT.table.row
-              .selectAll('td')
-              .data(function(d){return d}).enter()
-              .append('td')
-              .style('display',function(d,i){
-                if(i==0 && SVIFT.vis.config.data.format === "single-set"){
-                  return 'none'
+        SVIFT.table.td = SVIFT.table.row
+            .selectAll('td')
+            .data(function(d){return d}).enter()
+            .append('td')
+            .style('display',function(d,i){
+              if(i==0 && (SVIFT.vis.config.data.format === "single-set" || SVIFT.vis.config.data.format === "one-val")){
+                return 'none'
+              }
+            })
+              .append('input')
+              .classed('number',function(d,i){
+                if(SVIFT.vis.config.data.format === "one-val"){
+                  return true
+                }else{
+                  false
                 }
               })
-                .append('input')
-                .attr("data-td-index", function (d, i) { return i })
-                .attr('placeholder', function (d) { return d })
-                .on('input',function(){SVIFT.table.values.update(this)});
+              .attr("data-td-index", function (d, i) { return i })
+              .attr('placeholder', function (d) { return d })
+              .on('input',function(){SVIFT.table.values.update(this)});
 
 
-          // SVIFT.table.column.number = table.selectAll('tr')
-          //   .data(SVIFT.vis.config.data.data).enter().append('tr')
-
-          // // SVIFT.table.column.number.each(function(d,i) { console.log(d); });
-
-          // SVIFT.table.column.number.selectAll('td')
-          //   .data(function(d){return d}).enter().append('td')
-          //   .append('td').append('input')
-          //   .attr('placeholder', function (d) {console.log(d); return d[1] })
-          //   .attr("data-index", function (d, i) { return i })
-          //   .on('input', SVIFT.helper.debouncer(function () {
-          //     SVIFT.table.values.update(this);
-          //   }, 500));
-
-
-          // SVIFT.table.column.title = table.append('tr');
-          // SVIFT.table.column.title.selectAll('td')
-          //   .data(SVIFT.vis.config.data.data).enter().append('td')
-          //   // .filter(function(d) {
-          //   //  if (SVIFT.vis.config.data.format === "single-set" ) {
-          //   //   return true; 
-          //   //  } else {
-          //   //   return false;
-          //   //  }
-          //   // })
-          //   .append('input')
-          //   .attr('placeholder', function (d) { return d.label })
-          //   .attr("data-index", function (d, i) { return i })
-          //   .on('input', function () {
-          //     SVIFT.table.lables.update(this);
-          //     SVIFT.vis.redrawDebounce();
-          //   });
-
-          // SVIFT.table.column.number = table.append('tr');
-          // SVIFT.table.column.number.selectAll('td')
-          //   .data(SVIFT.vis.config.data.data).enter().append('td').append('input')
-          //   .attr('placeholder', function (d) { return d.data[0] })
-          //   .attr("data-index", function (d, i) { return i })
-          //   .on('input', function () {
-          //     SVIFT.table.values.update(this);
-          //     // if(ok){
-          //     //   SVIFT.vis.redrawDebounce();
-          //     // }
-
-          //   });
-
+        //add remove data buttons
+        if (SVIFT.vis.config.data.format !== "one-val") {
 
           var editColButtons = tableWrapper.append('div')
             .classed('column-editor-wrapper', true);
@@ -849,21 +820,8 @@
             });
 
         }
-        //if single Number
-        if (SVIFT.vis.config.data.format === "one-val") {
 
-          bubble.append('input')
-            .classed('number', true)
-            .attr('id', 'number')
-            // .attr('type', 'number')
-            .attr('placeholder', function () { return SVIFT.vis.config.data.data[0].data[0] })
-            .attr("data-index", 0)
-            .on('input', function () {
-              SVIFT.table.values.update(this)
-            });
-
-        }
-
+        //source input
         var sourceWrapper = bubble.append('div').classed('source', true);
         sourceWrapper.append('input')
           .attr('id', 'source-input')
@@ -871,6 +829,7 @@
           .on('input', function () {
             SVIFT.table.text.update("#source", "#source-input", "source", "Source: Your source")
           });
+
         var toogleSource = sourceWrapper.append('div')
           .classed('icon-toggle', true)
           .on('click', function (d) {

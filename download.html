@@ -66,69 +66,43 @@
                 // d3.select('iframe').attr('src', aws + '/html/index.html');
                 d3.select('.dl-preview').append('img').attr('src', aws + '/social/instagram.png');
 
-                // console.log(data);
 
                 //TODO: if required, the data item holds the date when the vis was created : data.date
 
                 var groups = [];
 
-                // for (var key in data) {
-                //     if (key != 'date' && key != 'html') {
-                //         data[key].forEach(function (d, i) {
-                //             data[key][i].link = aws + '/';
-                //             switch (key) {
-                //                 case 'zips':
-                //                     data[key][i].link += d.file + '.zip';
-                //                     break;
-                //                 case 'social':
-                //                     data[key][i].link += 'social/' + d.file + '.png';
-                //                     break;
-                //                 case 'files':
-                //                     data[key][i].link += id + '.' + d.file;
-                //                     break;
-                //             }
-                //         });
-                //         groups.push({
-                //             key: key,
-                //             value: data[key],
-                //             title: "test"
-                //         });
-                //     }
-                // }
+                for (var key in data) {
+                    if (key != 'date' && key != 'html') {
+                        data[key].forEach(function (d, i) {
+                            data[key][i].link = aws + '/';
+                            switch (key) {
+                                case 'zips':
+                                    data[key][i].link += d.file + '.zip';
+                                    break;
+                                case 'social':
+                                    data[key][i].link += 'social/' + d.file + '.png';
+                                    break;
+                                case 'files':
+                                    data[key][i].link += id + '.' + d.file;
+                                    break;
+                            }
+                        });
+                        groups.push({
+                            key: key,
+                            value: data[key],
+                            title: "test"
+                        });
+                    }
+                }
 
+                console.log(groups)
 
-                // for (var key in data) {
-                //     if (key != 'date' && key != 'html') {
-                //         data[key].forEach(function (d, i) {
-                //             data[key][i].link = aws + '/';
-                //             switch (key) {
-                //                 case 'zips':
-                //                     data[key][i].link += d.file + '.zip';
-                //                     break;
-                //                 case 'social':
-                //                     data[key][i].link += 'social/' + d.file + '.png';
-                //                     break;
-                //                 case 'files':
-                //                     data[key][i].link += id + '.' + d.file;
-                //                     break;
-                //             }
-                //         });
-                //         groups.push({
-                //             key: key,
-                //             value: data[key],
-                //             title: "test"
-                //         });
-                //     }
-                // }
-
-
-                // console.log(JSON.stringify(groups));
 
 
 
                 var mainLink = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + id + '/';
 
-var socials = ['&#xf099', '&#xf09a', '&#xf0e1', '&#xf32d', '&#xf2ac'];
+                var socials = ['&#xf099', '&#xf09a', '&#xf0e1', '&#xf32d', '&#xf2ac'];
 
 
                 var social = [
@@ -144,32 +118,32 @@ var socials = ['&#xf099', '&#xf09a', '&#xf0e1', '&#xf32d', '&#xf2ac'];
 
                 var extra = [
                     {"name":"All Renderings","icon":"zip","link": id + ".zip"},
-                    {"name":"SVG","icon":"svg","link": id + ".svg.zip"},
-                    {"name":"PNG Sequence","icon":"png","link": id + ".png.zip"},
+                    {"name":"SVG","icon":"svg","link": "svg.zip"},
+                    {"name":"PNG Sequence","icon":"png","link": "png.zip"},
                     {"name":"horizontal","icon":"horizontal","link":"social/horizontal.png"},
                     {"name":"square","icon":"square","link":"social/square.png"},
                     {"name":"vertical","icon":"vertical","link":"social/vertical.png"}
 
                 ]
 
-                console.log(social,extra)
 
                 var socialButtons = d3.select('.social-buttons').selectAll('span').data(social).enter()
                     .append('a')
                     .attr('class', 'social')
                     .attr('target','#_blank')
                     .attr('href', function (d) { return mainLink + d.link; })
-                    .append('span')
-                    .html(function (d) { return d.html })
-                    .attr('title', function (d) { return d.name })
+                        .append('span')
+                        .html(function (d) { return d.html })
+                        .attr('title', function (d) { return d.name })
 
 
                 var extra = d3.select('.extra-buttons').selectAll('span').data(extra).enter()
                     .append('a')
                     .attr('class', 'extra')
+                    .attr('target','#_blank')
                     .attr('href', function (d) { return mainLink + d.link; })
-                    .append('span')
-                    .text(function (d) { return d.name })
+                        .append('span')
+                        .text(function (d) { return d.name })
 
 
 
