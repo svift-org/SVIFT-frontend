@@ -319,10 +319,10 @@
       var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
       var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1].data;
+      
       var newData = {};
       newData.label = alphabet[SVIFT.vis.config.data.data.length];
       newData.data = JSON.parse(JSON.stringify(lastEntry));
-
       SVIFT.vis.config.data.data.push(newData);
 
       var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
