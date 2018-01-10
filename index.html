@@ -323,7 +323,7 @@
       newData.label = alphabet[SVIFT.vis.config.data.data.length];
 
       //not working
-      newData.data = lastEntry;
+      newData.data = JSON.parse(JSON.stringify(lastEntry));
       //works
       //newData.data = [Math.round(Math.random()*10)]
 
