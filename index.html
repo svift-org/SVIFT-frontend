@@ -318,10 +318,15 @@
 
       var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-      var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1];
+      var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1].data;
       var newData = {};
       newData.label = alphabet[SVIFT.vis.config.data.data.length];
-      newData.data = lastEntry.data;
+
+      //not working
+      newData.data = lastEntry;
+      //works
+      //newData.data = [Math.round(Math.random()*10)]
+
       SVIFT.vis.config.data.data.push(newData);
 
       var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
@@ -420,8 +425,6 @@
     SVIFT.table.values = {};
     SVIFT.table.values.update = function (obj) {
 
-      console.log(SVIFT.vis.config.data,obj)
-
       //remove placeholder
       d3.select(obj).attr('placeholder', null);
 
@@ -445,7 +448,6 @@
         }
         //if data is changed
         else{
-          console.log(SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1], inputValue)
           SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1] = Number(inputValue);
           console.log("data change")
         }
@@ -453,7 +455,6 @@
 
       SVIFT.vis.redrawDebounce();
 
-      console.log(SVIFT.vis.config.data)
 
 
       // //put this in a function
