@@ -49,8 +49,8 @@ div.download {
     height: 100vh;
     overflow: hidden;
     background: #5C258D; /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6
-    // background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: -webkit-linear-gradient(to right top, $svift-primary, $svift-human);
     background: linear-gradient(to right top, $svift-primary, $svift-human);
     justify-content: center;
@@ -200,7 +200,7 @@ div.download {
         }
 
         .ct-foot {
-            margin: 2em 0 3em 0;
+            margin: 2em 0 2em 0;
             width: 70%;
             display: flex;
             font-size: 0.9em;
