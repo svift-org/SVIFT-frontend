@@ -321,11 +321,7 @@
       var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1].data;
       var newData = {};
       newData.label = alphabet[SVIFT.vis.config.data.data.length];
-
-      //not working
-      newData.data = lastEntry;
-      //works
-      //newData.data = [Math.round(Math.random()*10)]
+      newData.data = JSON.parse(JSON.stringify(lastEntry));
 
       SVIFT.vis.config.data.data.push(newData);
 
@@ -757,7 +753,7 @@
           });
 
 
-        if (SVIFT.vis.config.data.format === "single-set") {
+        if (SVIFT.vis.config.data.format !== "one-val") {
 
           var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
@@ -774,6 +770,11 @@
               .selectAll('td')
               .data(function(d){return d}).enter()
               .append('td')
+              .style('display',function(d,i){
+                if(i==0 && SVIFT.vis.config.data.format === "single-set"){
+                  return 'none'
+                }
+              })
                 .append('input')
                 .attr("data-td-index", function (d, i) { return i })
                 .attr('placeholder', function (d) { return d })

@@ -386,6 +386,12 @@
             flex: 4;
             margin: 15px 0;
 
+            tr:first-of-type {            
+                td:first-of-type {
+                    opacity: 0;
+                }
+            }
+
             td:first-of-type {
                 padding-left: 0;
             }
@@ -393,6 +399,7 @@
             td {
                 min-width: 50px;
             }
+
         }
     }
 

@@ -356,6 +356,8 @@
       overflow-x: auto;
       flex: 4;
       margin: 15px 0; }
+      .cb-bubble-input .table-wrapper table tr:first-of-type td:first-of-type {
+        opacity: 0; }
       .cb-bubble-input .table-wrapper table td:first-of-type {
         padding-left: 0; }
       .cb-bubble-input .table-wrapper table td {
