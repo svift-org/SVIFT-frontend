@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'svift-iconfont';
-  src: url('../font/svift-iconfont.eot?62341643');
-  src: url('../font/svift-iconfont.eot?62341643#iefix') format('embedded-opentype'),
-       url('../font/svift-iconfont.woff2?62341643') format('woff2'),
-       url('../font/svift-iconfont.woff?62341643') format('woff'),
-       url('../font/svift-iconfont.ttf?62341643') format('truetype'),
-       url('../font/svift-iconfont.svg?62341643#svift-iconfont') format('svg');
+  src: url('../font/svift-iconfont.eot?494332');
+  src: url('../font/svift-iconfont.eot?494332#iefix') format('embedded-opentype'),
+       url('../font/svift-iconfont.woff2?494332') format('woff2'),
+       url('../font/svift-iconfont.woff?494332') format('woff'),
+       url('../font/svift-iconfont.ttf?494332') format('truetype'),
+       url('../font/svift-iconfont.svg?494332#svift-iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'svift-iconfont';
-    src: url('../font/svift-iconfont.svg?62341643#svift-iconfont') format('svg');
+    src: url('../font/svift-iconfont.svg?494332#svift-iconfont') format('svg');
   }
 }
 */
@@ -62,6 +62,8 @@
 .icon-pencil:before { content: '\e804'; } /* '' */
 .icon-twitter:before { content: '\f099'; } /* '' */
 .icon-facebook:before { content: '\f09a'; } /* '' */
+.icon-gplus:before { content: '\f0d5'; } /* '' */
 .icon-linkedin:before { content: '\f0e1'; } /* '' */
+.icon-tumblr:before { content: '\f173'; } /* '' */
 .icon-snapchat:before { content: '\f2ac'; } /* '' */
 .icon-instagram:before { content: '\f32d'; } /* '' */
