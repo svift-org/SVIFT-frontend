@@ -14,6 +14,8 @@ MILESTONE 1 - presentation MIZ
 	- SVIFT: if folder exists > delete
 	- favicon not found
 	- change order of aws upload (add status 3)
+	- only last svg from sequence
+	- download square not working
 
 ## Alsino
 	- Abschlussbericht Alsino > Seb
