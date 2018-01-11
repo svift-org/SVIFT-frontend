@@ -26,6 +26,34 @@ cities ranking
 
 ## Seb
 
+pie/area/line
+
+stiftung > tester
+
+SCHRIFTEN EINFACHER BEARBEITEN, > json
+
+{
+	provider: google, typekit, custom
+	name: 
+	...
+}
+
+HTTPS
+
+Accessibility auf die Download Site
+
+AWS CREDITS KAUFEN
+
+Abschlussbericht Alsino > Seb
+
+Abschlusspräsentation > Media-Brunch > Update > Historie, Ausblick, Artikel bisher, Chatbot > SVIFT Zukunft
+
+clear AWS regularly
+
+statistics on heroku connect via firebase IDs
+
+SVIFT: if folder exists > delete
+
 - Fill "Docs" content (on additional info page)
 
 0: png background -> transparent > this has turned out to be tricky, working on it, turns out, transparent PNGs have weird distortions in the grey fonts?!
