@@ -44,15 +44,16 @@ html variables unused?!
 - Fix fonts in html export
 - check delete of folders
 
+
+
 ## Alsino
 - Fix Position spinner
-- Preview Thumbnail line chart
 - css nav bug
-- Contact social
+- nav show all the time
 - bubbles style
 - left side icon
 - style text toogle
-- fix loader (stop scrolling)
+- replace download icons in chatbot
 
 
 ## Hans
@@ -65,12 +66,8 @@ html variables unused?!
 
 - colors-> where in the data.json?
 - Two layouts for viz types
-- replace 'set1
 - Fix text labels when many data points or long labels
 - Ask for email input for link
-- Chatbot structure and navigation
-- download stuff directly from frontend
-- SVIFT.helper.debouncer for input fields
 - make all vis-modules responsive
 - counter-module -> set position according to font
 - Die Preview-Größen funzen teilweise nicht wirklich, weil die einfach zu klein sind. Um das zu umgehen könnte man das neue scale feature nutzen. Damit kann man die Größe verändern und der Inhalt wird währenddessen skaliert. Das mache ich zum Beispiel für die Retina renderings.
@@ -84,3 +81,4 @@ html variables unused?!
 - add feedback bubble (which vis type would you like to see included -> input)
 - Chatbot help -> "Can I help you with you data?""
 - fix bug -> nav and logo hiiden when viz is selected
+- responsive
