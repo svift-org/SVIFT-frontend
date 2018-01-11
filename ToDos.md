@@ -1,114 +1,127 @@
 # ToDos:
 ---
 
-## Prios:
-- Frontend - das Ende (
-    - Email yes/no
-    - asset download
 
 
+MILESTONE 1 - presentation MIZ
 
-## Next steps:
-- send animation length to backend
-- Add Category filter
+## Seb
+	- Pause gif between loops (in animation or gif meta data?) > there is no pause, i could duplicate the last or either first frame, duplicate frames shouldn't be too bad for filesize (SEB)
+	- Accessibility auf die Download Site
+	- AWS CREDITS KAUFEN
+	- Abschlusspräsentation > Media-Brunch > Update > Historie, Ausblick, Artikel bisher, Chatbot > SVIFT Zukunft
+	- validator for viz types
+	- SVIFT: if folder exists > delete
+	- favicon not found
+	- change order of aws upload (add status 3)
+
+## Alsino
+	- Abschlussbericht Alsino > Seb
+	- Fix Position spinner
+	- css nav bug
+	- nav show all the time
+	- bubbles style
+	- left side icon
+	- style text toogle
+	- replace download icons in chatbot
+	- WoW (not)
+
+## Hans
 - Handle font sizes
-- Pause gif between loops (in animation or gif meta data?) > there is no pause, i could duplicate the last or either first frame, duplicate frames shouldn't be too bad for filesize (SEB)
-- Direct posting to social media (twitter, fb, instagram)
+- nur desktop
+- scale function
+
+
+
 
 =======
+
+
+
+
+MILESTONE 2 - private testing small
+
+## Seb
+	- pie/area/line (optional)
+	- stiftung > tester
+	- SCHRIFTEN EINFACHER BEARBEITEN, > json
+		{
+			provider: google, typekit, custom
+			name: 
+			...
+		}
+	- clear AWS regularly
+## Alsino
+## Hans
+
+
+
+
+=======
+
+
+
+
+MILESTONE 3 - private testing big
+
+## Seb
+	- medium post: conversational
+	- db for feedback
+## Alsino
+## Hans
+	- After Resize we need to make sure to go back to the last/current keyframe, i have done a temporary fix in the renderer which jumps to the last frame after resizing the window, but this should be a default > module.playHead
+	- Two layouts for viz types
+	- make all vis-modules responsive
+	 - feedback text field
+
+
+
+
+=======
+
+
+
+
+MILESTONE 4 - public alpha
+
+## Seb
+	- Frontend - Email yes/no
+	- HTTPS
+	- statistics on heroku connect via firebase IDs
+	- Fill "Docs" content (on additional info page)
+	- 0: png background -> transparent > this has turned out to be tricky, working on it, turns out, transparent PNGs have weird distortions in the grey fonts?!
+	- legal disclaimer (cookies etc)
+
+## Alsino
+## Hans
+- Add Category filter
+- Direct posting to social media (twitter, fb, instagram)
+- If vis too small: warning!
+- hello message when user returns the second time
+
+
+
+
+=======
+
+
+
+
+Nice to have
+- send animation length to backend
+- Chatbot jQuery
+- colorpicker
+- Fix text labels when many data points or long labels
+- Show tooltips on charts
+- Show annotations (i.e. swoopy arrows)
+- Chatbot help -> "Can I help you with you data?""
+
+
+
+
 
 ## Test examples 
 zahlen taschendiebstähle
 zahlen verkehrsunfälle
 timeline
 cities ranking
-
-
-## Seb
-
-pie/area/line
-
-stiftung > tester
-
-SCHRIFTEN EINFACHER BEARBEITEN, > json
-
-{
-	provider: google, typekit, custom
-	name: 
-	...
-}
-
-HTTPS
-
-Accessibility auf die Download Site
-
-AWS CREDITS KAUFEN
-
-Abschlussbericht Alsino > Seb
-
-Abschlusspräsentation > Media-Brunch > Update > Historie, Ausblick, Artikel bisher, Chatbot > SVIFT Zukunft
-
-clear AWS regularly
-
-statistics on heroku connect via firebase IDs
-
-SVIFT: if folder exists > delete
-
-- Fill "Docs" content (on additional info page)
-
-0: png background -> transparent > this has turned out to be tricky, working on it, turns out, transparent PNGs have weird distortions in the grey fonts?!
-
-favicon not found
-
-html variables unused?!
-
-0: - Chatbot jQuery
-0: - medium post: conversational
-
-2: - Socials as SVG
-
-3: - Accessibility Module
-
-- Fix fonts in html export
-- check delete of folders
-
-
-
-## Alsino
-- Fix Position spinner
-- css nav bug
-- nav show all the time
-- bubbles style
-- left side icon
-- style text toogle
-- replace download icons in chatbot
-
-
-## Hans
-- If somebody tries to visualise something with a too small window loads of errors are coming up, we should probably define a min-width and -height and if the container is smaller we just show the svift logo and say the container is too small
-
-- After the page has finished loading, visit heroku...../hello
-	hello > will return the number of visits of the user, more importantly if the system has been ideling for a while, it takes a few seconds to get back to running. Calling hello in the beginning will make sure everything is up and running once we reach rendering...
-
-- Sometimes after rendering is done the final message is triggered multiple times
-
-- After Resize we need to make sure to go back to the last/current keyframe, i have done a temporary fix in the renderer which jumps to the last frame after resizing the window, but this should be a default > module.playHead
-
-- colors-> where in the data.json?
-- Two layouts for viz types
-- Fix text labels when many data points or long labels
-- Ask for email input for link
-- make all vis-modules responsive
-- counter-module -> set position according to font
-- Die Preview-Größen funzen teilweise nicht wirklich, weil die einfach zu klein sind. Um das zu umgehen könnte man das neue scale feature nutzen. Damit kann man die Größe verändern und der Inhalt wird währenddessen skaliert. Das mache ich zum Beispiel für die Retina renderings.
-
-## Future:
-- Legal Notes im Flow (By using the chatbot you agree to our legal notes (LINK).)
-- Show preview of stream for different uses, i.e. facebook, twitter 
-- Show tooltips on charts
-- Show annotations (i.e. swoopy arrows)
-- Style: Gradients in charts?
-- add feedback bubble (which vis type would you like to see included -> input)
-- Chatbot help -> "Can I help you with you data?""
-- fix bug -> nav and logo hiiden when viz is selected
-- responsive
