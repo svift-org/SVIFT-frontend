@@ -5,7 +5,7 @@
 - Frontend - das Ende (
     - Email yes/no
     - asset download
-- If somebody tries to visualise something with a too small window loads of errors are coming up, we should probably define a min-width and -height and if the container is smaller we just show the svift logo and say the container is too small
+
 
 
 ## Next steps:
@@ -57,6 +57,8 @@ html variables unused?!
 
 
 ## Hans
+- If somebody tries to visualise something with a too small window loads of errors are coming up, we should probably define a min-width and -height and if the container is smaller we just show the svift logo and say the container is too small
+
 - After the page has finished loading, visit heroku...../hello
 	hello > will return the number of visits of the user, more importantly if the system has been ideling for a while, it takes a few seconds to get back to running. Calling hello in the beginning will make sure everything is up and running once we reach rendering...
 
