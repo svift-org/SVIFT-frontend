@@ -107,7 +107,7 @@
         "fontLables": "InterfaceRegular",
         "color": {
           "main": "#71609B",
-          "second": "#D8D8D8",
+          "second": "#9A9A9A",
           "background": "#fff",
           "dataColors": ["#434343", "#FF5858", "#99C3F3", "#FFF680", "#EF96FF", "#B9FF6C"]
         }
@@ -115,8 +115,6 @@
       "data": {
         "columns": ["Wert"],
         "types": ["int"],
-        // "format": "",
-        // "data": {"set1":[["A", 25], ["B", 20]],"set2":[["d", 25], ["e", 20]]},
         "data":
           [
             { "label": "A", "data": [25] },
@@ -141,16 +139,10 @@
 
         SVIFT.vis.config.vis.type = vistype;
         SVIFT.vis.config.data.format = visData.data.format;
-        // SVIFT.vis.config.data.data = visData.data.data;
+        SVIFT.vis.config.data.data = visData.data.data;
+        SVIFT.vis.config.data.lables = visData.data.lables;
+        SVIFT.vis.config.data.colors = visData.data.colors || null;
 
-        // "multi-set"
-        // if (vistype == "columns") {
-        //   SVIFT.vis.config.data.format = "single-set"; //
-        //   SVIFT.vis.config.data.data = {"set1":[["A", 25], ["B", 20]],"set2":[["d", 25], ["e", 20]]}
-        // }
-
-
-        // {"set1":[["A", 25], ["B", 20]],"set2":[["d", 25], ["e", 20]]}
 
         var overlay = d3.select('#gui-1-overlay').html('');
 
@@ -217,6 +209,7 @@
               var statusCounter = 0;
               SVIFT.vis.render.token = rawData.response;
               console.log(jResponse)
+              var finished = false;
 
               for (var type in jResponse.full) {
 
@@ -230,9 +223,13 @@
               }
 
               //All things have been rendered stop request
-              if (statusCounter == 5) { clearInterval(inter); }
+              if (jResponse.status == 2) { 
 
-              SVIFT.vis.render.status.show()
+                clearInterval(inter); 
+                finished = true;
+              }
+
+              SVIFT.vis.render.status.show(finished)
 
             });
           }, 1000);
@@ -253,18 +250,15 @@
     }
 
 
-    SVIFT.vis.render.status.show = function () {
+    SVIFT.vis.render.status.show = function (finished) {
 
       if (SVIFT.vis.render.status.visible) {
 
         var status = SVIFT.vis.render.status.rendered;
-        var counter = 0;
 
         for (var type in status) {
 
           if (status[type]) {
-
-            counter++;
 
             if (type == 'social') {
               SVIFT.status.rows.rowOne.selectAll('span')
@@ -280,7 +274,7 @@
 
         }
 
-        if (counter == 5) {
+        if (finished) {
 
           setTimeout(function () {
 
@@ -297,54 +291,48 @@
 
     //Data input table
     SVIFT.table = {};
-    SVIFT.table.maxRows = 15;
-    SVIFT.table.minRows = 2;
+    SVIFT.table.maxCol = 15;
+    SVIFT.table.minCol = 2;
 
     SVIFT.table.column = {};
 
     SVIFT.table.column.add = function () {
 
-      if (SVIFT.vis.config.data.data.length >= SVIFT.table.minRows) {
+      if (SVIFT.vis.config.data.data.length >= SVIFT.table.minCol) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', false);
       }
 
-      if (SVIFT.vis.config.data.data.length === SVIFT.table.maxRows) {
+      if (SVIFT.vis.config.data.data.length === SVIFT.table.maxCol) {
         return
       }
 
 
       var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-      var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1];
-      console.log(lastEntry)
+      var lastEntry = SVIFT.vis.config.data.data[SVIFT.vis.config.data.data.length - 1].data;
+
       var newData = {};
       newData.label = alphabet[SVIFT.vis.config.data.data.length];
-      newData.data = [lastEntry.data[0]];
-      SVIFT.vis.config.data.data.push(newData)
+      newData.data = JSON.parse(JSON.stringify(lastEntry));
+      SVIFT.vis.config.data.data.push(newData);
 
-      SVIFT.table.column.title.selectAll('td')
-        .data(SVIFT.vis.config.data.data).enter().append('td')
-        .append('input')
-        .attr('placeholder', function (d, i) { return alphabet[i] })
-        .attr("data-index", function (d, i) { return i })
-        .on('input', function () {
-          SVIFT.table.lables.update(this);
-          SVIFT.vis.redrawDebounce();
-        });
+      var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
-      SVIFT.table.column.number.selectAll('td')
-        .data(SVIFT.vis.config.data.data).enter()
-        .append('td').append('input')
-        .attr('placeholder', function (d) { console.log(d); return d.data[0] })
-        .attr("data-index", function (d, i) { return i })
-        .on('input', function () {
-          SVIFT.table.values.update(this);
-          // SVIFT.vis.redrawDebounce()
-        });
+      SVIFT.table.table.selectAll('tr')
+        .data(tableData)
+          .selectAll('td')
+          .data(function(d){return d}).enter()
+          .append('td')
+            .append('input')
+            .attr("data-td-index", function (d, i) { return i })
+            .attr('placeholder', function (d) { return d })
+            .on('input',function(){SVIFT.table.values.update(this)});
+
 
       SVIFT.vis.redrawDebounce();
 
-      if (SVIFT.vis.config.data.data.length === SVIFT.table.maxRows) {
+
+      if (SVIFT.vis.config.data.data.length === SVIFT.table.maxCol) {
         d3.select(".column-editor-btn.btn-add").classed('disabled-btn', true);
       }
 
@@ -353,29 +341,61 @@
     SVIFT.table.column.remove = function () {
 
       var amountButtons = SVIFT.vis.config.data.data.length;
-      if (amountButtons === SVIFT.table.minRows) {
+      if (amountButtons === SVIFT.table.minCol) {
         return
       }
       if (amountButtons === 3) {
         d3.select(".column-editor-btn.btn-remove").classed('disabled-btn', true)
       }
-      if (amountButtons <= SVIFT.table.maxRows) {
+      if (amountButtons <= SVIFT.table.maxCol) {
         d3.select(".column-editor-btn.btn-add").classed('disabled-btn', false)
       }
 
       SVIFT.vis.config.data.data.pop();
 
-      SVIFT.table.column.title.selectAll('td')
-        .data(SVIFT.vis.config.data.data).exit().remove();
+      var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
-      SVIFT.table.column.number.selectAll('td')
-        .data(SVIFT.vis.config.data.data).exit().remove();
+      SVIFT.table.row.selectAll('tr')
+        .data(tableData).enter()
+        .selectAll('td')
+        .data(function(d){return d}).exit().remove();
 
       SVIFT.vis.redrawDebounce();
 
     };
 
     SVIFT.table.data = {};
+
+
+    SVIFT.table.data.parse = function(data){
+
+      var tableData = [];
+
+      //Add column headers for first row
+      var headerRow = [""]; 
+      for (var i = 0; i < data.data.length; i++) {
+        headerRow.push(data.data[i].label)
+      }
+      tableData.push(headerRow);
+
+      //Add row data with lable
+      for (var i = 0; i < data.data[0].data.length; i++) {
+
+        var lable = data.lables[i] || "none";
+        var rowData = [lable];
+
+        for (var ii = 0; ii < data.data.length; ii++) {
+          rowData.push(data.data[ii].data[i]);
+        }
+
+        tableData.push(rowData)
+
+      }
+
+      return tableData;
+
+
+    }
 
     SVIFT.table.data.validate = function (data, obj) {
 
@@ -392,39 +412,73 @@
     SVIFT.table.values = {};
     SVIFT.table.values.update = function (obj) {
 
+      //remove placeholder
       d3.select(obj).attr('placeholder', null);
 
-      var dataPosition = d3.select(obj).attr("data-index");
+      //get index;
+      var rowIndex = d3.select(obj.parentNode.parentNode).attr("data-row-index");
+      var tdIndex = d3.select(obj).attr("data-td-index");
+
+      //get value
       var inputValue = d3.select(obj).node().value;
 
-      //put this in a function
-      inputValue = inputValue.replace(",", ".");
-      if (inputValue > 100 && SVIFT.vis.config.vis.type == "mosaic") {
-        inputValue = Number(inputValue.toString().slice(0, 2));
-        d3.select("#number").property("value", inputValue);
+      //if header is changed (A,B,C)
+      if(rowIndex==0){
+        console.log("header change")
+        SVIFT.vis.config.data.data[tdIndex-1].label = inputValue || '';
       }
-      //
+      else{
+        //If Label is changed (line 1, 2)
+        if(tdIndex==0){
+          console.log("lable change")
+          SVIFT.vis.config.data.lables[rowIndex-1] = inputValue || '';
+        }
+        //if data is changed
+        else{
 
-      var validData = SVIFT.table.data.validate(inputValue, obj);
+          inputValue = inputValue.replace(",", ".");
+          if (inputValue > 100 && SVIFT.vis.config.vis.type == "mosaic") {
+            inputValue = Number(inputValue.toString().slice(0, 2));
+            xx = d3.select(obj);
+            d3.select(obj).property("value", inputValue);
+            return
+          }
 
-      if (validData) {
-        SVIFT.vis.config.data.data[dataPosition].data[0] = inputValue;
-        SVIFT.vis.redrawDebounce();
+          var validData = SVIFT.table.data.validate(inputValue, obj);
+
+          if (validData) {
+            SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1] = inputValue;
+          }else{
+            return
+          }
+
+          console.log("data change")
+        }
       }
 
 
 
-    }
 
-    SVIFT.table.lables = {};
 
-    SVIFT.table.lables.update = function (obj) {
+      SVIFT.vis.redrawDebounce();
 
-      d3.select(obj).attr('placeholder', '');
 
-      var dataPosition = d3.select(obj).attr("data-index");
-      var inputValue = d3.select(obj).node().value;
-      SVIFT.vis.config.data.data[dataPosition].label = inputValue || '';
+
+      // //put this in a function
+      // inputValue = inputValue.replace(",", ".");
+      // if (inputValue > 100 && SVIFT.vis.config.vis.type == "mosaic") {
+      //   inputValue = Number(inputValue.toString().slice(0, 2));
+      //   d3.select("#number").property("value", inputValue);
+      // }
+      // //
+
+      // var validData = SVIFT.table.data.validate(inputValue, obj);
+
+      // if (validData) {
+      //   SVIFT.vis.config.data.data[dataPosition].data[0] = inputValue;
+      //   SVIFT.vis.redrawDebounce();
+      // }
+
 
     }
 
@@ -441,10 +495,12 @@
 
     SVIFT.table.text.toogle = function (obj, selectorViz, selectorInput, selectorData, altText) {
 
+
       var hidden = d3.select(obj.parentNode).classed("hidden");
 
       if (!hidden) {
         d3.select(obj.parentNode).classed("hidden", true);
+        d3.select(obj.parentNode).select('input').attr('disabled',true);
 
         var inputText = "";
         SVIFT.vis.config.data[selectorData] = inputText;
@@ -453,6 +509,8 @@
 
       }
       else {
+        d3.select(obj.parentNode).select('input').attr('disabled',null);
+
         d3.select(obj.parentNode).classed("hidden", false);
 
         var inputText = d3.select(selectorInput).node().value;
@@ -462,9 +520,6 @@
       }
 
     }
-
-
-
 
 
 
@@ -667,6 +722,7 @@
         bubble.style('background-color', '#fff'); //in css
         bubble.attr('class', 'cb-bubble-input');
 
+
         //title input
         var titleWrapper = bubble.append('div').classed('title', true);
         titleWrapper.append('input')
@@ -681,6 +737,7 @@
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#title-main", "#title", "title", "Your title")
           });
+
 
         //sub title input
         var subtitleWrapper = bubble.append('div').classed('subtitle', true);
@@ -697,58 +754,60 @@
             SVIFT.table.text.toogle(this, "#title-sub", "#subtitle", "subTitle", "Your sub title")
           });
 
-        if (SVIFT.vis.config.data.format === "single-set") {
-
-          var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
-          var table = tableWrapper.append('table').append('tbody');
 
 
-          // SVIFT.table.column.number = table.selectAll('tr')
-          //   .data(SVIFT.vis.config.data.data).enter().append('tr')
+        //add table / input data
+        //parse table data
+        var tableData = SVIFT.table.data.parse(SVIFT.vis.config.data);
 
-          // // SVIFT.table.column.number.each(function(d,i) { console.log(d); });
+        var tableWrapper = bubble.append('div').attr("class", "table-wrapper");
 
-          // SVIFT.table.column.number.selectAll('td')
-          //   .data(function(d){return d}).enter().append('td')
-          //   .append('td').append('input')
-          //   .attr('placeholder', function (d) {console.log(d); return d[1] })
-          //   .attr("data-index", function (d, i) { return i })
-          //   .on('input', SVIFT.helper.debouncer(function () {
-          //     SVIFT.table.values.update(this);
-          //   }, 500));
+        SVIFT.table.table = tableWrapper.append('table').append('tbody');
+
+        SVIFT.table.row = SVIFT.table.table.selectAll('tr')
+          .data(tableData).enter()
+          .append('tr')
+          .attr("data-row-index", function (d, i) { return i })
+          .style('display',function(d,i){
+            if(i==0 && (SVIFT.vis.config.data.format === "one-val")){
+              return 'none'
+            }
+          })
+
+        var colorCounter = 0;
+
+        SVIFT.table.td = SVIFT.table.row
+            .selectAll('td')
+            .data(function(d){return d}).enter()
+            .append('td')
+            .style('display',function(d,i){
+              if(i==0 && (SVIFT.vis.config.data.format === "single-set" || SVIFT.vis.config.data.format === "one-val")){
+                return 'none'
+              }
+            })
+              .append('input')
+              .style('border-left',function(d,i){
+                if(i==0 && SVIFT.vis.config.data.format === "multi-set"){
+                  colorCounter++
+                  if(colorCounter!==1){
+                    return '3px solid ' + SVIFT.vis.config.data.colors[colorCounter-2]
+                  }
+                  else{return null}
+
+                  
+                }
+              })
+              .classed('number',function(d,i){
+                if(SVIFT.vis.config.data.format === "one-val"){return true}
+                else{false}
+              })
+              .attr("data-td-index", function (d, i) { return i })
+              .attr('placeholder', function (d) { return d })
+              .on('input',function(){SVIFT.table.values.update(this)});
 
 
-          SVIFT.table.column.title = table.append('tr');
-          SVIFT.table.column.title.selectAll('td')
-            .data(SVIFT.vis.config.data.data).enter().append('td')
-            // .filter(function(d) {
-            //  if (SVIFT.vis.config.data.format === "single-set" ) {
-            //   return true; 
-            //  } else {
-            //   return false;
-            //  }
-            // })
-            .append('input')
-            .attr('placeholder', function (d) { return d.label })
-            .attr("data-index", function (d, i) { return i })
-            .on('input', function () {
-              SVIFT.table.lables.update(this);
-              SVIFT.vis.redrawDebounce();
-            });
-
-          SVIFT.table.column.number = table.append('tr');
-          SVIFT.table.column.number.selectAll('td')
-            .data(SVIFT.vis.config.data.data).enter().append('td').append('input')
-            .attr('placeholder', function (d) { return d.data[0] })
-            .attr("data-index", function (d, i) { return i })
-            .on('input', function () {
-              SVIFT.table.values.update(this);
-              // if(ok){
-              //   SVIFT.vis.redrawDebounce();
-              // }
-
-            });
-
+        //add remove data buttons
+        if (SVIFT.vis.config.data.format !== "one-val") {
 
           var editColButtons = tableWrapper.append('div')
             .classed('column-editor-wrapper', true);
@@ -771,21 +830,8 @@
             });
 
         }
-        //if single Number
-        if (SVIFT.vis.config.data.format === "one-val") {
 
-          bubble.append('input')
-            .classed('number', true)
-            .attr('id', 'number')
-            // .attr('type', 'number')
-            .attr('placeholder', function () { return SVIFT.vis.config.data.data[0].data[0] })
-            .attr("data-index", 0)
-            .on('input', function () {
-              SVIFT.table.values.update(this)
-            });
-
-        }
-
+        //source input
         var sourceWrapper = bubble.append('div').classed('source', true);
         sourceWrapper.append('input')
           .attr('id', 'source-input')
@@ -793,6 +839,7 @@
           .on('input', function () {
             SVIFT.table.text.update("#source", "#source-input", "source", "Source: Your source")
           });
+
         var toogleSource = sourceWrapper.append('div')
           .classed('icon-toggle', true)
           .on('click', function (d) {
@@ -823,7 +870,8 @@
         }
 
         function appendText(bubble, options, callback) {
-          bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
+          bubble.attr('class', 'bubble-ctn-' + options.class).append('div')
+            // .style("display", "inline-flex")
             .style("width", "50px")
             .html(options.value)
             .transition()
@@ -899,11 +947,11 @@
         SVIFT.status.rows.rowTwo = downloadWrapper.append('div')
           .attr('class', 'cb-status-row');
 
-        var otherText = ['embed', 'SVG', 'Video Sequence', 'GIF']
+        var formats = ['&#xe801', '&#xe804', '&#xe803', '&#xe802']
         var other = ['html', 'svg', 'png', 'gif'];
         SVIFT.status.rows.rowTwo.selectAll('span').data(other).enter()
           .append('span')
-          .text(function (d, i) { return otherText[i] })
+          .html(function (d, i) { return formats[i] })
           .attr('class', 'cb-status-btn')
           .attr('id', function (d) { return 'status-' + d });
 
@@ -981,7 +1029,7 @@
         //start rendering process
         SVIFT.vis.render();
 
-        cb.addBubble({ type: 'text', value: 'Look you can preview your chart in different formats', class: 'bot', delay: 1500 }, function () {
+        cb.addBubble({ type: 'text', value: 'Look! You can even preview your chart in different sizes', class: 'bot', delay: 1500 }, function () {
 
           cb.addBubble({ type: 'resize', class: 'human' });
 
@@ -989,7 +1037,7 @@
 
             cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
 
-              cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader">Loading...</div>', class: 'bot' });
+              cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader"></div>', class: 'bot' });
               cb.addBubble({ type: 'status', class: 'human' });
 
               SVIFT.vis.render.status.visible = true;
@@ -1006,7 +1054,7 @@
 
       doneRendering = function () {
 
-        cb.addBubble({ type: 'text', value: '<span>Get your charts here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + SVIFT.vis.render.token + '">www.svift.xyz/' + SVIFT.vis.render.token + '</a></span>', class: 'bot' });
+        cb.addBubble({ type: 'text', value: '<span>Your charts are now ready! Download them here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + SVIFT.vis.render.token + '">www.svift.xyz/' + SVIFT.vis.render.token + '</a></span>', class: 'bot' });
 
         setTimeout(function () {
 
@@ -1037,6 +1085,8 @@
           }, 1100)
 
         }, 1500)
+
+        d3.select('.loader').style('display', 'none');
       }
 
     });

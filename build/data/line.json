@@ -1,0 +1,36 @@
+{
+    "params":{
+      "dev":true
+    },
+    "vis":{
+      "type":"line",
+      "title":"Line"
+    },
+    "style": {
+      "font": "DecimaMonoProBold",
+      "fontLables": "Arial",
+      "color": {
+        "main": "#71609B",
+        "second": "#D8D8D8",
+        "background": "#fff"
+      }
+    },
+    "data":{
+      "columns":["Text","Wert"],
+      "types":["string","int"],
+      "data":
+        [
+          {"label":"A","data":[4,3,1]},
+          {"label":"B","data":[2,4,2]},
+          {"label":"C","data":[5,9,4]}
+        ]
+      ,
+      "lables":["line 1","line 2","line 3"],
+      "colors":["#C71E1D","#FFB55F","#15607A"],
+      "title": "Title here",
+      "subTitle": "some sub title",
+      "attribution": "created with svift",
+      "source": "source: svift team",
+      "format":"multi-set"
+    }
+  }

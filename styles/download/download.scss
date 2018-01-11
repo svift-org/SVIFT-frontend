@@ -20,11 +20,39 @@ html, body {
     font-smoothing: antialiased;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 0;
+    font-size: 1em;
+    width: 100%;
+    padding: 10px;
+    border-radius: 2em;
+    border: $border-thick-svift;
+    font-family: $font-family-mono;
+    color: $text-subheading;
+    background-image: url("https://media.kulturbanause.de/2015/03/form-styling/select-arrow.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-color: $white;
+
+    &:focus {
+        outline: none !important;
+    }
+}
+
 div.download {
     display: flex;
     height: 100vh;
     overflow: hidden;
-    background-color: $svift-human;
+    background: #5C258D; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right top, $svift-primary, $svift-human);
+    background: linear-gradient(to right top, $svift-primary, $svift-human);
     justify-content: center;
     align-items: center;
 
@@ -36,13 +64,15 @@ div.download {
         align-items: center;
         background-color: white;
         width: 60%;
-        height: 60%;
+
+        // height: 60%;
         border-radius: $border-radius-default * 2;
         box-shadow: $box-shadow-default;
         transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 
         .ct-head {
             text-align: center;
+            margin: 3em 0 2em 0;
 
             h1 {
                 font-size: 1.7em;
@@ -58,31 +88,131 @@ div.download {
         }
 
         .ct-body {
-            margin: 4em 0 4em 0;
             width: 70%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+
+            .dl-preview {
+                text-align: center;
+
+                img {
+                    max-width: 40%;
+                    height: auto;
+                }
+            }
+
+            .dl-links {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                margin: 20px 0;
+
+                .social-buttons, .extra-buttons {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 80%;
+                    margin: 0 auto;
+                }
+
+                .social {
+                    background-color: transparent;
+                    flex: 1;
+                    max-width: 42px;
+                    text-align: center;
+                    padding-top: 15px;
+                    text-decoration: none;
+                    padding: 10px;
+                    margin: 5px;
+                    color: $text-subheading;
+                    border-radius: $border-radius-circle;
+                    font-family: 'svift-iconfont';
+                    border: $border-thick-default;
+                    transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+                    display: flex;
+                    justify-content: center;
+
+                    &:hover {
+                        transform: translateY(3px);
+                        color: $white;
+                        background-color: $svift-human;
+                        border: $border-thick-svift;
+                    }
+
+                    &#gif {
+                        font-size: 14px;
+                        font-family: $font-family-bold;
+                    }
+                }
+
+                .extra {
+                    background-color: transparent;
+                    flex: 1;
+                    text-align: center;
+                    padding-top: 15px;
+                    text-decoration: none;
+                    padding: 10px;
+                    margin: 5px;
+                    color: $text-subheading;
+                    border-radius: $border-radius-circle;
+                    border: $border-thick-default;
+                    font-size: 13px;
+                    font-family: $font-family-bold;
+                    transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+                    display: flex;
+                    justify-content: center;
+
+                    &:hover {
+                        transform: translateY(3px);
+                        color: $white;
+                        background-color: $svift-human;
+                        border: $border-thick-svift;
+                    }
+                }
+            }
+
+            #embed {
+                font-family: $font-family-mono;
+                color: $svift-primary;
+                margin-top: 20px;
+
+                #embed-text {
+                    color: $text-subheading;
+                    font-family: $font-family-mono;
+                    width: 100%;
+                    font-size: 0.9em;
+                    border: none;
+                }
+            }
+
+            // iframe {
+            //     height: 100px;
+            // }
 
             .dl-icon {
                 border-radius: $border-radius-circle;
-                box-shadow: $box-shadow-default;
-                transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
                 cursor: pointer;
 
                 &:hover {
-                    transform: translateY(5px);
-                    background-color: $svift-human;
+                    // transform: translateY(5px);
+                    // background-color: $svift-human;
+               
                 }
             }
         }
 
         .ct-foot {
+            margin: 2em 0 2em 0;
             width: 70%;
             display: flex;
             font-size: 0.9em;
             font-family: $font-family-mono;
-            color: $text-subheading;
+            color: $svift-primary;
+
+            .source {
+                a {
+                    text-decoration: none;
+                    color: $text-subheading;
+                }
+            }
         }
     }
 }

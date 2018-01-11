@@ -72,18 +72,17 @@ html variables unused?!
 - Fix fonts in html export
 - check delete of folders
 
+
+
 ## Alsino
+- Fix Position spinner
 - css nav bug
-- Contact social
+- nav show all the time
 - bubbles style
 - left side icon
-- del column button style
 - style text toogle
-- icons for twitter,facebook,instagram,pinterest,snapchat,google+,linkedin,tumblr
+- replace download icons in chatbot
 
-Download page:
-- reduce number of fonts on download page??
-- I have done an update to the download.html > every vis folder now contains a contents.json, which again contains info on what to expect, i have integrated this into the generation of the download content, but of course the layout is all messed up now. i also added an iframe to the download page so one, can see how an embed looks like
 
 ## Hans
 - After the page has finished loading, visit heroku...../hello
@@ -93,13 +92,10 @@ Download page:
 
 - After Resize we need to make sure to go back to the last/current keyframe, i have done a temporary fix in the renderer which jumps to the last frame after resizing the window, but this should be a default > module.playHead
 
+- colors-> where in the data.json?
 - Two layouts for viz types
-- replace 'set1
 - Fix text labels when many data points or long labels
 - Ask for email input for link
-- Chatbot structure and navigation
-- download stuff directly from frontend
-- SVIFT.helper.debouncer for input fields
 - make all vis-modules responsive
 - counter-module -> set position according to font
 - Die Preview-Größen funzen teilweise nicht wirklich, weil die einfach zu klein sind. Um das zu umgehen könnte man das neue scale feature nutzen. Damit kann man die Größe verändern und der Inhalt wird währenddessen skaliert. Das mache ich zum Beispiel für die Retina renderings.
@@ -113,3 +109,4 @@ Download page:
 - add feedback bubble (which vis type would you like to see included -> input)
 - Chatbot help -> "Can I help you with you data?""
 - fix bug -> nav and logo hiiden when viz is selected
+- responsive

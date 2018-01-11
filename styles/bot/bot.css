@@ -183,6 +183,7 @@
   border-bottom-left-radius: 0px; }
 
 .cb-bubble .bubble-ctn-human {
+  display: flex;
   background-color: #fff;
   border-bottom-right-radius: 0px;
   text-align: right;
@@ -193,7 +194,11 @@
   padding: 10px; }
 
 .cb-bubble .bubble-ctn-bot {
+  display: flex;
   padding: 10px; }
+
+.emoji {
+  padding-left: 5px; }
 
 .cb-waiting {
   width: 70px;
@@ -351,6 +356,8 @@
       overflow-x: auto;
       flex: 4;
       margin: 15px 0; }
+      .cb-bubble-input .table-wrapper table tr:first-of-type td:first-of-type {
+        opacity: 0; }
       .cb-bubble-input .table-wrapper table td:first-of-type {
         padding-left: 0; }
       .cb-bubble-input .table-wrapper table td {
@@ -532,19 +539,20 @@
   .cb-status-wrapper .cb-status-row {
     display: flex; }
     .cb-status-wrapper .cb-status-row span {
-      height: 40px;
-      width: 40px;
+      height: 42px;
+      width: 42px;
       text-align: center;
       transition: all 1.5s cubic-bezier(0.215, 0.61, 0.355, 1);
       padding: 10px;
+      margin: 5px;
       color: #9a9a9a;
       border-radius: 100px;
       font-family: 'svift-iconfont';
-      border: 1px solid #D8D8D8; }
+      border: 2px solid #D8D8D8; }
     .cb-status-wrapper .cb-status-row .complete {
       background-color: #75FABF;
       color: #fff;
-      border: 1px solid #75FABF; }
+      border: 2px solid #75FABF; }
 
 .loader,
 .loader:after {
@@ -555,10 +563,10 @@
 .loader {
   color: #e6e6e6;
   display: inline-block;
-  margin: 60px auto;
-  font-size: 10px;
+  margin: 0 10px;
+  padding-left: 5px;
+  font-size: 5px;
   position: relative;
-  text-indent: -9999em;
   border-top: 0.6em solid rgba(114, 244, 191, 0.2);
   border-right: 0.6em solid rgba(114, 244, 191, 0.2);
   border-bottom: 0.6em solid rgba(114, 244, 191, 0.2);
