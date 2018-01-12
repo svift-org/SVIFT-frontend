@@ -30,7 +30,6 @@ MILESTONE 1 - presentation MIZ
 
 ## Hans
 - Handle font sizes
-- nur desktop
 - scale function
 
 
