@@ -135,12 +135,16 @@ html, body {
       .app #gui-1 header .svift-logo {
         flex: 8;
         width: 100%;
-        height: 45px;
-        background-image: url("../../assets/img/wordmark-white.png");
-        background-repeat: no-repeat; }
-        @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
-          .app #gui-1 header .svift-logo {
-            background: url("../../assets/img/wordmark-white@2x.png"); } }
+        height: 45px; }
+        .app #gui-1 header .svift-logo a {
+          display: block;
+          height: 45px;
+          width: 30%;
+          background-image: url("../../assets/img/wordmark-white.png");
+          background-repeat: no-repeat; }
+          @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
+            .app #gui-1 header .svift-logo a {
+              background: url("../../assets/img/wordmark-white@2x.png"); } }
     .app #gui-1 nav {
       background-color: #fff;
       color: #75FABF;

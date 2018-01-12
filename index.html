@@ -25,9 +25,8 @@
   <div class="app">
     <div id="gui-1" class="gui">
       <header>
-
         <div class='svift-logo'>
-          <!-- <img src="assets/img/wordmark-white.png" alt="Svift Logo"> -->
+          <a href='index.html'></a>
         </div>
         <div class='burger'>
           <div class="bar1"></div>
@@ -72,12 +71,10 @@
   <script src="chatbot.js"></script>
   <script type="text/javascript">
 
-
-    //Check screen size
-    if (window.innerWidth <= 699){
-      alert("Sorry SVIFT isn't optimised for small screens just yet.")
-    }
-
+    // Show / hide Nav (needs to be cleaned up here..)
+    // var nav = d3.select('nav');
+    // var heightNav = nav.node().getBoundingClientRect().height;
+    // console.log(-heightNav);
 
     d3.select('.burger')
       .on('click', function () {
@@ -88,7 +85,6 @@
       .on('click', function () {
         d3.select('nav').style('top', '-400px');
       });
-
 
 
     var heroku = 'https://svift-backend.herokuapp.com';
@@ -147,39 +143,20 @@
         SVIFT.vis.config.data.colors = visData.data.colors || null;
 
 
-        //container left
-        var containerLeft = d3.select('#gui-1-overlay').html('');
+        var overlay = d3.select('#gui-1-overlay').html('');
 
-        var vizContainer = containerLeft.append('div')
+        var vizContainer = overlay.append('div')
           .attr('class', 'viz-container')
           .style('opacity', 0)
           .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
           .transition()
           .style('opacity', 1)
 
-
-        // vizContainer = containerLeft.append('div')
-        //   .attr('class', 'viz-container')
-        //   .style('opacity', 0)
-        //   .style('height', "500px")
-        //   .style('width', "500px")
-        //   .transition()
-        //   .style('opacity', 1)
-
-
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + SVIFT.vis.config.vis.type);
 
         var vis = SVIFT.vis[SVIFT.vis.config.vis.type](SVIFT.vis.config, d3.select('.viz-container'));
-        vis.setScale(true);
         vis.init();
         vis.start();
-
-
-        // d3.select(".viz-container")
-        //   .style("width","70%")
-        //   .style("height",(containerLeft.node().getBoundingClientRect().width * .7) + "px")
-
-
 
       })
 
@@ -208,8 +185,7 @@
 
       var containerWidth = d3.select(".viz-container").node().getBoundingClientRect().width;
       d3.select(".viz-container")
-        .style("height", (containerWidth / format[0]) * format[1] + "px")
-        .style("width", (containerWidth / format[0]) * format[1] + "px");
+        .style("height", (containerWidth / format[0]) * format[1] + "px");
 
     }
 
@@ -232,6 +208,7 @@
               var statusCounter = 0;
               SVIFT.vis.render.token = rawData.response;
               console.log(jResponse)
+              var finished = false;
 
               for (var type in jResponse.full) {
 
@@ -247,12 +224,11 @@
               //All things have been rendered stop request
               if (jResponse.status == 2) {
 
-                clearInterval(inter); 
-                SVIFT.vis.render.status.allRendered = true;
-
+                clearInterval(inter);
+                finished = true;
               }
 
-              SVIFT.vis.render.status.show()
+              SVIFT.vis.render.status.show(finished)
 
             });
           }, 1000);
@@ -264,8 +240,6 @@
     SVIFT.vis.render.status = {};
     SVIFT.vis.render.status.visible = false;
 
-    SVIFT.vis.render.status.allRendered = false;
-
     SVIFT.vis.render.status.rendered = {
       "gif": false,
       "html": false,
@@ -275,7 +249,7 @@
     }
 
 
-    SVIFT.vis.render.status.show = function () {
+    SVIFT.vis.render.status.show = function (finished) {
 
       if (SVIFT.vis.render.status.visible) {
 
@@ -299,7 +273,7 @@
 
         }
 
-        if (SVIFT.vis.render.status.allRendered) {
+        if (finished) {
 
           setTimeout(function () {
 
@@ -389,8 +363,8 @@
 
     };
 
-
     SVIFT.table.data = {};
+
 
     SVIFT.table.data.parse = function (data) {
 
@@ -434,7 +408,6 @@
 
     };
 
-
     SVIFT.table.values = {};
     SVIFT.table.values.update = function (obj) {
 
@@ -462,7 +435,6 @@
         //if data is changed
         else {
 
-          //put this in a function
           inputValue = inputValue.replace(",", ".");
           if (inputValue > 100 && SVIFT.vis.config.vis.type == "mosaic") {
             inputValue = Number(inputValue.toString().slice(0, 2));
@@ -483,10 +455,31 @@
         }
       }
 
+
+
+
+
       SVIFT.vis.redrawDebounce();
 
-    }
 
+
+      // //put this in a function
+      // inputValue = inputValue.replace(",", ".");
+      // if (inputValue > 100 && SVIFT.vis.config.vis.type == "mosaic") {
+      //   inputValue = Number(inputValue.toString().slice(0, 2));
+      //   d3.select("#number").property("value", inputValue);
+      // }
+      // //
+
+      // var validData = SVIFT.table.data.validate(inputValue, obj);
+
+      // if (validData) {
+      //   SVIFT.vis.config.data.data[dataPosition].data[0] = inputValue;
+      //   SVIFT.vis.redrawDebounce();
+      // }
+
+
+    }
 
     SVIFT.table.text = {};
 
