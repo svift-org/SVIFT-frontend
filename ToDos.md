@@ -19,14 +19,11 @@ MILESTONE 1 - presentation MIZ
 
 ## Alsino
 	- Abschlussbericht Alsino > Seb
-	- Fix Position spinner
-	- css nav bug
-	- nav show all the time
+	---
 	- bubbles style
 	- left side icon
 	- style text toogle
 	- replace download icons in chatbot
-	- WoW (not)
 
 ## Hans
 - Handle font sizes

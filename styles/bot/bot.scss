@@ -150,6 +150,7 @@
 
 .cb-bubble .bubble-ctn-human {
     display: flex;
+    align-items: center;
     background-color: #fff;
     border-bottom-right-radius: 0px;
     text-align: right;
@@ -157,7 +158,7 @@
     border: 3px solid $svift-human;
     border-radius: 2em;
     font-family: $font-family-bold;
-    padding: $margin-small;
+    padding: $margin-small * 2;
 }
 
 .cb-bubble .bubble-ctn-bot {
@@ -386,7 +387,7 @@
             flex: 4;
             margin: 15px 0;
 
-            tr:first-of-type {            
+            tr:first-of-type {
                 td:first-of-type {
                     opacity: 0;
                 }
@@ -399,7 +400,6 @@
             td {
                 min-width: 50px;
             }
-
         }
     }
 
