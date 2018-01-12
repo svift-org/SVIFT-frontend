@@ -139,7 +139,7 @@ html, body {
         .app #gui-1 header .svift-logo a {
           display: block;
           height: 45px;
-          width: 30%;
+          width: 50%;
           background-image: url("../../assets/img/wordmark-white.png");
           background-repeat: no-repeat; }
           @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
