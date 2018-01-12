@@ -245,11 +245,11 @@
               }
 
               //All things have been rendered stop request
-              if (jResponse.status == 2) { 
+              if (jResponse.status == 2) {
 
                 clearInterval(inter); 
                 SVIFT.vis.render.status.allRendered = true;
-                
+
               }
 
               SVIFT.vis.render.status.show()
@@ -345,13 +345,13 @@
 
       SVIFT.table.table.selectAll('tr')
         .data(tableData)
-          .selectAll('td')
-          .data(function(d){return d}).enter()
-          .append('td')
-            .append('input')
-            .attr("data-td-index", function (d, i) { return i })
-            .attr('placeholder', function (d) { return d })
-            .on('input',function(){SVIFT.table.values.update(this)});
+        .selectAll('td')
+        .data(function (d) { return d }).enter()
+        .append('td')
+        .append('input')
+        .attr("data-td-index", function (d, i) { return i })
+        .attr('placeholder', function (d) { return d })
+        .on('input', function () { SVIFT.table.values.update(this) });
 
 
       SVIFT.vis.redrawDebounce();
@@ -383,7 +383,7 @@
       SVIFT.table.row.selectAll('tr')
         .data(tableData).enter()
         .selectAll('td')
-        .data(function(d){return d}).exit().remove();
+        .data(function (d) { return d }).exit().remove();
 
       SVIFT.vis.redrawDebounce();
 
@@ -392,12 +392,12 @@
 
     SVIFT.table.data = {};
 
-    SVIFT.table.data.parse = function(data){
+    SVIFT.table.data.parse = function (data) {
 
       var tableData = [];
 
       //Add column headers for first row
-      var headerRow = [""]; 
+      var headerRow = [""];
       for (var i = 0; i < data.data.length; i++) {
         headerRow.push(data.data[i].label)
       }
@@ -449,18 +449,18 @@
       var inputValue = d3.select(obj).node().value;
 
       //if header is changed (A,B,C)
-      if(rowIndex==0){
+      if (rowIndex == 0) {
         console.log("header change")
-        SVIFT.vis.config.data.data[tdIndex-1].label = inputValue || '';
+        SVIFT.vis.config.data.data[tdIndex - 1].label = inputValue || '';
       }
-      else{
+      else {
         //If Label is changed (line 1, 2)
-        if(tdIndex==0){
+        if (tdIndex == 0) {
           console.log("lable change")
-          SVIFT.vis.config.data.lables[rowIndex-1] = inputValue || '';
+          SVIFT.vis.config.data.lables[rowIndex - 1] = inputValue || '';
         }
         //if data is changed
-        else{
+        else {
 
           //put this in a function
           inputValue = inputValue.replace(",", ".");
@@ -474,8 +474,8 @@
           var validData = SVIFT.table.data.validate(inputValue, obj);
 
           if (validData) {
-            SVIFT.vis.config.data.data[tdIndex-1].data[rowIndex-1] = inputValue;
-          }else{
+            SVIFT.vis.config.data.data[tdIndex - 1].data[rowIndex - 1] = inputValue;
+          } else {
             return
           }
 
@@ -506,7 +506,7 @@
 
       if (!hidden) {
         d3.select(obj.parentNode).classed("hidden", true);
-        d3.select(obj.parentNode).select('input').attr('disabled',true);
+        d3.select(obj.parentNode).select('input').attr('disabled', true);
 
         var inputText = "";
         SVIFT.vis.config.data[selectorData] = inputText;
@@ -515,7 +515,7 @@
 
       }
       else {
-        d3.select(obj.parentNode).select('input').attr('disabled',null);
+        d3.select(obj.parentNode).select('input').attr('disabled', null);
 
         d3.select(obj.parentNode).classed("hidden", false);
 
@@ -774,8 +774,8 @@
           .data(tableData).enter()
           .append('tr')
           .attr("data-row-index", function (d, i) { return i })
-          .style('display',function(d,i){
-            if(i==0 && (SVIFT.vis.config.data.format === "one-val")){
+          .style('display', function (d, i) {
+            if (i == 0 && (SVIFT.vis.config.data.format === "one-val")) {
               return 'none'
             }
           })
@@ -783,33 +783,33 @@
         var colorCounter = 0;
 
         SVIFT.table.td = SVIFT.table.row
-            .selectAll('td')
-            .data(function(d){return d}).enter()
-            .append('td')
-            .style('display',function(d,i){
-              if(i==0 && (SVIFT.vis.config.data.format === "single-set" || SVIFT.vis.config.data.format === "one-val")){
-                return 'none'
+          .selectAll('td')
+          .data(function (d) { return d }).enter()
+          .append('td')
+          .style('display', function (d, i) {
+            if (i == 0 && (SVIFT.vis.config.data.format === "single-set" || SVIFT.vis.config.data.format === "one-val")) {
+              return 'none'
+            }
+          })
+          .append('input')
+          .style('border-left', function (d, i) {
+            if (i == 0 && SVIFT.vis.config.data.format === "multi-set") {
+              colorCounter++
+              if (colorCounter !== 1) {
+                return '3px solid ' + SVIFT.vis.config.data.colors[colorCounter - 2]
               }
-            })
-              .append('input')
-              .style('border-left',function(d,i){
-                if(i==0 && SVIFT.vis.config.data.format === "multi-set"){
-                  colorCounter++
-                  if(colorCounter!==1){
-                    return '3px solid ' + SVIFT.vis.config.data.colors[colorCounter-2]
-                  }
-                  else{return null}
+              else { return null }
 
-                  
-                }
-              })
-              .classed('number',function(d,i){
-                if(SVIFT.vis.config.data.format === "one-val"){return true}
-                else{false}
-              })
-              .attr("data-td-index", function (d, i) { return i })
-              .attr('placeholder', function (d) { return d })
-              .on('input',function(){SVIFT.table.values.update(this)});
+
+            }
+          })
+          .classed('number', function (d, i) {
+            if (SVIFT.vis.config.data.format === "one-val") { return true }
+            else { false }
+          })
+          .attr("data-td-index", function (d, i) { return i })
+          .attr('placeholder', function (d) { return d })
+          .on('input', function () { SVIFT.table.values.update(this) });
 
 
         //add remove data buttons
@@ -877,7 +877,7 @@
 
         function appendText(bubble, options, callback) {
           bubble.attr('class', 'bubble-ctn-' + options.class).append('div')
-            // .style("display", "inline-flex")
+            .style("display", "flex")
             .style("width", "50px")
             .html(options.value)
             .transition()
@@ -1041,7 +1041,7 @@
 
           setTimeout(function () {
 
-            cb.addBubble({ type: 'select', value: [{ label: 'WoW!' }], class: 'human' }, function () {
+            cb.addBubble({ type: 'select', value: [{ label: 'Continue' }], class: 'human' }, function () {
 
               cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader"></div>', class: 'bot' });
               cb.addBubble({ type: 'status', class: 'human' });
