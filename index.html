@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="styles/app/normalize.css">
   <link rel="stylesheet" href="styles/app/app.css">
   <link rel="stylesheet" href="styles/bot/bot.css">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans|Roboto+Mono" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans|Roboto+Mono|Hind:700|Patua+One|Passion+One" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -106,8 +106,8 @@
       },
       "length": 3000,
       "style": {
-        "font": "Open Sans",
-        "fontLables": "InterfaceRegular",
+        "font": "Patua One", //"Open Sans",Patua One,Hind
+        "fontLables": "InterfaceRegularBold",
         "color": {
           "main": "#71609B",
           "second": "#9A9A9A",
@@ -125,8 +125,8 @@
           ]
         ,
         "lables": [null],
-        "title": "Your title",
-        "subTitle": "Your subtitle",
+        "title": "Look at this title",
+        "subTitle": "and what about a subtitle here?",
         "attribution": "made with svift.xyz",
         "source": "Source: Your source"
       }
@@ -150,21 +150,21 @@
         //container left
         var containerLeft = d3.select('#gui-1-overlay').html('');
 
+        // var vizContainer = containerLeft.append('div')
+        //   .attr('class', 'viz-container')
+        //   .style('opacity', 0)
+        //   .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
+        //   .transition()
+        //   .style('opacity', 1)
+
+
         var vizContainer = containerLeft.append('div')
           .attr('class', 'viz-container')
           .style('opacity', 0)
-          .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
-          .transition()
-          .style('opacity', 1)
-
-
-        // vizContainer = containerLeft.append('div')
-        //   .attr('class', 'viz-container')
-        //   .style('opacity', 0)
-        //   .style('height', "500px")
-        //   .style('width', "500px")
-        //   .transition()
-        //   .style('opacity', 1)
+          .style('height', "500px")
+          .style('width', "500px")
+          // .transition()
+          // .style('opacity', 1)
 
 
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + SVIFT.vis.config.vis.type);
@@ -175,9 +175,10 @@
         vis.start();
 
 
-        // d3.select(".viz-container")
-        //   .style("width","70%")
-        //   .style("height",(containerLeft.node().getBoundingClientRect().width * .7) + "px")
+        d3.select(".viz-container")
+          .style("width","70%")
+          .style("height",(containerLeft.node().getBoundingClientRect().width * .7) + "px")
+          .style('opacity', 1)
 
 
 
@@ -202,6 +203,12 @@
 
 
 
+    d3.select(window).on('resize.two', function(){
+
+      d3.select(".viz-container")
+        .style("height",(d3.select('#gui-1-overlay').node().getBoundingClientRect().width * .7) + "px")
+
+    });
 
 
     SVIFT.vis.resize = function (format) {
