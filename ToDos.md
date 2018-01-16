@@ -6,19 +6,19 @@
 MILESTONE 1 - presentation MIZ
 
 ## Seb
-	- Pause gif between loops (in animation or gif meta data?) > there is no pause, i could duplicate the last or either first frame, duplicate frames shouldn't be too bad for filesize (SEB)
+	✓ Pause gif between loops (in animation or gif meta data?) > there is no pause, i could duplicate the last or either first frame, duplicate frames shouldn't be too bad for filesize (SEB)
 	- Accessibility auf die Download Site
 	- AWS CREDITS KAUFEN
 	- Abschlusspräsentation > Media-Brunch > Update > Historie, Ausblick, Artikel bisher, Chatbot > SVIFT Zukunft
 	- validator for viz types
 	- SVIFT: if folder exists > delete
 	- favicon not found
-	- change order of aws upload (add status 3)
-	- only last svg from sequence
-	- download square not working
+	✓ change order of aws upload (add status 3)
+	✓ only last svg from sequence
+	✓ download square not working
 
 ## Alsino
-	- Abschlussbericht Alsino > Seb
+	✓ Abschlussbericht Alsino > Seb
 	---
 	- style text toogle ICONS!
 	- bubbles style
@@ -31,10 +31,10 @@ MILESTONE 1 - presentation MIZ
 - lone chart bug (see image in keybase public folder)
 
 
-
-
 =======
 
+- status > social => 1
+- Should we reduce frames per second? > less filesize, less pngs, overall faster
 
 
 
