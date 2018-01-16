@@ -454,10 +454,18 @@
         }
 
         .icon-toggle {
+            display: flex;
             flex: 1;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
             width: 30px;
-            background: url("../../assets/img/icon-toggle-off.svg") center center no-repeat;
+            font-family: "svift-iconfont";
+            color: $text-subheading;
+
+            &:before {
+                content: '\e806';
+            }
         }
     }
 

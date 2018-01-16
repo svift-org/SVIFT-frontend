@@ -20,14 +20,15 @@ MILESTONE 1 - presentation MIZ
 ## Alsino
 	- Abschlussbericht Alsino > Seb
 	---
+	- style text toogle ICONS!
 	- bubbles style
 	- left side icon
-	- style text toogle
 	- replace download icons in chatbot
 
 ## Hans
 - Handle font sizes
 - scale function
+- lone chart bug (see image in keybase public folder)
 
 
 

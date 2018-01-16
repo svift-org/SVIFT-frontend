@@ -89,13 +89,17 @@ html, body {
                 flex: 8;
                 width: 100%;
                 height: 45px;
-                background-image: url("../../assets/img/wordmark-white.png");
-                background-repeat: no-repeat;
 
-                // background-size: contain;
+                a {
+                    display: block;
+                    height: 45px;
+                    width: 50%;
+                    background-image: url("../../assets/img/wordmark-white.png");
+                    background-repeat: no-repeat;
 
-                @include retina {
-                    background: url("../../assets/img/wordmark-white@2x.png");
+                    @include retina {
+                        background: url("../../assets/img/wordmark-white@2x.png");
+                    }
                 }
             }
         }
@@ -212,12 +216,13 @@ html, body {
             width: 50%;
             background: $svift-primary;
             transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+            overflow: auto;
 
             div.thumb-wrapper {
                 display: flex;
                 flex-wrap: wrap;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: flex-start;
                 align-items: flex-end;
                 padding: 5vw;
 
