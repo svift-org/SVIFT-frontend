@@ -12,13 +12,16 @@ var base = [
 
 var template = fs.readFileSync('tests/template.html', 'utf8')
 
-var visualisations = ['all']
+var visualisations = ['all'], types = []
 
 for(var key in package.dependencies){
   if(key.substring(0,10) == 'svift-vis-'){
     visualisations.push(key)
+    types.push(key)
   }
 }
+
+fs.writeFileSync(__dirname+'/build/vis_types.json', JSON.stringify(types), 'utf8')
 
 var configJson = {}
 
