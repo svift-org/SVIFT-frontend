@@ -162,13 +162,6 @@
           // .style('opacity', 1)
 
 
-        // var vizContainer = overlay.append('div')
-        //   .attr('class', 'viz-container')
-        //   .style('opacity', 0)
-        //   .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
-        //   .transition()
-        //   .style('opacity', 1)
-
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + SVIFT.vis.config.vis.type);
 
         var vis = SVIFT.vis[SVIFT.vis.config.vis.type](SVIFT.vis.config, d3.select('.viz-container'));
@@ -194,9 +187,22 @@
       var data = SVIFT.vis.config;
 
       d3.select('.viz-container svg').remove();
+
+      d3.select(".viz-container")
+        .style('height', "500px")
+        .style('width', "500px")
+        .style('opacity', 0)
+
       var vis = SVIFT.vis[SVIFT.vis.config.vis.type](data, d3.select('.viz-container'));
+      vis.setScale(true);
       vis.init();
       vis.start();
+
+      d3.select(".viz-container")
+        .style("width","70%")
+        .style("height",(d3.select('#gui-1-overlay').node().getBoundingClientRect().width * .7) + "px")
+        .style('opacity', 1)
+
 
     }
 
@@ -411,7 +417,15 @@
       //Add row data with lable
       for (var i = 0; i < data.data[0].data.length; i++) {
 
-        var lable = data.lables[i] || "none";
+        // var lable = data.lables[i] || "none";
+        var lable;
+        if(data.lables == undefined){
+          lable = "none"
+        }
+        else{
+          lable =  data.lables[i] || "none";
+        }
+
         var rowData = [lable];
 
         for (var ii = 0; ii < data.data.length; ii++) {

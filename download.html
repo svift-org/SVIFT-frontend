@@ -53,7 +53,7 @@
 
     <script>
         var id = window.location.hash.substr(1),
-            aws = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + id;
+            aws = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output-dev/' + id;
 
         d3.json(aws + '/contents.json', function (err, data) {
 
@@ -101,7 +101,7 @@
 
 
 
-                var mainLink = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output/' + id + '/';
+                var mainLink = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output-dev/' + id + '/';
 
                 var socials = ['&#xf099', '&#xf09a', '&#xf0e1', '&#xf32d', '&#xf2ac'];
 
