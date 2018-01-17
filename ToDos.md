@@ -24,9 +24,9 @@ MILESTONE 1 - presentation MIZ
     ✓ Abschlussbericht Alsino > Seb
     ---
     ✓ style text toogle ICONS!
-    - bubbles style
-    - left side icon
+    ✓ left side icon
     - replace download icons in chatbot
+    - bubbles style
 
 ## Hans
 	- Handle font sizes
