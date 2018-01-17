@@ -550,7 +550,8 @@
   justify-content: center;
   flex-direction: column; }
   .cb-status-wrapper .cb-status-row {
-    display: flex; }
+    display: flex;
+    justify-content: flex-end; }
     .cb-status-wrapper .cb-status-row span {
       height: 42px;
       width: 42px;
@@ -561,7 +562,12 @@
       color: #9a9a9a;
       border-radius: 100px;
       font-family: "svift-iconfont";
-      border: 2px solid #D8D8D8; }
+      border: 2px solid #D8D8D8;
+      display: flex;
+      justify-content: center; }
+      .cb-status-wrapper .cb-status-row span:first-of-type {
+        font-size: 14px;
+        font-family: "InterfaceRegularBold"; }
     .cb-status-wrapper .cb-status-row .complete {
       background-color: #75FABF;
       color: #fff;

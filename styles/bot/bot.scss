@@ -688,6 +688,7 @@
 
   .cb-status-row {
     display: flex;
+    justify-content: flex-end;
 
     span {
       height: 42px;
@@ -700,6 +701,13 @@
       border-radius: $border-radius-circle;
       font-family: "svift-iconfont";
       border: $border-thick-default;
+      display: flex;
+      justify-content: center;
+
+      &:first-of-type {
+        font-size: 14px;
+        font-family: "InterfaceRegularBold";
+      }
     }
 
     .complete {

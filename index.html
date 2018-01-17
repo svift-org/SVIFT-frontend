@@ -127,7 +127,7 @@
 
 
 
-    SVIFT.vis.format = [500,500,0.7]; //width,heigth,widthPercent
+    SVIFT.vis.format = [500, 500, 0.7]; //width,heigth,widthPercent
 
     SVIFT.vis.init = function (vistype) {
 
@@ -144,8 +144,8 @@
 
 
         d3.select('#gui-1-overlay').html('')
-            .append('div')
-            .attr('class', 'viz-container')
+          .append('div')
+          .attr('class', 'viz-container')
 
         SVIFT.vis.redraw();
 
@@ -157,7 +157,7 @@
 
 
     SVIFT.vis.redrawDebounce = SVIFT.helper.debouncer(function () { SVIFT.vis.redraw() }, 500)
-    
+
     SVIFT.vis.redraw = function () {
 
       var type = SVIFT.vis.config.vis.type;
@@ -179,7 +179,7 @@
 
       d3.select(".viz-container")
         .style("width", (SVIFT.vis.format[2] * 100) + "%")
-        .style("height",height + "px")
+        .style("height", height + "px")
         .style('opacity', 1)
 
     }
@@ -191,7 +191,7 @@
       var height = (d3.select('#gui-1-overlay').node().getBoundingClientRect().width * SVIFT.vis.format[2]) / (SVIFT.vis.format[0] / SVIFT.vis.format[1]);
 
       d3.select(".viz-container")
-        .style("height",height + "px")
+        .style("height", height + "px")
 
 
     });
@@ -679,9 +679,9 @@
       cb.types['resize'] = function (bubble, options, callback) {
 
         var sizes = [
-          { 'name': 'square', 'format': [500, 500,0.7], 'pic': 'smile' },
-          { 'name': 'landscape', 'format': [750, 500,0.7], 'pic': 'smile' },
-          { 'name': 'portrait', 'format': [500, 750,0.4], 'pic': 'smile' },
+          { 'name': 'square', 'format': [500, 500, 0.7], 'pic': 'smile' },
+          { 'name': 'landscape', 'format': [750, 500, 0.7], 'pic': 'smile' },
+          { 'name': 'portrait', 'format': [500, 750, 0.4], 'pic': 'smile' },
 
         ];
 
@@ -944,9 +944,31 @@
 
         var socials = ['&#xf099', '&#xf09a', '&#xf0e1', '&#xf32d', '&#xf2ac'];
 
-        SVIFT.status.rows.rowOne.selectAll('span').data(socials).enter()
+        var social = [
+          { "name": "Gif", "icon": "gif", "link": "none" + ".gif", "html": 'GIF' },
+          { "name": "Facebook", "icon": "facebook", "link": "social/facebook.png", "html": '&#xf09a' },
+          { "name": "Twitter", "icon": "twitter", "link": "social/twitter.png", "html": '&#xf099' },
+          { "name": "Instagram", "icon": "instagram", "link": "social/instagram.png", "html": '&#xf32d' },
+          { "name": "Google", "icon": "google", "link": "social/google.png", "html": '&#xf0d5' },
+          { "name": "Linkedin", "icon": "linkedin", "link": "social/linkedin.png", "html": '&#xf0e1' },
+          { "name": "Tumblr", "icon": "tumblr", "link": "social/tumblr.png", "html": '&#xf173' },
+          { "name": "Snapchat", "icon": "snapchat", "link": "social/snapchat.png", "html": '&#xf2ac' },
+
+        ];
+
+        // var extra = [
+        //   { "name": "All charts", "icon": "zip", "link": id + ".zip" },
+        //   { "name": "SVG sequence", "icon": "svg", "link": "svg.zip" },
+        //   { "name": "PNG sequence", "icon": "png", "link": "png.zip" },
+        //   { "name": "Horizontal", "icon": "horizontal", "link": "social/horizontal.png" },
+        //   { "name": "Vertical", "icon": "vertical", "link": "social/vertical.png" },
+        //   { "name": "Square", "icon": "square", "link": "social/square.png" }
+        // ]
+
+
+        SVIFT.status.rows.rowOne.selectAll('span').data(social).enter()
           .append('span')
-          .html(function (d) { return d })
+          .html(function (d) { return d.html })
           .attr('class', 'cb-status-btn');
 
 

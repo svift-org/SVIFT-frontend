@@ -5,19 +5,19 @@
 MILESTONE 1 - presentation MIZ
 
 ## Seb
-	✓ Pause gif between loops (in animation or gif meta data?) > there is no pause, i could duplicate the last or either first frame, duplicate frames shouldn't be too bad for filesize (SEB)
-	- Accessibility auf die Download Site
-	- AWS CREDITS KAUFEN
-	- Abschlusspräsentation > Media-Brunch > Update > Historie, Ausblick, Artikel bisher, Chatbot > SVIFT Zukunft
-	- validator for viz types
-	- SVIFT: if folder exists > delete
-	- favicon not found
-	- add new fonts:  Roboto+Mono:700|Patua+One|Noto+Serif:700
-	- GIF not rendering correctly
-	✓ change order of aws upload (add status 3)
-	✓ only last svg from sequence
-	✓ download square not working
 
+    ✓ Pause gif between loops (in animation or gif meta data?) > there is no pause, i could duplicate the last or either first frame, duplicate frames shouldn't be too bad for filesize (SEB)
+    - Accessibility auf die Download Site
+    - AWS CREDITS KAUFEN
+    - Abschlusspräsentation > Media-Brunch > Update > Historie, Ausblick, Artikel bisher, Chatbot > SVIFT Zukunft
+    - validator for viz types
+    - SVIFT: if folder exists > delete
+    - favicon not found
+    - add new fonts:  Roboto+Mono:700|Patua+One|Noto+Serif:700
+    - GIF not rendering correctly
+    ✓ change order of aws upload (add status 3)
+    ✓ only last svg from sequence
+    ✓ download square not working
 
 ## Alsino
 
@@ -25,22 +25,20 @@ MILESTONE 1 - presentation MIZ
     ---
     ✓ style text toogle ICONS!
     ✓ left side icon
-    - replace download icons in chatbot
+    ✓ replace download icons in chatbot
     - bubbles style
+    - replace start screen viz
 
 ## Hans
-	- Handle font sizes
 
-
+    - Handle font sizes
 
 =======
-
 
 * status > social => 1
 * Should we reduce frames per second? > less filesize, less pngs, overall faster
 * let people know when wait is long
 * info pro version (in the break)
-
 
 MILESTONE 2 - private testing small
 
@@ -60,11 +58,7 @@ MILESTONE 2 - private testing small
 
 ## Hans
 
-
-
 =======
-
-
 
 MILESTONE 3 - private testing big
 
@@ -82,9 +76,7 @@ MILESTONE 3 - private testing big
     - make all vis-modules responsive
      - feedback text field
 
-
 =======
-
 
 MILESTONE 4 - public alpha
 
@@ -106,9 +98,7 @@ MILESTONE 4 - public alpha
 * If vis too small: warning!
 * hello message when user returns the second time
 
-
 =======
-
 
 Nice to have
 
