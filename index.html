@@ -143,11 +143,45 @@
         SVIFT.vis.config.data.colors = visData.data.colors || null;
 
 
+<<<<<<< HEAD
         d3.select('#gui-1-overlay').html('')
             .append('div')
             .attr('class', 'viz-container')
 
         SVIFT.vis.redraw();
+=======
+        var containerLeft = d3.select('#gui-1-overlay').html('');
+
+        // var vizContainer = containerLeft.append('div')
+        //   .attr('class', 'viz-container')
+        //   .style('opacity', 0)
+        //   .style('height', (d3.select("#gui-1-overlay").node().getBoundingClientRect().width * .7) + "px")
+        //   .transition()
+        //   .style('opacity', 1)
+
+
+        var vizContainer = containerLeft.append('div')
+          .attr('class', 'viz-container')
+          .style('opacity', 0)
+          .style('height', "500px")
+          .style('width', "500px")
+        // .transition()
+        // .style('opacity', 1)
+
+
+        d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + SVIFT.vis.config.vis.type);
+
+        var vis = SVIFT.vis[SVIFT.vis.config.vis.type](SVIFT.vis.config, d3.select('.viz-container'));
+        vis.setScale(true)
+        vis.init();
+        vis.start();
+
+
+        d3.select(".viz-container")
+          .style("width", "70%")
+          .style("height", (containerLeft.node().getBoundingClientRect().width * .7) + "px")
+          .style('opacity', 1)
+>>>>>>> b6ebe264a52b7504c26463129cd5e44fb4a270cd
 
 
       })
@@ -177,20 +211,29 @@
       var height = (d3.select('#gui-1-overlay').node().getBoundingClientRect().width * SVIFT.vis.format[2]) / (SVIFT.vis.format[0] / SVIFT.vis.format[1]);
 
       d3.select(".viz-container")
+<<<<<<< HEAD
         .style("width", (SVIFT.vis.format[2] * 100) + "%")
         .style("height",height + "px")
+=======
+        .style("width", "70%")
+        .style("height", (d3.select('#gui-1-overlay').node().getBoundingClientRect().width * .7) + "px")
+>>>>>>> b6ebe264a52b7504c26463129cd5e44fb4a270cd
         .style('opacity', 1)
 
     }
 
 
 
-    d3.select(window).on('resize.two', function(){
+    d3.select(window).on('resize.two', function () {
 
       var height = (d3.select('#gui-1-overlay').node().getBoundingClientRect().width * SVIFT.vis.format[2]) / (SVIFT.vis.format[0] / SVIFT.vis.format[1]);
 
       d3.select(".viz-container")
+<<<<<<< HEAD
         .style("height",height + "px")
+=======
+        .style("height", (d3.select('#gui-1-overlay').node().getBoundingClientRect().width * .7) + "px")
+>>>>>>> b6ebe264a52b7504c26463129cd5e44fb4a270cd
 
     });
 
@@ -396,11 +439,11 @@
 
         // var lable = data.lables[i] || "none";
         var lable;
-        if(data.lables == undefined){
+        if (data.lables == undefined) {
           lable = "none"
         }
-        else{
-          lable =  data.lables[i] || "none";
+        else {
+          lable = data.lables[i] || "none";
         }
 
         var rowData = [lable];
@@ -734,6 +777,8 @@
 
         var toggleTitle = titleWrapper.append('div')
           .classed('icon-toggle', true)
+          .classed('hidden', false)
+          .attr('id', 'titleToggle')
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#title-main", "#title", "title", "Your title")
           });
@@ -750,6 +795,7 @@
 
         var toggleSubTitle = subtitleWrapper.append('div')
           .classed('icon-toggle', true)
+          .attr('id', 'subtitleToggle')
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#title-sub", "#subtitle", "subTitle", "Your sub title")
           });
@@ -842,6 +888,7 @@
 
         var toogleSource = sourceWrapper.append('div')
           .classed('icon-toggle', true)
+          .attr('id', 'sourceToggle')
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#source", "#source-input", "source", "Source: Your source")
           });
