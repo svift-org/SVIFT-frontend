@@ -158,8 +158,8 @@
           .style('opacity', 0)
           .style('height', "500px")
           .style('width', "500px")
-          // .transition()
-          // .style('opacity', 1)
+        // .transition()
+        // .style('opacity', 1)
 
 
         d3.select('.viz-container').append('div').attr('class', 'viz-eyebrow').text('Selected chart type: ' + SVIFT.vis.config.vis.type);
@@ -171,8 +171,8 @@
 
 
         d3.select(".viz-container")
-          .style("width","70%")
-          .style("height",(containerLeft.node().getBoundingClientRect().width * .7) + "px")
+          .style("width", "70%")
+          .style("height", (containerLeft.node().getBoundingClientRect().width * .7) + "px")
           .style('opacity', 1)
 
 
@@ -199,8 +199,8 @@
       vis.start();
 
       d3.select(".viz-container")
-        .style("width","70%")
-        .style("height",(d3.select('#gui-1-overlay').node().getBoundingClientRect().width * .7) + "px")
+        .style("width", "70%")
+        .style("height", (d3.select('#gui-1-overlay').node().getBoundingClientRect().width * .7) + "px")
         .style('opacity', 1)
 
 
@@ -210,10 +210,10 @@
 
 
 
-    d3.select(window).on('resize.two', function(){
+    d3.select(window).on('resize.two', function () {
 
       d3.select(".viz-container")
-        .style("height",(d3.select('#gui-1-overlay').node().getBoundingClientRect().width * .7) + "px")
+        .style("height", (d3.select('#gui-1-overlay').node().getBoundingClientRect().width * .7) + "px")
 
     });
 
@@ -419,11 +419,11 @@
 
         // var lable = data.lables[i] || "none";
         var lable;
-        if(data.lables == undefined){
+        if (data.lables == undefined) {
           lable = "none"
         }
-        else{
-          lable =  data.lables[i] || "none";
+        else {
+          lable = data.lables[i] || "none";
         }
 
         var rowData = [lable];
@@ -778,6 +778,8 @@
 
         var toggleTitle = titleWrapper.append('div')
           .classed('icon-toggle', true)
+          .classed('hidden', false)
+          .attr('id', 'titleToggle')
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#title-main", "#title", "title", "Your title")
           });
@@ -794,6 +796,7 @@
 
         var toggleSubTitle = subtitleWrapper.append('div')
           .classed('icon-toggle', true)
+          .attr('id', 'subtitleToggle')
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#title-sub", "#subtitle", "subTitle", "Your sub title")
           });
@@ -886,6 +889,7 @@
 
         var toogleSource = sourceWrapper.append('div')
           .classed('icon-toggle', true)
+          .attr('id', 'sourceToggle')
           .on('click', function (d) {
             SVIFT.table.text.toogle(this, "#source", "#source-input", "source", "Source: Your source")
           });

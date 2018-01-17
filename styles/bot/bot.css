@@ -126,10 +126,13 @@
 .cb-segment {
   clear: both; }
 
-.cb-segment.cb-bot .cb-icon, .cb-segment.cb-bot .cb-bubble {
+.cb-segment.cb-bot .cb-icon,
+.cb-segment.cb-bot .cb-bubble {
   float: left; }
 
-.cb-segment.cb-human .cb-icon, .cb-segment.cb-human .cb-bubble-input, .cb-segment.cb-human .bubble-ctn-human {
+.cb-segment.cb-human .cb-icon,
+.cb-segment.cb-human .cb-bubble-input,
+.cb-segment.cb-human .bubble-ctn-human {
   float: right; }
 
 .cb-icon {
@@ -205,7 +208,9 @@
   width: 70px;
   padding: 5px; }
 @keyframes wave {
-  0%, 60%, 100% {
+  0%,
+    60%,
+    100% {
     transform: initial; }
   30% {
     transform: translateY(-5px);
@@ -243,7 +248,7 @@
     color: #000;
     transform: translateY(3px); }
   .cb-choice:before {
-    content: '';
+    content: "";
     display: inline-block;
     height: 0.75em;
     width: 0.7em;
@@ -308,11 +313,11 @@
         width: 30px;
         height: 30px;
         border-width: 2px;
-        border-color: #F4F4F4;
+        border-color: #f4f4f4;
         border-style: solid;
         border-image: none;
         background-color: #fff;
-        color: #F4F4F4;
+        color: #f4f4f4;
         border-radius: 100px;
         transition: background-color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
         cursor: pointer;
@@ -381,8 +386,12 @@
       color: #9a9a9a; }
   .cb-bubble-input .bad-input-data {
     background-color: #FF5858 !important; }
-  .cb-bubble-input .hidden {
-    background-color: red; }
+  .cb-bubble-input .hidden input::placeholder {
+    opacity: 0.2; }
+  .cb-bubble-input .hidden #titleToggle,
+  .cb-bubble-input .hidden #subtitleToggle,
+  .cb-bubble-input .hidden #sourceToggle {
+    background: url("../../assets/img/icon-toggle-on.svg") center center no-repeat; }
   .cb-bubble-input .title {
     display: flex; }
     .cb-bubble-input .title input {
@@ -393,18 +402,13 @@
       padding-top: 12px; }
       .cb-bubble-input .title input::placeholder {
         color: #75FABF;
-        font-size: 1.2em; }
+        font-size: 1.2em;
+        transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
     .cb-bubble-input .title .icon-toggle {
-      display: flex;
       flex: 1;
-      justify-content: center;
-      align-items: center;
       cursor: pointer;
       width: 30px;
-      font-family: "svift-iconfont";
-      color: #9a9a9a; }
-      .cb-bubble-input .title .icon-toggle:before {
-        content: '\e806'; }
+      background: url("../../assets/img/icon-toggle-off.svg") center center no-repeat; }
   .cb-bubble-input .subtitle {
     display: flex; }
     .cb-bubble-input .subtitle input {
@@ -414,7 +418,8 @@
       background-color: #eeeeee; }
       .cb-bubble-input .subtitle input::placeholder {
         color: #9a9a9a;
-        font-size: 1em; }
+        font-size: 1em;
+        transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
     .cb-bubble-input .subtitle .icon-toggle {
       flex: 1;
       cursor: pointer;
@@ -429,7 +434,8 @@
       background-color: #eeeeee; }
       .cb-bubble-input .source input::placeholder {
         color: #9a9a9a;
-        font-size: 1em; }
+        font-size: 1em;
+        transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
     .cb-bubble-input .source .icon-toggle {
       flex: 1;
       cursor: pointer;
@@ -503,7 +509,7 @@
         .cb-bubble-table .table-foot .selector select option {
           background: #222;
           border-top: 1px solid #444;
-          padding: .3em 1em .3em 1em; }
+          padding: 0.3em 1em 0.3em 1em; }
     .cb-bubble-table .table-foot .delete {
       flex: 1;
       text-align: right;
@@ -512,7 +518,7 @@
       cursor: pointer;
       transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
       .cb-bubble-table .table-foot .delete:before {
-        content: '';
+        content: "";
         background: url("../../assets/img/icon-delete.svg") no-repeat;
         display: inline-block;
         height: 1em;
@@ -521,7 +527,7 @@
         position: absolute;
         right: 105px; }
       .cb-bubble-table .table-foot .delete:hover {
-        color: #C01212; }
+        color: #c01212; }
 
 .cb-themes-wrapper {
   display: flex;
@@ -554,7 +560,7 @@
       margin: 5px;
       color: #9a9a9a;
       border-radius: 100px;
-      font-family: 'svift-iconfont';
+      font-family: "svift-iconfont";
       border: 2px solid #D8D8D8; }
     .cb-status-wrapper .cb-status-row .complete {
       background-color: #75FABF;
