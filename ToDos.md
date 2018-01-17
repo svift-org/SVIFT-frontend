@@ -35,7 +35,8 @@ MILESTONE 1 - presentation MIZ
 
 - status > social => 1
 - Should we reduce frames per second? > less filesize, less pngs, overall faster
-
+- let people know when wait is long
+- info pro version (in the break)
 
 
 MILESTONE 2 - private testing small
