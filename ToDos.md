@@ -13,6 +13,8 @@ MILESTONE 1 - presentation MIZ
 	- validator for viz types
 	- SVIFT: if folder exists > delete
 	- favicon not found
+	- add new fonts:  Roboto+Mono:700|Patua+One|Noto+Serif:700
+	- GIF not rendering correctly
 	✓ change order of aws upload (add status 3)
 	✓ only last svg from sequence
 	✓ download square not working
@@ -27,8 +29,6 @@ MILESTONE 1 - presentation MIZ
 
 ## Hans
 - Handle font sizes
-- scale function
-- lone chart bug (see image in keybase public folder)
 
 
 =======
