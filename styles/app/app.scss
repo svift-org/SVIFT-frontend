@@ -307,7 +307,7 @@ html, body {
                 border-radius: $border-radius-default * 2;
                 opacity: 0;
                 box-shadow: $box-shadow-default;
-                transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+                // transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 
                 div.viz-eyebrow {
                     text-align: center;
