@@ -10,7 +10,7 @@ MILESTONE 1 - presentation MIZ
     - Accessibility auf die Download Site
     - AWS CREDITS KAUFEN
     - Abschlusspräsentation > Media-Brunch > Update > Historie, Ausblick, Artikel bisher, Chatbot > SVIFT Zukunft
-    - validator for viz types
+    ✓ validator for viz types
     - SVIFT: if folder exists > delete
     - favicon not found
     - add new fonts:  Roboto+Mono:700|Patua+One|Noto+Serif:700
