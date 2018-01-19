@@ -238,7 +238,7 @@
                             }
 
                             //All things have been rendered stop request
-                            if (jResponse.status == 2) {
+                            if (jResponse.full.aws == 1) { //jResponse.status == 2
 
                                 clearInterval(inter);
                                 finished = true;
