@@ -552,6 +552,8 @@
   .cb-status-wrapper .cb-status-row {
     display: flex;
     justify-content: flex-end; }
+    .cb-status-wrapper .cb-status-row #status-html {
+      font-family: "svift-iconfont"; }
     .cb-status-wrapper .cb-status-row span {
       height: 42px;
       width: 42px;
@@ -565,7 +567,7 @@
       border: 2px solid #D8D8D8;
       display: flex;
       justify-content: center; }
-      .cb-status-wrapper .cb-status-row span:first-of-type {
+      .cb-status-wrapper .cb-status-row span:first-child {
         font-size: 14px;
         font-family: "InterfaceRegularBold"; }
     .cb-status-wrapper .cb-status-row .complete {

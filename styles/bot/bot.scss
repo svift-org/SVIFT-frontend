@@ -690,6 +690,10 @@
     display: flex;
     justify-content: flex-end;
 
+    #status-html {
+      font-family: "svift-iconfont";
+    }
+
     span {
       height: 42px;
       width: 42px;
@@ -704,7 +708,7 @@
       display: flex;
       justify-content: center;
 
-      &:first-of-type {
+      &:first-child {
         font-size: 14px;
         font-family: "InterfaceRegularBold";
       }
