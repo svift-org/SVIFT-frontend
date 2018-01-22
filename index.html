@@ -732,7 +732,7 @@
                     .attr('id', 'title')
                     .attr('placeholder', 'Add your title here')
                     .on('input', function () {
-                        SVIFT.table.text.update("#title-main", "#title", "title", "Your title")
+                        SVIFT.table.text.update("#title-main", "#title", "title", "Look at this title")
                     });
 
                 var toggleTitle = titleWrapper.append('div')
@@ -740,7 +740,7 @@
                     .classed('hidden', false)
                     .attr('id', 'titleToggle')
                     .on('click', function (d) {
-                        SVIFT.table.text.toogle(this, "#title-main", "#title", "title", "Your title")
+                        SVIFT.table.text.toogle(this, "#title-main", "#title", "title", "Look at this title")
                     });
 
 
@@ -750,14 +750,14 @@
                     .attr('id', 'subtitle')
                     .attr('placeholder', 'Add your subtitle here')
                     .on('input', function () {
-                        SVIFT.table.text.update("#title-sub", "#subtitle", "subTitle", "Your sub title")
+                        SVIFT.table.text.update("#title-sub", "#subtitle", "subTitle", "and what about a subtitle here?")
                     });
 
                 var toggleSubTitle = subtitleWrapper.append('div')
                     .classed('icon-toggle', true)
                     .attr('id', 'subtitleToggle')
                     .on('click', function (d) {
-                        SVIFT.table.text.toogle(this, "#title-sub", "#subtitle", "subTitle", "Your sub title")
+                        SVIFT.table.text.toogle(this, "#title-sub", "#subtitle", "subTitle", "and what about a subtitle here?")
                     });
 
 
@@ -902,7 +902,7 @@
                     { 'name': 'mercury', 'color': '#71609B', 'font': 'Patua One' },
                     { 'name': 'venus', 'color': '#FE9592', 'font': 'Noto Serif' },
                     { 'name': 'earth', 'color': '#B8E986', 'font': 'Roboto Mono' },
-                    { 'name': 'mars', 'color': '#FF5C5C', 'font': 'Patua One' },
+                    { 'name': 'mars', 'color': '#FF5C5C', 'font': 'Patua One' }, //E20036
                     { 'name': 'jupiter', 'color': '#75FABF', 'font': 'Noto Serif' },
                     { 'name': 'saturn', 'color': '#FBC469', 'font': 'Roboto Mono' },
                     { 'name': 'uranus', 'color': '#83C4FE', 'font': 'Patua One' },
