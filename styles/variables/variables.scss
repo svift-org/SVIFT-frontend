@@ -6,7 +6,8 @@
 /* Font families*/
 $font-family-mono: "DecimaMonoProBold", monospace;
 $font-family-sansDefault: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
-$font-family-sansItalic: "InterfaceRegularItalic", "Helvetica", "Arial", sans-serif;
+$font-family-sansItalic: "InterfaceRegularItalic", "Helvetica", "Arial",
+  sans-serif;
 $font-family-bold: "InterfaceRegularBold";
 $font-family-poppins: "Poppins", sans-serif;
 $font-family-merriweather: "Merriweather", serif;
@@ -26,28 +27,28 @@ $line-height-heading: 53px;
 
 /* Brand Colors */
 $svift-primary: rgba(113, 96, 155, 1);
-$svift-human: #75FABF;
+$svift-human: #75fabf;
 $svift-human-bright: rgb(168, 250, 213);
-$svift-delete: #FF5858;
+$svift-delete: #ff5858;
 
 /* Background Colors */
-$bg-light-grey: #F4F4F4;
+$bg-light-grey: #f4f4f4;
 $white: #fff;
 $black: #000;
 $table-background: rgb(238, 238, 238);
 
 /* Bot Colors */
-$bot-bubble: #E6E6E6;
-$bot-bubble-waiting-start: #98979C;
-$bot-bubble-waiting-end: #AFAFB2;
+$bot-bubble: #e6e6e6;
+$bot-bubble-waiting-start: #98979c;
+$bot-bubble-waiting-end: #afafb2;
 
 /* Text Colors */
-$text-bot: #3A3A3A;
+$text-bot: #3a3a3a;
 $text-subheading: #9a9a9a;
 $text-disabled: #9a9a9a;
 
 /* Button Colors */
-$ios-btn-default: #B8E986;
+$ios-btn-default: #b8e986;
 
 /* Box shadow*/
 $box-shadow-default: 0 0 30px rgba(0, 0, 0, 0.2);
@@ -65,6 +66,7 @@ $padding-bubble-inner: 10px 10px 10px 10px;
 /* Margin */
 $margin-default: 2em;
 $margin-small: 10px;
+$margin-medium: 15px;
 
 /* Border radii*/
 $border-radius-default: 4px;
@@ -73,9 +75,9 @@ $border-radius-circle: 100px;
 /* --- BORDERS --- */
 
 /* Borders */
-$border-default: 1px solid #D8D8D8;
-$border-disabled: 3px solid #D8D8D8;
-$border-svift: 1px solid #75FABF;
+$border-default: 1px solid #d8d8d8;
+$border-disabled: 3px solid #d8d8d8;
+$border-svift: 1px solid #75fabf;
 
-$border-thick-default: 2px solid #D8D8D8;
-$border-thick-svift: 2px solid #75FABF;
+$border-thick-default: 2px solid #d8d8d8;
+$border-thick-svift: 2px solid #75fabf;

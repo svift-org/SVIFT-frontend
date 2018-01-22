@@ -26,7 +26,7 @@ MILESTONE 1 - presentation MIZ
     ✓ style text toogle ICONS!
     ✓ left side icon
     ✓ replace download icons in chatbot
-    - bubbles style
+    ✓ bubbles style
     - replace start screen viz
 
 ## Hans

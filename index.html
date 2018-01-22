@@ -21,7 +21,6 @@
 </head>
 
 <body>
-
     <div class="app">
         <div id="gui-1" class="gui">
             <header>
@@ -34,11 +33,12 @@
                     <div class="bar3"></div>
                 </div>
             </header>
+            <div id="gui-1-overlay"></div>
             <main>
                 <h1>Your social chart tool</h1>
                 <div class="claim">
-                    <em>svift</em> is an open source tool to turn numbers into charts for social media.
-                    <br> It is easy, super fast and fun. Try our prototype now and let us know what you think.
+                    <em>svift</em> is an open source tool to turn numbers into charts for social media. It is easy, super fast
+                    and fun. Try our prototype now and let us know what you think.
                 </div>
             </main>
             <nav>
@@ -58,9 +58,7 @@
                     </li>
                 </ul>
             </nav>
-
             <div class="hero"></div>
-            <div id="gui-1-overlay"></div>
         </div>
         <div id="gui-2" class="gui">
         </div>
@@ -621,6 +619,8 @@
             function createThumbs() {
 
                 d3.select('#gui-1-overlay').style('left', '0');
+
+                // d3.select('#gui header').node().getBoundingClientRect().width()
 
                 var overlay = d3.select('#gui-1-overlay')
                     .style('background-color', '#75FABF')

@@ -99,7 +99,7 @@ html, body {
       line-height: 2;
       list-style-type: none; }
       .app nav ul li a {
-        color: #75FABF;
+        color: #75fabf;
         text-decoration: none;
         text-transform: uppercase;
         transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1); }
@@ -124,7 +124,7 @@ html, body {
       .app .wrapper header div.social {
         flex: 1; }
         .app .wrapper header div.social a {
-          color: #75FABF;
+          color: #75fabf;
           font-family: "DecimaMonoProBold", monospace;
           font-size: 1.1em;
           text-decoration: none;
@@ -135,7 +135,7 @@ html, body {
     .app .wrapper .content {
       width: 90%; }
       .app .wrapper .content h1 {
-        color: #75FABF;
+        color: #75fabf;
         font-family: "DecimaMonoProBold", monospace;
         font-size: 2em;
         width: fit-content;
@@ -145,7 +145,7 @@ html, body {
         font-size: 1.1em;
         line-height: 1.5; }
         .app .wrapper .content p a {
-          color: #75FABF;
+          color: #75fabf;
           text-decoration: none; }
 
 /*# sourceMappingURL=pages.css.map */

@@ -3,470 +3,494 @@
 @import "./mixins/mixins";
 
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: $font-size-default;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    font-smoothing: antialiased;
-    image-rendering: -moz-crisp-edges; /* Firefox */
-    image-rendering: -o-crisp-edges; /* Opera */
-    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
-    image-rendering: crisp-edges;
-    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: $font-size-default;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: -o-crisp-edges; /* Opera */
+  image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
 }
 
 .app {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  color: $white;
+  overflow: hidden;
+
+  #gui-1 {
+    flex: 1;
     display: flex;
-    flex-direction: row;
-    height: 100vh;
-    color: $white;
-    overflow: hidden;
+    flex-flow: column;
+    background: #5c258d; /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6
+    // background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(
+      to right top,
+      $svift-primary,
+      $svift-human
+    );
+    background: linear-gradient(to right top, $svift-primary, $svift-human);
+    line-height: $line-height-default;
 
-    #gui-1 {
-        flex: 1;
-        display: flex;
-        flex-flow: column;
-        background: #5C258D; /* fallback for old browsers */
-        // background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6
-        // background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        background: -webkit-linear-gradient(to right top, $svift-primary, $svift-human);
-        background: linear-gradient(to right top, $svift-primary, $svift-human);
-        line-height: $line-height-default;
+    header {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      padding: $padding-big;
+      //   margin-top: $padding-default;
+      z-index: 2;
 
-        header {
-            display: flex;
-            flex-flow: row;
-            align-items: center;
-            padding: $padding-big;
-            margin-top: $padding-default;
-            z-index: 2;
+      // padding: $padding-default $padding-big;
 
-            // padding: $padding-default $padding-big;
+      .burger {
+        flex: 2;
+        transition: 0.4s;
 
-            .burger {
-                flex: 2;
-                transition: 0.4s;
-
-                &:hover {
-                    cursor: pointer;
-                }
-
-                .bar1, .bar2, .bar3 {
-                    width: 30px;
-                    height: 3px;
-                    background-color: #fff;
-                    margin: 6px 6px 6px auto;
-                    transition: 0.4s;
-                }
-
-                .change {
-                    &.bar1 {
-                        -webkit-transform: rotate(-45deg);
-                        transform: rotate(-45deg);
-                    }
-
-                    &.bar2 {
-                        opacity: 0;
-                    }
-
-                    &.bar3 {
-                        -webkit-transform: rotate(45deg) translate(-13px, -12px);
-                        transform: rotate(45deg) translate(-13px, -12px);
-                    }
-                }
-            }
-
-            .svift-logo {
-                flex: 8;
-                width: 100%;
-                height: 45px;
-
-                a {
-                    display: block;
-                    height: 45px;
-                    width: 50%;
-                    background-image: url("../../assets/img/wordmark-white.png");
-                    background-repeat: no-repeat;
-
-                    @include retina {
-                        background: url("../../assets/img/wordmark-white@2x.png");
-                    }
-                }
-            }
+        &:hover {
+          cursor: pointer;
         }
 
-        nav {
-            background-color: $white;
+        .bar1,
+        .bar2,
+        .bar3 {
+          width: 30px;
+          height: 3px;
+          background-color: #fff;
+          margin: 6px 6px 6px auto;
+          transition: 0.4s;
+        }
+
+        .change {
+          &.bar1 {
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+          }
+
+          &.bar2 {
+            opacity: 0;
+          }
+
+          &.bar3 {
+            -webkit-transform: rotate(45deg) translate(-13px, -12px);
+            transform: rotate(45deg) translate(-13px, -12px);
+          }
+        }
+      }
+
+      .svift-logo {
+        flex: 8;
+        width: 100%;
+        height: 45px;
+
+        a {
+          display: block;
+          height: 45px;
+          width: 50%;
+          background-image: url("../../assets/img/wordmark-white.png");
+          background-repeat: no-repeat;
+
+          @include large {
+            padding: 3vw;
+          }
+
+          //   @include retina-large {
+          //     background: url("../../assets/img/wordmark-white@2x.png");
+          //     background-repeat: no-repeat;
+          //   }
+        }
+      }
+    }
+
+    nav {
+      background-color: $white;
+      color: $svift-human;
+      font-family: $font-family-mono;
+      font-size: 2em;
+      box-shadow: $box-shadow-default;
+      position: absolute;
+      left: 0;
+      top: -400px;
+      width: 50%;
+      border-bottom-left-radius: $border-radius-default;
+      border-bottom-right-radius: $border-radius-default;
+      text-align: center;
+      padding: $padding-default;
+      transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+      border-right: 1px solid rgb(243, 243, 243);
+      z-index: 2;
+
+      .close {
+        text-align: right;
+        font-size: 0.8em;
+
+        &:after {
+          font-family: $font-family-icons;
+          content: "\e800";
+          cursor: pointer;
+        }
+
+        &:hover {
+          color: $svift-primary;
+        }
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+          a {
+            text-decoration: none;
             color: $svift-human;
-            font-family: $font-family-mono;
-            font-size: 2em;
-            box-shadow: $box-shadow-default;
-            position: absolute;
-            left: 0;
-            top: -400px;
-            width: 50%;
-            border-bottom-left-radius: $border-radius-default;
-            border-bottom-right-radius: $border-radius-default;
-            text-align: center;
-            padding: $padding-default;
-            transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
-            border-right: 1px solid rgb(243, 243, 243);
-            z-index: 2;
 
-            .close {
-                text-align: right;
-                font-size: 0.8em;
-
-                &:after {
-                    font-family: $font-family-icons;
-                    content: '\e800';
-                    cursor: pointer;
-                }
-
-                &:hover {
-                    color: $svift-primary;
-                }
+            &:hover {
+              color: $svift-primary;
             }
+          }
+        }
+      }
+    }
 
-            ul {
-                list-style-type: none;
-                padding: 0;
+    main {
+      padding: 5% 10% 0 10%;
 
-                li {
-                    a {
-                        text-decoration: none;
-                        color: $svift-human;
+      @include large {
+        padding: ($padding-big * 1) ($padding-big * 1.5);
+      }
 
-                        &:hover {
-                            color: $svift-primary;
-                        }
-                    }
-                }
-            }
+      h1 {
+        margin: 0;
+        font-family: $font-family-mono;
+        font-size: $font-size-heading;
+        line-height: $line-height-heading;
+
+        @include large {
+          font-size: $font-size-heading * 0.8;
+        }
+      }
+
+      .claim {
+        font-family: $font-family-sansDefault;
+        font-size: $font-size-text;
+
+        @include large {
+          font-size: $font-size-text * 0.95;
+        }
+      }
+    }
+
+    div.hero {
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background-image: url("../../assets/img/social.png");
+      background-repeat: no-repeat;
+      background-position: center 0;
+      padding: 0 $padding-default;
+
+      //   @include retina {
+      //     background: url("../../assets/img/social@2x.png");
+      //     background-repeat: no-repeat;
+      //     background-position: center center;
+      //   }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    #gui-1-overlay {
+      display: flex;
+      flex: 1;
+      //   flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      //   top: 0;
+      left: -100%;
+      height: 100vh;
+      width: 50%;
+      background: $svift-primary;
+      background: -webkit-linear-gradient(
+        to right top,
+        $svift-primary,
+        $svift-human
+      );
+      background: linear-gradient(to right top, $svift-primary, $svift-human);
+      transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+      //   overflow: auto;
+
+      div.thumb-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        // align-items: flex-end;
+        padding: 5vw;
+
+        @include large {
+          padding: 3vw;
         }
 
-        main {
-            padding: 5% 10% 0 10%;
+        div.thumb {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+          cursor: pointer;
+          padding: 30px 20px;
+          width: calc(100% / 2);
+
+          @include large {
+            padding: 20px 10px;
+          }
+
+          @include small {
+            width: 100%;
+          }
+
+          &:hover {
+            transform: translateY(5px);
+          }
+
+          img {
+            box-shadow: $box-shadow-default;
+            border-radius: $border-radius-default;
+            width: 80%;
+            height: auto;
+
+            // @include large {
+            //   max-width: 100%;
+            //   height: auto;
+            // }
+
+            @include medium {
+              width: 80%;
+              height: auto;
+            }
+
+            @include small {
+              width: 70%;
+              height: auto;
+            }
+          }
+
+          .thumb-eyebrow {
+            position: absolute;
+            bottom: 10px;
+            height: 40px;
+            background-color: $white;
+            color: $svift-primary;
+            text-align: center;
+            border-radius: 4px;
+            font-family: "DecimaMonoProBold", monospace;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            padding: 10px 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 
             @include large {
-                padding: ($padding-big * 1) ($padding-big * 1.5);
+              // width: 100%;
+              // height: auto;
             }
+          }
+        }
+      }
 
+      div.viz-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        width: 70%;
+        margin-top: 10%;
 
-            h1 {
-                margin: 0;
-                font-family: $font-family-mono;
-                font-size: $font-size-heading;
-                line-height: $line-height-heading;
+        // height: 70%;
+        border-radius: $border-radius-default * 2;
+        opacity: 0;
+        box-shadow: $box-shadow-default;
+        // transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-                @include large {
-                    font-size: $font-size-heading * 0.8;
-                }
-            }
-
-            .claim {
-                font-family: $font-family-sansDefault;
-                font-size: $font-size-text;
-
-                @include large {
-                    font-size: $font-size-text * 0.95;
-                }
-            }
+        div.viz-eyebrow {
+          text-align: center;
+          height: 40px;
+          background: $svift-primary;
+          position: absolute;
+          top: -60px;
+          border-radius: $border-radius-default;
+          font-family: $font-family-mono;
+          font-size: 0.8em;
+          text-transform: uppercase;
+          padding: $margin-small ($margin-small * 2);
+          box-shadow: $box-shadow-default;
         }
 
-        div.hero {
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            background-image: url("../../assets/img/social.png");
-            background-repeat: no-repeat;
+        svg {
+          border-radius: $border-radius-default;
+        }
+      }
 
-            // background-size: contain;
+      a.btn-back {
+        writing-mode: vertical-lr;
+        position: fixed;
+        bottom: 30%;
+        left: 2%;
+        font-family: "DecimaMonoProBold", monospace;
+        font-size: 1em;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-            @include retina {
-                background: url("../../assets/img/social@2x.png");
-            }
+        &:hover {
+          color: $svift-primary;
+        }
+      }
 
+      .viz-sizes-wrapper {
+        display: block;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        text-align: center;
+        margin-top: 20px;
 
-            img {
-                max-width: 100%;
-                height: auto;
-            }
+        .viz-sizes-header {
+          text-align: center;
+          background: $svift-primary;
+          font-family: $font-family-mono;
+          font-size: 0.8em;
+          text-transform: uppercase;
+          padding: $margin-small ($margin-small * 2);
+          box-shadow: $box-shadow-default;
+          border-radius: $border-radius-default $border-radius-default 0 0;
         }
 
-        #gui-1-overlay {
+        .viz-sizes-body {
+          display: flex;
+          position: relative;
+
+          .viz-sizes-input-wrapper {
+            flex: 2;
             display: flex;
-            flex: 1;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 0;
-            left: -100%;
-            height: 100vh;
-            width: 50%;
-            background: $svift-primary;
-            transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
-            overflow: auto;
+            justify-content: space-around;
+            background-color: $white;
+            border-radius: 0 0 0 $border-radius-default;
+            font-family: $font-family-mono;
+            border-right: 1px solid $bot-bubble;
 
-            div.thumb-wrapper {
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: row;
-                justify-content: flex-start;
-                align-items: flex-end;
-                padding: 5vw;
-
-                @include large {
-                    padding: 3vw;
-                }
-
-
-                div.thumb {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: relative;
-                    transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-                    cursor: pointer;
-                    padding: 30px 20px;
-                    width: calc(100% / 2);
-
-                    @include large {
-                        padding: 20px 10px;
-                    }
-
-
-                    @include small {
-                        width: 100%;
-                    }
-
-
-                    &:hover {
-                        transform: translateY(5px);
-                    }
-
-                    img {
-                        box-shadow: $box-shadow-default;
-                        border-radius: $border-radius-default;
-
-                        @include large {
-                            max-width: 100%;
-                            height: auto;
-                        }
-
-
-                        @include small {
-                            width: 80%;
-                            height: auto;
-                        }
-                    }
-
-                    .thumb-eyebrow {
-                        position: absolute;
-                        bottom: 10px;
-                        height: 40px;
-                        background-color: $white;
-                        color: $svift-primary;
-                        text-align: center;
-                        border-radius: 4px;
-                        font-family: "DecimaMonoProBold", monospace;
-                        font-size: 0.8em;
-                        text-transform: uppercase;
-                        padding: 10px 30px;
-                        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-
-                        @include large {
-                            // width: 100%;
-                            // height: auto;
-                        }
-                    }
-                }
+            div {
+              color: $svift-primary;
             }
 
-            div.viz-container {
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background-color: white;
-                width: 70%;
-                margin-top: 10%;
+            input {
+              width: 70%;
+              cursor: pointer;
+              font-family: $font-family-sansDefault;
+              font-size: 0.9em;
+              color: $svift-primary;
+              padding: 10px 10px;
+              border-style: none;
+              border-radius: $border-radius-default;
+              transition: box-shadow 0.75s cubic-bezier(0.215, 0.61, 0.355, 1),
+                color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1),
+                transform 375ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s,
+                opacity 375ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 
-                // height: 70%;
-                border-radius: $border-radius-default * 2;
-                opacity: 0;
-                box-shadow: $box-shadow-default;
-                // transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
-
-                div.viz-eyebrow {
-                    text-align: center;
-                    height: 40px;
-                    background: $svift-primary;
-                    position: absolute;
-                    top: -60px;
-                    border-radius: $border-radius-default;
-                    font-family: $font-family-mono;
-                    font-size: 0.8em;
-                    text-transform: uppercase;
-                    padding: $margin-small ($margin-small * 2);
-                    box-shadow: $box-shadow-default;
-                }
-
-                svg {
-                    border-radius: $border-radius-default;
-                }
+              &::placeholder {
+                color: $svift-primary;
+              }
             }
+          }
 
-            a.btn-back {
-                writing-mode: vertical-lr;
-                position: fixed;
-                bottom: 30%;
-                left: 2%;
-                font-family: "DecimaMonoProBold", monospace;
-                font-size: 1em;
-                color: #fff;
-                text-decoration: none;
-                transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+          .viz-sizes-icon-wrapper {
+            display: flex;
+            flex: 3;
+            background-color: $white;
+            border-radius: 0 0 $border-radius-default 0;
 
-                &:hover {
-                    color: $svift-primary;
-                }
+            .viz-sizes {
+              flex: 1;
+
+              // position: absolute;
+              // top: 3px;
+              font-family: $font-family-icons;
+              color: $svift-primary;
+              cursor: pointer;
+              transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+              &:hover {
+                color: $svift-human;
+              }
+
+              &.icon:before {
+                position: absolute;
+                top: 6px;
+              }
+
+              &.icon-twitter:before {
+                content: "\f099";
+              }
+
+              &.icon-facebook:before {
+                content: "\f09a";
+              }
+
+              &.icon-snapchat:before {
+                content: "\f2ac";
+              }
+
+              &.icon-instagram:before {
+                content: "\f32d";
+              }
             }
-
-            .viz-sizes-wrapper {
-                display: block;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                text-align: center;
-                margin-top: 20px;
-
-                .viz-sizes-header {
-                    text-align: center;
-                    background: $svift-primary;
-                    font-family: $font-family-mono;
-                    font-size: 0.8em;
-                    text-transform: uppercase;
-                    padding: $margin-small ($margin-small * 2);
-                    box-shadow: $box-shadow-default;
-                    border-radius: $border-radius-default $border-radius-default 0 0;
-                }
-
-                .viz-sizes-body {
-                    display: flex;
-                    position: relative;
-
-                    .viz-sizes-input-wrapper {
-                        flex: 2;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-around;
-                        background-color: $white;
-                        border-radius: 0 0 0 $border-radius-default;
-                        font-family: $font-family-mono;
-                        border-right: 1px solid $bot-bubble;
-
-                        div {
-                            color: $svift-primary;
-                        }
-
-                        input {
-                            width: 70%;
-                            cursor: pointer;
-                            font-family: $font-family-sansDefault;
-                            font-size: 0.9em;
-                            color: $svift-primary;
-                            padding: 10px 10px;
-                            border-style: none;
-                            border-radius: $border-radius-default;
-                            transition: box-shadow 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), transform 375ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s, opacity 375ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-
-                            &::placeholder {
-                                color: $svift-primary;
-                            }
-                        }
-                    }
-
-                    .viz-sizes-icon-wrapper {
-                        display: flex;
-                        flex: 3;
-                        background-color: $white;
-                        border-radius: 0 0 $border-radius-default 0;
-
-                        .viz-sizes {
-                            flex: 1;
-
-                            // position: absolute;
-                            // top: 3px;
-                            font-family: $font-family-icons;
-                            color: $svift-primary;
-                            cursor: pointer;
-                            transition: color 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
-
-                            &:hover {
-                                color: $svift-human;
-                            }
-
-                            &.icon:before {
-                                position: absolute;
-                                top: 6px;
-                            }
-
-                            &.icon-twitter:before {
-                                content: '\f099';
-                            }
-
-                            &.icon-facebook:before {
-                                content: '\f09a';
-                            }
-
-                            &.icon-snapchat:before {
-                                content: '\f2ac';
-                            }
-
-                            &.icon-instagram:before {
-                                content: '\f32d';
-                            }
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
 }
 
 #gui-2 {
-    flex: 1;
-    position: relative;
+  flex: 1;
+  position: relative;
 
-    // background-color: $bg-light-grey;
-    background-color: $white;
-    font-family: $font-family-sansDefault;
+  // background-color: $bg-light-grey;
+  background-color: $white;
+  font-family: $font-family-sansDefault;
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 3px;
-    border-left: 0;
-    background: rgba(0, 0, 0, 0.1);
+  width: 5px;
+  height: 3px;
+  border-left: 0;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-track {
-    background: none;
+  background: none;
 }
 
 ::-webkit-scrollbar-thumb {
-    /* background:#FF5858;*/
-    background: #6C6C6C;
-    border-radius: 0;
+  /* background:#FF5858;*/
+  background: #6c6c6c;
+  border-radius: 0;
 }
