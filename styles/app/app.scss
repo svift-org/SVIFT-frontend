@@ -103,7 +103,7 @@ body {
           width: 50%;
           background-image: url("../../assets/img/wordmark-white.png");
           background-repeat: no-repeat;
-          background-position: 0 center;
+          background-position: 0 4px;
 
           @include large {
             padding: 3vw;
@@ -112,7 +112,7 @@ body {
           @include retina {
             background: url("../../assets/img/wordmark-white@2x.png");
             background-repeat: no-repeat;
-            background-position: 0 center;
+            background-position: 0 4px;
             background-size: 70%;
           }
         }

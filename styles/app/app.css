@@ -144,7 +144,7 @@ body {
           width: 50%;
           background-image: url("../../assets/img/wordmark-white.png");
           background-repeat: no-repeat;
-          background-position: 0 center; }
+          background-position: 0 4px; }
           @media screen and (min-width: 1300px) {
             .app #gui-1 header .svift-logo a {
               padding: 3vw; } }
@@ -152,7 +152,7 @@ body {
             .app #gui-1 header .svift-logo a {
               background: url("../../assets/img/wordmark-white@2x.png");
               background-repeat: no-repeat;
-              background-position: 0 center;
+              background-position: 0 4px;
               background-size: 70%; } }
     .app #gui-1 nav {
       background-color: #fff;
