@@ -295,9 +295,6 @@
   padding: 20px;
   border-radius: 4px;
   margin-top: 20px; }
-  @media screen and (min-width: 1300px) {
-    .cb-bubble-input {
-      width: 450px; } }
   @media screen and (max-width: 950px) {
     .cb-bubble-input {
       width: auto; } }

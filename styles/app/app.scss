@@ -103,15 +103,18 @@ body {
           width: 50%;
           background-image: url("../../assets/img/wordmark-white.png");
           background-repeat: no-repeat;
+          background-position: 0 center;
 
           @include large {
             padding: 3vw;
           }
 
-          //   @include retina-large {
-          //     background: url("../../assets/img/wordmark-white@2x.png");
-          //     background-repeat: no-repeat;
-          //   }
+          @include retina {
+            background: url("../../assets/img/wordmark-white@2x.png");
+            background-repeat: no-repeat;
+            background-position: 0 center;
+            background-size: 70%;
+          }
         }
       }
     }
@@ -201,13 +204,15 @@ body {
       background-image: url("../../assets/img/social.png");
       background-repeat: no-repeat;
       background-position: center 0;
+      background-size: 90%;
       padding: 0 $padding-default;
 
-      //   @include retina {
-      //     background: url("../../assets/img/social@2x.png");
-      //     background-repeat: no-repeat;
-      //     background-position: center center;
-      //   }
+      @include retina {
+        background: url("../../assets/img/social@2x.png");
+        background-repeat: no-repeat;
+        background-position: center 0;
+        background-size: 90%;
+      }
 
       img {
         max-width: 100%;
