@@ -23,6 +23,7 @@
       ]
     ,
     "lables":[null],
+    "colors":["#D8D8D8"],
     "title": "SVIFT Entwicklungsstand",
     "subTitle": "am 29.09.2017",
     "attribution": "Some attribution here",
