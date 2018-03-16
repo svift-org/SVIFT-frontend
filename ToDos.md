@@ -2,30 +2,12 @@
 
 ---
 
-MILESTONE 1 - presentation MIZ
-
-## Seb
-
-    - Accessibility auf die Download Site
-    - SVIFT: if folder exists > delete
-    - favicon not found
-
-## Alsino
-
-    - replace start screen viz
-
-## Hans
-
-    - Handle font sizes
-
-=======
-
 * status > social => 1
 * Should we reduce frames per second? > less filesize, less pngs, overall faster
 * let people know when wait is long
 * info pro version (in the break)
 
-MILESTONE 2 - private testing small
+MILESTONE 2 - private testing small (Tagesspiegel)
 
 ## Seb
 
@@ -38,8 +20,14 @@ MILESTONE 2 - private testing small
     		...
     	}
     - clear AWS regularly
+    - Accessibility auf die Download Site
+    - SVIFT: if folder exists > delete
+    - favicon not found
+    - Handle font sizes
 
 ## Alsino
+
+    - replace start screen viz
 
 ## Hans
 
