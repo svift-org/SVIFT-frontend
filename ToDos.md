@@ -6,27 +6,12 @@ MILESTONE 1 - presentation MIZ
 
 ## Seb
 
-    ✓ Pause gif between loops (in animation or gif meta data?) > there is no pause, i could duplicate the last or either first frame, duplicate frames shouldn't be too bad for filesize (SEB)
     - Accessibility auf die Download Site
-    ✓ AWS CREDITS KAUFEN
-    ✓ Abschlusspräsentation > Media-Brunch > Update > Historie, Ausblick, Artikel bisher, Chatbot > SVIFT Zukunft
-    ✓ validator for viz types
     - SVIFT: if folder exists > delete
     - favicon not found
-    ✓ add new fonts:  Roboto+Mono:700|Patua+One|Noto+Serif:700
-    ✓ GIF not rendering correctly
-    ✓ change order of aws upload (add status 3)
-    ✓ only last svg from sequence
-    ✓ download square not working
 
 ## Alsino
 
-    ✓ Abschlussbericht Alsino > Seb
-    ---
-    ✓ style text toogle ICONS!
-    ✓ left side icon
-    ✓ replace download icons in chatbot
-    ✓ bubbles style
     - replace start screen viz
 
 ## Hans

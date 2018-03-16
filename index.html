@@ -212,41 +212,41 @@
                 .header("Content-Type", "application/json")
                 .mimeType("application/json")
                 .post(
-                JSON.stringify(SVIFT.vis.config),
-                function (err, rawData) {
+                    JSON.stringify(SVIFT.vis.config),
+                    function (err, rawData) {
 
-                    inter = setInterval(function () {
-                        d3.request(heroku + '/status/' + rawData.response).get(function (err, data) {
+                        inter = setInterval(function () {
+                            d3.request(heroku + '/status/' + rawData.response).get(function (err, data) {
 
-                            var jResponse = JSON.parse(data.response);
-                            var statusCounter = 0;
-                            SVIFT.vis.render.token = rawData.response;
-                            console.log(jResponse)
-                            var finished = false;
+                                var jResponse = JSON.parse(data.response);
+                                var statusCounter = 0;
+                                SVIFT.vis.render.token = rawData.response;
+                                console.log(jResponse)
+                                var finished = false;
 
-                            for (var type in jResponse.full) {
+                                for (var type in jResponse.full) {
 
-                                if (jResponse.full[type] == 1) {
+                                    if (jResponse.full[type] == 1) {
 
-                                    statusCounter++;
-                                    SVIFT.vis.render.status.rendered[type] = true;
+                                        statusCounter++;
+                                        SVIFT.vis.render.status.rendered[type] = true;
+
+                                    }
 
                                 }
 
-                            }
+                                //All things have been rendered stop request
+                                if (jResponse.full.aws == 1) { //jResponse.status == 2
 
-                            //All things have been rendered stop request
-                            if (jResponse.full.aws == 1) { //jResponse.status == 2
+                                    clearInterval(inter);
+                                    finished = true;
+                                }
 
-                                clearInterval(inter);
-                                finished = true;
-                            }
+                                SVIFT.vis.render.status.show(finished)
 
-                            SVIFT.vis.render.status.show(finished)
-
-                        });
-                    }, 1000);
-                }
+                            });
+                        }, 1000);
+                    }
                 );
         }
 
