@@ -7,12 +7,14 @@
 * let people know when wait is long
 * info pro version (in the break)
 
-MILESTONE 2 - private testing small (Tagesspiegel)
+MILESTONE 2 - private testing small (Tagesspiegel) > Mid April (13.04)
+
+- Line Chart, Donut Chart, Icon Chart, Grouped / Stacked-Bar-Charts
 
 ## Seb
 
     - pie/area/line (optional)
-    - stiftung > tester
+    ✓ stiftung > tester
     - SCHRIFTEN EINFACHER BEARBEITEN, > json
     	{
     		provider: google, typekit, custom
@@ -24,12 +26,23 @@ MILESTONE 2 - private testing small (Tagesspiegel)
     - SVIFT: if folder exists > delete
     - favicon not found
     - Handle font sizes
+    - Text Input
+    - Customized INstances (colors, fonts, logos, default GUI)
+    - Transfer sketch design to application (no bot)
 
 ## Alsino
 
     - replace start screen viz
+    - Logo position (bottom right)
+    - Themes > Fonts > (Modern, Future, Classic)
+        > Condensed Fonts
+
 
 ## Hans
+
+    - Logo von Tagesspiegel und Schriften
+    - Tagesspiegel > Tweetdeck > Gifs ?
+    - Flughafen-Counter > Transform into transitions
 
 =======
 
