@@ -32,7 +32,6 @@ MILESTONE 2 - private testing small (Tagesspiegel) > Mid April (13.04)
 
 ## Alsino
 
-    - replace start screen viz
     - Logo position (bottom right)
 
 ## Hans
