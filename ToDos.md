@@ -34,8 +34,6 @@ MILESTONE 2 - private testing small (Tagesspiegel) > Mid April (13.04)
 
     - replace start screen viz
     - Logo position (bottom right)
-    - Themes > Fonts > (Modern, Future, Classic)
-        > Condensed Fonts
 
 ## Hans
 
