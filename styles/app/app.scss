@@ -102,7 +102,7 @@ body {
           height: 45px;
           width: 50%;
           // background-image: url("../../assets/img/wordmark-white.png");
-          background-image: url("../../assets/img/logo_new.png");
+          background-image: url("../../assets/img/logo_web.png");
           background-repeat: no-repeat;
           background-position: 0 4px;
 
@@ -111,7 +111,7 @@ body {
           }
 
           @include retina {
-            background: url("../../assets/img/logo_new@2x.png");
+            background: url("../../assets/img/logo_web@2x.png");
             background-repeat: no-repeat;
             background-position: 0 4px;
             background-size: 70%;
