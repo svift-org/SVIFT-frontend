@@ -21,7 +21,7 @@ MILESTONE 2 - private testing small (Tagesspiegel) > Mid April (13.04)
     		name:
     		...
     	}
-    - clear AWS regularly
+    ✓ clear AWS regularly
     - Accessibility auf die Download Site
     - SVIFT: if folder exists > delete
     - favicon not found
