@@ -181,7 +181,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   module.selectThumb = function(d){
     cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human', emoji: 'smile' }, function () {
       cb.addBubble({ type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write', delay: 500 }, function () {
-        module.buildPreview(d);
+        module.loadVis(d);
 
         setTimeout(function () {
 
@@ -355,10 +355,6 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           .style("width", (module.defaultFormat[2] * 100) + "%")
           .style("height", height + "px")
           .style('opacity', 1);
-  };
-
-  module.buildPreview = function(type){
-
   };
 
   return module;
