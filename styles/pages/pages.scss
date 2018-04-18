@@ -3,118 +3,119 @@
 @import "./mixins/mixins";
 
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: $font-size-default;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    font-smoothing: antialiased;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: $font-size-default;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
 }
 
 .app {
-    display: flex;
-    padding: 5% 10% 10% 10%;
-    flex-direction: row;
-    color: $svift-primary;
-    justify-content: center;
+  display: flex;
+  padding: 5% 10% 10% 10%;
+  flex-direction: row;
+  color: $svift-primary;
+  justify-content: center;
 
-    nav {
-        flex: 1;
-        margin-top: 200px;
+  nav {
+    flex: 1;
+    margin-top: 200px;
 
-        ul {
-            margin: 0;
-            padding: 0;
-            font-family: $font-family-mono;
-            font-size: 1.2em;
-            line-height: 2;
-            list-style-type: none;
+    ul {
+      margin: 0;
+      padding: 0;
+      font-family: $font-family-mono;
+      font-size: 1.2em;
+      line-height: 2;
+      list-style-type: none;
 
-            li {
-                a {
-                    color: $svift-human;
-                    text-decoration: none;
-                    text-transform: uppercase;
-                    transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+      li {
+        a {
+          color: $svift-human;
+          text-decoration: none;
+          text-transform: uppercase;
+          transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-                    &:hover {
-                        color: $svift-primary;
-                    }
+          &:hover {
+            color: $svift-primary;
+          }
 
-                    &.active {
-                        color: $svift-primary;
-                    }
-                }
-            }
+          &.active {
+            color: $svift-primary;
+          }
         }
+      }
     }
+  }
 
-    .wrapper {
+  .wrapper {
+    flex: 6;
+
+    header {
+      margin-bottom: 10%;
+      display: flex;
+      align-items: center;
+
+      a.wordmark {
         flex: 6;
+        height: 50px;
+        background-image: url("../../assets/img/logo_web_dark.png");
+        background-repeat: no-repeat;
 
-        header {
-            margin-bottom: 10%;
-            display: flex;
-            align-items: center;
-
-            a.wordmark {
-                flex: 6;
-                height: 40px;
-                background-image: url("../../assets/img/wordmark-dark.png");
-                background-repeat: no-repeat;
-
-                @include retina {
-                    background: url("../../assets/img/wordmark-dark@2x.png");
-                }
-            }
-
-            div.social {
-                flex: 1;
-
-                a {
-                    color: $svift-human;
-                    font-family: $font-family-mono;
-                    font-size: 1.1em;
-                    text-decoration: none;
-                    text-transform: uppercase;
-                    transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-
-                    &:hover {
-                        color: $svift-primary;
-                    }
-                }
-            }
+        @include retina {
+          background: url("../../assets/img/logo_web_dark@2x.png");
         }
+      }
 
-        .content {
-            width: 90%;
+      div.social {
+        flex: 1;
 
-            h1 {
-                color: $svift-human;
-                font-family: $font-family-mono;
-                font-size: 2em;
-                width: fit-content;
-                margin-top: 0;
-            }
+        a {
+          color: $svift-human;
+          font-family: $font-family-mono;
+          font-size: 1.1em;
+          text-decoration: none;
+          text-transform: uppercase;
+          transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-            p {
-                font-family: $font-family-sansDefault;
-                font-size: 1.1em;
-                line-height: 1.5;
-
-                a {
-                    color: $svift-human;
-                    text-decoration: none;
-                }
-            }
+          &:hover {
+            color: $svift-primary;
+          }
         }
+      }
     }
+
+    .content {
+      width: 90%;
+
+      h1 {
+        color: $svift-human;
+        font-family: $font-family-mono;
+        font-size: 2em;
+        width: fit-content;
+        margin-top: 0;
+      }
+
+      p {
+        font-family: $font-family-sansDefault;
+        font-size: 1.1em;
+        line-height: 1.5;
+
+        a {
+          color: $svift-human;
+          text-decoration: none;
+        }
+      }
+    }
+  }
 }

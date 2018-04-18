@@ -72,7 +72,8 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   border: 0;
@@ -115,12 +116,12 @@ html, body {
       align-items: center; }
       .app .wrapper header a.wordmark {
         flex: 6;
-        height: 40px;
-        background-image: url("../../assets/img/wordmark-dark.png");
+        height: 50px;
+        background-image: url("../../assets/img/logo_web_dark.png");
         background-repeat: no-repeat; }
         @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
           .app .wrapper header a.wordmark {
-            background: url("../../assets/img/wordmark-dark@2x.png"); } }
+            background: url("../../assets/img/logo_web_dark@2x.png"); } }
       .app .wrapper header div.social {
         flex: 1; }
         .app .wrapper header div.social a {

@@ -9,7 +9,7 @@
 
 MILESTONE 2 - private testing small (Tagesspiegel) > Mid April (13.04)
 
-- Line Chart, Donut Chart, Icon Chart, Grouped / Stacked-Bar-Charts
+* Line Chart, Donut Chart, Icon Chart, Grouped / Stacked-Bar-Charts
 
 ## Seb
 
@@ -32,11 +32,7 @@ MILESTONE 2 - private testing small (Tagesspiegel) > Mid April (13.04)
 
 ## Alsino
 
-    - replace start screen viz
     - Logo position (bottom right)
-    - Themes > Fonts > (Modern, Future, Classic)
-        > Condensed Fonts
-
 
 ## Hans
 
