@@ -101,7 +101,7 @@ SVIFT.table = (function (_config, updateCallback) {
             return
         }
 
-        module.data.push({
+        module.data.data.push({
             label : (("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split(""))[module.data.data.length],
             data : JSON.parse(JSON.stringify(module.data.data[module.data.data.length - 1].data))
         });
