@@ -239,7 +239,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   };
 
   module.render = function() {
-    d3.request(heroku + '/render')
+    d3.request(module.heroku + '/render')
       .header("Content-Type", "application/json")
       .mimeType("application/json")
       .post(
