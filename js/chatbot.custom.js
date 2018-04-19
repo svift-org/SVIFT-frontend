@@ -53,14 +53,14 @@ var cb_extend = (function (cb) {
 
         Customised Options
         table:svift.table.js
-        textUpdate:function
-        textToggle:function
 
     */
-    cb.types['input'] = function (bubble, options, callback) {
+    cb.types['input'] = function (bubble, _options, callback) {
 
         bubble.style('background-color', '#fff'); //in css
         bubble.attr('class', 'cb-bubble-input');
+
+        var options = _options;
 
         //title input
         var titleWrapper = bubble.append('div').classed('title', true);
@@ -69,7 +69,7 @@ var cb_extend = (function (cb) {
             .attr('placeholder', 'Add your title here')
             .attr('rows',2)
             .on('input', function () {
-                options.textUpdate("#title-main", "#title", "title", "Look at this title");
+                options.table.textUpdate("#title-main", "#title", "title", "Look at this title");
             });
 
         var toggleTitle = titleWrapper.append('div')
@@ -77,7 +77,7 @@ var cb_extend = (function (cb) {
             .classed('hidden', false)
             .attr('id', 'titleToggle')
             .on('click', function (d) {
-                options.textToggle(this, "#title-main", "#title", "title", "Look at this title");
+                options.table.textToggle(this, "#title-main", "#title", "title", "Look at this title");
             });
 
         //sub title input
@@ -87,14 +87,14 @@ var cb_extend = (function (cb) {
             .attr('placeholder', 'Add your subtitle here')
             .attr('rows', 3)
             .on('input', function () {
-                options.textUpdate("#title-sub", "#subtitle", "subTitle", "and what about a subtitle here?");
+                options.table.textUpdate("#title-sub", "#subtitle", "subTitle", "and what about a subtitle here?");
             });
 
         var toggleSubTitle = subtitleWrapper.append('div')
             .classed('icon-toggle', true)
             .attr('id', 'subtitleToggle')
             .on('click', function (d) {
-                options.textToggle(this, "#title-sub", "#subtitle", "subTitle", "and what about a subtitle here?");
+                options.table.textToggle(this, "#title-sub", "#subtitle", "subTitle", "and what about a subtitle here?");
             });
 
         //source input
@@ -103,17 +103,17 @@ var cb_extend = (function (cb) {
             .attr('id', 'source-input')
             .attr('placeholder', 'Add your source here')
             .on('input', function () {
-                options.textUpdate("#source", "#source-input", "source", "Source: Your source");
+                options.table.textUpdate("#source", "#source-input", "source", "Source: Your source");
             });
 
         var toogleSource = sourceWrapper.append('div')
             .classed('icon-toggle', true)
             .attr('id', 'sourceToggle')
             .on('click', function (d) {
-                options.textToggle(this, "#source", "#source-input", "source", "Source: Your source");
+                options.table.textToggle(this, "#source", "#source-input", "source", "Source: Your source");
             });
 
-        //TODO:Callback send the table container
+        options.table.init(bubble);
     };
 
 

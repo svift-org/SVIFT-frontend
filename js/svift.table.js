@@ -1,7 +1,7 @@
 //Data input table
 //Handles states for the data input table
 //Data obj contains the default init data
-SVIFT.table = (function (_config, updateCallback, _container) {
+SVIFT.table = (function (_config, updateCallback) {
 
   var module = {};
 
@@ -11,10 +11,12 @@ SVIFT.table = (function (_config, updateCallback, _container) {
     module.minCol = 2;
     module.column = {};
     module.table = null;
-    module.container = _container;
+    module.container = null;
     module.rows = null;
 
-    module.init = function () {
+    module.init = function (_container) {
+
+        module.container = _container;
 
         var tableData = module.parse(module.data);
 
@@ -250,13 +252,13 @@ SVIFT.table = (function (_config, updateCallback, _container) {
         var inputText = d3.select(selectorInput).node().value;
         module.data[selectorData] = inputText || altText;
         if (selectorData == "source" && inputText) { 
-            SVIFT.vis.config.data[selectorData] = "Source: " + inputText;
+            module.data[selectorData] = "Source: " + inputText;
         }
         d3.select(selectorViz).text(module.data[selectorData]);
 
     };
 
-    module.textToogle = function (obj, selectorViz, selectorInput, selectorData, altText) {
+    module.textToggle = function (obj, selectorViz, selectorInput, selectorData, altText) {
 
         var hidden = d3.select(obj.parentNode).classed("hidden");
 

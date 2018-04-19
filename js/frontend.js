@@ -11,6 +11,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.visTypeData = null;
 
+  module.table = null;
+
   module.renderProcess = {
     token : "",
     rowOne:null,
@@ -185,7 +187,9 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
         setTimeout(function () {
 
-            cb.addBubble({ type: 'input', class: 'human' });
+            module.table = SVIFT.table(module.default, module.updateVis);
+
+            cb.addBubble({ type: 'input', class: 'human', table: module.table });
             cb.addBubble({ type: 'select', value: [{ label: 'I am done entering my data!' }], class: 'human' }, module.inputDone);
 
         }, 500);
@@ -334,6 +338,11 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   };
 
   module.redrawDebounce = SVIFT.helper.debouncer(function () { module.redraw(); }, 500);
+
+  module.updateVis = function(data){
+    module.default = data;
+    console.log('updateVis');
+  };
 
   module.redraw = function () {
 
