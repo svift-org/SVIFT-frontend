@@ -12,7 +12,6 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   module.visTypeData = null;
 
   module.table = null;
-
   module.renderProcess = {
     token : "",
     rowOne:null,
@@ -229,10 +228,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
         cb.addBubble({ type: 'select', value: [{ label: 'Continue' }], class: 'human' }, function () {
 
           cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader"></div>', class: 'bot' });
-          cb.addBubble({ type: 'status', class: 'human', function(rowOne, rowTwo){
+          cb.addBubble({ type: 'status', class: 'human'}, function(rowOne, rowTwo){
             module.renderProcess.rowOne = rowOne;
-            module.renderProcess.rowOne = rowTwo;
-          }});
+            module.renderProcess.rowTwo = rowTwo;
+          });
 
           module.renderProcess.visible = true;
           module.renderStatusUpdate();
@@ -254,8 +253,6 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
               var jResponse = JSON.parse(data.response);
               var statusCounter = 0;
-              module.renderProcess = rawData.response;
-
               var finished = false;
 
               for (var type in jResponse.full) {
@@ -285,7 +282,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       for (var type in status) {
         if (status[type]) {
           if (type == 'social') {
-            module.renderProcess.rowOne.selectAll('span')
+            module.renderProcess.rowOne
               .transition()
               .delay(function (d, i) { return i * 400 })
               .attr('class', 'complete');
@@ -340,8 +337,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   module.redrawDebounce = SVIFT.helper.debouncer(function () { module.redraw(); }, 500);
 
   module.updateVis = function(data){
-    module.default = data;
+    module.default.data = data;
     console.log('updateVis');
+    //TODO IMPLEMENT FUNCTION > only update chart | idea: update date, refresh last frame (see: social media rendering)
+    module.redraw();
   };
 
   module.redraw = function () {

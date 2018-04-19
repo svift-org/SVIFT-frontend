@@ -216,7 +216,7 @@ var cb_extend = (function (cb) {
             { 'html': '&#xe802', 'name': 'gif'}
         ];
 
-        SVIFT.status.rows.rowTwo.selectAll('span').data(other).enter()
+        rowTwo.selectAll('span').data(formats).enter()
             .append('span')
             .html(function (d, i) { return d.name; })
             .attr('class', 'cb-status-btn')
