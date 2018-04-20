@@ -218,10 +218,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
     cb.addBubble({ type: 'text', value: 'Look! You can even preview your chart in different sizes', class: 'bot', delay: 1500 }, function () {
 
-      cb.addBubble({ type: 'resize', class: 'human', function(type){
+      cb.addBubble({ type: 'resize', class: 'human'}, function(type){
           module.defaultFormat = type;
           module.redraw();
-      }});
+      });
 
       setTimeout(function () {
 
