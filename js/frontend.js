@@ -200,7 +200,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   module.inputDone = function(){
     cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', emoji: 'style', delay: 500 }, function () {
 
-      cb.addBubble({ type: 'themes', class: 'human', function(d){
+      cb.addBubble({ type: 'styles', class: 'human', function(d){
           module.default.style.color.main = d.color;
           module.default.style.font = d.font;
           module.redrawDebounce();
