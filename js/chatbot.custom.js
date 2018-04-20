@@ -220,10 +220,9 @@ var cb_extend = (function (cb) {
             .text(function(d){return d.label})
             .attr('class', "cb-styles-opts-btn")
             .style('font-family', function (d) { return d.font })
-        //     .on('click', function (d) {
-        //         console.log(d)
-        //         callback(d);
-        //     })
+            .on('click', function (d) {
+                callback(d);
+            })
 
         stylesOptsColor.selectAll('div')
             .data(styles).enter()
