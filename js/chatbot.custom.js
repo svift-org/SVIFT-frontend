@@ -154,31 +154,86 @@ var cb_extend = (function (cb) {
     };
 
     /* Select a theme */
-    cb.types['themes'] = function (bubble, options, callback) {
+    // cb.types['themes'] = function (bubble, options, callback) {
 
-        var themes = [
-            { 'name': 'mercury', 'color': '#71609B', 'font': 'Patua One' },
-            { 'name': 'venus', 'color': '#FE9592', 'font': 'Noto Serif' },
-            { 'name': 'earth', 'color': '#B8E986', 'font': 'Roboto Mono' },
-            { 'name': 'mars', 'color': '#FF5C5C', 'font': 'Patua One' }, //E20036
-            { 'name': 'jupiter', 'color': '#75FABF', 'font': 'Noto Serif' },
-            { 'name': 'saturn', 'color': '#FBC469', 'font': 'Roboto Mono' },
-            { 'name': 'uranus', 'color': '#83C4FE', 'font': 'Patua One' },
-            { 'name': 'neptune', 'color': '#4554A5', 'font': 'Noto Serif' },
-            { 'name': 'pluto', 'color': '#454545', 'font': 'Roboto Mono' }
+    //     var themes = [
+    //         { 'name': 'mercury', 'color': '#71609B', 'font': 'Patua One' },
+    //         { 'name': 'venus', 'color': '#FE9592', 'font': 'Noto Serif' },
+    //         { 'name': 'earth', 'color': '#B8E986', 'font': 'Roboto Mono' },
+    //         { 'name': 'mars', 'color': '#FF5C5C', 'font': 'Patua One' }, //E20036
+    //         { 'name': 'jupiter', 'color': '#75FABF', 'font': 'Noto Serif' },
+    //         { 'name': 'saturn', 'color': '#FBC469', 'font': 'Roboto Mono' },
+    //         { 'name': 'uranus', 'color': '#83C4FE', 'font': 'Patua One' },
+    //         { 'name': 'neptune', 'color': '#4554A5', 'font': 'Noto Serif' },
+    //         { 'name': 'pluto', 'color': '#454545', 'font': 'Roboto Mono' }
+    //     ]
+
+    //     var themesWrapper = bubble.append('div')
+    //         .attr('class', 'cb-themes-wrapper');
+
+    //     themesWrapper.selectAll('div').data(themes).enter()
+    //         .append('div')
+    //         .attr('class', function (d) { return 'theme-thumb theme-thumb-' + d.name })
+    //         .on('click', function (d) {
+    //             console.log(d)
+    //             callback(d);
+    //         })
+    //         .append('img')
+    //         .attr('src', function (d) { return './assets/img/themes/theme-' + d.name + '.png' });
+
+    // };
+
+
+
+
+    /* Select a style */
+    cb.types['styles'] = function (bubble, options, callback) {
+
+        var styles = [
+            { 'color': '#71609B'},
+            { 'color': '#FE9592'},
+            { 'color': '#B8E986'},
+            { 'color': '#FF5C5C'},
+            { 'color': '#75FABF'},
+            { 'color': '#FBC469'}
+        ];
+
+        var fonts = [
+            { 'font': 'IBM Plex Mono','label':'Classic'},
+            { 'font': 'Roboto Mono','label':'Modern'},
+            { 'font': 'Noto Serif','label':'Future'},
         ]
 
-        var themesWrapper = bubble.append('div')
-            .attr('class', 'cb-themes-wrapper');
+        var stylesWrapper = bubble.append('div')
+            .attr('class', 'cb-styles-wrapper');
 
-        themesWrapper.selectAll('div').data(themes).enter()
+        var stylesOptsFont = stylesWrapper.append('div')
+            .attr('class', 'cb-styles-opts cb-styles-opts-fonts');
+
+        var stylesOptsColor = stylesWrapper.append('div')
+            .attr('class', 'cb-styles-opts cb-styles-opts-colors');
+
+
+        stylesOptsFont.selectAll('div')
+            .data(fonts).enter()
             .append('div')
-            .attr('class', function (d) { return 'theme-thumb theme-thumb-' + d.name })
+            .text(function(d){return d.label})
+            .attr('class', "cb-styles-opts-btn")
+            .style('font-family', function (d) { return d.font })
             .on('click', function (d) {
                 callback(d);
             })
-            .append('img')
-            .attr('src', function (d) { return './assets/img/themes/theme-' + d.name + '.png' });
+
+        stylesOptsColor.selectAll('div')
+            .data(styles).enter()
+            .append('div')
+            .attr('class', "cb-styles-opts-btn")
+            .style("background-color", function(d){return d.color})
+        //     .on('click', function (d) {
+        //         console.log(d)
+        //         callback(d);
+        //     })
+
     };
 
     /* Add download buttons */

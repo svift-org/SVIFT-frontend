@@ -412,7 +412,8 @@
   bottom: 0;
   width: 100%;
   background: #fff;
-  text-align: center; }
+  text-align: center;
+  display: none !important; }
   #cb-input input {
     position: relative;
     height: 100%;
@@ -864,6 +865,35 @@
     .cb-themes-wrapper .theme-thumb img {
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
       border-radius: 4px; }
+
+.cb-styles-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 540px; }
+  .cb-styles-wrapper .cb-styles-opts .cb-styles-opts-btn {
+    height: 30px;
+    border: 1px solid #ddd;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 4px;
+    transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px; }
+    .cb-styles-wrapper .cb-styles-opts .cb-styles-opts-btn:hover {
+      transform: translateY(5px); }
+  .cb-styles-wrapper .cb-styles-opts-fonts {
+    flex: 1; }
+    .cb-styles-wrapper .cb-styles-opts-fonts .cb-styles-opts-btn {
+      width: 100%;
+      flex: 1; }
+  .cb-styles-wrapper .cb-styles-opts-colors {
+    flex: 2;
+    display: flex;
+    width: 100%; }
+    .cb-styles-wrapper .cb-styles-opts-colors .cb-styles-opts-btn {
+      width: 50%;
+      flex: 1; }
 
 .cb-status-wrapper {
   display: flex;
