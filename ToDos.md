@@ -2,6 +2,22 @@
 
 ---
 
+
+# re:publica
+----
+
+- Titel Frontpage
+- Beta release tag
+- Intro chart graphic → Text raus
+- Svift logo top start screen height größer (Hans Screen)
+- Rohmaterial Screencast von Morgenpost für Seb Präsentation
+- Interface color selector style
+- Interface start grid vis overview muss scroll bar sein
+- Shadow table cells fixen
+- Feedback und input
+
+----
+
 * status > social => 1
 * Should we reduce frames per second? > less filesize, less pngs, overall faster
 * let people know when wait is long
