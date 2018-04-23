@@ -336,11 +336,19 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.redrawDebounce = SVIFT.helper.debouncer(function () { module.redraw(); }, 500);
 
-  module.updateVis = function(data){
+  module.updateVis = function(data, type){
     module.default.data = data;
-    console.log('updateVis');
+    module.vis.setData(data);
+
+    if(type == 'vis'){
+
+    }else{
+      module.vis.updateHead();
+    }
+
+    //console.log('updateVis');
     //TODO IMPLEMENT FUNCTION > only update chart | idea: update date, refresh last frame (see: social media rendering)
-    module.redraw();
+    //module.redraw();
   };
 
   module.redraw = function () {

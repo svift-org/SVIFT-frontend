@@ -116,7 +116,7 @@ SVIFT.table = (function (_config, updateCallback) {
             .attr('placeholder', function (d) { return d })
             .on('input', function () { module.valuesUpdate(this) });
 
-        updateCallback(module.data);
+        updateCallback(module.data, 'vis');
 
         if (module.data.data.length === module.maxCol) {
             d3.select(".column-editor-btn.btn-add").classed('disabled-btn', true);
@@ -180,7 +180,7 @@ SVIFT.table = (function (_config, updateCallback) {
             .selectAll('td')
             .data(function (d) { return d }).exit().remove();
 
-        updateCallback(module.data);
+        updateCallback(module.data, 'vis');
 
     };
 
@@ -243,7 +243,7 @@ SVIFT.table = (function (_config, updateCallback) {
             }
         }
 
-        updateCallback(module.data);
+        updateCallback(module.data, 'vis');
     };
 
 
@@ -254,8 +254,8 @@ SVIFT.table = (function (_config, updateCallback) {
         if (selectorData == "source" && inputText) { 
             module.data[selectorData] = "Source: " + inputText;
         }
-        d3.select(selectorViz).text(module.data[selectorData]);
 
+        updateCallback(module.data, 'text');
     };
 
     module.textToggle = function (obj, selectorViz, selectorInput, selectorData, altText) {
