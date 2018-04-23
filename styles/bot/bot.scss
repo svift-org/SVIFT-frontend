@@ -660,54 +660,60 @@
   }
 }
 
-.cb-themes-wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+// .cb-themes-wrapper {
+//   display: flex;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
 
-  .theme-thumb {
-    flex: 1;
-    margin: 10px;
-    border-radius: $border-radius-default;
-    transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-    cursor: pointer;
+//   .theme-thumb {
+//     flex: 1;
+//     margin: 10px;
+//     border-radius: $border-radius-default;
+//     transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+//     cursor: pointer;
 
-    &:hover {
-      transform: translateY(5px);
-    }
+//     &:hover {
+//       transform: translateY(5px);
+//     }
 
-    img {
-      box-shadow: $box-shadow-default;
-      border-radius: $border-radius-default;
-    }
-  }
-}
+//     img {
+//       box-shadow: $box-shadow-default;
+//       border-radius: $border-radius-default;
+//     }
+//   }
+// }
 
 
 
 .cb-styles-wrapper{
   display: flex;
   justify-content: space-between;
-  // flex-wrap: wrap;
   width: 540px;
 
   .cb-styles-opts{
 
-    .cb-styles-opts-btn{
-      // width: 100%;
-      height: 30px;
+    .cb-styles-btn{
+
+      height: 35px;
       border: 1px solid #ddd;
       text-align: center;
-      line-height: 30px;
+      line-height: 35px;
       border-radius: $border-radius-default;
       transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
       cursor: pointer;
       box-shadow: $box-shadow-default;
       margin-bottom: 15px;
+      margin-right: 15px;
 
       &:hover {
         transform: translateY(5px);
       }
+    }
+
+    .cb-styles-label{
+      margin-bottom: 10px;
+      text-align: center;
+      flex: 1;
     }
 
   }
@@ -715,21 +721,25 @@
   .cb-styles-opts-fonts{
     flex: 1;
 
-    .cb-styles-opts-btn{
-      width: 100%;
-      flex: 1;
+    .cb-styles-btn{
+      // width: 100%;
+      // flex: 1;
+    }
+
+    .cb-styles-label{
+
+      margin-right: 15px;
+
     }
 
   }
 
   .cb-styles-opts-colors{
     flex: 2;
-    display: flex;
-    width: 100%;
 
-    .cb-styles-opts-btn{
-      width: 50%;
-      flex: 1;
+    .cb-styles-btn{
+      width: 43%;
+      float: right;
     }
 
   }

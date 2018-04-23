@@ -210,29 +210,35 @@ var cb_extend = (function (cb) {
         var stylesOptsFont = stylesWrapper.append('div')
             .attr('class', 'cb-styles-opts cb-styles-opts-fonts');
 
+        stylesOptsFont.append('div')
+            .text("Typeface")
+            .attr('class', 'cb-styles-label');
+
         var stylesOptsColor = stylesWrapper.append('div')
             .attr('class', 'cb-styles-opts cb-styles-opts-colors');
 
+        stylesOptsColor.append('div')
+            .text("Colors")
+            .attr('class', 'cb-styles-label');
 
-        stylesOptsFont.selectAll('div')
+        stylesOptsFont.selectAll('.cb-styles-btn')
             .data(fonts).enter()
             .append('div')
             .text(function(d){return d.label})
-            .attr('class', "cb-styles-opts-btn")
+            .attr('class', "cb-styles-btn")
             .style('font-family', function (d) { return d.font })
             .on('click', function (d) {
                 callback(d);
             })
 
-        stylesOptsColor.selectAll('div')
+        stylesOptsColor.selectAll('.cb-styles-btn')
             .data(styles).enter()
             .append('div')
-            .attr('class', "cb-styles-opts-btn")
+            .attr('class', "cb-styles-btn")
             .style("background-color", function(d){return d.color})
-        //     .on('click', function (d) {
-        //         console.log(d)
-        //         callback(d);
-        //     })
+            .on('click', function (d) {
+                callback(d);
+            })
 
     };
 

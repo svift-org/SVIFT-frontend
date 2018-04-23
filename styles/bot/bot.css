@@ -899,50 +899,36 @@
       .cb-bubble-table .table-foot .delete:hover {
         color: #c01212; }
 
-.cb-themes-wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap; }
-  .cb-themes-wrapper .theme-thumb {
-    flex: 1;
-    margin: 10px;
-    border-radius: 4px;
-    transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-    cursor: pointer; }
-    .cb-themes-wrapper .theme-thumb:hover {
-      transform: translateY(5px); }
-    .cb-themes-wrapper .theme-thumb img {
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-      border-radius: 4px; }
-
 .cb-styles-wrapper {
   display: flex;
   justify-content: space-between;
   width: 540px; }
-  .cb-styles-wrapper .cb-styles-opts .cb-styles-opts-btn {
-    height: 30px;
+  .cb-styles-wrapper .cb-styles-opts .cb-styles-btn {
+    height: 35px;
     border: 1px solid #ddd;
     text-align: center;
-    line-height: 30px;
+    line-height: 35px;
     border-radius: 4px;
     transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
     cursor: pointer;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-    margin-bottom: 15px; }
-    .cb-styles-wrapper .cb-styles-opts .cb-styles-opts-btn:hover {
+    margin-bottom: 15px;
+    margin-right: 15px; }
+    .cb-styles-wrapper .cb-styles-opts .cb-styles-btn:hover {
       transform: translateY(5px); }
+  .cb-styles-wrapper .cb-styles-opts .cb-styles-label {
+    margin-bottom: 10px;
+    text-align: center;
+    flex: 1; }
   .cb-styles-wrapper .cb-styles-opts-fonts {
     flex: 1; }
-    .cb-styles-wrapper .cb-styles-opts-fonts .cb-styles-opts-btn {
-      width: 100%;
-      flex: 1; }
+    .cb-styles-wrapper .cb-styles-opts-fonts .cb-styles-label {
+      margin-right: 15px; }
   .cb-styles-wrapper .cb-styles-opts-colors {
-    flex: 2;
-    display: flex;
-    width: 100%; }
-    .cb-styles-wrapper .cb-styles-opts-colors .cb-styles-opts-btn {
-      width: 50%;
-      flex: 1; }
+    flex: 2; }
+    .cb-styles-wrapper .cb-styles-opts-colors .cb-styles-btn {
+      width: 43%;
+      float: right; }
 
 .cb-status-wrapper {
   display: flex;
