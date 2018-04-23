@@ -204,10 +204,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           if(typeof d.color != "undefined"){
             module.default.style.color.main = d.color;
           }else{
-            module.default.style.font = d.font;
+            module.default.style.theme = d.label;
             module.vis.setTheme(d.label);
           }
-          module.redrawDebounce();
+          //module.redrawDebounce();
 
       });
 
