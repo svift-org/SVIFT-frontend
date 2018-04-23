@@ -200,8 +200,9 @@ var cb_extend = (function (cb) {
 
         var fonts = [
             { 'font': 'IBM Plex Mono','label':'Classic'},
+            { 'font': 'IBM Plex Mono','label':'Now'},
             { 'font': 'Roboto Mono','label':'Modern'},
-            { 'font': 'Noto Serif','label':'Future'},
+            { 'font': 'Noto Serif','label':'Future'}
         ]
 
         var stylesWrapper = bubble.append('div')

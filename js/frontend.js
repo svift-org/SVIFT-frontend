@@ -205,8 +205,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
             module.default.style.color.main = d.color;
           }else{
             module.default.style.font = d.font;
+            module.vis.setTheme(d.label);
           }
           module.redrawDebounce();
+
       });
 
       setTimeout(function () {
