@@ -597,6 +597,7 @@ body {
         max-width: 100%;
         height: auto; }
     .app #gui-1 #gui-1-overlay {
+      overflow: auto;
       display: flex;
       flex: 1;
       align-items: center;
@@ -613,11 +614,8 @@ body {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        justify-content: center;
-        padding: 5vw; }
-        @media screen and (min-width: 1300px) {
-          .app #gui-1 #gui-1-overlay div.thumb-wrapper {
-            padding: 3vw; } }
+        padding: 5vw;
+        padding: 2vw; }
         .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb {
           display: flex;
           justify-content: center;
@@ -626,7 +624,7 @@ body {
           transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
           cursor: pointer;
           padding: 30px 20px;
-          width: calc(100% / 2); }
+          width: calc(100% / 3); }
           @media screen and (min-width: 1300px) {
             .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb {
               padding: 20px 10px; } }
