@@ -2,6 +2,22 @@
 @import "../variables/variables.scss";
 @import "./mixins/mixins";
 
+.beta-tag {
+  color: #fff;
+  text-align: center;
+  padding: 2vh;
+  font-family: $font-family-mono;
+  // background: rgba(14,253,192,1);
+  // background: rgba(0,0,0,0.4);
+  background: $svift-primary;
+
+  a{
+    text-decoration: none;
+    color: $svift-human;
+  }
+ 
+}
+
 *:focus {
   outline: none;
   inline: none;

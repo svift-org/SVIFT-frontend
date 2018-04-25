@@ -438,6 +438,16 @@
 /* Border radii*/
 /* --- BORDERS --- */
 /* Borders */
+.beta-tag {
+  color: #fff;
+  text-align: center;
+  padding: 2vh;
+  font-family: "DecimaMonoProBold", monospace;
+  background: #71609b; }
+  .beta-tag a {
+    text-decoration: none;
+    color: #75fabf; }
+
 *:focus {
   outline: none;
   inline: none; }

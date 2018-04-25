@@ -11,9 +11,9 @@
   "docs": {
     "title": "Docs",
     "p1":
-      "<em>svift</em> is currently undergoing active development. As such we are constantly updating the tool's featuree. We are looking forward to improving and extending its overall capabilties and adding many more functionalities as we go along.",
+      "<em>svift</em> is currently undergoing active development. As such we are constantly updating the tool's features. We are looking forward to improving and extending its overall capabilties and adding many more functionalities as we go along. Please <a href='&#0109;&#097;&#0105;&#0108;&#0116;&#0111;&#058;&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;'>get in touch</a> with us if you have suggestions or would like to contribute to the project. ",
     "p2":
-      "<em>svift</em> is open source software, which means that you can use it for free and even help us improve it. All our code is available on <a target='blank' href='https://github.com/svift-org'>Github</a>. Please get in touch with us if you have suggestions or would like to contribute to the project. Alternatively you can just submit a pull request.",
+      "All our code is open source software, which means that you can use it for free and even help us improve it. All our code is available on <a target='blank' href='https://github.com/svift-org'>Github</a>. Let us know if you have suggestions or would like to contribute to the project. Alternatively you can just submit a pull request.",
     "p3": ""
   },
   "contact": {
