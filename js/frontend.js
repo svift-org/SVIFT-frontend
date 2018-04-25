@@ -59,7 +59,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           "lables": [null],
           "title": "Look at this title",
           "subTitle": "and what about a subtitle here?",
-          "attribution": "made with svift.xyz",
+          "attribution": "Made with svift.xyz",
           "source": "Source: Your source"
       }
   };
