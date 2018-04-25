@@ -41,7 +41,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           "font": "Patua One", //"Open Sans",Patua One,Hind
           "fontLables": "Open Sans",
           "color": {
-              "main": "#71609B",
+              "main": "purple",
               "second": "#9A9A9A",
               "background": "#fff",
               "dataColors": ["#434343", "#FF5858", "#99C3F3", "#FFF680", "#EF96FF", "#B9FF6C"]
@@ -202,7 +202,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       cb.addBubble({ type: 'styles', class: 'human'}, function(d){
 
           if(typeof d.color != "undefined"){
-            module.default.style.color.main = d.color;
+            module.default.style.color.main = d.label;
+            module.vis.setColor(d.label);
           }else{
             module.default.style.theme = d.label;
             module.vis.setTheme(d.label);

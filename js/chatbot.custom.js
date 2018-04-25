@@ -190,12 +190,12 @@ var cb_extend = (function (cb) {
     cb.types['styles'] = function (bubble, options, callback) {
 
         var styles = [
-            { 'color': '#71609B'},
-            { 'color': '#FE9592'},
-            { 'color': '#B8E986'},
-            { 'color': '#FF5C5C'},
-            { 'color': '#75FABF'},
-            { 'color': '#FBC469'}
+            { 'color': '#71609B', 'label': 'purple'},
+            { 'color': '#FE9592', 'label': 'apricot'},
+            { 'color': '#B8E986', 'label': 'green'},
+            { 'color': '#FF5C5C', 'label': 'red'},
+            { 'color': '#75FABF', 'label': 'turquoise'},
+            { 'color': '#FBC469', 'label': 'orange'}
         ];
 
         var fonts = [
