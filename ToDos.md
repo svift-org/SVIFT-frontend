@@ -16,6 +16,15 @@
 - Shadow table cells fixen
 - Feedback und input
 
+- fix text input bug for firefox
+- tabel is broken
+- somehow show whole animation
+- fix viz mosaic & gooey
+- improve renderer
+- show render status - fix bug
+- 
+
+
 ----
 
 * status > social => 1
