@@ -348,7 +348,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     module.vis.setData(data);
 
     if(type == 'vis'){
-
+      module.vis.update();
+      module.vis.resize();
     }else{
       module.vis.updateHead();
     }
@@ -368,9 +369,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           .style('opacity', 0)
 
       module.vis = SVIFT.vis[module.default.vis.type](module.default, d3.select('.viz-container'));
-      module.vis.setScale(true);
+      module.vis.setScale(false);
       module.vis.init();
       module.vis.start();
+      module.vis.setScale(true);
 
       var height = (d3.select('#gui-1-overlay').node().getBoundingClientRect().width * module.defaultFormat[2]) / (module.defaultFormat[0] / module.defaultFormat[1]);
 
