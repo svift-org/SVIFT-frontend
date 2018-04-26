@@ -23,6 +23,7 @@
 - improve renderer
 - source input not working
 - replace purple fill with black/gray on vis-count module
+- hide text not working
 
 
 ----
