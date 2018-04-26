@@ -6,24 +6,37 @@
 # re:publica
 ----
 
-- Titel Frontpage
-- Beta release tag
-- Intro chart graphic → Text raus
+Alsino:
 - Svift logo top start screen height größer (Hans Screen)
-- Rohmaterial Screencast von Morgenpost für Seb Präsentation
 - Interface color selector style
-- Interface start grid vis overview muss scroll bar sein
 - Shadow table cells fixen
 - Feedback und input
 
+Hans:
+---
+- column chart: 
+    - adding a column doesnt work
+    - removing a column after having 3 columns produces weird bug
+- count chart: 
+    - does not count up
+    - replace purple fill with black/gray on vis-count module
+    - change font to "IBM Plex Sans Condensed" as default
+- fix viz gooey, mosais, line
 - fix text input bug for firefox
 - tabel is broken
 - somehow show whole animation
-- fix viz mosaic & gooey
 - improve renderer
 - source input not working
-- replace purple fill with black/gray on vis-count module
 - hide text not working
+
+Seb:
+---
+- Not rendered correctly:
+    - Position Heading/subheading
+    - Font-families
+    - Font weights
+    - Colors
+
 
 
 ----

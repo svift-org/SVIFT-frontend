@@ -515,7 +515,8 @@ body {
           width: 50%;
           background-image: url("../../assets/img/logo_web.png");
           background-repeat: no-repeat;
-          background-position: 0 4px; }
+          background-position: left center;
+          background-size: auto; }
           @media screen and (min-width: 1300px) {
             .app #gui-1 header .svift-logo a {
               padding: 3vw; } }
