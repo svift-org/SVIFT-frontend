@@ -13,6 +13,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.table = null;
   module.renderProcess = {
+    finished: false,
+    showDownloadLink: false,
     token : "",
     rowOne:null,
     rowTwo:null,
@@ -223,6 +225,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     //start rendering process
     module.render();
 
+
     cb.addBubble({ type: 'text', value: 'Look! You can even preview your chart in different sizes', class: 'bot', delay: 1500 }, function () {
 
       cb.addBubble({ type: 'resize', class: 'human'}, function(type){
@@ -260,8 +263,6 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
               var jResponse = JSON.parse(data.response);
               var statusCounter = 0;
-              var finished = false;
-
 
               for (var type in jResponse.full) {
                 if (jResponse.full[type] == 1) {
@@ -277,10 +278,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
                 module.renderProcess.token = url.substr(url.lastIndexOf('/') + 1);
 
                 clearInterval(inter);
-                finished = true;
+                module.renderProcess.finished = true;
               }
 
-              module.renderStatusUpdate(finished);
+              module.renderStatusUpdate();
 
             });
           }, 1000);
@@ -288,34 +289,46 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       );
   };
 
-  module.renderStatusUpdate = function(finished){
+  module.renderStatusUpdate = function(){
     if (module.renderProcess.visible) {
       var status = module.renderProcess.rendered;
       for (var type in status) {
         if (status[type]) {
           if (type == 'social') {
+
+            var n = 0;
+            function endAll() {
+              n++;
+              var socialsLength = module.renderProcess.rowOne.selectAll('span')._groups[0].length;
+              if(n==socialsLength && !module.renderProcess.showDownloadLink){
+                if (module.renderProcess.finished) {
+                  setTimeout(function () {
+                    module.renderComplete();
+                  }, 500);
+                };
+              };
+            }
+
             module.renderProcess.rowOne.selectAll('span')
               .transition()
               .delay(function (d, i) { return i * 400 })
-              .attr('class', 'complete');
+              .attr('class', 'complete')
+              .on("end", endAll);;
+
+
+
           } else {
             d3.select('#status-' + type).attr('class', 'complete');
           }
         }
       }
-
-      if (finished) {
-        setTimeout(function () {
-          module.renderComplete();
-        }, 1500);
-      }
-
     }
   };
 
   module.renderComplete = function(){
 
-    console.log(module.renderProcess)
+    module.renderProcess.showDownloadLink = true;
+
     cb.addBubble({ type: 'text', value: '<span>Your charts are now ready! Download them here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + module.renderProcess.token + '">www.svift.xyz/' + module.renderProcess.token + '</a></span>', class: 'bot' });
     
     setTimeout(function () {

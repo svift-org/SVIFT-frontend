@@ -21,7 +21,6 @@
 - somehow show whole animation
 - fix viz mosaic & gooey
 - improve renderer
-- show render status - fix bug
 - 
 - bug all redered 
 
