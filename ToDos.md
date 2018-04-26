@@ -14,19 +14,10 @@ Alsino:
 
 Hans:
 ---
-- column chart: 
-    - adding a column doesnt work
-    - removing a column after having 3 columns produces weird bug
-- count chart: 
-    - does not count up
-    - replace purple fill with black/gray on vis-count module
-    - change font to "IBM Plex Sans Condensed" as default
-- fix viz gooey, mosais, line
-- fix text input bug for firefox
-- tabel is broken
+- fix viz line ?
+- tabel input does not upddate vis
+    - also removing a column after having 3 columns produces weird bug
 - somehow show whole animation
-- improve renderer
-- source input not working
 - hide text not working
 
 Seb:
@@ -36,8 +27,9 @@ Seb:
     - Font-families
     - Font weights
     - Colors
-
-
+    - source input not working
+    - fix text input bug for firefox
+    - improve renderer
 
 ----
 
