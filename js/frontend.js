@@ -1,5 +1,19 @@
 SVIFT.frontend = (function (_container_1, _container_2) {
 
+  // Firebase quick&dirty setup - START //
+  var firebaseConfig = {
+    apiKey: "AIzaSyDfZNHj2kNlkoD0qr5VQRs04p4zDTA6-2E",
+    authDomain: "svift-feedback-dev-654a9.firebaseapp.com",
+    databaseURL: "https://svift-feedback-dev-654a9.firebaseio.com",
+    projectId: "svift-feedback-dev-654a9",
+    storageBucket: "",
+    messagingSenderId: "39435822198"
+  };
+  firebase.initializeApp(firebaseConfig);
+  var feedbackRoute = firebase.database().ref('feedback/');
+  let date = moment().format();
+  // Firebase quick&dirty setup - END //
+
   var module = {},
       container_1 = _container_1, //d3.select('#gui-1-overlay')
       container_2 = _container_2, //d3.select('#gui-2')
@@ -226,7 +240,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     module.render();
 
 
-    cb.addBubble({ type: 'text', value: 'Look! You can even preview your chart in different sizes', class: 'bot', delay: 1500 }, function () {
+    cb.addBubble({ type: 'text', value: 'Look! You can even preview your chart in different output formats', class: 'bot', delay: 1500 }, function () {
 
       cb.addBubble({ type: 'resize', class: 'human'}, function(type){
           module.defaultFormat = type;
@@ -340,10 +354,13 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           if (d.feedback) {
             cb.addBubble({ type: 'feedback', class: 'human' });
             cb.addBubble({ type: 'select', value: [{ label: 'send feedback' }], class: 'human' }, function () {
-              var feedbackText = d3.select("#feedback").node().value;
 
-              //TODO: Feedback text needs to be send to the server
-              console.log(feedbackText)
+              //TODO: Currently feedback is sent to overly simple Firebase database setup, needs refinement
+              var feedbackText = d3.select("#feedback").node().value;
+              feedbackRoute.push({
+                comment: feedbackText,
+                timestamp: date
+            });
               cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
               setTimeout(function () {
                 cb.addBubble({ type: 'select', value: [{ label: 'Make another chart!' }], class: 'human' }, function () {

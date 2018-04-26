@@ -36,8 +36,7 @@
             <main>
                 <h1>Your social chart tool</h1>
                 <div class="claim">
-                    <em>svift</em> is an open source tool to turn numbers into charts for social media. It is easy, super fast
-                    and fun. Try our prototype now and let us know what you think.
+                    <em>svift</em> is an open source tool to turn numbers into beautiful charts. It is easy, super fast and fun. Try our prototype now and <a href='&#0109;&#097;&#0105;&#0108;&#0116;&#0111;&#058;&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;'>let us know</a> what you think.
                 </div>
             </main>
             <nav>
@@ -63,7 +62,8 @@
             <div class="beta-tag">Svift is currently in beta. <a href="pages.html#docs">More info …</a></div>
         </div>
     </div>
-
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="js/firebase-v4.13.js"></script>
     <script src="build/d3.v4.min.js"></script>
     <script src="js/chatbot.js"></script>
     <script src="js/chatbot.custom.js"></script>
@@ -86,7 +86,9 @@
         var frontend = SVIFT.frontend(d3.select('#gui-1-overlay'), d3.select('#gui-2'));
             frontend.init();
 
+
     </script>
 </body>
+
 
 </html>
