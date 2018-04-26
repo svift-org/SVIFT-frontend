@@ -7,10 +7,9 @@
 ----
 
 Alsino:
+- Style input field
 - Svift logo top start screen height größer (Hans Screen)
-- Interface color selector style
-- Shadow table cells fixen
-- Feedback und input
+- Shadow table cells fix
 
 Hans:
 ---
@@ -27,9 +26,9 @@ Seb:
     - Font-families
     - Font weights
     - Colors
-    - source input not working
-    - fix text input bug for firefox
-    - improve renderer
+- source input not working
+- fix text input bug for firefox
+- improve renderer
 
 ----
 
