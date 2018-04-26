@@ -23,6 +23,7 @@
 - improve renderer
 - show render status - fix bug
 - 
+- bug all redered 
 
 
 ----

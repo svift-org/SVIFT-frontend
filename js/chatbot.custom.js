@@ -279,9 +279,9 @@ var cb_extend = (function (cb) {
 
         rowTwo.selectAll('span').data(formats).enter()
             .append('span')
-            .html(function (d, i) { return d.name; })
+            .html(function (d, i) { return d.html; })
             .attr('class', 'cb-status-btn')
-            .attr('id', function (d) { return 'status-' + d; });
+            .attr('id', function (d) { return 'status-' + d.name; });
 
         callback(rowOne, rowTwo);
     };

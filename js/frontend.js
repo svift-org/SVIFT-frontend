@@ -262,6 +262,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
               var statusCounter = 0;
               var finished = false;
 
+
               for (var type in jResponse.full) {
                 if (jResponse.full[type] == 1) {
                   statusCounter++;
@@ -271,6 +272,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
               //All things have been rendered stop request
               if (jResponse.full.aws == 1) { //jResponse.status == 2
+
+                var url = data.responseURL;
+                module.renderProcess.token = url.substr(url.lastIndexOf('/') + 1);
+
                 clearInterval(inter);
                 finished = true;
               }
@@ -289,7 +294,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       for (var type in status) {
         if (status[type]) {
           if (type == 'social') {
-            module.renderProcess.rowOne
+            module.renderProcess.rowOne.selectAll('span')
               .transition()
               .delay(function (d, i) { return i * 400 })
               .attr('class', 'complete');
@@ -309,6 +314,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   };
 
   module.renderComplete = function(){
+
+    console.log(module.renderProcess)
     cb.addBubble({ type: 'text', value: '<span>Your charts are now ready! Download them here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + module.renderProcess.token + '">www.svift.xyz/' + module.renderProcess.token + '</a></span>', class: 'bot' });
     
     setTimeout(function () {
