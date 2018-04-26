@@ -927,9 +927,12 @@
     .cb-styles-wrapper .cb-styles-opts .cb-styles-btn:hover {
       transform: translateY(3px); }
   .cb-styles-wrapper .cb-styles-opts .cb-styles-label {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-top: 20px;
     text-align: center;
-    flex: 1; }
+    flex: 1;
+    text-transform: uppercase;
+    font-size: 0.8em; }
   .cb-styles-wrapper .cb-styles-opts-fonts {
     flex: 1; }
     .cb-styles-wrapper .cb-styles-opts-fonts .cb-styles-label {

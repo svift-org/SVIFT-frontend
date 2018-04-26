@@ -192,9 +192,9 @@ var cb_extend = (function (cb) {
         var styles = [
             { 'color': '#71609B', 'label': 'purple'},
             { 'color': '#FE9592', 'label': 'apricot'},
-            { 'color': '#B8E986', 'label': 'green'},
-            { 'color': '#FF5C5C', 'label': 'red'},
             { 'color': '#75FABF', 'label': 'turquoise'},
+            { 'color': '#FF5C5C', 'label': 'red'},
+            { 'color': '#B8E986', 'label': 'green'},
             { 'color': '#FBC469', 'label': 'orange'}
         ];
 
