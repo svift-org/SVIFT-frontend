@@ -15,10 +15,6 @@ Alsino:
 Hans:
 ---
 - fix viz line ?
-- tabel input does not upddate vis
-    - also removing a column after having 3 columns produces weird bug
-- somehow show whole animation
-- hide text not working
 
 Seb:
 ---
@@ -27,9 +23,18 @@ Seb:
     - Font-families
     - Font weights
     - Colors
-    - source input not working
-    - fix text input bug for firefox
-    - improve renderer
+
+- somehow show whole animation if user wants to (barcharts). 
+    - Show whole animation for some visses if user types in new data (e.g counter, mosiac)
+- source input not working
+- hide imput text is not working
+- text input breaks firefox when line break or text tto long
+- improve renderer
+- tabel input does not upddate vis
+    - also removing a column after having 3 columns produces weird bug
+    - also mosaic % nuber moves down when colors chnage
+
+
 
 ----
 
