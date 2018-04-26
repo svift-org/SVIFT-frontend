@@ -104,7 +104,7 @@ body {
           // background-image: url("../../assets/img/wordmark-white.png");
           background-image: url("../../assets/img/logo_web.png");
           background-repeat: no-repeat;
-          background-position: left center;
+          background-position: left top;
           background-size: auto;
 
           @include large {
@@ -195,6 +195,11 @@ body {
 
         @include large {
           font-size: $font-size-text * 0.95;
+        }
+
+        a {
+          color: $svift-primary;
+          text-decoration: none;
         }
       }
     }

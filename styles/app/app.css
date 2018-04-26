@@ -515,7 +515,7 @@ body {
           width: 50%;
           background-image: url("../../assets/img/logo_web.png");
           background-repeat: no-repeat;
-          background-position: left center;
+          background-position: left top;
           background-size: auto; }
           @media screen and (min-width: 1300px) {
             .app #gui-1 header .svift-logo a {
@@ -579,6 +579,9 @@ body {
         @media screen and (min-width: 1300px) {
           .app #gui-1 main .claim {
             font-size: 0.95em; } }
+        .app #gui-1 main .claim a {
+          color: #71609b;
+          text-decoration: none; }
     .app #gui-1 div.hero {
       text-align: center;
       width: 100%;
