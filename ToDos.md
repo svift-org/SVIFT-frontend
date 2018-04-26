@@ -21,8 +21,8 @@
 - somehow show whole animation
 - fix viz mosaic & gooey
 - improve renderer
-- 
-- bug all redered 
+- source input not working
+- replace purple fill with black/gray on vis-count module
 
 
 ----

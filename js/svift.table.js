@@ -176,9 +176,11 @@ SVIFT.table = (function (_config, updateCallback) {
 
         module.data.data.pop();
 
-        module.rows.data(module.parse(module.data)).enter()
+        module.table.selectAll('tr')
+            .data(module.parse(module.data))
             .selectAll('td')
             .data(function (d) { return d }).exit().remove();
+
 
         updateCallback(module.data, 'vis');
 
