@@ -11,7 +11,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   };
   firebase.initializeApp(firebaseConfig);
   var feedbackRoute = firebase.database().ref('feedback/');
-  let date = moment().format();
+  var date = moment().format();
   // Firebase quick&dirty setup - END //
 
   var module = {},
