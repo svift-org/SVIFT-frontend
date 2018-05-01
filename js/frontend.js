@@ -405,7 +405,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       d3.select(".viz-container")
           .style('height', module.defaultFormat[1] + "px")
           .style('width', module.defaultFormat[0] + "px")
-          .style('opacity', 0)
+          .style('opacity', 0);
 
       module.vis = SVIFT.vis[module.default.vis.type](module.default, d3.select('.viz-container'));
       module.vis.setScale(false);
