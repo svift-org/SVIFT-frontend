@@ -332,7 +332,9 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
 
           } else {
-            d3.select('#status-' + type).attr('class', 'complete');
+            d3.select('#status-' + type)
+            // .attr('class', 'complete');
+            .classed('complete',true)
           }
         }
       }

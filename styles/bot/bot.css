@@ -965,7 +965,7 @@
       border: 2px solid #d8d8d8;
       display: flex;
       justify-content: center; }
-      .cb-status-wrapper .cb-status-row span:first-child {
+      .cb-status-wrapper .cb-status-row span.gif {
         font-size: 14px;
         font-family: "InterfaceRegularBold"; }
     .cb-status-wrapper .cb-status-row .complete {

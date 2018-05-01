@@ -252,7 +252,7 @@ var cb_extend = (function (cb) {
             .attr('class', 'cb-status-row');
 
         var social = [
-            { "name": "Gif", "icon": "gif", "link": "none" + ".gif", "html": 'GIF' },
+            // { "name": "Gif", "icon": "gif", "link": "none" + ".gif", "html": 'GIF' },
             { "name": "Facebook", "icon": "facebook", "link": "social/facebook.png", "html": '&#xf09a' },
             { "name": "Twitter", "icon": "twitter", "link": "social/twitter.png", "html": '&#xf099' },
             { "name": "Instagram", "icon": "instagram", "link": "social/instagram.png", "html": '&#xf32d' },
@@ -273,14 +273,14 @@ var cb_extend = (function (cb) {
         var formats = [
             { 'html': '&#xe801', 'name': 'html' },
             { 'html': '&#xe804', 'name': 'svg' },
-            { 'html': '&#xe803', 'name': 'png' },
-            { 'html': '&#xe802', 'name': 'gif'}
+            // { 'html': '&#xe803', 'name': 'png' },
+            { 'html': 'GIF', 'name': 'gif'}
         ];
 
         rowTwo.selectAll('span').data(formats).enter()
             .append('span')
             .html(function (d, i) { return d.html; })
-            .attr('class', 'cb-status-btn')
+            .attr('class',function(d){return 'cb-status-btn ' + d.name})
             .attr('id', function (d) { return 'status-' + d.name; });
 
         callback(rowOne, rowTwo);
