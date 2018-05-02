@@ -313,7 +313,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
       if(!module.renderProcess.started){
 
-        var timeToDelay = 10000;
+        var timeToDelay = 15000;
         module.renderProcess.timeout = setTimeout(function(){ 
           cb.addBubble({ type: 'text', value: '<span>Looks like a lot of people are using svift right now</span>', class: 'bot', delay: 1000 }, function (d) {
             setTimeout(function (){
