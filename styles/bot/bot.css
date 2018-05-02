@@ -766,8 +766,10 @@
       color: #9a9a9a; }
   .cb-bubble-input .bad-input-data {
     background-color: #ff5858 !important; }
-  .cb-bubble-input .hidden input::placeholder {
-    opacity: 0.2; }
+  .cb-bubble-input .hidden input, .cb-bubble-input .hidden textarea {
+    cursor: not-allowed; }
+    .cb-bubble-input .hidden input::placeholder, .cb-bubble-input .hidden textarea::placeholder {
+      opacity: 0.2; }
   .cb-bubble-input .hidden #titleToggle,
   .cb-bubble-input .hidden #subtitleToggle,
   .cb-bubble-input .hidden #sourceToggle {

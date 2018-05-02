@@ -463,7 +463,8 @@
   }
 
   .hidden {
-    input {
+    input,textarea {
+      cursor: not-allowed;
       &::placeholder {
         opacity: 0.2;
       }
