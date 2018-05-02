@@ -288,6 +288,8 @@ SVIFT.table = (function (_config, updateCallback) {
             d3.select(selectorViz).text(module.data[selectorData]);
         }
 
+        updateCallback(module.data, 'vis');
+
     };
 
     return module;
