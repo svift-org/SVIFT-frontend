@@ -6,7 +6,7 @@ var cb_extend = (function (cb) {
     cb.types['feedback'] = function (bubble, options, callback) {
         var feedbackWrapper = bubble.append('div').classed('feedback', true);
         feedbackWrapper.append('textarea').attr('id', 'feedback')
-            .attr('placeholder', 'Feedback')
+            .attr('placeholder', 'Your feedback …')
     }
 
     /* Show bubbles which resize the viz*/

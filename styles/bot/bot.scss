@@ -807,6 +807,28 @@
   }
 }
 
+#feedback {
+  border: none;
+  border-radius: $border-radius-default;
+  color: $text-subheading;
+  font-size: 1em;
+  background-color: #eeeeee;
+  resize:none;
+  font-family: $font-family-mono;
+  padding: 10px 10px;
+  margin: 3px 0;
+  width: 380px;
+  height: 80px;
+}
+
+#feedback.disabled {
+  // background-color: #fbfbfb;
+  // color: #c6c6c6;
+  background-color: #fff;
+  color: #9a9a9a;
+  border: 3px solid #d8d8d8;
+}
+
 // .loader-wrapper {
 //     // display: flex;
 // }

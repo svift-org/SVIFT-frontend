@@ -975,6 +975,24 @@
       color: #fff;
       border: 2px solid #75fabf; }
 
+#feedback {
+  border: none;
+  border-radius: 4px;
+  color: #9a9a9a;
+  font-size: 1em;
+  background-color: #eeeeee;
+  resize: none;
+  font-family: "DecimaMonoProBold", monospace;
+  padding: 10px 10px;
+  margin: 3px 0;
+  width: 380px;
+  height: 80px; }
+
+#feedback.disabled {
+  background-color: #fff;
+  color: #9a9a9a;
+  border: 3px solid #d8d8d8; }
+
 .loader,
 .loader:after {
   border-radius: 50%;

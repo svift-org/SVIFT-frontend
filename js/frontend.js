@@ -381,6 +381,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           if (d.feedback) {
             cb.addBubble({ type: 'feedback', class: 'human' });
             cb.addBubble({ type: 'select', value: [{ label: 'send feedback' }], class: 'human' }, function () {
+              d3.select("#feedback").classed("disabled", true);
+              d3.select("#feedback").attr("disabled", true);
 
               //TODO: Currently feedback is sent to overly simple Firebase database setup, needs refinement
               var feedbackText = d3.select("#feedback").node().value;
