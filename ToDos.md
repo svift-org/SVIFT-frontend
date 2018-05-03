@@ -7,8 +7,7 @@
 ----
 
 Alsino:
-- Style input field
-- Svift logo top start screen height größer (Hans Screen)
+- logo problem on resize (siehe screenshot)
 - Shadow table cells fix
 
 Hans:
