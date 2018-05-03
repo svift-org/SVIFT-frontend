@@ -922,10 +922,17 @@ div.download {
     div.download .ct .ct-head {
       text-align: center;
       margin: 3em 0 2em 0; }
+      @media screen and (max-height: 700px) {
+        div.download .ct .ct-head {
+          margin: 1em 0 1em 0; } }
       div.download .ct .ct-head h1 {
         font-size: 1.7em;
         font-family: "DecimaMonoProBold", monospace;
         color: #71609b; }
+        @media screen and (max-height: 700px) {
+          div.download .ct .ct-head h1 {
+            font-size: 1.4em;
+            margin: 0.4em 0; } }
       div.download .ct .ct-head h2 {
         font-size: 1em;
         font-family: "DecimaMonoProBold", monospace;
@@ -942,6 +949,9 @@ div.download {
         justify-content: space-around;
         flex-wrap: wrap;
         margin: 20px 0; }
+        @media screen and (max-height: 700px) {
+          div.download .ct .ct-body .dl-links {
+            margin: 10px; } }
         div.download .ct .ct-body .dl-links .social-buttons, div.download .ct .ct-body .dl-links .extra-buttons {
           display: flex;
           justify-content: center;
@@ -1013,6 +1023,9 @@ div.download {
       font-size: 0.9em;
       font-family: "DecimaMonoProBold", monospace;
       color: #71609b; }
+      @media screen and (max-height: 700px) {
+        div.download .ct .ct-foot {
+          margin: 1em 0 1em 0; } }
       div.download .ct .ct-foot .source a {
         text-decoration: none;
         color: #9a9a9a; }
