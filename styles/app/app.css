@@ -462,6 +462,35 @@ body {
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;
   /* IE (non-standard property) */ }
+  @media screen and (max-width: 699px) {
+    html,
+    body {
+      position: fixed; } }
+
+.mobile {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  color: #fff;
+  overflow: hidden;
+  background: #5c258d;
+  background: -webkit-linear-gradient(to right top, #71609b, #75fabf);
+  background: linear-gradient(to right top, #71609b, #75fabf);
+  padding: 4%; }
+  .mobile img {
+    width: 140px; }
+  .mobile h1 {
+    margin: 2em auto;
+    text-align: center;
+    font-family: "DecimaMonoProBold", monospace;
+    font-size: 1.25em;
+    line-height: 1.5; }
+  @media screen and (max-width: 699px) {
+    .mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; } }
 
 .app {
   display: flex;
@@ -469,12 +498,14 @@ body {
   height: 100vh;
   color: #fff;
   overflow: hidden; }
+  @media screen and (max-width: 699px) {
+    .app {
+      display: none; } }
   .app #gui-1 {
     flex: 1;
     display: flex;
     flex-flow: column;
     background: #5c258d;
-    /* fallback for old browsers */
     background: -webkit-linear-gradient(to right top, #71609b, #75fabf);
     background: linear-gradient(to right top, #71609b, #75fabf);
     line-height: 1.5; }
