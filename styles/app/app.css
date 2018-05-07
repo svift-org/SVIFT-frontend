@@ -513,7 +513,7 @@ body {
       display: flex;
       flex-flow: row;
       align-items: center;
-      padding: 5%;
+      padding: 2em;
       z-index: 2; }
       .app #gui-1 header .burger {
         flex: 2;
