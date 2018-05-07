@@ -545,13 +545,7 @@ body {
             height: 35px; }
           @media screen and (min-width: 1300px) {
             .app #gui-1 header .svift-logo a {
-              padding: 3vw 0; } }
-          @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx) {
-            .app #gui-1 header .svift-logo a {
-              background: url("../../assets/img/logo_web@2x.png");
-              background-repeat: no-repeat;
-              background-position: 0 4px;
-              background-size: 70%; } }
+              padding: 1em 0; } }
     .app #gui-1 nav {
       background-color: #fff;
       color: #75fabf;

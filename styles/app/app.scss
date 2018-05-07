@@ -134,14 +134,7 @@ body {
           }
 
           @include large {
-            padding: 3vw 0;
-          }
-
-          @include retina {
-            background: url("../../assets/img/logo_web@2x.png");
-            background-repeat: no-repeat;
-            background-position: 0 4px;
-            background-size: 70%;
+            padding: 1em 0;
           }
         }
       }
