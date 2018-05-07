@@ -760,7 +760,7 @@
     background-color: #eeeeee;
     width: 100%; }
     .cb-bubble-input input:focus, .cb-bubble-input textarea:focus {
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
     .cb-bubble-input input::placeholder, .cb-bubble-input textarea::placeholder {
       font-family: "DecimaMonoProBold", monospace;
       color: #9a9a9a; }
@@ -987,6 +987,8 @@
   margin: 3px 0;
   width: 380px;
   height: 80px; }
+  #feedback:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
 
 #feedback.disabled {
   background-color: #fff;

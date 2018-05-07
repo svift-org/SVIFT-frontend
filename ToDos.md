@@ -7,14 +7,13 @@
 ----
 
 Alsino:
-- logo problem on resize (siehe screenshot)
-- Shadow table cells fix
 - subdomains
 
 Hans:
 ---
 - integrate logo
 - fix viz line ?
+- grid: number sehr stark pixelig
 
 Seb:
 ---
