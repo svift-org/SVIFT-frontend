@@ -23,6 +23,41 @@ body {
   image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+
+  @include small {
+    position: fixed;
+  }
+}
+
+.mobile {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  color: $white;
+  overflow: hidden;
+  background: #5c258d; 
+  background: -webkit-linear-gradient(to right top,$svift-primary,$svift-human);
+  background: linear-gradient(to right top, $svift-primary, $svift-human);
+  padding: $padding-default*2;
+
+  img {
+    width: 130px;
+  }
+
+  h1 {
+    margin: 2em auto;
+    text-align: center;
+    font-family: $font-family-mono;
+    font-size: $font-size-heading * 0.5;
+    line-height: 1.5;
+  }
+
+  @include small {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .app {
@@ -32,18 +67,16 @@ body {
   color: $white;
   overflow: hidden;
 
+  @include small {
+    display: none;
+  }
+
   #gui-1 {
     flex: 1;
     display: flex;
     flex-flow: column;
-    background: #5c258d; /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6
-    // background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: -webkit-linear-gradient(
-      to right top,
-      $svift-primary,
-      $svift-human
-    );
+    background: #5c258d; 
+    background: -webkit-linear-gradient(to right top,$svift-primary,$svift-human);
     background: linear-gradient(to right top, $svift-primary, $svift-human);
     line-height: $line-height-default;
 
@@ -51,11 +84,8 @@ body {
       display: flex;
       flex-flow: row;
       align-items: center;
-      padding: $padding-big;
-      //   margin-top: $padding-default;
+      padding: 2em;
       z-index: 2;
-
-      // padding: $padding-default $padding-big;
 
       .burger {
         flex: 2;
@@ -94,28 +124,17 @@ body {
 
       .svift-logo {
         flex: 8;
-        width: 100%;
-        height: 45px;
+        display: flex;
 
         a {
           display: block;
-          height: 45px;
-          width: 50%;
-          // background-image: url("../../assets/img/wordmark-white.png");
-          background-image: url("../../assets/img/logo_web.png");
-          background-repeat: no-repeat;
-          background-position: left top;
-          background-size: auto;
 
-          @include large {
-            padding: 3vw;
+          img {
+            height: 35px;
           }
 
-          @include retina {
-            background: url("../../assets/img/logo_web@2x.png");
-            background-repeat: no-repeat;
-            background-position: 0 4px;
-            background-size: 70%;
+          @include large {
+            padding: 1em 0;
           }
         }
       }
@@ -231,7 +250,6 @@ body {
       overflow: auto;
       display: flex;
       flex: 1;
-      //   flex-direction: column;
       align-items: center;
       justify-content: center;
       position: absolute;
@@ -257,7 +275,7 @@ body {
         // justify-content: center;
         // align-items: flex-end;
         padding: 5vw;
-        padding: 2vw;
+        // padding: 2vw;
 
         @include large {
           // padding: 3vw;
@@ -273,7 +291,7 @@ body {
           transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
           cursor: pointer;
           padding: 30px 20px;
-          width: calc(100% / 3);
+          width: calc(100% / 2);
 
           @include large {
             padding: 20px 10px;

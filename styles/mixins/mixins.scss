@@ -16,6 +16,12 @@
   }
 }
 
+@mixin small-screen-height {
+  @media screen and (max-height: 700px) {
+    @content;
+  }
+}
+
 @mixin retina {
   @media screen and (-webkit-min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),

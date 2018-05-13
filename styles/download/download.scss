@@ -74,10 +74,19 @@ div.download {
             text-align: center;
             margin: 3em 0 2em 0;
 
+            @include small-screen-height {
+              margin: 1em 0 1em 0;
+            }
+
             h1 {
                 font-size: 1.7em;
                 font-family: $font-family-mono;
                 color: $svift-primary;
+
+                @include small-screen-height {
+                  font-size: 1.4em;
+                  margin: 0.4em 0;
+                }
             }
 
             h2 {
@@ -104,6 +113,10 @@ div.download {
                 justify-content: space-around;
                 flex-wrap: wrap;
                 margin: 20px 0;
+
+                @include small-screen-height {
+                  margin: 10px;
+                }
 
                 .social-buttons, .extra-buttons {
                     display: flex;
@@ -206,6 +219,10 @@ div.download {
             font-size: 0.9em;
             font-family: $font-family-mono;
             color: $svift-primary;
+
+            @include small-screen-height {
+              margin: 1em 0 1em 0;
+            }
 
             .source {
                 a {

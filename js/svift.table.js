@@ -263,10 +263,14 @@ SVIFT.table = (function (_config, updateCallback) {
     module.textToggle = function (obj, selectorViz, selectorInput, selectorData, altText) {
 
         var hidden = d3.select(obj.parentNode).classed("hidden");
+        // disabled
 
         if (!hidden) {
+
+            d3.select(selectorInput).property("disabled", true)
+
             d3.select(obj.parentNode).classed("hidden", true);
-            d3.select(obj.parentNode).select('input').attr('disabled', true);
+            // d3.select(selectorInput).select('input').attr('disabled', true);
 
             var inputText = "";
             module.data[selectorData] = inputText;
@@ -276,7 +280,10 @@ SVIFT.table = (function (_config, updateCallback) {
             d3.select(selectorViz).text(module.data[selectorData]);
         }
         else {
-            d3.select(obj.parentNode).select('input').attr('disabled', null);
+
+            d3.select(selectorInput).property("disabled", false)
+
+            // d3.select(selectorInput).select('input').attr('disabled', null);
 
             d3.select(obj.parentNode).classed("hidden", false);
 
@@ -287,6 +294,8 @@ SVIFT.table = (function (_config, updateCallback) {
             }
             d3.select(selectorViz).text(module.data[selectorData]);
         }
+
+        updateCallback(module.data, 'vis');
 
     };
 

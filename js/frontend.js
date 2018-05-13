@@ -27,6 +27,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.table = null;
   module.renderProcess = {
+    started:false,
     finished: false,
     showDownloadLink: false,
     token : "",
@@ -266,6 +267,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   };
 
   module.render = function() {
+
     d3.request(module.heroku + '/render')
       .header("Content-Type", "application/json")
       .mimeType("application/json")
@@ -292,6 +294,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
                 module.renderProcess.token = url.substr(url.lastIndexOf('/') + 1);
 
                 clearInterval(inter);
+                clearTimeout(module.renderProcess.timeout);
                 module.renderProcess.finished = true;
               }
 
@@ -304,7 +307,25 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   };
 
   module.renderStatusUpdate = function(){
+
+
     if (module.renderProcess.visible) {
+
+      if(!module.renderProcess.started){
+
+        var timeToDelay = 15000;
+        module.renderProcess.timeout = setTimeout(function(){ 
+          cb.addBubble({ type: 'text', value: '<span>Looks like a lot of people are using svift right now</span>', class: 'bot', delay: 1000 }, function (d) {
+            setTimeout(function (){
+              cb.addBubble({ type: 'text', value: '<span>Please be patient with the beta version.</span>', class: 'bot', delay: 1000 });
+            },1000)
+          })
+          clearTimeout(module.renderProcess.timeout);
+        }, timeToDelay);
+
+        module.renderProcess.started = true;
+      }
+
       var status = module.renderProcess.rendered;
       for (var type in status) {
         if (status[type]) {
@@ -316,6 +337,9 @@ SVIFT.frontend = (function (_container_1, _container_2) {
               var socialsLength = module.renderProcess.rowOne.selectAll('span')._groups[0].length;
               if(n==socialsLength && !module.renderProcess.showDownloadLink){
                 if (module.renderProcess.finished) {
+
+                  clearTimeout(module.renderProcess.timeout);
+
                   setTimeout(function () {
                     module.renderComplete();
                   }, 500);
@@ -332,10 +356,13 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
 
           } else {
-            d3.select('#status-' + type).attr('class', 'complete');
+            d3.select('#status-' + type)
+            // .attr('class', 'complete');
+            .classed('complete',true)
           }
         }
       }
+
     }
   };
 
@@ -354,6 +381,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           if (d.feedback) {
             cb.addBubble({ type: 'feedback', class: 'human' });
             cb.addBubble({ type: 'select', value: [{ label: 'send feedback' }], class: 'human' }, function () {
+              d3.select("#feedback").classed("disabled", true);
+              d3.select("#feedback").attr("disabled", true);
 
               //TODO: Currently feedback is sent to overly simple Firebase database setup, needs refinement
               var feedbackText = d3.select("#feedback").node().value;

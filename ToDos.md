@@ -7,13 +7,13 @@
 ----
 
 Alsino:
-- Style input field
-- Svift logo top start screen height größer (Hans Screen)
-- Shadow table cells fix
+- subdomains
 
 Hans:
 ---
+- integrate logo
 - fix viz line ?
+- grid: number sehr stark pixelig
 
 Seb:
 ---

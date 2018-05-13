@@ -64,6 +64,7 @@
                 ul.selectAll('.li')
                     .data(d3.entries(data)).enter().append('li').append('a')
                     .attr('href', function (d) { return '#' + d.key })
+                    .attr('id', function (d) { return d.key })
                     // .attr('class', function () {
                     //     if (d3.select(this).attr('href', page)) {
                     //         return 'active'
@@ -87,8 +88,12 @@
                         var p3 = d3.select('.p3').html(d.value.p3);
                     });
 
+                d3.select("#" + currentPage).classed('active', true);
+
 
             }
+
+
 
 
         });
