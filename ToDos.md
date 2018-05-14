@@ -11,6 +11,7 @@ Alsino:
 
 Hans:
 ---
+- Fix bug double bubbles
 - integrate customer logo
 
 Seb:

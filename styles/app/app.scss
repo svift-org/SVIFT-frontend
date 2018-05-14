@@ -310,6 +310,7 @@ body {
             border-radius: $border-radius-default;
             width: 80%;
             height: auto;
+            image-rendering: auto;
 
             // @include large {
             //   max-width: 100%;
