@@ -7,23 +7,22 @@
 ----
 
 Alsino:
-- Subdomains
+- subdomains for 3 instances
 
 Hans:
 ---
-- integrate logo
-- fix viz line ?
-- grid: number sehr stark pixelig
+- integrate customer logo
 
 Seb:
 ---
-- Not rendered correctly:
-    - Position Heading/subheading
-    - Font-families
-    - Font weights
-    - Colors
-- hide imput text is not working
-- text input breaks firefox when line break or text tto long
+Prio 1:
+- fix goeey viz: Before the inner circle radius decreased in size. Now this does not work any more
+- text input breaks firefox when line break or text too long (quick fix: -> if firefox -> limit string length?)
+- add DSGVO page
+- set up two custom instances (taz, tsp und madsack)
+
+Prio 2:
+- Data update not directly on text input
 - improve renderer?
 
 
