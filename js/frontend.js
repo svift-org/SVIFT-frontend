@@ -411,16 +411,16 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.updateVis = function(data, type){
 
-    module.redrawDebounce();
-    // module.default.data = data;
-    // module.vis.setData(data);
+    module.default.data = data;
 
-    // if(type == 'vis'){
+    if(type == 'vis'){
+      module.redrawDebounce();
     //   module.vis.update();
     //   module.vis.resize();
-    // }else{
-    //   module.vis.updateHead();
-    // }
+    }else{
+      module.vis.setData(data);
+      module.vis.updateHead();
+    }
 
     //console.log('updateVis');
     //TODO IMPLEMENT FUNCTION > only update chart | idea: update date, refresh last frame (see: social media rendering)

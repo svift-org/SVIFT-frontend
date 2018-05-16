@@ -783,7 +783,7 @@
       background-color: #eeeeee;
       padding-top: 12px; }
       .cb-bubble-input .title input::placeholder, .cb-bubble-input .title textarea::placeholder {
-        color: #75fabf;
+        color: #9a9a9a;
         font-size: 1.2em;
         transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1); }
     .cb-bubble-input .title .icon-toggle {
