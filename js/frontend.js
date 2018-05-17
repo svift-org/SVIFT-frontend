@@ -57,7 +57,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       },
       "length": 3000,
       "style": {
-          "font": "Patua One", //"Open Sans",Patua One,Hind
+          "font": "IBM Plex Sans Condensed", //"Open Sans",Patua One,Hind
           "fontLables": "Open Sans",
           "color": {
               "main": "purple",
@@ -89,6 +89,11 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   module.customize = function(c){
     module.custom = c;
     module.default["custom"] = c;
+    module.default.style.theme = c.id;
+    module.default.style.color.main = c.id+'-color';
+    d3.select('head').append('link')
+      .attr('rel','stylesheet')
+      .attr('href',c.css);
   };
 
   module.init = function(){
@@ -222,16 +227,22 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   };
 
   module.inputDone = function(){
-    cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', emoji: 'style', delay: 500 }, function () {
+    cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', delay: 500 }, function () {
 
-      cb.addBubble({ type: 'styles', class: 'human'}, function(d){
+      var styleBubble = { type: 'styles', class: 'human'};
+
+      if(module.custom){
+        styleBubble['custom'] = module.custom;
+      }
+
+      cb.addBubble(styleBubble, function(d){
 
           if(typeof d.color != "undefined"){
             module.default.style.color.main = d.label;
             module.vis.setColor(d.label);
           }else{
-            module.default.style.theme = d.label;
-            module.vis.setTheme(d.label);
+            module.default.style.theme = d.id;
+            module.vis.setTheme(d.id);
           }
           //module.redrawDebounce();
 

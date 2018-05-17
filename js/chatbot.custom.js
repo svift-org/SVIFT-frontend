@@ -199,10 +199,15 @@ var cb_extend = (function (cb) {
         ];
 
         var fonts = [
-            { 'font': 'IBM Plex Serif','label':'Classic'},
-            { 'font': 'IBM Plex Sans Condensed','label':'Modern'},
-            { 'font': 'IBM Plex Mono','label':'Future'}
+            { 'id':'Classic', 'font': 'IBM Plex Serif','label':'Classic'},
+            { 'id':'Modern', 'font': 'IBM Plex Sans Condensed','label':'Modern'},
+            { 'id':'Future', 'font': 'IBM Plex Mono','label':'Future'}
         ]
+
+        if('custom' in options){
+            fonts.unshift({font:options.custom.fonts.titleFont, id:options.custom.id, label:options.custom.label});
+            styles.unshift({color:options.custom.color[0],label:options.custom.id+'-color'});
+        }
 
         var stylesWrapper = bubble.append('div')
             .attr('class', 'cb-styles-wrapper');
