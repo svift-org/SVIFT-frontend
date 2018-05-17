@@ -3,3 +3,5 @@ node_modules
 libs
 .vscode
 .DS_Store
+assets/custom
+custom.html

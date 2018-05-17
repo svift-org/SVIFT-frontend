@@ -23,6 +23,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.vis = null;
 
+  module.custom = false;
+
   module.visTypeData = null;
 
   module.table = null;
@@ -78,10 +80,16 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           "subTitle": "and what about a subtitle here?",
           "attribution": "Made with svift.xyz",
           "source": "Source: Your source"
-      }
+      },
+      "custom":false
   };
 
   module.defaultFormat = [500, 500, 0.7];
+
+  module.customize = function(c){
+    module.custom = c;
+    module.default["custom"] = c;
+  };
 
   module.init = function(){
     //Make sure heroku is ready to receive data
