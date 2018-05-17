@@ -61,7 +61,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
               "main": "purple",
               "second": "#9A9A9A",
               "background": "#fff",
-              "dataColors": ["#434343", "#FF5858", "#99C3F3", "#FFF680", "#EF96FF", "#B9FF6C"]
+              "dataColors": ["#434343", "#FF5858", "#99C3F3", "#FFB81E", "#EF96FF", "#B9FF6C"]
           }
       },
       "data": {
