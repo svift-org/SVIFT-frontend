@@ -20,6 +20,9 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       cb = cb_extend(chatbot(container_2));
 
   module.heroku = 'https://svift-dev-backend.herokuapp.com';
+  module.setHeroku = function(url){
+    module.heroku = url;
+  };
 
   module.vis = null;
 
