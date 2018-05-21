@@ -444,6 +444,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     //   module.vis.update();
     //   module.vis.resize();
     }else{
+      console.log(data);
       module.vis.setData(data);
       module.vis.updateHead();
     }
