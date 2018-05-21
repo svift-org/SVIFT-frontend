@@ -1,0 +1,84 @@
+/* DOWNLOAD CSS */
+@import "./variables/variables";
+@import "./mixins/mixins";
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: $font-size-default;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-family: $font-family-sansDefault;
+    font-size: 1em;
+    line-height: 1.5;
+    color: $svift-primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-mono;
+    color: $svift-human;
+}
+
+h1 {
+    margin-top: 2em;
+}
+
+p strong {
+    color: $svift-primary;
+}
+
+
+a {
+    text-decoration: none;
+    color: $svift-human;
+}
+
+
+
+div.legal {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: #5C258D; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right top, $svift-primary, $svift-human);
+    background: linear-gradient(to right top, $svift-primary, $svift-human);
+    justify-content: center;
+    align-items: center;
+
+    .ct {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: white;
+        width: 60%;
+
+        height: 80vh;
+        overflow: auto;
+        border-radius: $border-radius-default * 2;
+        box-shadow: $box-shadow-default;
+        transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+        .ct-body {
+            width: 80%;
+            padding: 3em 0;
+
+            img {
+              height: 45px;
+            }
+          
+        }
+    }
+}
