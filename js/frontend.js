@@ -363,7 +363,11 @@ SVIFT.frontend = (function (_container_1, _container_2) {
                   clearTimeout(module.renderProcess.timeout);
 
                   setTimeout(function () {
-                    module.renderComplete();
+                    if(module.renderProcess.finished){
+                      module.renderProcess.finished=false;
+                      module.renderComplete();
+                    }
+                    
                   }, 500);
                 };
               };
