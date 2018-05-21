@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>svift_v1 - download</title>
+    <meta charset="utf-8">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/manifest.json">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <meta name="msapplication-config" content="favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="build/d3.v4.min.js"></script>
+    <script src="build/svift.min.js"></script>
+
+    <link rel="stylesheet" href="styles/app/normalize.css">
+    <link rel="stylesheet" href="styles/download/download.css">
+
+</head>
+
+<body>
+    <div id="download" class="download">
+        <div class="ct">
+            <div class="ct-head">
+                <h1>Download your SVIFT chart</h1>
+                <h2>Choose your preferred social media platform or format</h2>
+            </div>
+            <div class="ct-body">
+                <div class="dl-preview"></div>
+                <div class="dl-links">
+                    <div class="social-buttons"></div>
+                    <div class="extra-buttons"></div>
+                </div>
+<!--                 <div id="embed">
+                    <div>Embed chart as iframe</div>
+                    <textarea id="embed-text"></textarea>
+                </div> -->
+
+
+            </div>
+            <div class="ct-foot">
+                <div class="source"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading">Loading - Robot Face (robot face maybe)</div>
+    <div id="error"></div>
+
+    <script>
+        var id = window.location.hash.substr(1),
+            aws = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output-custom/taz/' + id;
+
+        d3.json(aws + '/contents.json', function (err, data) {
+
+            console.log(data)
+            d3.select('#loading').style('display', 'none');
+            if (err) {
+                d3.select('#error').style('display', 'block').html('We could not find your visualisation.<br />We only store visualisations for 10 days.');
+            } else {
+                d3.select('#download');
+                d3.select('#embed-text').html('<iframe style="width:500px; height:500px;" src="' + aws + '/html/index.html"></iframe>');
+                // d3.select('iframe').attr('src', aws + '/html/index.html');
+                d3.select('.dl-preview').append('img').attr('src', aws + '/social/instagram.png');
+
+
+                //TODO: if required, the data item holds the date when the vis was created : data.date
+
+                var groups = [];
+
+                for (var key in data) {
+                    if (key != 'date' && key != 'html') {
+                        data[key].forEach(function (d, i) {
+                            data[key][i].link = aws + '/';
+                            switch (key) {
+                                case 'zips':
+                                    data[key][i].link += d.file + '.zip';
+                                    break;
+                                case 'social':
+                                    data[key][i].link += 'social/' + d.file + '.png';
+                                    break;
+                                case 'files':
+                                    data[key][i].link += id + '.' + d.file;
+                                    break;
+                            }
+                        });
+                        groups.push({
+                            key: key,
+                            value: data[key],
+                            title: "test"
+                        });
+                    }
+                }
+
+                console.log(groups)
+
+
+
+
+                var mainLink = 'https://s3.eu-central-1.amazonaws.com/svift-vis-output/output-custom/taz/' + id + '/';
+
+                var socials = ['&#xf099', '&#xf09a', '&#xf0e1', '&#xf32d', '&#xf2ac'];
+
+
+                var social = [
+                    { "name": "Gif", "icon": "gif", "link": id + ".gif", "html": 'GIF' },
+                    { "name": "Facebook", "icon": "facebook", "link": "social/facebook.png", "html": '&#xf09a' },
+                    { "name": "Twitter", "icon": "twitter", "link": "social/twitter.png", "html": '&#xf099' },
+                    { "name": "Instagram", "icon": "instagram", "link": "social/instagram.png", "html": '&#xf32d' },
+                    { "name": "Google", "icon": "google", "link": "social/google.png", "html": '&#xf0d5' },
+                    { "name": "Linkedin", "icon": "linkedin", "link": "social/linkedin.png", "html": '&#xf0e1' },
+                    { "name": "Tumblr", "icon": "tumblr", "link": "social/tumblr.png", "html": '&#xf173' },
+                    { "name": "Snapchat", "icon": "snapchat", "link": "social/snapchat.png", "html": '&#xf2ac' },
+
+                ];
+
+                var extra = [
+                    // { "name": "All charts", "icon": "zip", "link": id + ".zip" },
+                    // { "name": "SVG sequence", "icon": "svg", "link": "svg.zip" },
+                    // { "name": "PNG sequence", "icon": "png", "link": "png.zip" },
+                    { "name": "Horizontal", "icon": "horizontal", "link": "social/horizontal.png" },
+                    { "name": "Vertical", "icon": "vertical", "link": "social/vertical.png" },
+                    { "name": "Square", "icon": "square", "link": "social/square.png" }
+                ]
+
+
+                var socialButtons = d3.select('.social-buttons').selectAll('span').data(social).enter()
+                    .append('a')
+                    .attr('class', 'social')
+                    .attr('id', function (d) { return d.icon })
+                    .attr('target', '#_blank')
+                    .attr('href', function (d) { return mainLink + d.link; })
+                    .append('span')
+                    .html(function (d) { return d.html })
+                    .attr('title', function (d) { return d.name })
+
+
+                var extra = d3.select('.extra-buttons').selectAll('span').data(extra).enter()
+                    .append('a')
+                    .attr('class', 'extra')
+                    .attr('target', '#_blank')
+                    .attr('href', function (d) { return mainLink + d.link; })
+                    .append('span')
+                    .text(function (d) { return d.name })
+
+
+
+                // var groups = d3.select('.dl-links').selectAll('div').data(groups).enter().append('div').attr('class', function (d) { return 'dl-groups ' + d.key });
+                // groups.append('div').classed('dl-group-title', true).html(function (d) { return d.key });
+
+                // var dropdown = groups.append('select').attr('class', function (d) { return 'dl-dropdown ' + d.key })
+                // dropdown.selectAll('option').data(function (d) { return d.value; }).enter()
+                //     .append('option')
+                //     .property('value', function (d) { return d.file; })
+                //     .html(function (d) { return d.name; });
+
+                // dropdown.on('change', function () {
+                //     onSelected();
+                // });
+
+                // function onSelected() {
+                //     selectValue = d3.select('.dl-dropdown').property('value')
+                //     console.log('.dl-dropdown');
+                //     window.open(aws + '/social/' + selectValue + '.png', '_blank');
+                // };
+
+                // var groups = d3.select('.dl-links').selectAll('div').data(groups).enter().append('select').attr('class', function (d) { return 'group g-' + d.key; });
+                // groups.selectAll('.dl-icon').data(function (d) { return d.value; }).enter().append('option')
+                //     .attr('class', 'dl-icon')
+                //     .append('a')
+                //     .attr('target', '_blank')
+                //     .attr('href', function (d) { return d.link; })
+                //     .text(function (d) {
+                //         return d.name;
+                //     })
+                //     .append('img')
+                //     .attr('src', function (d) { d.icon = 'download'; return 'assets/img/download-icons/' + d.icon + '.svg' })
+                //     .attr('class', 'dl-img')
+                //     .attr('id', function (d) { return 'dl- icon - ' + d.class });
+
+
+                //TODO: This should be replaced through the correct final url
+                var url = window.location.href;
+                // d3.select('.source').html('All of your charts will be available for 10 more days at: ' + '<a href="http://www.google.com">' + url + '</a>');
+                d3.select('.source').html('Your chart will be available for 10 more days at: ' + '<a target="_blank" href=' + url + '>' + url + '</a>');
+
+            }
+        });
+    </script>
+
+</body>
+
+</html>
