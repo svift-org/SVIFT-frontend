@@ -337,7 +337,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
         var timeToDelay = 15000;
         module.renderProcess.timeout = setTimeout(function(){ 
-          cb.addBubble({ type: 'text', value: '<span>Looks like it will take me just a tiny bit longer than expected.</span>', class: 'bot', delay: 1000 }, function (d) {
+          cb.addBubble({ type: 'text', value: '<span>Looks like it will take just a tiny bit longer than expected.</span>', class: 'bot', delay: 1000 }, function (d) {
             setTimeout(function (){
               cb.addBubble({ type: 'text', value: '<span>Please be patient with the beta version.</span>', class: 'bot', delay: 1000 });
             },1000)
