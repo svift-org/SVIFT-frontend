@@ -22,7 +22,6 @@
     "svift-vis": "git+https://git@github.com/svift-org/vis-module.git",
     "svift-vis-columns": "git+https://git@github.com/svift-org/vis-columns-module.git",
     "svift-vis-count": "git+https://git@github.com/svift-org/vis-count-module.git",
-    "svift-vis-gooey": "git+https://git@github.com/svift-org/vis-gooey-module.git",
     "svift-vis-mosaic": "git+https://git@github.com/svift-org/vis-mosaic-module.git",
     "svift-vis-pie": "git+https://git@github.com/svift-org/vis-pie-module.git"
   },
