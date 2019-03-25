@@ -165,7 +165,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
         //TODO: properly initiate the visualization here 
         module.redraw();
-    })
+    });
   };
 
   module.createThumbs = function(data){
@@ -290,42 +290,45 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.render = function() {
 
-    d3.request(module.heroku + '/render')
-      .header("Content-Type", "application/json")
-      .mimeType("application/json")
-      .post(
-        JSON.stringify(module.default),
-        function (err, rawData) {
-          inter = setInterval(function () {
-            d3.request(module.heroku + '/status/' + rawData.response).get(function (err, data) {
+    SVIFT.render.init();
+    SVIFT.render.setupVis(module.default);
 
-              var jResponse = JSON.parse(data.response);
-              var statusCounter = 0;
+    // d3.request(module.heroku + '/render')
+    //   .header("Content-Type", "application/json")
+    //   .mimeType("application/json")
+    //   .post(
+    //     JSON.stringify(module.default),
+    //     function (err, rawData) {
+    //       inter = setInterval(function () {
+    //         d3.request(module.heroku + '/status/' + rawData.response).get(function (err, data) {
 
-              for (var type in jResponse.full) {
-                if (jResponse.full[type] == 1) {
-                  statusCounter++;
-                  module.renderProcess.rendered[type] = true;
-                }
-              }
+    //           var jResponse = JSON.parse(data.response);
+    //           var statusCounter = 0;
 
-              //All things have been rendered stop request
-              if (jResponse.full.aws == 1) { //jResponse.status == 2
+    //           for (var type in jResponse.full) {
+    //             if (jResponse.full[type] == 1) {
+    //               statusCounter++;
+    //               module.renderProcess.rendered[type] = true;
+    //             }
+    //           }
 
-                var url = data.responseURL;
-                module.renderProcess.token = url.substr(url.lastIndexOf('/') + 1);
+    //           //All things have been rendered stop request
+    //           if (jResponse.full.aws == 1) { //jResponse.status == 2
 
-                clearInterval(inter);
-                clearTimeout(module.renderProcess.timeout);
-                module.renderProcess.finished = true;
-              }
+    //             var url = data.responseURL;
+    //             module.renderProcess.token = url.substr(url.lastIndexOf('/') + 1);
 
-              module.renderStatusUpdate();
+    //             clearInterval(inter);
+    //             clearTimeout(module.renderProcess.timeout);
+    //             module.renderProcess.finished = true;
+    //           }
 
-            });
-          }, 1000);
-        }
-      );
+    //           module.renderStatusUpdate();
+
+    //         });
+    //       }, 1000);
+    //     }
+    //   );
   };
 
   module.renderStatusUpdate = function(){

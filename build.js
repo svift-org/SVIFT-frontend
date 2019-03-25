@@ -7,6 +7,7 @@ var UglifyJS = require('uglify-js2'),
 var base = [
   'index.js',
   './node_modules/svift-helper/index.js',
+  './node_modules/svift-render/index.js',
   './node_modules/svift-vis/index.js'
 ]
 
