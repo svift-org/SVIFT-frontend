@@ -1,17 +1,17 @@
 SVIFT.frontend = (function (_container_1, _container_2) {
 
   // Firebase quick&dirty setup - START //
-  var firebaseConfig = {
-    apiKey: "AIzaSyDfZNHj2kNlkoD0qr5VQRs04p4zDTA6-2E",
-    authDomain: "svift-feedback-dev-654a9.firebaseapp.com",
-    databaseURL: "https://svift-feedback-dev-654a9.firebaseio.com",
-    projectId: "svift-feedback-dev-654a9",
-    storageBucket: "",
-    messagingSenderId: "39435822198"
-  };
-  firebase.initializeApp(firebaseConfig);
-  var feedbackRoute = firebase.database().ref('feedback/');
-  var date = moment().format();
+  // var firebaseConfig = {
+  //   apiKey: "AIzaSyDfZNHj2kNlkoD0qr5VQRs04p4zDTA6-2E",
+  //   authDomain: "svift-feedback-dev-654a9.firebaseapp.com",
+  //   databaseURL: "https://svift-feedback-dev-654a9.firebaseio.com",
+  //   projectId: "svift-feedback-dev-654a9",
+  //   storageBucket: "",
+  //   messagingSenderId: "39435822198"
+  // };
+  // firebase.initializeApp(firebaseConfig);
+  // var feedbackRoute = firebase.database().ref('feedback/');
+  // var date = moment().format();
   // Firebase quick&dirty setup - END //
 
   var module = {},
@@ -19,10 +19,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       container_2 = _container_2, //d3.select('#gui-2')
       cb = cb_extend(chatbot(container_2));
 
-  module.heroku = 'https://svift-dev-backend.herokuapp.com';
-  module.setHeroku = function(url){
-    module.heroku = url;
-  };
+  // module.heroku = 'https://svift-dev-backend.herokuapp.com';
+  // module.setHeroku = function(url){
+  //   module.heroku = url;
+  // };
 
   module.vis = null;
 
@@ -101,7 +101,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.init = function(){
     //Make sure heroku is ready to receive data
-    d3.request(module.heroku + '/hello').get(function () { console.log('server is awake'); });
+    //d3.request(module.heroku + '/hello').get(function () { console.log('server is awake'); });
 
     //Resize the height of the vis container according to the predefined proportions
     d3.select(window).on('resize.two', function () {

@@ -18,7 +18,10 @@
     "url": "git+https://git@github.com/svift-org/svift-frontend.git"
   },
   "dependencies": {
-    "frontend-render": "git+https://git@github.com/svift-org/frontend-render.git",
+    "canvg": "^1.5.3",
+    "gif.js": "git+https://github.com/jnordberg/gif.js.git",
+    "stackblur-canvas": "^2.2.0",
+    "svgtodatauri": "git+https://github.com/sampumon/SVG.toDataURL.git",
     "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
     "svift-render": "git+https://git@github.com/svift-org/frontend-render.git",
     "svift-vis": "git+https://git@github.com/svift-org/vis-module.git",
@@ -33,6 +36,9 @@
   "devDependencies": {
     "fs": "0.0.1-security",
     "fs-extra": "^4.0.3",
+    "get-google-fonts": "^1.1.2",
+    "google-font-import": "^0.1.2",
+    "google-fonts-offline": "^0.1.5",
     "jshint": "^2.10.2",
     "node-sass": "^4.11.0",
     "pre-commit": "^1.2.2",

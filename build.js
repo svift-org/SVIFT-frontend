@@ -2,7 +2,11 @@ var UglifyJS = require('uglify-js2'),
   sass = require('node-sass'),
   fs = require('fs'),
   fse = require('fs-extra'),
-  package = require('./package.json')
+  package = require('./package.json');
+
+const googleFontImport = require('google-font-import');
+
+const { spawnSync} = require('child_process');
 
 var base = [
   'index.js',
@@ -88,8 +92,47 @@ function buildFile(vi){
     fs.writeFileSync(__dirname + '/build/config.json', JSON.stringify(configJson), 'utf8')
 
     console.log('build done')
-    process.exit()
   }
 }
 
 buildFile(0)
+
+fs.writeFileSync('./build/svgtodatauri.js', fs.readFileSync('./node_modules/svgtodatauri/index.js', 'utf8').replace('module.exports = ', ''), 'utf8');
+
+var dependencyFiles = [
+  './js/rgbcolor.js',
+  './node_modules/stackblur-canvas/dist/stackblur.min.js',
+  './node_modules/canvg/dist/browser/canvg.min.js',
+  './build/svgtodatauri.js',
+  './node_modules/gif.js/dist/gif.js',
+];
+
+var minDependencies = UglifyJS.minify(dependencyFiles, {
+  outSourceMap: './build/dependencies.min.js.map',
+  sourceRoot: "http://svift.xyz/src"
+})
+
+fs.writeFileSync(__dirname + "/build/dependencies.min.js", minDependencies.code, 'utf8')
+
+fs.copyFile('./node_modules/gif.js/dist/gif.worker.js', './gif.worker.js', (err) => console.log(err));
+fs.copyFile('./node_modules/svgtodatauri/base64.js', './build/base64.js', (err) => console.log(err));
+
+var opts = {
+  src: __dirname + '/styles/fonts/fonts.config',
+  htmlpath: __dirname + '/styles/fonts/download',
+  fontpath: __dirname + '/styles/fonts/download',
+  stylepath: __dirname + '/styles/fonts/download'
+};
+
+googleFontImport(opts).then(function () {
+
+  var files = fs.readdirSync(__dirname + '/styles/fonts/download');
+
+  for(var i=0;i<files.length;i++){
+    if(files[i].indexOf('css_family_')>=0){
+      fs.writeFileSync('./styles/fonts/download/fonts.css', fs.readFileSync('./styles/fonts/download/'+files[i], 'utf8').replace('module.exports = ', ''), 'utf8');
+    }
+  }
+
+  process.exit()
+});
