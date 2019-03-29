@@ -299,6 +299,75 @@ var cb_extend = (function (cb) {
         callback(rowOne, rowTwo);
     };
 
+
+
+    /* Show GIF render status */
+    cb.types['renderStatus'] = function (bubble, options, callback) {
+
+        var progressBar = bubble.append('div')
+            .attr('class', 'cb-progress-bar')
+            .html('I am renderrriiing your GIF. Status: <b>0 %</b>')
+
+        callback(progressBar);
+    };
+
+
+    /* Download UI */
+    cb.types['download-gif'] = function (bubble, options, callback) {
+
+        // var gifDownloadButton = bubble.append('div')
+        //     .attr('class', 'cb-gif-download')
+        //     .html('<span>GIF DOWNLOAD</span>')
+        //     .on('click', function(){
+        //         SVIFT.render.downloadGIF();
+        //     });
+
+        bubble.style('background-color', '#fff');
+        bubble
+            .append('div')
+            .attr('class', 'cb-choice')
+            .text("DOWNLOAD GIF")
+            .on('click', function(){
+                SVIFT.render.downloadGIF();
+            });
+
+        callback();
+    };
+
+
+    /* Download UI */
+    cb.types['download-social'] = function (bubble, options, callback) {
+
+        var downloadWrapper = bubble.append('div')
+            .attr('class', 'cb-status-wrapper')
+
+        var socialDownloadButtons = downloadWrapper.append('div')
+            .attr('class', 'cb-status-row');
+
+        var social = [
+            // { "name": "Gif", "icon": "gif", "link": "none" + ".gif", "html": 'GIF' },
+            { "name": "Facebook", "icon": "facebook", "link": "social/facebook.png", "html": '&#xf09a' },
+            { "name": "Twitter", "icon": "twitter", "link": "social/twitter.png", "html": '&#xf099' },
+            { "name": "Instagram", "icon": "instagram", "link": "social/instagram.png", "html": '&#xf32d' },
+            { "name": "Google", "icon": "google", "link": "social/google.png", "html": '&#xf0d5' },
+            { "name": "Linkedin", "icon": "linkedin", "link": "social/linkedin.png", "html": '&#xf0e1' },
+            { "name": "Tumblr", "icon": "tumblr", "link": "social/tumblr.png", "html": '&#xf173' },
+            { "name": "Snapchat", "icon": "snapchat", "link": "social/snapchat.png", "html": '&#xf2ac' }
+        ];
+
+        socialDownloadButtons.selectAll('span').data(social).enter()
+            .append('span')
+            .attr('class', 'cb-choice')
+            .html(function (d) { return d.html; })
+            .on('click', function(d){
+                SVIFT.render.generateDownload(d.icon);
+            });
+
+        callback(socialDownloadButtons);
+
+    };
+
+
     return cb;
 
 });

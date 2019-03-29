@@ -31,23 +31,6 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   module.visTypeData = null;
 
   module.table = null;
-  module.renderProcess = {
-    started:false,
-    finished: false,
-    showDownloadLink: false,
-    token : "",
-    rowOne:null,
-    rowTwo:null,
-    status : {},
-    visible : false,
-    rendered : {
-      "gif": false,
-      "html": false,
-      "png": false,
-      "social": false,
-      "svg": false
-    }
-  };
 
   //Default visualisation configuration
   module.default = {
@@ -252,180 +235,73 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       });
 
       setTimeout(function () {
-          cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human send' }, module.themeDone);
+          cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human send' }, module.render);
       }, 500);
 
     });
   };
 
-  module.themeDone = function(){
+  module.render = function(){
+
     //start rendering process
-    module.render();
-
-
-    cb.addBubble({ type: 'text', value: 'Look! You can even preview your chart in different output formats', class: 'bot', delay: 1500 }, function () {
-
-      cb.addBubble({ type: 'resize', class: 'human'}, function(type){
-          module.defaultFormat = type;
-          module.redraw();
-      });
-
-      setTimeout(function () {
-
-        cb.addBubble({ type: 'select', value: [{ label: 'Continue' }], class: 'human' }, function () {
-
-          cb.addBubble({ type: 'text', value: '<span>Please wait while I build your chart</span><div class="loader"></div>', class: 'bot' });
-          cb.addBubble({ type: 'status', class: 'human'}, function(rowOne, rowTwo){
-            module.renderProcess.rowOne = rowOne;
-            module.renderProcess.rowTwo = rowTwo;
-          });
-
-          module.renderProcess.visible = true;
-          module.renderStatusUpdate();
-
-        });
-      }, 500);
-    });
-  };
-
-  module.render = function() {
-
     SVIFT.render.init();
     SVIFT.render.setupVis(module.default);
     SVIFT.render.buildSet();
+    SVIFT.render.getStatus();
 
-    // d3.request(module.heroku + '/render')
-    //   .header("Content-Type", "application/json")
-    //   .mimeType("application/json")
-    //   .post(
-    //     JSON.stringify(module.default),
-    //     function (err, rawData) {
-          inter = setInterval(function () {
+    cb.addBubble({ type: 'renderStatus', class: 'bot'}, function(progressBar){
 
-              var jResponse = SVIFT.render.getStatus();
-              console.log(jResponse);
-              var statusCounter = 0;
+      var interval = setInterval(function () {
 
-              for (var type in jResponse.full) {
-                if (jResponse.full[type] == 1) {
-                  statusCounter++;
-                  module.renderProcess.rendered[type] = true;
-                }
-              }
+        var renderStatus = SVIFT.render.getStatus();
 
-              //All things have been rendered stop request
-              if (jResponse.status == 1) { //jResponse.status == 2
+        //changes progress bar here
+        progressBar.select('b').html(Math.round(renderStatus.full.gif*100) + '%');
 
-                // var url = data.responseURL;
-                //module.renderProcess.token = url.substr(url.lastIndexOf('/') + 1);
+        if (renderStatus.status == 1) { 
 
-                clearInterval(inter);
-                clearTimeout(module.renderProcess.timeout);
-                module.renderProcess.finished = true;
-              }
+          clearInterval(interval);
+          cb.addBubble({ type: 'text', value: 'Your GIF is done!', class: 'bot', delay: 500 }, module.download);
 
-              module.renderStatusUpdate();
-
-          }, 1000);
-    //     }
-    //   );
-  };
-
-  module.renderStatusUpdate = function(){
-
-
-    if (module.renderProcess.visible) {
-
-      if(!module.renderProcess.started){
-
-        var timeToDelay = 15000;
-        module.renderProcess.timeout = setTimeout(function(){ 
-          cb.addBubble({ type: 'text', value: '<span>Looks like it will take just a tiny bit longer than expected.</span>', class: 'bot', delay: 1000 }, function (d) {
-            setTimeout(function (){
-              cb.addBubble({ type: 'text', value: '<span>Please be patient with the beta version.</span>', class: 'bot', delay: 1000 });
-            },1000)
-          })
-          clearTimeout(module.renderProcess.timeout);
-        }, timeToDelay);
-
-        module.renderProcess.started = true;
-      }
-
-      var status = module.renderProcess.rendered;
-      for (var type in status) {
-        if (status[type]) {
-          if (type == 'social') {
-
-            var n = 0;
-            function endAll() {
-              n++;
-              var socialsLength = module.renderProcess.rowOne.selectAll('span')._groups[0].length;
-              if(n==socialsLength && !module.renderProcess.showDownloadLink){
-                if (module.renderProcess.finished) {
-
-                  clearTimeout(module.renderProcess.timeout);
-
-                  setTimeout(function () {
-                    if(module.renderProcess.finished){
-                      module.renderProcess.finished=false;
-                      module.renderComplete();
-                    }
-                    
-                  }, 500);
-                };
-              };
-            }
-
-            module.renderProcess.rowOne.selectAll('span')
-              .transition()
-              .delay(function (d, i) { return i * 400 })
-              .attr('class', 'complete')
-              .on("end", endAll);;
-
-
-
-          } else {
-            d3.select('#status-' + type)
-            // .attr('class', 'complete');
-            .classed('complete',true)
-          }
         }
-      }
 
-    }
+      }, 1000);
+
+    });
+
   };
 
-  module.renderComplete = function(){
+  module.download = function(){
 
-    module.renderProcess.showDownloadLink = true;
+    cb.addBubble({ type: 'download-gif', class: 'human', delay: 1000 }, function(){
 
-    // cb.addBubble({ type: 'text', value: '<span>Your charts are now ready! Download them here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + module.renderProcess.token + '">www.svift.xyz/' + module.renderProcess.token + '</a></span>', class: 'bot' });
-    
+      cb.addBubble({ type: 'text', value: 'and some pics for social media', class: 'bot', delay: 3000}, function(){
+
+        cb.addBubble({ type: 'download-social', class: 'human', delay: 1000 }, function(){
+
+          setTimeout(function () {
+              module.end()
+          },2000);
+
+        })
+
+      })
+
+    })
+
+  };
+
+
+  module.end = function(){
+
     setTimeout(function () {
       cb.addBubble({ type: 'text', value: 'Thanks for using svift! What would you like to do next?', class: 'bot', delay: 1000 });
 
       setTimeout(function () {
-        cb.addBubble({ type: 'select', value: [{ label: 'Give feedback', feedback: true }, { label: 'Make another chart', feedback: false }], class: 'human' }, function (d) {
+        cb.addBubble({ type: 'select', value: [{ label: 'Give feedback', feedback: true}, { label: 'Make another chart', feedback: false }], class: 'human' }, function (d) {
 
           if (d.feedback) {
-            cb.addBubble({ type: 'feedback', class: 'human' });
-            cb.addBubble({ type: 'select', value: [{ label: 'send feedback' }], class: 'human' }, function () {
-              d3.select("#feedback").classed("disabled", true);
-              d3.select("#feedback").attr("disabled", true);
-
-              //TODO: Currently feedback is sent to overly simple Firebase database setup, needs refinement
-              var feedbackText = d3.select("#feedback").node().value;
-              feedbackRoute.push({
-                comment: feedbackText,
-                timestamp: date
-            });
-              cb.addBubble({ type: 'text', value: 'Thanks for your feedback!!', class: 'bot' });
-              setTimeout(function () {
-                cb.addBubble({ type: 'select', value: [{ label: 'Make another chart!' }], class: 'human' }, function () {
-                  location.reload();
-                });
-              }, 500);
-            });
+            window.location.href = "mailto:hello@svift.xyz";
           } else {
             location.reload();
           }
@@ -433,8 +309,9 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       }, 1100);
     }, 1500);
 
-    d3.select('.loader').style('display', 'none');
   };
+
+
 
   module.redrawDebounce = SVIFT.helper.debouncer(function () { module.redraw(); }, 500);
 
