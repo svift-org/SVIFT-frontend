@@ -292,6 +292,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
     SVIFT.render.init();
     SVIFT.render.setupVis(module.default);
+    SVIFT.render.buildSet();
 
     // d3.request(module.heroku + '/render')
     //   .header("Content-Type", "application/json")
@@ -299,34 +300,33 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     //   .post(
     //     JSON.stringify(module.default),
     //     function (err, rawData) {
-    //       inter = setInterval(function () {
-    //         d3.request(module.heroku + '/status/' + rawData.response).get(function (err, data) {
+          inter = setInterval(function () {
 
-    //           var jResponse = JSON.parse(data.response);
-    //           var statusCounter = 0;
+              var jResponse = SVIFT.render.getStatus();
+              console.log(jResponse);
+              var statusCounter = 0;
 
-    //           for (var type in jResponse.full) {
-    //             if (jResponse.full[type] == 1) {
-    //               statusCounter++;
-    //               module.renderProcess.rendered[type] = true;
-    //             }
-    //           }
+              for (var type in jResponse.full) {
+                if (jResponse.full[type] == 1) {
+                  statusCounter++;
+                  module.renderProcess.rendered[type] = true;
+                }
+              }
 
-    //           //All things have been rendered stop request
-    //           if (jResponse.full.aws == 1) { //jResponse.status == 2
+              //All things have been rendered stop request
+              if (jResponse.status == 1) { //jResponse.status == 2
 
-    //             var url = data.responseURL;
-    //             module.renderProcess.token = url.substr(url.lastIndexOf('/') + 1);
+                // var url = data.responseURL;
+                //module.renderProcess.token = url.substr(url.lastIndexOf('/') + 1);
 
-    //             clearInterval(inter);
-    //             clearTimeout(module.renderProcess.timeout);
-    //             module.renderProcess.finished = true;
-    //           }
+                clearInterval(inter);
+                clearTimeout(module.renderProcess.timeout);
+                module.renderProcess.finished = true;
+              }
 
-    //           module.renderStatusUpdate();
+              module.renderStatusUpdate();
 
-    //         });
-    //       }, 1000);
+          }, 1000);
     //     }
     //   );
   };
@@ -399,7 +399,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
     module.renderProcess.showDownloadLink = true;
 
-    cb.addBubble({ type: 'text', value: '<span>Your charts are now ready! Download them here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + module.renderProcess.token + '">www.svift.xyz/' + module.renderProcess.token + '</a></span>', class: 'bot' });
+    // cb.addBubble({ type: 'text', value: '<span>Your charts are now ready! Download them here:<br><a class="bubble-link" target="_blank" style="text-decoration: none; color:rgba(113, 96, 155, 1);"href="' + './download.html#' + module.renderProcess.token + '">www.svift.xyz/' + module.renderProcess.token + '</a></span>', class: 'bot' });
     
     setTimeout(function () {
       cb.addBubble({ type: 'text', value: 'Thanks for using svift! What would you like to do next?', class: 'bot', delay: 1000 });

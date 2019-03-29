@@ -270,7 +270,10 @@ var cb_extend = (function (cb) {
         rowOne.selectAll('span').data(social).enter()
             .append('span')
             .html(function (d) { return d.html; })
-            .attr('class', 'cb-status-btn');
+            .attr('class', 'cb-status-btn')
+            .on('click', function(d){
+                SVIFT.render.generateDownload(d.icon);
+            });
 
         var rowTwo = downloadWrapper.append('div')
             .attr('class', 'cb-status-row');
@@ -286,7 +289,12 @@ var cb_extend = (function (cb) {
             .append('span')
             .html(function (d, i) { return d.html; })
             .attr('class',function(d){return 'cb-status-btn ' + d.name})
-            .attr('id', function (d) { return 'status-' + d.name; });
+            .attr('id', function (d) { return 'status-' + d.name; })
+            .on('click', function(d){
+                if(d.name === 'gif'){
+                    SVIFT.render.downloadGIF();
+                }
+            });
 
         callback(rowOne, rowTwo);
     };
