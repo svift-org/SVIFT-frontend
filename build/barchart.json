@@ -1,1 +1,1 @@
-{"name":"barchart","description":"Barchart visualisation","title":"Barchart","input":"table"}
+{"name":"barchart","description":"barchart module","title":"Barchart","input":"number"}

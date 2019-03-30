@@ -25,6 +25,7 @@
     "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
     "svift-render": "git+https://git@github.com/svift-org/frontend-render.git",
     "svift-vis": "git+https://git@github.com/svift-org/vis-module.git",
+    "svift-vis-barchart": "git+https://git@github.com/svift-org/vis-bar-module.git",
     "svift-vis-columns": "git+https://git@github.com/svift-org/vis-columns-module.git",
     "svift-vis-count": "git+https://git@github.com/svift-org/vis-count-module.git",
     "svift-vis-gooey": "git+https://git@github.com/svift-org/vis-gooey-module.git",
