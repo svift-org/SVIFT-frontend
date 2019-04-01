@@ -254,7 +254,7 @@ SVIFT.table = (function (_config, updateCallback) {
         var inputText = d3.select(selectorInput).node().value;
         module.data[selectorData] = inputText || altText;
         if (selectorData == "source" && inputText) { 
-            module.data[selectorData] = "Source: " + inputText;
+            module.data[selectorData] = inputText;
         }
 
         updateCallback(module.data, 'text');
