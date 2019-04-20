@@ -4,7 +4,7 @@
     "p1":
       "<em>svift</em> is an open source tool data visualization tool that helps you turn numbers into beautiful charts. <em>svift</em> helps you produce engaging data-driven content without being a data or design expert.",
     "p2":
-      "If you need to have a chart ready for your next article or twitter post within the next few minutes, <em>svift</em> is your choice: Make an interactive chart for an nline article, produce data-driven content for your social media posts or create a beautiful infographic for your print product.",
+      "If you need to have a chart ready for your next article or twitter post within the next few minutes, <em>svift</em> is your choice: Make an interactive chart for an online article, produce data-driven content for your social media posts or create a beautiful infographic for your print product.",
     "p3":
       "<em>svift</em> is designed and developed by <a target='blank' href='https://www.sebastianmeier.eu/'>Sebastian Meier</a>, <a target='blank' href='http://alsino.io/'>Alsino Skowronnek</a> and <a target='blank' href='http://hanshack.com/'>Hans Hack</a> in Berlin.<br><br>We are grateful for initial financial support provided by the <a target='blank' href='http://www.miz-babelsberg.de/'>MIZ Babelsberg</a> to support the development of our first prototype."
   },
@@ -28,10 +28,10 @@
   "pro": {
     "title": "Pro*",
     "p1":
-      "<em>svift</em> will also soon be available as a pro tool for your organization. It will include advanced features and can be highly customized according to your needs.",
+      "<em>svift</em> is also available a pro tool for your organization. A small nuber of outlets are already using our system and we are continously rolling it out to others. It includes advanced features and can be highly customized according to your needs.<br /><br />For example, with the pro version you can add a corporate design look (i.e. colors and custom fonts) and request new exciting chart types that stand out from the masses.",
     "p2":
-      "For example, with the pro version you will be able to make an unlimited number of charts, work in teams, add a corporate design look (i.e. colors and custom fonts) and add new and exciting chart types that stand out from the masses.",
+      "Please <a href='&#0109;&#097;&#0105;&#0108;&#0116;&#0111;&#058;&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;'>get in touch</a> if you are interested in learning more about our pro options.",
     "p3":
-      "Please <a href='&#0109;&#097;&#0105;&#0108;&#0116;&#0111;&#058;&#0104;&#0101;&#0108;&#0108;&#0111;&#064;&#0115;&#0118;&#0105;&#0102;&#0116;&#046;&#0120;&#0121;&#0122;'>get in touch</a> if you are interested to learn more about our pro options, available from mid-2018."
+      "<img src='./assets/img/pages/tagesspiegel.jpg' alt='Tagesspiegel' class='pro-image' /><img src='./assets/img/pages/handelsblatt.png' alt='Handelsblatt' class='pro-image' /><img src='./assets/img/pages/taz.jpg' alt='TAZ' class='pro-image' /><img src='./assets/img/pages/hannoversche_allgemeine.png' alt='Hannoversche Allgemeine' class='pro-image' /><img src='./assets/img/pages/neue_presse.jpg' alt='Neue Presse' class='pro-image' />" 
   }
 }
