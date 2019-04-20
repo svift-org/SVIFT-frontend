@@ -10,6 +10,30 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     alert('It looks like you are using an old Browser. Please install a recent version, ideally, Firefox or Chrome.');
   }
 
+  //tell IE users to switch browser
+  //https://blog.julitec.com/dev/pr%C3%BCfen-ob-internet-explorer-verwendet-wird-inklusive-ie-11
+  function getInternetExplorerVersion(){
+      var rV = -1; // Return value assumes failure.
+
+      if (navigator.appName == 'Microsoft Internet Explorer' || navigator.appName == 'Netscape') {
+          var uA = navigator.userAgent;
+          var rE = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+
+          if (rE.exec(uA) != null) {
+              rV = parseFloat(RegExp.$1);
+          }
+          /*check for IE 11*/
+          else if (!!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+              rV = 11;
+          }
+      }
+      return rV;
+  }
+
+  if(getInternetExplorerVersion() != -1){
+    alert('Internet Explorer is not fully supported. Please use Firefox, Chrome or Edge.');
+  }
+
   //ios browser fix
   d3.select('.app').style('height', window.innerHeight + 'px');
   window.scrollTo(0,1);
