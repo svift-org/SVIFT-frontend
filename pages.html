@@ -90,6 +90,11 @@
 
                 d3.select("#" + currentPage).classed('active', true);
 
+                ul.append('li')
+                    .style('line-height', '1.1em')
+                    .append('a')
+                        .html('Legal &<br />Privacy')
+                        .attr('href', 'legal.html');
 
             }
 
