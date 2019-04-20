@@ -13,9 +13,6 @@
     "build": "node build.js",
     "update": "npm update && npm run build"
   },
-  "pre-commit": [
-    "build"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://git@github.com/svift-org/svift-frontend.git"
