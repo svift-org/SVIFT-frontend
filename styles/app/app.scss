@@ -62,7 +62,7 @@ body {
 
 .app {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   height: 100vh;
   color: $white;
   overflow: hidden;
@@ -72,7 +72,7 @@ body {
   }
 
   #gui-1 {
-    flex: 1;
+    flex: 1 0 50%;
     display: flex;
     flex-flow: column;
     background: #5c258d; 
@@ -506,7 +506,7 @@ body {
 }
 
 #gui-2 {
-  flex: 1;
+  flex: 1 0 50%;
   position: relative;
 
   // background-color: $bg-light-grey;
