@@ -193,6 +193,11 @@ SVIFT.frontend = (function (_container_1, _container_2) {
         .delay(function (d, i) { return i * 300 })
         .style('opacity', 1)
         .text(function (d) { return d });
+
+    overlay.append('div')
+      .attr('id', 'soon-more-vis')
+      .append('span')
+        .html("🛠&nbsp;Soon more visualisations...");
   };
 
   module.selectThumb = function(d){
