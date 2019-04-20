@@ -305,10 +305,10 @@ body {
             height: auto;
             image-rendering: auto;
 
-            // @include large {
-            //   max-width: 100%;
-            //   height: auto;
-            // }
+            @include large {
+              max-width: 100%;
+              height: auto;
+            }
 
             @include medium {
               width: 80%;

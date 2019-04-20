@@ -10,6 +10,11 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     alert('It looks like you are using an old Browser. Please install a recent version, ideally, Firefox or Chrome.');
   }
 
+  //ios browser fix
+  d3.select('.app').style('height', window.innerHeight + 'px');
+  window.scrollTo(0,1);
+
+
   // Firebase quick&dirty setup - START //
   // var firebaseConfig = {
   //   apiKey: "AIzaSyDfZNHj2kNlkoD0qr5VQRs04p4zDTA6-2E",
@@ -98,6 +103,9 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
     //Resize the height of the vis container according to the predefined proportions
     d3.select(window).on('resize.two', function () {
+
+      d3.select('.app').style('height', window.innerHeight+'px');
+      window.scrollTo(0,1);
 
       var height = (container_1.node().getBoundingClientRect().width * module.defaultFormat[2]) / (module.defaultFormat[0] / module.defaultFormat[1]);
 

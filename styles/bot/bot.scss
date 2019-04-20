@@ -38,6 +38,11 @@
   margin: 0 20px;
 }
 
+.cb-inner-close{
+  clear:both;
+  visibility: hidden;
+}
+
 #cb-flow > .cb-inner.cb-w-input {
   /* When the input is active (height of input + extra padding) */
   padding-bottom: 70px;
@@ -324,7 +329,7 @@
 }
 
 .cb-bubble-input {
-  width: 590px;
+  // width: 590px;
   background-color: rgb(251, 251, 251);
   padding: 20px;
   border-radius: 4px;

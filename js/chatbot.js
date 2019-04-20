@@ -17,6 +17,7 @@ var chatbot = (function (container) {
   module.types = {};
   module.scroll = container.append('div').attr('id', 'cb-flow');
   module.flow = module.scroll.append('div').attr('class', 'cb-inner');
+  module.scroll.append('hr').attr('class', 'cb-inner-close');
   module.input = container.append('div').attr('id', 'cb-input').style('display', 'none');
   module.input.append('input').attr('type', 'text');
   module.input.append('button').text('+');
