@@ -249,7 +249,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     SVIFT.render.buildSet();
     SVIFT.render.getStatus();
 
-    cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF. Status: <b>0%</b>'}, function(bubble){
+    cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF. Status:&nbsp;<b>0%</b>'}, function(bubble){
 
       var interval = setInterval(function () {
 

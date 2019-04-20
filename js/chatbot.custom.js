@@ -138,7 +138,7 @@ var cb_extend = (function (cb) {
 
         if (('delay' in options) && options.delay) {
             var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
-            bubble.append('div')
+            bubble.attr('class', 'bubble-ctn-' + options.class).append('div')
                 .attr('class', 'cb-waiting')
                 .html(animatedCircles);
 
