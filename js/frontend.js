@@ -1,5 +1,15 @@
 SVIFT.frontend = (function (_container_1, _container_2) {
 
+  //Run a test to check if the GIF-Render requirements are met
+
+  var supports_webWorker = !!window.Worker;
+  var supports_fileAPI = (window.File && window.FileReader && window.FileList && window.Blob);
+  var supports_typedArray = ( 'Uint8ClampedArray' in window && 'ArrayBuffer' in window );
+
+  if(!supports_webWorker || !supports_fileAPI || !supports_typedArray){
+    alert('It looks like you are using an old Browser. Please install a recent version, ideally, Firefox or Chrome.');
+  }
+
   // Firebase quick&dirty setup - START //
   // var firebaseConfig = {
   //   apiKey: "AIzaSyDfZNHj2kNlkoD0qr5VQRs04p4zDTA6-2E",
@@ -249,12 +259,14 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   module.render = function(){
 
     //start rendering process
+    cb.addBubble({ type: 'text', value: 'Nice. Just give me a second.', class: 'bot' });
+
     SVIFT.render.init();
     SVIFT.render.setupVis(module.default);
     SVIFT.render.buildSet();
     SVIFT.render.getStatus();
 
-    cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF. Status:&nbsp;<b>0%</b>'}, function(bubble){
+    cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF now. Status:&nbsp;<b>0%</b>'}, function(bubble){
 
       var interval = setInterval(function () {
 
