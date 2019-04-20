@@ -108,7 +108,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
         /*Start Chatbot*/
 
         cb.addBubble({ type: 'text', value: 'Hi there, welcome to SVIFT!', class: 'bot', emoji: 'wave', delay: 1000 }, function () {
-            cb.addBubble({ type: 'text', value: 'Want to visualize some data for your project?', class: 'bot', delay: 500 }, function () {
+            cb.addBubble({ type: 'text', value: 'Want to visualize some data?', class: 'bot', delay: 500 }, function () {
                 setTimeout(function () {
                     cb.addBubble({ type: 'select', value: [{ label: 'Sounds great! Let’s go!' }], class: 'human' }, function(d){
 
@@ -249,14 +249,14 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     SVIFT.render.buildSet();
     SVIFT.render.getStatus();
 
-    cb.addBubble({ type: 'renderStatus', class: 'bot'}, function(progressBar){
+    cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF. Status: <b>0%</b>'}, function(bubble){
 
       var interval = setInterval(function () {
 
         var renderStatus = SVIFT.render.getStatus();
 
         //changes progress bar here
-        progressBar.select('b').html(Math.round(renderStatus.full.gif*100) + '%');
+        bubble.select('b').html(Math.round(renderStatus.full.gif*100) + '%');
 
         if (renderStatus.status == 1) { 
 

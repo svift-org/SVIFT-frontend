@@ -1,7 +1,7 @@
 /* DOWNLOAD CSS */
-@import "./variables/variables";
-@import "./fonts/fonts";
-@import "./mixins/mixins";
+@import "../variables/variables.scss";
+@import "../fonts/fonts.scss";
+@import "../mixins/mixins.scss";
 
 * {
     -webkit-box-sizing: border-box;

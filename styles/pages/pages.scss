@@ -1,6 +1,6 @@
 /* About CSS */
-@import "./variables/variables";
-@import "./mixins/mixins";
+@import "../variables/variables.scss";
+@import "../mixins/mixins.scss";
 
 * {
   -webkit-box-sizing: border-box;

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Main frontend file for merging all frontend files",
   "main": "index.js",
+  "engines" : { 
+    "node" : ">=8.5.0" 
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "jshint index.js",
@@ -28,7 +31,6 @@
     "svift-vis-barchart": "git+https://git@github.com/svift-org/vis-bar-module.git",
     "svift-vis-columns": "git+https://git@github.com/svift-org/vis-columns-module.git",
     "svift-vis-count": "git+https://git@github.com/svift-org/vis-count-module.git",
-    "svift-vis-gooey": "git+https://git@github.com/svift-org/vis-gooey-module.git",
     "svift-vis-mosaic": "git+https://git@github.com/svift-org/vis-mosaic-module.git"
   },
   "author": "Sebastian Meier",

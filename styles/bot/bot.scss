@@ -1,6 +1,6 @@
 /* BOT CSS Namespace 'cb-' */
 @import "../variables/variables.scss";
-@import "./mixins/mixins";
+@import "../mixins/mixins.scss";
 
 .beta-tag {
   color: #fff;
@@ -150,7 +150,7 @@
 
 .cb-bubble > .cb-inner {
   margin: 0;
-  padding: $padding-bubble-inner;
+  //padding: $padding-bubble-inner;
 }
 
 .cb-bubble p {
@@ -254,20 +254,20 @@
     transform: translateY(3px);
   }
 
-  &:before {
-    content: "";
-    display: inline-block;
-    height: 0.75em;
-    width: 0.7em;
-    background-color: $svift-human;
-    border-radius: $border-radius-circle;
-    margin-right: 7px;
-    transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
+  // &:before {
+  //   content: "";
+  //   display: inline-block;
+  //   height: 0.75em;
+  //   width: 0.7em;
+  //   background-color: $svift-human;
+  //   border-radius: $border-radius-circle;
+  //   margin-right: 7px;
+  //   transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+  // }
 
-  &:hover:before {
-    background-color: #fff;
-  }
+  // &:hover:before {
+  //   background-color: #fff;
+  // }
 }
 
 .cb-format {

@@ -133,7 +133,7 @@ var cb_extend = (function (cb) {
                 bubble.append('img').attr('class', 'emoji').attr('src', './assets/emojis/' + options.emoji + '.png');
             }
 
-            callback();
+            callback(bubble);
         }
 
         if (('delay' in options) && options.delay) {
@@ -297,18 +297,6 @@ var cb_extend = (function (cb) {
             });
 
         callback(rowOne, rowTwo);
-    };
-
-
-
-    /* Show GIF render status */
-    cb.types['renderStatus'] = function (bubble, options, callback) {
-
-        var progressBar = bubble.append('div')
-            .attr('class', 'cb-progress-bar')
-            .html('I am renderrriiing your GIF. Status: <b>0 %</b>')
-
-        callback(progressBar);
     };
 
 
