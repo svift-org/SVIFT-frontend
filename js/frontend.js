@@ -84,6 +84,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       },
       "length": 3000,
       "style": {
+          "theme": "Modern",
           "font": "IBM Plex Sans Condensed", //"Open Sans",Patua One,Hind
           "fontLables": "Open Sans",
           "color": {
@@ -261,6 +262,12 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     });
   };
 
+  module.highlightStyle = function(){
+    d3.selectAll('.cb-styles-btn').classed('active',false);
+    d3.select('.cb-styles-color-' + module.default.style.color.main).classed('active', true);
+    d3.select('.cb-styles-font-' + module.default.style.theme).classed('active', true);
+  };
+
   module.inputDone = function(){
     cb.addBubble({ type: 'text', value: 'Ok, last step: Choose your design! ', class: 'bot', delay: 500 }, function () {
 
@@ -283,17 +290,19 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           }
           //module.redrawDebounce();
 
-          //TODO: Highlight current color/typeface
-
+          module.highlightStyle();
         }
 
       });
+
+      module.highlightStyle();
 
       setTimeout(function () {
           cb.addBubble({ type: 'select', value: [{ label: 'I am done!' }], class: 'human send' }, module.render);
       }, 500);
 
     });
+
   };
 
   module.render = function(){

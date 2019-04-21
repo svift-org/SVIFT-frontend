@@ -230,7 +230,7 @@ var cb_extend = (function (cb) {
             .data(fonts).enter()
             .append('div')
             .text(function(d){return d.label})
-            .attr('class', "cb-styles-btn")
+            .attr('class', function(d){ return "cb-styles-btn cb-styles-font-" + d.label;})
             .style('font-family', function (d) { return d.font })
             .on('click', function (d) {
                 callback(d);
@@ -239,7 +239,7 @@ var cb_extend = (function (cb) {
         stylesOptsColor.selectAll('.cb-styles-btn')
             .data(styles).enter()
             .append('div')
-            .attr('class', "cb-styles-btn")
+            .attr('class', function(d){ return "cb-styles-btn cb-styles-color-" + d.label;})
             .style("background-color", function(d){return d.color})
             .on('click', function (d) {
                 callback(d);

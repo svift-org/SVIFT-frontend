@@ -721,7 +721,7 @@
       text-align: center;
       line-height: 35px;
       border-radius: $border-radius-default;
-      transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+      transition: all 0.75s cubic-bezier(0.215, 0.61, 0.355, 1), line-height 0;
       cursor: pointer;
       box-shadow: $box-shadow-default;
       margin-bottom: 15px;
@@ -729,6 +729,12 @@
 
       &:hover {
         transform: translateY(3px);
+      }
+
+      &.active{
+        border-width:2px;
+        border-color:rgba(0,0,0,0.4);
+        line-height:32px;
       }
     }
 
