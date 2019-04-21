@@ -71,6 +71,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.table = null;
 
+  module.disabled = false;
+
   //Default visualisation configuration
   module.default = {
       "params": {
@@ -270,6 +272,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
       cb.addBubble(styleBubble, function(d){
 
+        if(!module.disabled){
+
           if(typeof d.color != "undefined"){
             module.default.style.color.main = d.label;
             module.vis.setColor(d.label);
@@ -278,6 +282,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
             module.vis.setTheme(d.id);
           }
           //module.redrawDebounce();
+
+          //TODO: Highlight current color/typeface
+
+        }
 
       });
 
@@ -292,6 +300,12 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
     //start rendering process
     cb.addBubble({ type: 'text', value: 'Nice. Just give me a second.', class: 'bot' });
+
+    //disable any changes to the input system
+    //TODO: Allow changes after render-start > remove render bubbles and restart render process
+    module.disabled = true;
+    d3.selectAll('.icon-toggle, .column-editor-btn').style('opacity', 0.5).style('pointer-events','none');
+    d3.selectAll('.cb-bubble-input input, .cb-bubble-input textarea').attr('disabled',"disabled");
 
     SVIFT.render.init();
     SVIFT.render.setupVis(module.default);
@@ -366,16 +380,19 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
   module.updateVis = function(data, type){
 
-    module.default.data = data;
 
-    if(type == 'vis'){
-      module.redrawDebounce();
-    //   module.vis.update();
-    //   module.vis.resize();
-    }else{
-      console.log(data);
-      module.vis.setData(data);
-      module.vis.updateHead();
+    if(!module.disabled){
+      module.default.data = data;
+
+      if(type == 'vis'){
+        module.redrawDebounce();
+      //   module.vis.update();
+      //   module.vis.resize();
+      }else{
+        console.log(data);
+        module.vis.setData(data);
+        module.vis.updateHead();
+      }
     }
 
     //console.log('updateVis');
