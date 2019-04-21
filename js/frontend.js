@@ -31,7 +31,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   }
 
   if(getInternetExplorerVersion() != -1){
-    alert('Internet Explorer is not fully supported. Please use Firefox, Chrome or Edge.');
+    alert('Internet Explorer is not fully supported. Please use Firefox or Chrome.');
   }
 
   //ios browser fix
