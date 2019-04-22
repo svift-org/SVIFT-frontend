@@ -314,7 +314,7 @@ var cb_extend = (function (cb) {
         bubble
             .append('div')
             .attr('class', 'cb-choice')
-            .text("DOWNLOAD GIF")
+            .text("Download GIF")
             .on('click', function(){
                 SVIFT.render.downloadGIF();
             });
