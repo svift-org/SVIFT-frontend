@@ -75,7 +75,7 @@ SVIFT.table = (function (_config, updateCallback) {
                 .classed('column-editor-btn', true)
                 .classed('btn-remove', true)
                 .text('–')
-                .classed('disabled-btn', true)
+                .classed('disabled-btn', false)
                 .on('click', function (d) {
                     module.columnRemove()
                 });
@@ -86,6 +86,18 @@ SVIFT.table = (function (_config, updateCallback) {
                 .text('+')
                 .on('click', function (d) {
                     module.columnAdd();
+                });
+
+            editColButtons.append('div')
+                .classed('icon-toggle', true)
+                .classed('hidden', false)
+                .attr('id', 'numberLableToggle')
+                .on('click', function (d) {
+
+                    module.data.hideNumberLabels = !module.data.hideNumberLabels;
+                    updateCallback(module.data, 'vis');
+                    d3.select(this).classed('hidden', module.data.hideNumberLabels);
+
                 });
 
         }

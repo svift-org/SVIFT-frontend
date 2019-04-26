@@ -477,6 +477,7 @@
 
     #titleToggle,
     #subtitleToggle,
+    #numberLableToggle,
     #sourceToggle {
       background: url("../../assets/img/icon-toggle-on.svg") center center
         no-repeat;
@@ -508,6 +509,33 @@
         no-repeat;
     }
   }
+
+  #numberLableToggle.icon-toggle{
+      flex: 1;
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      background: url("../../assets/img/icon-toggle-off.svg") center center
+        no-repeat;
+  }
+
+  #numberLableToggle.icon-toggle{
+      flex: 1;
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      background: url("../../assets/img/icon-toggle-off.svg") center center
+        no-repeat;
+  }
+
+
+  #numberLableToggle.icon-toggle.hidden {
+
+    background: url("../../assets/img/icon-toggle-on.svg") center center
+        no-repeat;
+
+  }
+
 
   .subtitle {
     display: flex;
