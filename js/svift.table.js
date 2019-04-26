@@ -253,7 +253,7 @@ SVIFT.table = (function (_config, updateCallback) {
 
         var inputText = d3.select(selectorInput).node().value;
         module.data[selectorData] = inputText || altText;
-        if (selectorData == "source" && inputText) { 
+        if (selectorData == inputText) { 
             module.data[selectorData] = inputText;
         }
 
@@ -274,8 +274,8 @@ SVIFT.table = (function (_config, updateCallback) {
 
             var inputText = "";
             module.data[selectorData] = inputText;
-            if (selectorData == "source" && inputText) { 
-                module.data[selectorData] = "Source: " + inputText;
+            if (selectorData == inputText) { 
+                module.data[selectorData] = inputText;
             }
             d3.select(selectorViz).text(module.data[selectorData]);
         }
@@ -289,8 +289,8 @@ SVIFT.table = (function (_config, updateCallback) {
 
             var inputText = d3.select(selectorInput).node().value;
             module.data[selectorData] = inputText || altText;
-            if (selectorData == "source" && inputText) {
-                 module.data[selectorData] = "Source: " + inputText;
+            if (selectorData == inputText) {
+                 module.data[selectorData] = inputText;
             }
             d3.select(selectorViz).text(module.data[selectorData]);
         }

@@ -103,14 +103,14 @@ var cb_extend = (function (cb) {
             .attr('id', 'source-input')
             .attr('placeholder', 'Add your source here')
             .on('input', function () {
-                options.table.textUpdate("#source", "#source-input", "source", "Source: Your source");
+                options.table.textUpdate("#source", "#source-input", "source", "Your source");
             });
 
         var toogleSource = sourceWrapper.append('div')
             .classed('icon-toggle', true)
             .attr('id', 'sourceToggle')
             .on('click', function (d) {
-                options.table.textToggle(this, "#source", "#source-input", "source", "Source: Your source");
+                options.table.textToggle(this, "#source", "#source-input", "source", "Your source");
             });
 
         options.table.init(bubble);
