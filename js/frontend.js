@@ -104,7 +104,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
               ]
           ,
           "lables": [null],
-          "showLabels": true,
+          "showNumberLabels": true,
           "title": "Look at this title",
           "subTitle": "and what about a subtitle here?",
           "attribution": "Made with svift.xyz",

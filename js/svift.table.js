@@ -94,9 +94,9 @@ SVIFT.table = (function (_config, updateCallback) {
                 .attr('id', 'numberLableToggle')
                 .on('click', function (d) {
 
-                    module.data.hideNumberLabels = !module.data.hideNumberLabels;
+                    module.data.showNumberLabels = !module.data.showNumberLabels;
                     updateCallback(module.data, 'vis');
-                    d3.select(this).classed('hidden', module.data.hideNumberLabels);
+                    d3.select(this).classed('hidden', !module.data.showNumberLabels);
 
                 });
 
