@@ -71,7 +71,10 @@ SVIFT.table = (function (_config, updateCallback) {
             var editColButtons = tableWrapper.append('div')
                 .classed('column-editor-wrapper', true);
 
-            var removeButton = editColButtons.append('div')
+            var buttonWrapper = editColButtons.append('div')
+                .classed('wrapper-btn', true)    
+
+            var removeButton = buttonWrapper.append('div')
                 .classed('column-editor-btn', true)
                 .classed('btn-remove', true)
                 .text('–')
@@ -80,7 +83,7 @@ SVIFT.table = (function (_config, updateCallback) {
                     module.columnRemove()
                 });
 
-            var addButton = editColButtons.append('div')
+            var addButton = buttonWrapper.append('div')
                 .classed('column-editor-btn', true)
                 .classed('btn-add', true)
                 .text('+')
@@ -97,6 +100,7 @@ SVIFT.table = (function (_config, updateCallback) {
                     module.data.showNumberLabels = !module.data.showNumberLabels;
                     updateCallback(module.data, 'vis');
                     d3.select(this).classed('hidden', !module.data.showNumberLabels);
+                    d3.select('.table-wrapper').classed("hideNumberLables",!module.data.showNumberLabels)
 
                 });
 

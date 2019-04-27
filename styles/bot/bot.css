@@ -300,12 +300,22 @@
   .cb-bubble-input .table-wrapper {
     overflow-y: hidden;
     display: flex; }
+    .cb-bubble-input .table-wrapper.hideNumberLables tr:nth-child(2) input, .cb-bubble-input .table-wrapper.hideNumberLables tr:nth-child(2) textarea {
+      color: #dedede; }
+      .cb-bubble-input .table-wrapper.hideNumberLables tr:nth-child(2) input::placeholder, .cb-bubble-input .table-wrapper.hideNumberLables tr:nth-child(2) textarea::placeholder {
+        opacity: 0.2; }
     .cb-bubble-input .table-wrapper .column-editor-wrapper {
       display: inline-flex;
       flex: 1;
       justify-content: center;
-      align-items: center; }
+      align-items: center;
+      flex-direction: column; }
+      .cb-bubble-input .table-wrapper .column-editor-wrapper .wrapper-btn {
+        flex: 1;
+        display: flex;
+        align-items: flex-end; }
       .cb-bubble-input .table-wrapper .column-editor-wrapper .column-editor-btn {
+        flex: 1;
         width: 30px;
         height: 30px;
         border-width: 2px;
@@ -333,6 +343,8 @@
         /* Internet Explorer/Edge */
         user-select: none;
         /* Non-prefixed version, currently supported by Chrome and Opera */ }
+      .cb-bubble-input .table-wrapper .column-editor-wrapper .numberLableToggle {
+        flex: 1; }
       .cb-bubble-input .table-wrapper .column-editor-wrapper .btn-add {
         color: #75fabf;
         border-color: #75fabf; }
