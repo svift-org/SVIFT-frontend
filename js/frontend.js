@@ -311,36 +311,40 @@ SVIFT.frontend = (function (_container_1, _container_2) {
     //start rendering process
     cb.addBubble({ type: 'text', value: 'Nice. Just give me a second.', class: 'bot' });
 
-    //disable any changes to the input system
-    //TODO: Allow changes after render-start > remove render bubbles and restart render process
-    module.disabled = true;
-    d3.selectAll('.icon-toggle, .column-editor-btn').style('opacity', 0.5).style('pointer-events','none');
-    d3.selectAll('.cb-bubble-input input, .cb-bubble-input textarea').attr('disabled',"disabled");
+    setTimeout(function () {
 
-    SVIFT.render.init();
-    SVIFT.render.setupVis(module.default);
-    SVIFT.render.buildSet();
-    SVIFT.render.getStatus();
+      //disable any changes to the input system
+      //TODO: Allow changes after render-start > remove render bubbles and restart render process
+      module.disabled = true;
+      d3.selectAll('.icon-toggle, .column-editor-btn').style('opacity', 0.5).style('pointer-events','none');
+      d3.selectAll('.cb-bubble-input input, .cb-bubble-input textarea').attr('disabled',"disabled");
 
-    cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF now. Status:&nbsp;<b>0%</b>'}, function(bubble){
+      SVIFT.render.init();
+      SVIFT.render.setupVis(module.default);
+      SVIFT.render.buildSet();
+      SVIFT.render.getStatus();
 
-      var interval = setInterval(function () {
+      cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF now. Status:&nbsp;<b style="color:rgba(113, 96, 155, 1)">0%</b>'}, function(bubble){
 
-        var renderStatus = SVIFT.render.getStatus();
+        var interval = setInterval(function () {
 
-        //changes progress bar here
-        bubble.select('b').html(Math.round(renderStatus.full.gif*100) + '%');
+          var renderStatus = SVIFT.render.getStatus();
 
-        if (renderStatus.status == 1) { 
+          //changes progress bar here
+          bubble.select('b').html(Math.round(renderStatus.full.gif*100) + '%');
 
-          clearInterval(interval);
-          cb.addBubble({ type: 'text', value: 'Your GIF is done!', class: 'bot', delay: 500 }, module.download);
+          if (renderStatus.status == 1) { 
 
-        }
+            clearInterval(interval);
+            cb.addBubble({ type: 'text', value: 'Your GIF is done!', class: 'bot', delay: 500 }, module.download);
 
-      }, 1000);
+          }
 
-    });
+        }, 1000);
+
+      });
+
+    }, 1500);
 
   };
 
