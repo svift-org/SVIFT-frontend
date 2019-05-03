@@ -6,12 +6,12 @@
 
 Hans
 
-- correctly place "hide number label" btn
+- ~~correctly place "hide number label" btn~~
 
 Seb
 
-- GIF first frame should be last animation frame for correct preview on twitter (very short)
-- Do not render social images ? (result are not very good :) )
+- ~~GIF first frame should be last animation frame for correct preview on twitter (very short)~~
+- Do not render social images ? (result are not very good :) ) > square and horizontal are also available now
 - number text jumps when color is changed
 
 
