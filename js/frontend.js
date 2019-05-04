@@ -309,7 +309,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   module.render = function(){
 
     //start rendering process
-    cb.addBubble({ type: 'text', value: 'Nice. Just give me a second.', class: 'bot' });
+    cb.addBubble({ type: 'text', value: 'Nice! Just give me a second.', class: 'bot' });
 
     setTimeout(function () {
 

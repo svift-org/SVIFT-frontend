@@ -1,3 +1,153 @@
-@font-face{font-family:'SourceSansPro';src:url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff"),url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");font-weight:400;font-style:normal}@font-face{font-family:'SourceSansProBold';src:url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.woff") format("woff"),url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf") format("truetype");font-weight:500;font-style:normal}@font-face{font-family:'DecimaMonoPro';src:url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.woff") format("woff"),url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.ttf") format("truetype");font-weight:normal;font-style:normal}@font-face{font-family:'DecimaMonoProLt';src:url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.woff") format("woff"),url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.ttf") format("truetype");font-weight:normal;font-style:normal}@font-face{font-family:'DecimaMonoProBold';src:url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.woff") format("woff"),url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.ttf") format("truetype");font-weight:bold;font-style:normal}@font-face{font-family:'InterfaceRegular';src:url("../../assets/fonts/Interface/Interface-Regular.eot");src:url("../../assets/fonts/Interface/Interface-Regular.eot?#iefix") format("embedded-opentype"),url("../../assets/fonts/Interface/Interface-Regular.woff") format("woff"),url("../../assets/fonts/Interface/Interface-Regular.ttf") format("truetype");font-weight:normal;font-style:normal}@font-face{font-family:'InterfaceRegularItalic';src:url("../../assets/fonts/Interface/Interface-RegularItalic.eot");src:url("../../assets/fonts/Interface/Interface-RegularItalic.eot?#iefix") format("embedded-opentype"),url("../../assets/fonts/Interface/Interface-RegularItalic.woff") format("woff"),url("../../assets/fonts/Interface/Interface-RegularItalic.ttf") format("truetype");font-weight:normal;font-style:italic}@font-face{font-family:'InterfaceRegularBold';src:url("../../assets/fonts/Interface/Interface-Bold.eot");src:url("../../assets/fonts/Interface/Interface-Bold.eot?#iefix") format("embedded-opentype"),url("../../assets/fonts/Interface/Interface-Bold.woff") format("woff"),url("../../assets/fonts/Interface/Interface-Bold.ttf") format("truetype");font-weight:bold;font-style:normal}@font-face{font-family:'svift-iconfont';src:url("../../assets/fonts/IconFont/svift-iconfont.eot");src:url("../../assets/fonts/IconFont/svift-iconfont.eot") format("embedded-opentype"),url("../../assets/fonts/IconFont/svift-iconfont.woff2") format("woff2"),url("../../assets/fonts/IconFont/svift-iconfont.woff") format("woff"),url("../../assets/fonts/IconFont/svift-iconfont.ttf") format("truetype"),url("../../assets/fonts/IconFont/svift-iconfont.svg") format("svg");font-weight:normal;font-style:normal}*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html,body{margin:0;padding:0;border:0;font-size:16px;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;-moz-font-smoothing:antialiased;font-smoothing:antialiased}.app{display:flex;padding:5% 10% 10% 10%;flex-direction:row;color:#71609b;justify-content:center}.app nav{flex:1;margin-top:200px}.app nav ul{margin:0;padding:0;font-family:"DecimaMonoProBold",monospace;font-size:1.2em;line-height:2;list-style-type:none}.app nav ul li a{color:#75fabf;text-decoration:none;text-transform:uppercase;transition:color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)}.app nav ul li a:hover{color:#71609b}.app nav ul li a.active{color:#71609b}.app .wrapper{flex:6}.app .wrapper header{margin-bottom:10%;display:flex;align-items:center}.app .wrapper header a.wordmark{flex:6;height:50px}.app .wrapper header a.wordmark img{height:45px}.app .wrapper header div.social{flex:1}.app .wrapper header div.social a{color:#75fabf;font-family:"DecimaMonoProBold",monospace;font-size:1.1em;text-decoration:none;text-transform:uppercase;transition:color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)}.app .wrapper header div.social a:hover{color:#71609b}.app .wrapper .content{width:90%}.app .wrapper .content h1{color:#75fabf;font-family:"DecimaMonoProBold",monospace;font-size:2em;width:fit-content;margin-top:0}.app .wrapper .content p{font-family:"InterfaceRegular","Helvetica","Arial",sans-serif;font-size:1.1em;line-height:1.5}.app .wrapper .content p a{color:#75fabf;text-decoration:none}img.pro-image{width:100px;margin:20px 20px 0 0}
+/* About CSS */
+/* VARIABLES CSS */
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; }
+@font-face {
+  font-family: 'SourceSansProBold';
+  src: url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.woff") format("woff"), url("../../assets/fonts/SourceSansPro/SourceSansPro-Bold.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal; }
+@font-face {
+  font-family: 'DecimaMonoPro';
+  src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'DecimaMonoProLt';
+  src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoProLt.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'DecimaMonoProBold';
+  src: url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.woff") format("woff"), url("../../assets/fonts/DecimaMonoPro/DecimaMonoPro-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'InterfaceRegular';
+  src: url("../../assets/fonts/Interface/Interface-Regular.eot");
+  src: url("../../assets/fonts/Interface/Interface-Regular.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Regular.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'InterfaceRegularItalic';
+  src: url("../../assets/fonts/Interface/Interface-RegularItalic.eot");
+  src: url("../../assets/fonts/Interface/Interface-RegularItalic.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-RegularItalic.woff") format("woff"), url("../../assets/fonts/Interface/Interface-RegularItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic; }
+@font-face {
+  font-family: 'InterfaceRegularBold';
+  src: url("../../assets/fonts/Interface/Interface-Bold.eot");
+  src: url("../../assets/fonts/Interface/Interface-Bold.eot?#iefix") format("embedded-opentype"), url("../../assets/fonts/Interface/Interface-Bold.woff") format("woff"), url("../../assets/fonts/Interface/Interface-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'svift-iconfont';
+  src: url("../../assets/fonts/IconFont/svift-iconfont.eot");
+  src: url("../../assets/fonts/IconFont/svift-iconfont.eot") format("embedded-opentype"), url("../../assets/fonts/IconFont/svift-iconfont.woff2") format("woff2"), url("../../assets/fonts/IconFont/svift-iconfont.woff") format("woff"), url("../../assets/fonts/IconFont/svift-iconfont.ttf") format("truetype"), url("../../assets/fonts/IconFont/svift-iconfont.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/* --- FONTS --- */
+/* Font families*/
+/* Font sizes*/
+/* Line height*/
+/* --- COLORS --- */
+/* Brand Colors */
+/* Background Colors */
+/* Bot Colors */
+/* Text Colors */
+/* Button Colors */
+/* Box shadow*/
+/* --- PADDINGS & MARGINS, ETC. --- */
+/* Padding-App */
+/* Padding-Bot */
+/* Margin */
+/* Border radii*/
+/* --- BORDERS --- */
+/* Borders */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 16px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased; }
+
+.app {
+  display: flex;
+  padding: 5% 10% 10% 10%;
+  flex-direction: row;
+  color: #71609b;
+  justify-content: center; }
+  .app nav {
+    flex: 1;
+    margin-top: 200px; }
+    .app nav ul {
+      margin: 0;
+      padding: 0;
+      font-family: "DecimaMonoProBold", monospace;
+      font-size: 1.2em;
+      line-height: 2;
+      list-style-type: none; }
+      .app nav ul li a {
+        color: #75fabf;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1); }
+        .app nav ul li a:hover {
+          color: #71609b; }
+        .app nav ul li a.active {
+          color: #71609b; }
+  .app .wrapper {
+    flex: 6; }
+    .app .wrapper header {
+      margin-bottom: 10%;
+      display: flex;
+      align-items: center; }
+      .app .wrapper header a.wordmark {
+        flex: 6;
+        height: 50px; }
+        .app .wrapper header a.wordmark img {
+          height: 45px; }
+      .app .wrapper header div.social {
+        flex: 1; }
+        .app .wrapper header div.social a {
+          color: #75fabf;
+          font-family: "DecimaMonoProBold", monospace;
+          font-size: 1.1em;
+          text-decoration: none;
+          text-transform: uppercase;
+          transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1); }
+          .app .wrapper header div.social a:hover {
+            color: #71609b; }
+    .app .wrapper .content {
+      width: 90%; }
+      .app .wrapper .content h1 {
+        color: #75fabf;
+        font-family: "DecimaMonoProBold", monospace;
+        font-size: 2em;
+        width: fit-content;
+        margin-top: 0; }
+      .app .wrapper .content p {
+        font-family: "InterfaceRegular", "Helvetica", "Arial", sans-serif;
+        font-size: 1.1em;
+        line-height: 1.5; }
+        .app .wrapper .content p a {
+          color: #75fabf;
+          text-decoration: none; }
+
+img.pro-image {
+  width: 100px;
+  margin: 20px 20px 0 0; }
 
 /*# sourceMappingURL=pages.css.map */
