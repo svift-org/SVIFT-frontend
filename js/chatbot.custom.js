@@ -304,8 +304,8 @@ var cb_extend = (function (cb) {
 
         var social = [
             // { "name": "Gif", "icon": "gif", "link": "none" + ".gif", "html": 'GIF' },
-            { "name": "Square", "icon": "square", "link": "social/square.png", "html": '&square;' },
-            { "name": "Horizontal", "icon": "horizontal", "link": "social/horizontal.png", "html": '&rect;' },
+            { "name": "Square", "icon": "square", "link": "social/square.png", "html": '&#xe807' },
+            { "name": "Horizontal", "icon": "horizontal", "link": "social/horizontal.png", "html": '&#xe808' },
 
             { "name": "Facebook", "icon": "facebook", "link": "social/facebook.png", "html": '&#xf09a' },
             { "name": "Twitter", "icon": "twitter", "link": "social/twitter.png", "html": '&#xf099' },
