@@ -247,61 +247,6 @@ var cb_extend = (function (cb) {
 
     };
 
-    /* Add download buttons */
-    cb.types['status'] = function (bubble, options, callback) {
-
-        var downloadWrapper = bubble.append('div')
-            .attr('class', 'cb-status-wrapper')
-
-        var rowOne = downloadWrapper.append('div')
-            .attr('class', 'cb-status-row');
-
-        var social = [
-            // { "name": "Gif", "icon": "gif", "link": "none" + ".gif", "html": 'GIF' },
-            { "name": "Facebook", "icon": "facebook", "link": "social/facebook.png", "html": '&#xf09a' },
-            { "name": "Twitter", "icon": "twitter", "link": "social/twitter.png", "html": '&#xf099' },
-            { "name": "Instagram", "icon": "instagram", "link": "social/instagram.png", "html": '&#xf32d' },
-            { "name": "Google", "icon": "google", "link": "social/google.png", "html": '&#xf0d5' },
-            { "name": "Linkedin", "icon": "linkedin", "link": "social/linkedin.png", "html": '&#xf0e1' },
-            { "name": "Tumblr", "icon": "tumblr", "link": "social/tumblr.png", "html": '&#xf173' },
-            { "name": "Snapchat", "icon": "snapchat", "link": "social/snapchat.png", "html": '&#xf2ac' }
-        ];
-
-        rowOne.selectAll('span').data(social).enter()
-            .append('span')
-            .html(function (d) { return d.html; })
-            .attr('class', 'cb-status-btn')
-            .on('click', function(d){
-                _paq.push(['trackEvent', 'Download', d.icon]);
-                SVIFT.render.generateDownload(d.icon);
-            });
-
-        var rowTwo = downloadWrapper.append('div')
-            .attr('class', 'cb-status-row');
-
-        var formats = [
-            { 'html': '&#xe801', 'name': 'html' },
-            { 'html': '&#xe804', 'name': 'svg' },
-            // { 'html': '&#xe803', 'name': 'png' },
-            { 'html': 'GIF', 'name': 'gif'}
-        ];
-
-        rowTwo.selectAll('span').data(formats).enter()
-            .append('span')
-            .html(function (d, i) { return d.html; })
-            .attr('class',function(d){return 'cb-status-btn ' + d.name})
-            .attr('id', function (d) { return 'status-' + d.name; })
-            .on('click', function(d){
-                if(d.name === 'gif'){
-                    _paq.push(['trackEvent', 'Download', 'gif']);
-                    SVIFT.render.downloadGIF();
-                }
-            });
-
-        callback(rowOne, rowTwo);
-    };
-
-
     /* Download UI */
     cb.types['download-gif'] = function (bubble, options, callback) {
 
@@ -325,6 +270,28 @@ var cb_extend = (function (cb) {
         callback();
     };
 
+    cb.types['download-svg'] = function (bubble, options, callback) {
+
+        // var gifDownloadButton = bubble.append('div')
+        //     .attr('class', 'cb-gif-download')
+        //     .html('<span>GIF DOWNLOAD</span>')
+        //     .on('click', function(){
+        //         SVIFT.render.downloadGIF();
+        //     });
+
+        bubble.style('background-color', '#fff');
+        bubble
+            .append('div')
+            .attr('class', 'cb-choice')
+            .text("Download SVG")
+            .on('click', function(){
+                _paq.push(['trackEvent', 'Download', 'svg']);
+                SVIFT.render.generateDownload('square', 'svg');
+            });
+
+        callback();
+    };
+
 
     /* Download UI */
     cb.types['download-social'] = function (bubble, options, callback) {
@@ -337,10 +304,12 @@ var cb_extend = (function (cb) {
 
         var social = [
             // { "name": "Gif", "icon": "gif", "link": "none" + ".gif", "html": 'GIF' },
+            { "name": "Square", "icon": "square", "link": "social/square.png", "html": '&#xf0c8' },
+            { "name": "Horizontal", "icon": "horizontal", "link": "social/horizontal.png", "html": '&#xe40d' },
+
             { "name": "Facebook", "icon": "facebook", "link": "social/facebook.png", "html": '&#xf09a' },
             { "name": "Twitter", "icon": "twitter", "link": "social/twitter.png", "html": '&#xf099' },
             { "name": "Instagram", "icon": "instagram", "link": "social/instagram.png", "html": '&#xf32d' },
-            { "name": "Google", "icon": "google", "link": "social/google.png", "html": '&#xf0d5' },
             { "name": "Linkedin", "icon": "linkedin", "link": "social/linkedin.png", "html": '&#xf0e1' },
             { "name": "Tumblr", "icon": "tumblr", "link": "social/tumblr.png", "html": '&#xf173' },
             { "name": "Snapchat", "icon": "snapchat", "link": "social/snapchat.png", "html": '&#xf2ac' }

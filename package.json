@@ -20,6 +20,7 @@
   "dependencies": {
     "canvg": "^1.5.3",
     "gif.js": "git+https://github.com/jnordberg/gif.js.git",
+    "node-sass": "^4.12.0",
     "stackblur-canvas": "^2.2.0",
     "svgtodatauri": "git+https://github.com/sampumon/SVG.toDataURL.git",
     "svift-helper": "git+https://git@github.com/svift-org/helper-module.git",
@@ -40,7 +41,6 @@
     "google-font-import": "^0.1.2",
     "google-fonts-offline": "^0.1.5",
     "jshint": "^2.10.2",
-    "node-sass": "^4.12.0",
     "pre-commit": "^1.2.2",
     "uglify-js2": "^2.1.11"
   }
