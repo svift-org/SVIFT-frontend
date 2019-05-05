@@ -272,6 +272,7 @@ var cb_extend = (function (cb) {
             .html(function (d) { return d.html; })
             .attr('class', 'cb-status-btn')
             .on('click', function(d){
+                _paq.push(['trackEvent', 'Download', d.icon]);
                 SVIFT.render.generateDownload(d.icon);
             });
 
@@ -292,6 +293,7 @@ var cb_extend = (function (cb) {
             .attr('id', function (d) { return 'status-' + d.name; })
             .on('click', function(d){
                 if(d.name === 'gif'){
+                    _paq.push(['trackEvent', 'Download', 'gif']);
                     SVIFT.render.downloadGIF();
                 }
             });
@@ -316,6 +318,7 @@ var cb_extend = (function (cb) {
             .attr('class', 'cb-choice')
             .text("Download GIF")
             .on('click', function(){
+                _paq.push(['trackEvent', 'Download', 'gif']);
                 SVIFT.render.downloadGIF();
             });
 
@@ -348,6 +351,7 @@ var cb_extend = (function (cb) {
             .attr('class', 'cb-choice')
             .html(function (d) { return d.html; })
             .on('click', function(d){
+                _paq.push(['trackEvent', 'Download', d.icon]);
                 SVIFT.render.generateDownload(d.icon);
             });
 

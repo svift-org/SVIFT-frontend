@@ -324,6 +324,10 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       SVIFT.render.buildSet();
       SVIFT.render.getStatus();
 
+      _paq.push(['trackEvent', 'Render', 'Color', module.default.style.color.main]);
+      _paq.push(['trackEvent', 'Render', 'Visualisation', module.default.vis.type]);
+      _paq.push(['trackEvent', 'Render', 'Typography', module.default.style.theme]);
+
       cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF now. Status:&nbsp;<b style="color:rgba(113, 96, 155, 1)">0%</b>'}, function(bubble){
 
         var interval = setInterval(function () {
