@@ -1,36 +1,81 @@
-/* About CSS */
+/* DOWNLOAD CSS */
 @import "../variables/variables.scss";
 @import "../mixins/mixins.scss";
 
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: $font-size-default;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: $font-size-default;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-family: $font-family-sansDefault;
+    font-size: 1em;
+    line-height: 1.5;
+    color: $svift-primary;
 }
 
-.app {
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-family-mono;
+    color: $svift-human;
+    clear:both;
+}
+
+h1 {
+    margin-top: 2em;
+}
+
+p strong {
+    color: $svift-primary;
+}
+
+
+a {
+    text-decoration: none;
+    color: $svift-human;
+}
+
+header {
   display: flex;
-  padding: 5% 10% 10% 10%;
-  flex-direction: row;
-  color: $svift-primary;
-  justify-content: center;
+  align-items: center;
 
-  nav {
+  a.wordmark {
+    flex: 6;
+    height: 50px;
+
+    img {
+      height: 45px;
+    }
+  }
+
+  div.social {
     flex: 1;
-    margin-top: 200px;
 
+    a {
+      color: $svift-human;
+      font-family: $font-family-mono;
+      font-size: 1.1em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+      &:hover {
+        color: $svift-primary;
+      }
+    }
+  }
+}
+
+nav {
+    margin:30px 0;
     ul {
       margin: 0;
       padding: 0;
@@ -40,86 +85,75 @@ body {
       list-style-type: none;
 
       li {
+        float:left;
         a {
           color: $svift-human;
           text-decoration: none;
           text-transform: uppercase;
           transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+          padding-right:30px;
+          text-decoration: underline;
 
-          &:hover {
+          &:hover, &.active {
             color: $svift-primary;
           }
 
-          &.active {
-            color: $svift-primary;
-          }
         }
       }
     }
   }
 
-  .wrapper {
-    flex: 6;
+hr.closer{
+    visibility: hidden;
+    clear: both;
+    margin:20px 0;
+    padding:0;
+}
 
-    header {
-      margin-bottom: 10%;
-      display: flex;
-      align-items: center;
+div.legal {
+    background: #5C258D; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right top, $svift-primary, #4B4B81); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right top, $svift-primary, #4B4B81); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right top, $svift-primary, $svift-human);
+    background: linear-gradient(to right top, $svift-primary, $svift-human);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 
-      a.wordmark {
-        flex: 6;
-        height: 50px;
+    .ct {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: white;
+        width: 60%;
+        min-height: 100vh;
 
-        img {
-          height: 45px;
+        box-shadow: $box-shadow-default;
+
+        .ct-body {
+            width: 80%;
+            padding: 3em 0;
+
+            img {
+              height: 45px;
+
+              &.pro-image{
+                width:100px;
+                height:auto;
+                margin:20px 20px 0 0;
+              }
+            }
+          
         }
-      }
-
-      div.social {
-        flex: 1;
-
-        a {
-          color: $svift-human;
-          font-family: $font-family-mono;
-          font-size: 1.1em;
-          text-decoration: none;
-          text-transform: uppercase;
-          transition: color 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-
-          &:hover {
-            color: $svift-primary;
-          }
-        }
-      }
     }
+}
 
-    .content {
-      width: 90%;
-
-      h1 {
-        color: $svift-human;
-        font-family: $font-family-mono;
-        font-size: 2em;
-        width: fit-content;
-        margin-top: 0;
-      }
-
-      p {
-        font-family: $font-family-sansDefault;
-        font-size: 1.1em;
-        line-height: 1.5;
-
-        a {
-          color: $svift-human;
-          text-decoration: none;
-        }
-      }
+@media all and (max-width: 800px) {
+    div.legal .ct{
+        width:100%;
     }
-  }
 }
 
 
-img.pro-image{
-  width:100px;
-  margin:20px 20px 0 0;
-}

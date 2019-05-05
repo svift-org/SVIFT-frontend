@@ -152,36 +152,6 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"/legal/legal.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/legal/legal-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/legal/legal.css.map": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "/legal/legal.css.map",
-		"oF": 0
-		},
-	"/legal/legal.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 1,
-		"oA": 0,
-		"oAP": "/legal/legal.css",
-		"oF": 0,
-		"oS": 3,
-		"uL": 1
-		},
 	"/mixins/mixins.css": {
 		"aP": 1,
 		"bl": 0,
