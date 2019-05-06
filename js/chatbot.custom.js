@@ -286,7 +286,7 @@ var cb_extend = (function (cb) {
         bubble
             .append('div')
             .attr('class', 'cb-choice')
-            .html("Pic")
+            .html("Image")
             .on('click', function(){
                 _paq.push(['trackEvent', 'Download', 'square']);
                 SVIFT.render.generateDownload("square");
@@ -313,7 +313,7 @@ var cb_extend = (function (cb) {
         bubble
             .append('div')
             .attr('class', 'cb-choice')
-            .text("SVG")
+            .text("Vector graphic")
             .on('click', function(){
                 _paq.push(['trackEvent', 'Download', 'svg']);
                 SVIFT.render.generateDownload('square', 'svg');

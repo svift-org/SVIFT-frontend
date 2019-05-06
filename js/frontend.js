@@ -247,7 +247,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
   };
 
   module.selectThumb = function(d){
-    cb.addBubble({ type: 'text', value: 'I want to make a ' + d + ' chart ', class: 'human'}, function () {
+    cb.addBubble({ type: 'text', value: 'I want to make a ' + (d==="barchart" ? 'bar':d) + ' chart ', class: 'human'}, function () {
       cb.addBubble({ type: 'text', value: "Good choice! Let's enter your data ", class: 'bot', emoji: 'write', delay: 500 }, function () {
         module.loadVis(d);
 
@@ -328,7 +328,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
       _paq.push(['trackEvent', 'Render', 'Visualisation', module.default.vis.type]);
       _paq.push(['trackEvent', 'Render', 'Typography', module.default.style.theme]);
 
-      cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m rendering your GIF now. Status:&nbsp;<b style="color:rgba(113, 96, 155, 1)">0%</b>'}, function(bubble){
+      cb.addBubble({ type: 'text', class: 'bot', value: 'I\'m building your GIF&nbsp;<b style="color:rgba(113, 96, 155, 1)">0%</b>'}, function(bubble){
 
         var interval = setInterval(function () {
 
@@ -340,7 +340,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
           if (renderStatus.status == 1) { 
 
             clearInterval(interval);
-            cb.addBubble({ type: 'text', value: 'Your GIF is done!', class: 'bot', delay: 500 }, module.download);
+            cb.addBubble({ type: 'text', value: 'Your GIF is ready!', class: 'bot', delay: 500 }, module.download);
 
           }
 
@@ -356,8 +356,8 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
     cb.addBubble({ type: 'download-gif', class: 'human', delay: 1000 }, function(){
 
-      cb.addBubble({ type: 'text', value: 'you can also download your chart as a pic', class: 'bot', delay: 3000}, function(){
-        cb.addBubble({ type: 'text', value: 'or as a raw svg, in case you want to further refine your chart', class: 'bot', delay: 1500}, function(){
+      cb.addBubble({ type: 'text', value: 'You can also download your chart as an image or vector graphic', class: 'bot', delay: 3000}, function(){
+        // cb.addBubble({ type: 'text', value: 'or as a raw svg, in case you want to further refine your chart', class: 'bot', delay: 1500}, function(){
 
         cb.addBubble({ type: 'download-pics', class: 'human', delay: 1000 }, function(){
 
@@ -372,7 +372,7 @@ SVIFT.frontend = (function (_container_1, _container_2) {
             // })
 
           })
-        })
+        // })
 
       })
 
