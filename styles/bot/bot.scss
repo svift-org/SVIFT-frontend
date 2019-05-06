@@ -909,3 +909,34 @@
 }
 
 @include spinner;
+
+
+
+// Mobile - Quick fixes // NEEDS TO BE DONE RIGHT
+@media screen and (max-width: 699px) {
+  .beta-tag {
+      display: none;
+    }
+
+  #cb-flow {
+    height: 40vh;
+  }
+
+  #cb-flow > .cb-inner {
+      padding-top: 10%;
+  }
+
+  .cb-bubble-input .table-wrapper {
+    max-width: 80vw;
+    width: 80vw;
+    }
+
+  .cb-bubble-input .title input, .cb-bubble-input .title textarea {
+    font-size: 0.85em;
+  }
+
+  .cb-bubble-input .subtitle input, .cb-bubble-input .subtitle textarea {
+    font-size: 0.85em;
+  }
+  
+}

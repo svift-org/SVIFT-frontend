@@ -116,7 +116,7 @@ body {
     line-height: 1.5; }
   @media screen and (max-width: 699px) {
     .mobile {
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center; } }
@@ -127,9 +127,6 @@ body {
   height: 100vh;
   color: #fff;
   overflow: hidden; }
-  @media screen and (max-width: 699px) {
-    .app {
-      display: none; } }
   .app #gui-1 {
     flex: 1 0 50%;
     display: flex;
@@ -271,9 +268,6 @@ body {
           @media screen and (min-width: 1300px) {
             .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb {
               padding: 20px 10px; } }
-          @media screen and (max-width: 699px) {
-            .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb {
-              width: 100%; } }
           .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb:hover {
             transform: translateY(5px); }
           .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb img {
@@ -444,5 +438,44 @@ body {
     font-size: 0.8em;
     padding: 15px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); }
+
+@media screen and (max-width: 699px) {
+  body {
+    position: fixed; }
+
+  .app {
+    display: flex;
+    flex-direction: column; }
+
+  .app #gui-1 {
+    flex: 1 0 60%; }
+
+  .app #gui-2 {
+    flex: 1 0 40%; }
+
+  .app #gui-1 nav {
+    width: 100%; }
+
+  .app #gui-1 header {
+    padding: 2em; }
+
+  .app #gui-1 main h1 {
+    font-size: 1.4em;
+    line-height: 32px; }
+
+  .app #gui-1 #gui-1-overlay {
+    width: 100%;
+    height: 60%;
+    padding-top: 10vh; }
+
+  .app #gui-1 #gui-1-overlay div.thumb-wrapper {
+    padding-top: 15vw; }
+
+  .app #gui-1 #gui-1-overlay div.thumb-wrapper div.thumb {
+    width: 50%;
+    padding: 20px; }
+
+  .app #gui-1 #gui-1-overlay div.viz-container {
+    margin-top: 0; } }
 
 /*# sourceMappingURL=app.css.map */
