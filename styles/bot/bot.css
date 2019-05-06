@@ -261,6 +261,8 @@
     background-color: #75fabf;
     color: #000;
     transform: translateY(3px); }
+  .cb-choice span {
+    font-family: "svift-iconfont"; }
 
 .cb-format {
   flex: 1;
@@ -377,7 +379,7 @@
       .cb-bubble-input .table-wrapper table td:first-of-type {
         padding-left: 0; }
       .cb-bubble-input .table-wrapper table td {
-        min-width: 50px; }
+        min-width: 15px; }
   .cb-bubble-input input, .cb-bubble-input textarea {
     resize: none;
     cursor: pointer;

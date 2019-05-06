@@ -259,6 +259,10 @@
     transform: translateY(3px);
   }
 
+  span{
+    font-family: "svift-iconfont"
+  }
+
   // &:before {
   //   content: "";
   //   display: inline-block;
@@ -461,7 +465,7 @@
       }
 
       td {
-        min-width: 50px;
+        min-width: 15px;
       }
     }
   }
