@@ -356,19 +356,20 @@ SVIFT.frontend = (function (_container_1, _container_2) {
 
     cb.addBubble({ type: 'download-gif', class: 'human', delay: 1000 }, function(){
 
-      cb.addBubble({ type: 'text', value: 'or download some pics', class: 'bot', delay: 3000}, function(){
+      cb.addBubble({ type: 'text', value: 'you can also download your chart as a pic', class: 'bot', delay: 3000}, function(){
+        cb.addBubble({ type: 'text', value: 'or as a raw svg, in case you want to further refine your chart', class: 'bot', delay: 1500}, function(){
 
         cb.addBubble({ type: 'download-pics', class: 'human', delay: 1000 }, function(){
 
-          cb.addBubble({ type: 'text', value: 'we also have a raw svg, if you want to further refine your chart', class: 'bot', delay: 3000}, function(){
+          // cb.addBubble({ type: 'text', value: 'we also have a raw svg, if you want to further refine your chart', class: 'bot', delay: 3000}, function(){
 
-            cb.addBubble({ type: 'download-svg', class: 'human', delay: 1000 }, function(){
+            // cb.addBubble({ type: 'download-svg', class: 'human', delay: 1000 }, function(){
 
               setTimeout(function () {
                   module.end()
               },2000);
 
-            })
+            // })
 
           })
         })

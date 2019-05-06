@@ -282,32 +282,42 @@ var cb_extend = (function (cb) {
         //     });
 
         bubble.style('background-color', '#fff');
-        bubble
-            .append('div')
-            .attr('class', 'cb-choice')
-            .html("square <span>&#xe808</span>")
-            .on('click', function(){
-                _paq.push(['trackEvent', 'Download', 'square']);
-                SVIFT.render.generateDownload("horizontal");
-            });
 
         bubble
             .append('div')
             .attr('class', 'cb-choice')
-            .html("horizontal <span>&#xe807</span>")
+            .html("Pic")
             .on('click', function(){
-                _paq.push(['trackEvent', 'Download', 'horizontal']);
-                SVIFT.render.generateDownload("horizontal");
+                _paq.push(['trackEvent', 'Download', 'square']);
+                SVIFT.render.generateDownload("square");
             });
 
         // bubble
         //     .append('div')
         //     .attr('class', 'cb-choice')
-        //     .text("SVG")
+        //     .html("Pic <span>&#xe808</span>")
         //     .on('click', function(){
-        //         _paq.push(['trackEvent', 'Download', 'svg']);
-        //         SVIFT.render.generateDownload('square', 'svg');
+        //         _paq.push(['trackEvent', 'Download', 'square']);
+        //         SVIFT.render.generateDownload("square");
         //     });
+
+        // bubble
+        //     .append('div')
+        //     .attr('class', 'cb-choice')
+        //     .html("Pic <span>&#xe807</span>")
+        //     .on('click', function(){
+        //         _paq.push(['trackEvent', 'Download', 'horizontal']);
+        //         SVIFT.render.generateDownload("horizontal");
+        //     });
+
+        bubble
+            .append('div')
+            .attr('class', 'cb-choice')
+            .text("SVG")
+            .on('click', function(){
+                _paq.push(['trackEvent', 'Download', 'svg']);
+                SVIFT.render.generateDownload('square', 'svg');
+            });
 
         callback();
     };
