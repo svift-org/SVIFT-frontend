@@ -350,6 +350,8 @@
   .table-wrapper {
     overflow-y: hidden;
     display: flex;
+    max-width: 40vw;
+    width: 40vw;
 
 
     &.hideNumberLables{

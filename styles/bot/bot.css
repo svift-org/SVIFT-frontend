@@ -301,7 +301,9 @@
   margin-top: 20px; }
   .cb-bubble-input .table-wrapper {
     overflow-y: hidden;
-    display: flex; }
+    display: flex;
+    max-width: 40vw;
+    width: 40vw; }
     .cb-bubble-input .table-wrapper.hideNumberLables tr:nth-child(2) input, .cb-bubble-input .table-wrapper.hideNumberLables tr:nth-child(2) textarea {
       color: #dedede; }
       .cb-bubble-input .table-wrapper.hideNumberLables tr:nth-child(2) input::placeholder, .cb-bubble-input .table-wrapper.hideNumberLables tr:nth-child(2) textarea::placeholder {

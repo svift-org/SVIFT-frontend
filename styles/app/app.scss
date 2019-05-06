@@ -62,7 +62,7 @@ body {
 
 .app {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   height: 100vh;
   color: $white;
   overflow: hidden;
