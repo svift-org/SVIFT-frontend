@@ -379,7 +379,7 @@
       .cb-bubble-input .table-wrapper table td:first-of-type {
         padding-left: 0; }
       .cb-bubble-input .table-wrapper table td {
-        min-width: 15px; }
+        min-width: 50px; }
   .cb-bubble-input input, .cb-bubble-input textarea {
     resize: none;
     cursor: pointer;
