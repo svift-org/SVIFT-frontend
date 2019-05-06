@@ -270,6 +270,50 @@ var cb_extend = (function (cb) {
         callback();
     };
 
+
+
+    cb.types['download-pics'] = function (bubble, options, callback) {
+
+        // var gifDownloadButton = bubble.append('div')
+        //     .attr('class', 'cb-gif-download')
+        //     .html('<span>GIF DOWNLOAD</span>')
+        //     .on('click', function(){
+        //         SVIFT.render.downloadGIF();
+        //     });
+
+        bubble.style('background-color', '#fff');
+        bubble
+            .append('div')
+            .attr('class', 'cb-choice')
+            .html("Pic <span>&#xe808</span>")
+            .on('click', function(){
+                _paq.push(['trackEvent', 'Download', 'square']);
+                SVIFT.render.generateDownload("horizontal");
+            });
+
+        bubble
+            .append('div')
+            .attr('class', 'cb-choice')
+            .html("Pic <span>&#xe807</span>")
+            .on('click', function(){
+                _paq.push(['trackEvent', 'Download', 'horizontal']);
+                SVIFT.render.generateDownload("horizontal");
+            });
+
+        bubble
+            .append('div')
+            .attr('class', 'cb-choice')
+            .text("SVG")
+            .on('click', function(){
+                _paq.push(['trackEvent', 'Download', 'svg']);
+                SVIFT.render.generateDownload('square', 'svg');
+            });
+
+        callback();
+    };
+
+
+
     cb.types['download-svg'] = function (bubble, options, callback) {
 
         // var gifDownloadButton = bubble.append('div')

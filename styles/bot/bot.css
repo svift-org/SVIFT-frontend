@@ -261,6 +261,8 @@
     background-color: #75fabf;
     color: #000;
     transform: translateY(3px); }
+  .cb-choice span {
+    font-family: "svift-iconfont"; }
 
 .cb-format {
   flex: 1;
