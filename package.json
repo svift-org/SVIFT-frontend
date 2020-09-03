@@ -32,7 +32,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^4.0.3",
     "jshint": "^2.9.5",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.13.1",
     "pre-commit": "^1.2.2",
     "uglify-js2": "^2.1.11"
   }
